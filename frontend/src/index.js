@@ -4,19 +4,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import ThemeChanger from './components/ThemeChanger';
 import ThemeProvider from './context/ThemeContext.js';
-
+import { BrowserRouter } from 'react-router-dom';
 
 
 // used to simplify ReactDOM.render below
 function Root() {
 
-
-
   return (
     <>
       <ThemeProvider>
-        <ThemeChanger />
-          <App />
+        <BrowserRouter>
+          <ThemeChanger />
+          {/*main content div here: */}
+          <div>
+            <App />
+          </div>
+        </ BrowserRouter>
       </ThemeProvider>
     </>
   );
