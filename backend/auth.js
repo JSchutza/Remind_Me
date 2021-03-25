@@ -1,42 +1,81 @@
-const {User} = require("./db/models")
+const the_JWT = require('jsonwebtoken');
+const { jwtConfig } = require('./config');
+const { User } = require('./db/models');
 
-const loginUser = (req, res, user, userShelves) => {
-  req.session.auth = {userId: user.id, username: user.name, userShelves: userShelves}
-}
-
-
-
-const logoutUser = (req, res) => {
-  delete req.session.auth;
-}
+const { secret, expiresIn } = jwtConfig;
 
 
+// Sends a JWT Cookie
+const setTokenCookie = (response, user) => {
+  // construct the user data for the token
+  const user_data = { data: user.toSafeObject() };
 
-const restoreUser = async (req, res, next) => {
+  // construct the expiration data for the token
+  const token_expiration = { expiresIn: parseInt(expiresIn) };
 
-  if (req.session.auth) {
-    const { userId, username } = req.session.auth;
+  // Create the token.
+  const token = the_JWT.sign(user_data, secret, token_expiration);
 
-    try {
-      const user = await User.findByPk(userId);
+  const isProduction = process.env.NODE_ENV === "production";
 
-      if (user) {
-        res.locals.authenticated = true;
-        res.locals.user = user;
-        next();
-      }
-    } catch (err) {
-      res.locals.authenticated = false;
-      next(err);
-    }
-  } else {
-    res.locals.authenticated = false;
-    next();
-  }
+  // Set the token cookie
+  response.cookie('token', token, {
+    maxAge: expiresIn * 1000,
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction && "Lax"
+  });
+
+  return token;
 };
 
 
 
+const restoreUser = (request, response, next) => {
+  // token parsed from cookies
+  const { token } = request.cookies;
+
+  return the_JWT.verify(token, secret, null, async (err, jwtPayload) => {
+    if (err) {
+      return next();
+    }
+
+    try {
+      const { id } = jwtPayload.data;
+      request.user = await User.scope('currentUser').findByPk(id);
+    } catch (e) {
+      response.clearCookie('token');
+      return next();
+    }
+
+    if (!request.user) response.clearCookie('token');
+
+    return next();
+  });
+};
 
 
-module.exports = { loginUser, logoutUser, restoreUser}
+
+// If there is no current user, return an error
+const requireAuth = [
+  restoreUser,
+  (request, response, next) => {
+    if (request.user) return next();
+
+    const err = new Error('Unauthorized');
+    err.title = 'Unauthorized';
+    err.errors = ['Unauthorized'];
+    err.status = 401;
+    return next(err);
+  },
+];
+
+
+
+
+
+module.exports = {
+  setTokenCookie,
+  restoreUser,
+  requireAuth
+};
