@@ -1,5 +1,5 @@
 // imports here:
-const { express, asyncHandler, setTokenCookie, User, restoreUser, requireAuth } = require('../lib');
+const { express, asyncHandler, setTokenCookie, User, restoreUser, validateLogin, validateSignup } = require('../lib');
 
 
 // invoke router so we can use it
@@ -12,7 +12,7 @@ const router = express.Router();
 // routes here:
 
 //POST  localhost:5000/api/users/login
-router.post('/login', asyncHandler(async (request, response, next) => {
+router.post('/login', validateLogin, asyncHandler(async (request, response, next) => {
     const { credential, password } = request.body;
 
     const user = await User.login({ credential, password });
@@ -40,13 +40,13 @@ router.delete('/logout', (request, response) => {
 });
 
 
+
 //POST localhost:5000/api/users/signup
-router.post('/signup', asyncHandler(async (request, response, next) => {
-    //* add validation middleware here as the second parameter to the route *******
-
-
+router.post('/signup', validateSignup, asyncHandler(async (request, response, next) => {
     const { email, password, username } = request.body;
+
     const user = await User.signup({ email, username, password });
+
 
     if (user === false) {
         const err = new Error('Signup failed.');
