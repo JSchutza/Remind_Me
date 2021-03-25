@@ -1,35 +1,32 @@
 
 
 
-- a remember the milk clone
+- a Evernote clone
 
 name:   remind_me
 
 features:
 
-    - Lists
+    - Notebooks
 
-        - Tasks
+        - Notes
 
-    - List summary (time, number of tasks, amount of them completed)
+    - Tags
 
-    - Search through Lists
+    - Rich-text editing
 
 
     BONUS
-        when on an list page be able to search through the tasks by name
-        schedule tasks for a specific day in the month -- basicaly a calander
-        give a snapshot view of what is coming up
-        be able to specify a time on when something is due
-        when on a task -- have a timer option (count down )
-        when on a task if no timer is specifyed show the amount of time it took to complete the task
-
+        - reminders
+        - Search through Notebooks
+        - auto save
+        - Notebook summary (number of Notes)
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 rough schema
     notes:
-        -   a User has many Lists
+        -   a User has many Notebooks
 
-        -   a List has many Tasks
+        -   a Notebook has many Notes
