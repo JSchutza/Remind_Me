@@ -10,7 +10,8 @@ const router = express.Router();
 
 
 // routes here:
-//POST  localhost:5000/api/user/login
+
+//POST  localhost:5000/api/users/login
 router.post('/login', asyncHandler(async (request, response, next) => {
     const { credential, password } = request.body;
 
@@ -28,6 +29,15 @@ router.post('/login', asyncHandler(async (request, response, next) => {
 
     response.json({ user });
 }));
+
+
+
+//DELETE localhost:5000/api/users/logout
+router.delete('/logout', (request, response) => {
+    // need to grab the token cookie and only if they have a token can they logout
+    response.clearCookie('token');
+    response.json({ message: 'You have successfully been logged out.' });
+});
 
 
 
