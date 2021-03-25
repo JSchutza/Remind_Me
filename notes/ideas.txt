@@ -7,17 +7,29 @@ name:   remind_me
 
 features:
 
-    - Tasks
-
     - Lists
+
+        - Tasks
 
     - List summary (time, number of tasks, amount of them completed)
 
-    - Search
+    - Search through Lists
+
 
     BONUS
+        when on an list page be able to search through the tasks by name
         schedule tasks for a specific day in the month -- basicaly a calander
         give a snapshot view of what is coming up
         be able to specify a time on when something is due
         when on a task -- have a timer option (count down )
         when on a task if no timer is specifyed show the amount of time it took to complete the task
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rough schema
+    notes:
+        -   a User has many Lists
+
+        -   a List has many Tasks
