@@ -1,18 +1,15 @@
-// const { sequelize } = require('./db/models');
 // const { restoreUser } = require("./auth");
 
+
+
 // imports here:
-// const createError = require('http-errors');
-
-
-
-
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+
 
 // router here
 const the_api = require('./routes/api.js');
@@ -22,16 +19,11 @@ const { environment } = require("./config");
 const isProduction = environment === 'production';
 
 
-
 const app = express();
-
-
-
 
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.json());
-
 
 
 // Security Middleware
@@ -49,8 +41,12 @@ app.use( csurf({ cookie: { secure: isProduction, sameSite: isProduction && "Lax"
 
 
 
+
 // mount the api router here
 app.use('/api', the_api);
+
+
+// error handlers here:
 
 
 
