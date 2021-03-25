@@ -3,7 +3,7 @@ const { express, initApp, setErrorHandlers } = require('./lib');
 
 
 // router here
-const the_api = require('./routes/api.js');
+const users_router = require('./routes/users.js');
 
 
 const app = express();
@@ -14,7 +14,7 @@ initApp(app);
 
 
 // mount the api router here
-app.use('/api', the_api);
+app.use('/api/users', users_router);
 
 
 

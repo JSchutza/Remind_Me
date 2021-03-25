@@ -86,10 +86,14 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     });
+
     if (user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id);
     }
+    // return false if the user was not in the db and the password validation failed
+    return false;
   };
+
 
 
 
