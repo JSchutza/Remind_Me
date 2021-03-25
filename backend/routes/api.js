@@ -8,6 +8,11 @@ const router = express.Router();
 
 // API routes here:
 // router.get('path here', ect....)
+router.get('/test', (req, res) => {
+    res.json("success");
+});
+
+
 
 
 
