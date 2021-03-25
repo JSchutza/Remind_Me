@@ -1,52 +1,25 @@
-// const { restoreUser } = require("./auth");
-
-
-
 // imports here:
-const express = require('express');
-const logger = require('morgan');
-const cors = require('cors');
-const csurf = require('csurf');
-const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
+const { express, initApp, setErrorHandlers } = require('./lib');
 
 
 // router here
-const the_api = require('./routes/api.js');
-
-
-const { environment } = require("./config");
-const isProduction = environment === 'production';
+const users_router = require('./routes/users.js');
 
 
 const app = express();
 
-app.use(logger('dev'));
-app.use(cookieParser());
-app.use(express.json());
-
-
-// Security Middleware
-if (!isProduction) {
-  // enable cors only in development
-  app.use(cors());
-}
-// helmet helps set a variety of headers to better secure your app
-app.use(helmet({
-  contentSecurityPolicy: false
-}));
-
-// Set the _csrf token and create req.csrfToken method
-app.use( csurf({ cookie: { secure: isProduction, sameSite: isProduction && "Lax", httpOnly: true, }, }) );
-
+// sets up necessary middleware
+initApp(app);
 
 
 
 // mount the api router here
-app.use('/api', the_api);
+app.use('/api/users', users_router);
+
 
 
 // error handlers here:
+setErrorHandlers(app);
 
 
 
