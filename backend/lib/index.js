@@ -9,6 +9,10 @@ const { ValidationError } = require('sequelize');
 const { check, validationResult } = require('express-validator');
 const { environment } = require("../config");
 const asyncHandler = require('express-async-handler');
+// making all imports easy below
+const { setTokenCookie, restoreUser, requireAuth } = require('../auth.js');
+// all of the db models below
+const { User } = require('../db/models');
 
 
 // variable that determines if the app is in production or not
@@ -103,11 +107,20 @@ module.exports = {
   csurf,
   helmet,
   cookieParser,
+
   ValidationError,
   check,
   validationResult,
+
   environment,
   asyncHandler,
+
+  setTokenCookie,
+  restoreUser,
+  requireAuth,
+
+  User,
+
   isProduction,
   initApp,
   setErrorHandlers
