@@ -8,6 +8,7 @@ import ThemeProvider from './context/ThemeContext.js';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
+import { restoreCSRF, csrfFetch } from './store/csrf.js';
 
 
 const store = configureStore();
@@ -15,8 +16,12 @@ const store = configureStore();
 
 // for development
 if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch;
   window.store = store;
 }
+
 
 
 
