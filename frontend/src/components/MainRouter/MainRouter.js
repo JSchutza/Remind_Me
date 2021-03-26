@@ -1,7 +1,8 @@
 // imports here:
 import { Switch, Route } from 'react-router-dom';
-import LoginForm from '../LoginForm';
 import NavBar from './NavBar';
+import LoginForm from '../LoginForm';
+import SignupForm from '../SignupForm';
 
 
 // component definitions here:
@@ -18,6 +19,11 @@ function MainRouter(){
                 <Route exact path="/login">
                     <NavBar />
                         <LoginForm />
+                </Route>
+
+                <Route exact path="/signup">
+                    <NavBar />
+                        <SignupForm />
                 </Route>
 
 

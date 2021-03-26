@@ -22,6 +22,12 @@ function NavBar() {
                         </NavLink>
                     </li>
 
+                    <li>
+                        <NavLink activeClassName='selected' exact to='/signup'>
+                            Signup
+                        </NavLink>
+                    </li>
+
                 </ul>
             </nav>
         </>
