@@ -5,14 +5,15 @@
 import { LOGIN_USER } from '../types/session.js';
 
 
+// make the initalState
+const initialState = { user: null };
+
+
 // reducers here
-const userReducer = (state={}, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN_USER:
-            return {
-                ...state,
-                [action.user.id]: action.user
-            };
+            return { ...state, user: action.user };
         default:
             return state;
     }
