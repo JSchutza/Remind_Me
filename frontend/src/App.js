@@ -16,7 +16,7 @@ function App() {
     dispatch(thunk_checkIfThereIsAUser()).then(() => setIsLoaded(true));
   },[dispatch]);
 
-  
+
   return isLoaded && (
     <>
     <MainRouter />

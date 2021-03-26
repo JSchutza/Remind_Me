@@ -36,7 +36,8 @@ router.post('/login', validateLogin, asyncHandler(async (request, response, next
 router.delete('/logout', (request, response) => {
     // need to grab the token cookie and only if they have a token can they logout
     response.clearCookie('token');
-    response.json({ message: 'You have successfully been logged out.' });
+    response.json({ user: null });
+
 });
 
 
