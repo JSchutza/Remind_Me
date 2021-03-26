@@ -1,5 +1,6 @@
 // imports here:
 import MainRouter from './components/MainRouter';
+import Footer from './components/Footer';
 
 
 
@@ -17,6 +18,8 @@ function App() {
   return (
     <>
       <MainRouter />
+
+      <Footer />
     </>
 
   );

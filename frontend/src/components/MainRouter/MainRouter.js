@@ -14,6 +14,7 @@ function MainRouter(){
                 <Route exact path="/">
                     <NavBar />
                         <h1> Home </h1>
+                        {/* home component here */}
                 </Route>
 
                 <Route exact path="/login">
@@ -27,12 +28,10 @@ function MainRouter(){
                 </Route>
 
 
-{/* default route if none of the paths match */}
                 <Route>
                     <NavBar />
                         <h1> 404 Page Not Found </h1>
                 </Route>
-
             </Switch>
         </>
     );

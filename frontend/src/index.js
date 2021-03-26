@@ -34,11 +34,7 @@ function Root() {
       <ThemeProvider>
         <BrowserRouter>
           <ThemeChanger />
-
-          {/*main content div here: */}
-          <div>
             <App />
-          </div>
         </ BrowserRouter>
       </ThemeProvider>
       </Provider>
