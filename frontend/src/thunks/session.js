@@ -23,6 +23,7 @@ const thunk_login = (form_info) => async (dispatch) => {
     if(response.ok) {
         const the_user = await response.json();
         dispatch(loginUser(the_user));
+        return;
     }
     throw response;
 };
