@@ -26,6 +26,9 @@ features:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 rough schema
+    https://dbdiagram.io/d/605bcdebecb54e10c33d20aa
+    https://dev.evernote.com/doc/articles/data_structure.php
+
     notes:
         -   a User has many Notebooks
 
