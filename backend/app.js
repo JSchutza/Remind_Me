@@ -24,17 +24,17 @@ if (process.env.NODE_ENV === 'production') {
     // Serve the frontend's index.html file at the root route
     app.get('/', (request, response) => {
         response.cookie('XSRF-TOKEN', request.csrfToken());
-        response.sendFile(path.resolve(__dirname, '../../frontend', 'build', 'index.html'));
+        response.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
     });
 
     // Serve the static assets in the frontend's build folder
-    app.use(express.static(path.resolve("../frontend/build")));
+    app.use(express.static(path.resolve("./frontend/build")));
 
     // Serve the frontend's index.html file at all other routes NOT starting with /api
     app.get(/^(?!\/?api).*/, (request, response) => {
         response.cookie('XSRF-TOKEN', request.csrfToken());
 
-        response.sendFile(path.resolve(__dirname, '../../frontend', 'build', 'index.html'));
+        response.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
     });
 
 }
