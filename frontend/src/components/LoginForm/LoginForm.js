@@ -1,26 +1,28 @@
 // imports here:
 import { useState, useEffect } from 'react';
-import ErrorMessage from './ErrorMessage.js';
+import ErrorMessage from '../ErrorMessage';
+import { useDispatch } from 'react-redux';
+import { thunk_login } from '../../thunks/session.js';
+
 
 
 
 // component definitions here:
 function LoginForm () {
     // state for the form here:
-    const [ email, setEmail ] = useState('');
+    const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmation, setConfirmation ] = useState('');
-    const [ allErrors, setAllErrors ] = useState([]);
+    const [ reminder, setReminder ] = useState('');
+    const [ errors, setErrors ] = useState([]);
 
+    // setup useDispatch
+    const dispatch = useDispatch();
 
     // for making the ErrorMessage component
     useEffect(() => {
         // make the errors array for ErrorMessage component
         let errors_array = [];
-
-        if(!email.includes('@') || !email.includes('.')) {
-            errors_array.push('Invalid email.');
-        }
 
         if(password.length <= 6) {
             errors_array.push('Must have a password that is longer than six characters.');
@@ -30,35 +32,47 @@ function LoginForm () {
             errors_array.push('Your password does not match the confirmation box.');
         }
 
-        setAllErrors([...errors_array]);
-    }, [email, password, confirmation]);
+        setErrors([...errors_array]);
+    }, [username, password, confirmation]);
 
+
+    const onSubmit = e => {
+    e.preventDefault();
+        // dispatch the thunk for the login api route only if errors.length is 0
+        if(errors.length === 0){
+            dispatch(thunk_login({ credential: username, password }));
+        } else {
+            // set reminder state here
+            setReminder('Please check the above validation errors.');
+        }
+
+    // history.push('/');
+    };
 
 
 
     return (
         <>
             <h1> Login </h1>
-                <ErrorMessage errors={allErrors}  />
+                <ErrorMessage errors={errors}  />
 
-            <form>
+            <div className="reminder-login">
+                <p>{reminder}</p>
+            </div>
 
-
+            <form className="login-form" onSubmit={onSubmit} >
                 <div>
-                    <label htmlFor="email"  /> Email
+                    <label htmlFor="email"  /> Username
                         <br />
                     <input
-                        type="email"
-                        onChange={(event) => setEmail(event.target.value) }
-                        value={email}
-                        placeholder="email@email.com"
-                        id="email"
-                        name="email"
+                        type="text"
+                        onChange={(event) => setUsername(event.target.value) }
+                        value={username}
+                        placeholder="Your Username Here"
+                        id="username"
+                        name="username"
                     />
-
                 </div>
-
-
                 <div>
                     <label htmlFor="password" /> Password
                         <br />
@@ -66,14 +80,11 @@ function LoginForm () {
                         type="password"
                         onChange={(event) => setPassword(event.target.value)}
                         value={password}
-                        placeholder="password here"
+                        placeholder="Password Here"
                         id="password"
                         name="password"
                     />
-
                 </div>
-
-
                 <div>
                     <label htmlFor="confirmation" /> Confirmation
                         <br />
@@ -81,16 +92,15 @@ function LoginForm () {
                         type="password"
                         onChange={(event) => setConfirmation(event.target.value)}
                         value={confirmation}
-                        placeholder="confirmation here"
+                        placeholder="Confirmation Here"
                         id="confirmation"
                         name="confirmation"
                     />
-
                 </div>
-
-
+                <div>
+                    <button>Login</button>
+                </div>
             </form>
-
         </>
     );
 }

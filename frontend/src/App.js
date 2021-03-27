@@ -1,25 +1,31 @@
 // imports here:
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { thunk_checkIfThereIsAUser } from './thunks/session.js';
 import MainRouter from './components/MainRouter';
+import Footer from './components/Footer';
 
 
 
 // component definitions here:
 function App() {
+  const dispatch = useDispatch();
+  const [ isLoaded, setIsLoaded ] = useState(false);
 
-  // will need to use an if to determine if the user is logged in or not
-  // if logged-in show the ... else show the <LoginForm/>
+  useEffect(() => {
+    dispatch(thunk_checkIfThereIsAUser()).then(() => setIsLoaded(true));
+  },[dispatch]);
 
 
-  // MainRouter does all of the routing
-  // need to find a way to pass info if the user is logged in or not
-  // thought -- pass boolean to MainRouter indicating if user is logged in
-    // use that prop in MainRouter to conditionaly show different components based on the outcome
-  return (
+  return isLoaded && (
     <>
-      <MainRouter />
+    <MainRouter />
+
+    <Footer />
     </>
 
   );
+
 }
 
 

@@ -36,7 +36,8 @@ router.post('/login', validateLogin, asyncHandler(async (request, response, next
 router.delete('/logout', (request, response) => {
     // need to grab the token cookie and only if they have a token can they logout
     response.clearCookie('token');
-    response.json({ message: 'You have successfully been logged out.' });
+    response.json({ user: null });
+
 });
 
 
@@ -64,15 +65,17 @@ router.post('/signup', validateSignup, asyncHandler(async (request, response, ne
 
 
 //GET localhost:5000/api/users/
+// do not change implementation -- is specific to the react components
+
 router.get('/', restoreUser, (request, response) => {
     const { user } = request;
 
     if (user) {
-        response.json({ user: user.toSafeObject(), is_user: true });
+        response.json({ user: user.toSafeObject() });
     }
 
 
-    response.json({message: "You are not currently logged in.", is_user: false });
+    response.json({ user: null });
 });
 
 
