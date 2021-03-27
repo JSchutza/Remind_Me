@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
+import { thunk_signupUser } from '../../thunks/session.js';
 
 
 function SignupForm (){
@@ -45,11 +46,11 @@ function SignupForm (){
     e.preventDefault();
     // if errors.length is 0 dispatch the the signup thunk
     if (errors.length === 0) {
-        //dispatch
-        // console.log({username, email, password});
+        dispatch(thunk_signupUser({ username, email, password }));
     } else {
         setReminder('Please check the above validation errors.');
     }
+
     // history.push('/');
     };
 
