@@ -5,7 +5,7 @@ import { thunk_logoutUser } from '../../thunks/session.js';
 import { useState, useEffect } from 'react';
 
 // component definitions here:
-function NavBar() {
+function NavBar({ isUser }) {
     // state here
     const dispatch = useDispatch();
 
@@ -40,9 +40,9 @@ function NavBar() {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <a onClick={logoutHandler}> Logout </a>
-                    </li>
+                    {
+                        isUser === null ? <div></div> : <li> <a onClick={logoutHandler}> Logout </a> </li>
+                    }
 
                 </ul>
             </nav>

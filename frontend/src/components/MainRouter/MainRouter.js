@@ -4,10 +4,11 @@ import NavBar from './NavBar';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Div from '../Div';
-
+import { useSelector } from 'react-redux';
 
 // component definitions here:
 function MainRouter({ current_theme }){
+    const isUser = useSelector((store) => store.userReducer.user.user);
 
 
     return (
@@ -15,7 +16,7 @@ function MainRouter({ current_theme }){
             <Switch>
                 <Route exact path="/">
                     <Div current_theme={current_theme} additional_selectors={[]}>
-                        <NavBar />
+                        <NavBar isUser={isUser} />
                         {/* home component here */}
                             <h1> Home </h1>
                     </Div>
@@ -23,18 +24,18 @@ function MainRouter({ current_theme }){
                 </Route>
 
                 <Route exact path="/login">
-                    <NavBar />
+                    <NavBar isUser={isUser} />
                         <LoginForm />
                 </Route>
 
                 <Route exact path="/signup">
-                    <NavBar />
+                    <NavBar isUser={isUser} />
                         <SignupForm />
                 </Route>
 
 
                 <Route>
-                    <NavBar />
+                    <NavBar isUser={isUser} />
                         <h1> 404 Page Not Found </h1>
                 </Route>
             </Switch>
