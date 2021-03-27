@@ -8,7 +8,7 @@ import { thunk_login } from '../../thunks/session.js';
 
 
 // component definitions here:
-function LoginForm () {
+function LoginForm({ current_theme }) {
     // state for the form here:
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');

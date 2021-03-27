@@ -2,6 +2,7 @@
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { thunk_checkIfThereIsAUser } from './thunks/session.js';
+import { useTheme } from './context/ThemeContext.js';
 import MainRouter from './components/MainRouter';
 import Footer from './components/Footer';
 
@@ -11,6 +12,8 @@ import Footer from './components/Footer';
 function App() {
   const dispatch = useDispatch();
   const [ isLoaded, setIsLoaded ] = useState(false);
+  // get the current theme
+  const { themeType } = useTheme();
 
   useEffect(() => {
     dispatch(thunk_checkIfThereIsAUser()).then(() => setIsLoaded(true));
@@ -19,9 +22,9 @@ function App() {
 
   return isLoaded && (
     <>
-    <MainRouter />
+      <MainRouter current_theme={themeType} />
 
-    <Footer />
+      <Footer />
     </>
 
   );

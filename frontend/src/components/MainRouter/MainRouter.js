@@ -6,15 +6,18 @@ import SignupForm from '../SignupForm';
 
 
 // component definitions here:
-function MainRouter(){
+function MainRouter({ current_theme }){
+
 
     return (
         <>
             <Switch>
                 <Route exact path="/">
                     <NavBar />
+                        <div className={`${current_theme.type}`}>
                         <h1> Home </h1>
                         {/* home component here */}
+                        </div>
                 </Route>
 
                 <Route exact path="/login">
