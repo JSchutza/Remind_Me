@@ -2,7 +2,7 @@
 
 
 // import types here
-import { LOGIN_USER, CHECK_USER, LOGOUT_USER } from '../types/session.js';
+import { LOGIN_USER, CHECK_USER, LOGOUT_USER, LOGIN_DEMO } from '../types/session.js';
 
 
 // make the initalState
@@ -17,6 +17,8 @@ const userReducer = (state = initialState, action) => {
         case LOGIN_USER:
             return { ...state, user: action.user };
         case LOGOUT_USER:
+            return { ...state, user: action.user };
+        case LOGIN_DEMO:
             return { ...state, user: action.user };
         default:
             return state;

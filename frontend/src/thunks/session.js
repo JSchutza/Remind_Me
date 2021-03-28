@@ -1,7 +1,7 @@
 // holds all the thunk functions for the session
 
 // import action creators here
-import { loginUser, checkForUser, logoutUser, signupUser } from '../actions/session.js';
+import { loginUser, checkForUser, logoutUser, signupUser, loginDemoUser } from '../actions/session.js';
 
 // import csrfFetch here
 import { csrfFetch } from '../store/csrf.js';
@@ -85,7 +85,22 @@ const thunk_signupUser = (form_info) => async (dispatch) => {
 
 
 
+const thunk_loginDemoUser = () => async (dispatch) => {
+    const credential = 'demo-user';
+    const password = 'password';
 
+    const response = await csrfFetch('/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({ credential, password })
+    });
+
+    if(response.ok){
+        const the_user = await response.json();
+        dispatch(loginDemoUser(the_user));
+        return;
+    }
+    throw response;
+};
 
 
 
@@ -95,6 +110,7 @@ export {
     thunk_login,
     thunk_logoutUser,
     thunk_signupUser,
+    thunk_loginDemoUser,
 
 
 };
