@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Div from '../Div';
+import Profile from '../Profile';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -43,7 +44,7 @@ function MainRouter({ current_theme }){
                 <Route exact path="/profile">
                     <NavBar isUser={isUser} />
                         {/* profile component here  */}
-                        { isUser === null ? history.push('/login') : <h1> Your Profile </h1> }
+                    { isUser === null ? history.push('/login') : <Profile /> }
 
                 </Route>
 
