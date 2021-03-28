@@ -5,6 +5,7 @@ import Home from '../Home';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Div from '../Div';
+import Loader from '../Loader';
 import Profile from '../Profile';
 
 import { useUser } from '../../context/UserContext.js';
@@ -14,7 +15,7 @@ import { useUser } from '../../context/UserContext.js';
 
 // component definitions here:
 function MainRouter(){
-    const { isUser } = useUser();
+    const { isUser, toggleLoader } = useUser();
 
     // if there is not a user
     if(isUser === null){
@@ -56,6 +57,7 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
+                    { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> }
             <Profile />
         </Route>
     </Switch>

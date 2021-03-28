@@ -12,12 +12,23 @@ import { useHistory } from 'react-router-dom';
 function NavBar() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { isUser } = useUser();
+    const { isUser, setToggleLoader } = useUser();
 
     const logoutHandler = (event) => {
         event.preventDefault();
-        dispatch(thunk_logoutUser());
-        history.push('/login');
+        setToggleLoader(true);
+
+        const the_interval = setInterval(() => {
+            setToggleLoader(false);
+            setToggleLoader(true);
+        }, 500);
+
+        setTimeout(() => {
+            clearInterval(the_interval);
+            setToggleLoader(false);
+            dispatch(thunk_logoutUser());
+            history.push('/login');
+        }, 2000);
     };
 
 
