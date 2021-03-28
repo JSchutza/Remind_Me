@@ -1,13 +1,14 @@
 // imports here:
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
 
 
 
 // component definitions here:
-function NavBar({ isUser }) {
+function NavBar() {
     const dispatch = useDispatch();
+    const isUser = useSelector((store) => store.userReducer.user);
 
 
     const logoutHandler = (event) => {

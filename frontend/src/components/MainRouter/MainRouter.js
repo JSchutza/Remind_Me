@@ -14,8 +14,9 @@ import { useHistory } from 'react-router-dom';
 
 
 // component definitions here:
-function MainRouter({ current_theme }){
+function MainRouter(){
     const isUser = useSelector((store) => store.userReducer.user);
+
     const history = useHistory();
 
 
@@ -23,8 +24,8 @@ function MainRouter({ current_theme }){
         <>
             <Switch>
                 <Route exact path="/">
-                    <Div current_theme={current_theme} additional_selectors={[]}>
-                        <NavBar isUser={isUser} />
+                    <Div>
+                        <NavBar />
                             <Home />
                     </Div>
 

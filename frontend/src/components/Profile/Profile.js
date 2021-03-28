@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 const Profile = () => {
     // state here
 
-    const user_info = useSelector((store) => store.userReducer.user.user);
+    // const user_info = useSelector((store) => store.userReducer.user);
     const dispatch = useDispatch();
 
 
