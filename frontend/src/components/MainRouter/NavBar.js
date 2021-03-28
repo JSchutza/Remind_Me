@@ -37,6 +37,10 @@ function NavBar({ isUser }) {
     };
 
 
+    const demoLoginHandler = (event) => {
+        event.preventDefault();
+        
+    };
 
     return (
         <>
@@ -52,6 +56,8 @@ function NavBar({ isUser }) {
                 { isUser === null ? <div></div> : <li> <NavLink activeClassName='selected' exact to='/profile'> Profile </NavLink> </li> }
 
                 { isUser === null ? <div></div> : <li> <a onClick={logoutHandler}> Logout </a> </li> }
+
+                { isUser === null ? <li> <a onClick={demoLoginHandler} > Demo </a> </li> : <div> </div> }
 
             </ul>
         </nav>
