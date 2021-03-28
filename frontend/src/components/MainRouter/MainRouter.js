@@ -27,12 +27,12 @@ function MainRouter({ current_theme }){
 
                 <Route exact path="/login">
                     <NavBar isUser={isUser} />
-                    {isUser === null ? <LoginForm /> : history.push('/profile') }
+                    { isUser === null ? <LoginForm /> : history.push('/profile') }
                 </Route>
 
                 <Route exact path="/signup">
                     <NavBar isUser={isUser} />
-                        <SignupForm />
+                    { isUser === null ? <SignupForm /> : history.push('/profile') }
                 </Route>
 
 

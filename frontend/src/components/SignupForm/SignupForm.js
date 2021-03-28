@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react';
 import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { thunk_signupUser } from '../../thunks/session.js';
+import { useHistory } from 'react-router-dom';
+
+
+
+
+
+
 
 
 function SignupForm (){
@@ -13,7 +20,7 @@ function SignupForm (){
     const [ errors, setErrors ] = useState([]);
     const [ reminder, setReminder ] = useState('');
     const dispatch = useDispatch();
-
+    const history = useHistory();
 
     useEffect(() => {
     const errors = [];
@@ -47,11 +54,12 @@ function SignupForm (){
     // if errors.length is 0 dispatch the the signup thunk
     if (errors.length === 0) {
         dispatch(thunk_signupUser({ username, email, password }));
+        // only push to history if user is not null
+        history.push('/profile');
     } else {
         setReminder('Please check the above validation errors.');
     }
 
-    // history.push('/');
     };
 
     return (
