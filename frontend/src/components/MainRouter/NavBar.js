@@ -21,7 +21,7 @@ function NavBar() {
         const the_interval = setInterval(() => {
             setToggleLoader(false);
             setToggleLoader(true);
-        }, 500);
+        }, 100);
 
         setTimeout(() => {
             clearInterval(the_interval);

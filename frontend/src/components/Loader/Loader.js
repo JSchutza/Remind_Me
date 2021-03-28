@@ -7,6 +7,12 @@ const makedot = () => {
     let dots = ['.'];
 
     return () => {
+        if(dots.length === 10) {
+            dots = ['.'];
+            dots.push('.');
+            return dots;
+        }
+
         dots.push('.');
         return dots;
     }
