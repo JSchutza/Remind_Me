@@ -5,10 +5,12 @@ import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Div from '../Div';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // component definitions here:
 function MainRouter({ current_theme }){
     const isUser = useSelector((store) => store.userReducer.user.user);
+    const history = useHistory();
 
 
     return (
@@ -25,7 +27,7 @@ function MainRouter({ current_theme }){
 
                 <Route exact path="/login">
                     <NavBar isUser={isUser} />
-                        <LoginForm />
+                    {isUser === null ? <LoginForm /> : history.push('/profile') }
                 </Route>
 
                 <Route exact path="/signup">
@@ -33,6 +35,12 @@ function MainRouter({ current_theme }){
                         <SignupForm />
                 </Route>
 
+
+                <Route exact path="/profile">
+                    <NavBar isUser={isUser} />
+                        <h1>Your Profile</h1>
+
+                </Route>
 
                 <Route>
                     <NavBar isUser={isUser} />
