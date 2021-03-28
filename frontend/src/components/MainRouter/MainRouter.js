@@ -7,24 +7,14 @@ import SignupForm from '../SignupForm';
 import Div from '../Div';
 import Profile from '../Profile';
 
-import { useHistory } from 'react-router-dom';
-
-
-
-
-
-
-
-
-
-
+import { useUser } from '../../context/UserContext.js';
 
 
 
 
 // component definitions here:
 function MainRouter(){
-    const history = useHistory();
+    const { isUser } = useUser();
 
 
     return (
@@ -40,18 +30,18 @@ function MainRouter(){
 
                 <Route exact path="/login">
                     <NavBar />
-                    {/* { isUser === null ? <LoginForm /> : history.push('/profile') } */}
+                        <LoginForm />
                 </Route>
 
                 <Route exact path="/signup">
                     <NavBar />
-                    {/* { isUser === null ? <SignupForm /> : history.push('/profile') } */}
+                     <SignupForm />
                 </Route>
 
 
                 <Route exact path="/profile">
                     <NavBar />
-                    {/* { isUser === null ? history.push('/login') : <Profile /> } */}
+                     <Profile />
                 </Route>
 
                 <Route>
