@@ -16,10 +16,17 @@ const initDots = makedot();
 
 
 const Loader = ({ the_message }) => {
+    const [ dots, setDots ] = useState(initDots());
+    const [ tracker, setTracker ] = useState([]);
+
+    useEffect(() =>{
+        setTracker(initDots());
+    }, [dots, tracker])
+
 
     return (
         <div>
-            <h1> {the_message} {initDots()} </h1>
+            <h1> {`${the_message} ${tracker.join('')}` + `${dots.join('')}`} </h1>
         </div>
     );
 };
