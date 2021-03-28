@@ -1,6 +1,7 @@
 // imports here:
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
+import Home from '../Home';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Div from '../Div';
@@ -24,8 +25,7 @@ function MainRouter({ current_theme }){
                 <Route exact path="/">
                     <Div current_theme={current_theme} additional_selectors={[]}>
                         <NavBar isUser={isUser} />
-                        {/* home component here */}
-                            <h1> Home </h1>
+                            <Home />
                     </Div>
 
                 </Route>

@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 
 
 
-const Edditor = () => {
+const Editor = () => {
     // state here
     const [ input, setInput ] = useState('');
 
@@ -26,4 +26,4 @@ const Edditor = () => {
 
 
 
-export default Edditor;
+export default Editor;
