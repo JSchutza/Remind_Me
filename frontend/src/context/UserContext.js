@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_checkIfThereIsAUser } from '../thunks/session.js';
 
@@ -13,13 +13,14 @@ const UserProvider = ({ children }) => {
     const isUser = useSelector((store) => store.userReducer.user);
 
 
+
     useEffect(() => {
         dispatch(thunk_checkIfThereIsAUser());
     }, [dispatch]);
 
 
     return (
-        <UserContext.Provider value={ { isUser } } >
+        <UserContext.Provider value={{ isUser } } >
             { children }
         </UserContext.Provider>
     );

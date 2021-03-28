@@ -16,41 +16,50 @@ import { useUser } from '../../context/UserContext.js';
 function MainRouter(){
     const { isUser } = useUser();
 
-
-    return (
+    // if there is not a user
+    if(isUser === null){
+        return (
         <>
-            <Switch>
-                <Route exact path="/">
-                    <Div>
-                        <NavBar />
-                            <Home />
-                    </Div>
-                </Route>
-
-
-                <Route exact path="/login">
+        <Switch>
+            <Route exact path="/">
+                <Div>
                     <NavBar />
-                        <LoginForm />
-                </Route>
-
-                <Route exact path="/signup">
-                    <NavBar />
-                     <SignupForm />
-                </Route>
+                    <Home />
+                </Div>
+            </Route>
 
 
-                <Route exact path="/profile">
-                    <NavBar />
-                     <Profile />
-                </Route>
+            <Route exact path="/login">
+                <NavBar />
+                <LoginForm />
+            </Route>
 
-                <Route>
-                    <NavBar />
-                        {/* make a 404 component */}
-                        <h1> 404 Page Not Found </h1>
-                </Route>
-            </Switch>
+            <Route exact path="/signup">
+                <NavBar />
+                <SignupForm />
+            </Route>
+        </Switch>
         </>
+    );
+
+    }
+    // if there is a user
+    return (
+    <>
+    <Switch>
+        <Route exact path="/">
+            <Div>
+                <NavBar />
+                <Home />
+            </Div>
+        </Route>
+
+        <Route exact path="/profile">
+            <NavBar />
+            <Profile />
+        </Route>
+    </Switch>
+    </>
     );
 }
 
