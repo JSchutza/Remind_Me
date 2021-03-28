@@ -1,7 +1,7 @@
 // imports here:
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { thunk_logoutUser } from '../../thunks/session.js';
+import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loader from '../Loader';
@@ -39,7 +39,7 @@ function NavBar({ isUser }) {
 
     const demoLoginHandler = (event) => {
         event.preventDefault();
-        
+        dispatch(thunk_loginDemoUser());
     };
 
     return (
