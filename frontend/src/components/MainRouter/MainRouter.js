@@ -15,7 +15,7 @@ import { useHistory } from 'react-router-dom';
 
 // component definitions here:
 function MainRouter({ current_theme }){
-    const isUser = useSelector((store) => store.userReducer.user.user);
+    const isUser = useSelector((store) => store.userReducer.user);
     const history = useHistory();
 
 
@@ -43,13 +43,12 @@ function MainRouter({ current_theme }){
 
                 <Route exact path="/profile">
                     <NavBar isUser={isUser} />
-                        {/* profile component here  */}
                     { isUser === null ? history.push('/login') : <Profile /> }
-
                 </Route>
 
                 <Route>
                     <NavBar isUser={isUser} />
+                        {/* make a 404 component */}
                         <h1> 404 Page Not Found </h1>
                 </Route>
             </Switch>

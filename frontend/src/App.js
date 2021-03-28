@@ -15,16 +15,18 @@ import Footer from './components/Footer';
 // component definitions here:
 function App() {
   const dispatch = useDispatch();
-  const [ isLoaded, setIsLoaded ] = useState(false);
+  // const [ isLoaded, setIsLoaded ] = useState(false);
   // get the current theme
   const { themeType } = useTheme();
 
   useEffect(() => {
-    dispatch(thunk_checkIfThereIsAUser()).then(() => setIsLoaded(true));
+    dispatch(thunk_checkIfThereIsAUser())
+      // .then(() => setIsLoaded(true));
   },[dispatch]);
 
 
-  return isLoaded && (
+  // isLoaded &&
+  return (
     <>
       <MainRouter current_theme={themeType} />
 

@@ -2,38 +2,17 @@
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
-import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import Loader from '../Loader';
+
+
 
 // component definitions here:
 function NavBar({ isUser }) {
-    // state here
-    const [ showConfirmation, setShowConfirmation ] = useState(false);
     const dispatch = useDispatch();
-    const history = useHistory();
 
 
     const logoutHandler = (event) => {
         event.preventDefault();
         dispatch(thunk_logoutUser());
-        // set state to show a confirmation of logout component
-        setShowConfirmation(true);
-
-        setTimeout(() => {
-            setShowConfirmation(false);
-        }, 1000);
-
-        setTimeout(() => {
-            setShowConfirmation(true);
-        }, 1300);
-
-        setTimeout(() => {
-            setShowConfirmation(false);
-            history.push('/login');
-        }, 3000);
-
-
     };
 
 
@@ -61,8 +40,6 @@ function NavBar({ isUser }) {
 
             </ul>
         </nav>
-
-            { showConfirmation ? <Loader the_message={`Logging you out`}/> : <div></div> }
         </>
     );
 }
