@@ -3,33 +3,47 @@ import { Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
-
+import Div from '../Div';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // component definitions here:
-function MainRouter(){
+function MainRouter({ current_theme }){
+    const isUser = useSelector((store) => store.userReducer.user.user);
+    const history = useHistory();
+
 
     return (
         <>
             <Switch>
                 <Route exact path="/">
-                    <NavBar />
-                        <h1> Home </h1>
+                    <Div current_theme={current_theme} additional_selectors={[]}>
+                        <NavBar isUser={isUser} />
                         {/* home component here */}
+                            <h1> Home </h1>
+                    </Div>
+
                 </Route>
 
                 <Route exact path="/login">
-                    <NavBar />
-                        <LoginForm />
+                    <NavBar isUser={isUser} />
+                    {isUser === null ? <LoginForm /> : history.push('/profile') }
                 </Route>
 
                 <Route exact path="/signup">
-                    <NavBar />
+                    <NavBar isUser={isUser} />
                         <SignupForm />
                 </Route>
 
 
+                <Route exact path="/profile">
+                    <NavBar isUser={isUser} />
+                        <h1>Your Profile</h1>
+
+                </Route>
+
                 <Route>
-                    <NavBar />
+                    <NavBar isUser={isUser} />
                         <h1> 404 Page Not Found </h1>
                 </Route>
             </Switch>
