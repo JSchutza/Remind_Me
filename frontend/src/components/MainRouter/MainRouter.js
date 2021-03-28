@@ -7,6 +7,10 @@ import Div from '../Div';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+
+
+
+
 // component definitions here:
 function MainRouter({ current_theme }){
     const isUser = useSelector((store) => store.userReducer.user.user);
@@ -38,7 +42,8 @@ function MainRouter({ current_theme }){
 
                 <Route exact path="/profile">
                     <NavBar isUser={isUser} />
-                        <h1>Your Profile</h1>
+                        {/* profile component here  */}
+                        { isUser === null ? history.push('/login') : <h1> Your Profile </h1> }
 
                 </Route>
 

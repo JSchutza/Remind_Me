@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
-import { thunk_signupUser } from '../../thunks/session.js';
+import { thunk_signupUser, thunk_checkIfThereIsAUser } from '../../thunks/session.js';
 import { useHistory } from 'react-router-dom';
 
 
@@ -54,8 +54,11 @@ function SignupForm (){
     // if errors.length is 0 dispatch the the signup thunk
     if (errors.length === 0) {
         dispatch(thunk_signupUser({ username, email, password }));
-        // only push to history if user is not null
-        history.push('/profile');
+
+        setTimeout(() => {
+            history.push('/profile');
+            dispatch(thunk_checkIfThereIsAUser());
+        }, 1000);
     } else {
         setReminder('Please check the above validation errors.');
     }

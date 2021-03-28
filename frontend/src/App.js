@@ -8,6 +8,10 @@ import Footer from './components/Footer';
 
 
 
+
+
+
+
 // component definitions here:
 function App() {
   const dispatch = useDispatch();
