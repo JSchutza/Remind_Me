@@ -17,7 +17,9 @@ module.exports = {
         allowNull: true
       },
       notebook_owner: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Users" }
       },
       createdAt: {
         allowNull: false,
