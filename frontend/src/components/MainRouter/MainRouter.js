@@ -1,58 +1,67 @@
 // imports here:
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
+import Home from '../Home';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Div from '../Div';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import Loader from '../Loader';
+import Profile from '../Profile';
 
+import { useUser } from '../../context/UserContext.js';
 
 
 
 
 // component definitions here:
-function MainRouter({ current_theme }){
-    const isUser = useSelector((store) => store.userReducer.user.user);
-    const history = useHistory();
+function MainRouter(){
+    const { isUser, toggleLoader } = useUser();
 
-
-    return (
+    // if there is not a user
+    if(isUser === null){
+        return (
         <>
-            <Switch>
-                <Route exact path="/">
-                    <Div current_theme={current_theme} additional_selectors={[]}>
-                        <NavBar isUser={isUser} />
-                        {/* home component here */}
-                            <h1> Home </h1>
-                    </Div>
-
-                </Route>
-
-                <Route exact path="/login">
-                    <NavBar isUser={isUser} />
-                    { isUser === null ? <LoginForm /> : history.push('/profile') }
-                </Route>
-
-                <Route exact path="/signup">
-                    <NavBar isUser={isUser} />
-                    { isUser === null ? <SignupForm /> : history.push('/profile') }
-                </Route>
+        <Switch>
+            <Route exact path="/">
+                <Div>
+                    <NavBar />
+                    <Home />
+                </Div>
+            </Route>
 
 
-                <Route exact path="/profile">
-                    <NavBar isUser={isUser} />
-                        {/* profile component here  */}
-                        { isUser === null ? history.push('/login') : <h1> Your Profile </h1> }
+            <Route exact path="/login">
+                <NavBar />
+                <LoginForm />
+            </Route>
 
-                </Route>
-
-                <Route>
-                    <NavBar isUser={isUser} />
-                        <h1> 404 Page Not Found </h1>
-                </Route>
-            </Switch>
+            <Route exact path="/signup">
+                <NavBar />
+                <SignupForm />
+            </Route>
+        </Switch>
         </>
+    );
+
+    }
+    // if there is a user
+    return (
+    <>
+    <Switch>
+        <Route exact path="/">
+            <Div>
+                <NavBar />
+                <Home />
+            </Div>
+        </Route>
+
+        <Route exact path="/profile">
+            <NavBar />
+                    { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> }
+            <Profile />
+        </Route>
+    </Switch>
+    </>
     );
 }
 

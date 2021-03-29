@@ -2,69 +2,83 @@
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
-import { useState, useEffect } from 'react';
+import { useUser } from '../../context/UserContext.js';
 import { useHistory } from 'react-router-dom';
-import Loader from '../Loader';
+
+
+
 
 // component definitions here:
-function NavBar({ isUser }) {
-    // state here
-    const [ showConfirmation, setShowConfirmation ] = useState(false);
+function NavBar() {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const { isUser, setToggleLoader } = useUser();
 
     const logoutHandler = (event) => {
         event.preventDefault();
-        dispatch(thunk_logoutUser());
-        // set state to show a confirmation of logout component
-        setShowConfirmation(true);
+        setToggleLoader(true);
+
+        const the_interval = setInterval(() => {
+            setToggleLoader(false);
+            setToggleLoader(true);
+        }, 19);
 
         setTimeout(() => {
-            setShowConfirmation(false);
-        }, 1000);
-
-        setTimeout(() => {
-            setShowConfirmation(true);
-        }, 1300);
-
-        setTimeout(() => {
-            setShowConfirmation(false);
+            clearInterval(the_interval);
+            setToggleLoader(false);
+            dispatch(thunk_logoutUser());
             history.push('/login');
-        }, 3000);
-
-
+        }, 2000);
     };
 
 
     const demoLoginHandler = (event) => {
         event.preventDefault();
         dispatch(thunk_loginDemoUser());
+        history.push('/profile');
     };
 
-    return (
+
+    // if there is not a user
+    if(isUser === null) {
+        return (
         <>
         <nav>
             <ul>
 
-                <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
+            <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
 
-                { isUser === null ? <li> <NavLink activeClassName='selected' exact to='/login'> Login </NavLink> </li> : <div></div> }
+            <li> <NavLink activeClassName='selected' exact to='/login'> Login </NavLink> </li>
 
-                { isUser === null ? <li> <NavLink activeClassName='selected' exact to='/signup'> Signup </NavLink> </li> : <div></div> }
+            <li> <NavLink activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
 
-                { isUser === null ? <div></div> : <li> <NavLink activeClassName='selected' exact to='/profile'> Profile </NavLink> </li> }
-
-                { isUser === null ? <div></div> : <li> <a onClick={logoutHandler}> Logout </a> </li> }
-
-                { isUser === null ? <li> <a onClick={demoLoginHandler} > Demo </a> </li> : <div> </div> }
+            <li> <a onClick={demoLoginHandler} > Demo </a> </li>
 
             </ul>
         </nav>
-
-            { showConfirmation ? <Loader the_message={`Logging you out`}/> : <div></div> }
         </>
+        );
+    }
+    // if there is a user
+    return (
+    <>
+    <nav>
+        <ul>
+
+            <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
+
+            <li> <NavLink activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
+
+            <li> <a onClick={logoutHandler}> Logout </a> </li>
+
+        </ul>
+    </nav>
+    </>
     );
+
+
+
+
 }
 
 

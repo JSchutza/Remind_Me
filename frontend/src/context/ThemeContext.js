@@ -9,7 +9,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 
 function ThemeProvider({ children }) {
-    const [themeType, setThemeType] = useState({
+    const [ themeType, setThemeType ] = useState({
         // other properties specific to the dark theme here
         type: 'Dark',
         font: 'Roboto',

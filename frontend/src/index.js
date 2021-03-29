@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import ThemeChanger from './components/ThemeChanger';
 import ThemeProvider from './context/ThemeContext.js';
+import { UserProvider } from './context/UserContext.js';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -18,8 +19,8 @@ const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
 
-  window.csrfFetch = csrfFetch;
-  window.store = store;
+  // window.csrfFetch = csrfFetch;
+  // window.store = store;
 }
 
 
@@ -34,10 +35,12 @@ function Root() {
       <ThemeProvider>
         <BrowserRouter>
           <ThemeChanger />
-            <App />
+            <UserProvider>
+              <App />
+          </UserProvider>
         </ BrowserRouter>
       </ThemeProvider>
-      </Provider>
+    </Provider>
     </>
   );
 
