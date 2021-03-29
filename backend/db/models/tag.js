@@ -5,8 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     creator_id: DataTypes.INTEGER,
     note_id: DataTypes.INTEGER
   }, {});
+
+
   Tag.associate = function(models) {
-    // associations can be defined here
+
   };
   return Tag;
 };
