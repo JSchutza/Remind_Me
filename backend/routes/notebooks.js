@@ -24,7 +24,7 @@ router.get('/', asyncHandler(async (request, response) => {
     response.json({ notebooks: "You currently do not have any notebooks created."});
   }
 
-  const userId = user.id;
+  // const userId = user.id;
   // const notebooks = await
   const notebooks = "testing";
   response.json({ notebooks });
