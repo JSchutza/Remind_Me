@@ -21,7 +21,9 @@ module.exports = {
         allowNull: true
       },
       notebook_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Notebooks" }
       },
       createdAt: {
         allowNull: false,

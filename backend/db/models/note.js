@@ -6,8 +6,21 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.TEXT,
     notebook_id: DataTypes.INTEGER
   }, {});
+
   Note.associate = function(models) {
-    // associations can be defined here
+    Note.belongsTo(models.Notebook, {
+      foreignKey: "notebook_id",
+      // onDelete: 'CASCADE',
+      // hooks: true
+    });
+
+    Note.belongsToMany(models.User, {
+      through: "Tag",
+      foreignKey: "note_id"
+      // onDelete: 'CASCADE',
+      // hooks: true
+    });
   };
+
   return Note;
 };
