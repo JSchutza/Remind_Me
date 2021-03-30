@@ -12,13 +12,14 @@ import { useHistory } from 'react-router-dom';
 function NavBar() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { isUser, setToggleLoader } = useUser();
+    const { isUser } = useUser();
 
     const logoutHandler = (event) => {
         event.preventDefault();
         dispatch(thunk_logoutUser());
         history.push('/login');
 
+        // ---- save below DO NOT DELETE -- need it for later****
         // setToggleLoader(true);
 
         // const the_interval = setInterval(() => {

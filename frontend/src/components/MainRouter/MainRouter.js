@@ -59,7 +59,7 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
-                    { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> }
+                    {/* { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> } */}
             <Profile />
         </Route>
 
