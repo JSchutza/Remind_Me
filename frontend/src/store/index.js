@@ -4,11 +4,12 @@ import thunk from 'redux-thunk';
 // import reducers here:
 import { userReducer } from '../reducers/session.js';
 import { notebooksReducer } from '../reducers/notebooks.js';
-
+import { notesReducer } from '../reducers/notes.js';
 
 const rootReducer = combineReducers({
     userReducer,
     notebooksReducer,
+    notesReducer,
 
 });
 
