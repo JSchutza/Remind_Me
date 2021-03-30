@@ -20,7 +20,6 @@ const router = express.Router();
 router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
   const Id = request.params.userId;
 
-
   const notebooks = await Notebook.findAll({
     where: {
       notebook_owner: Id
@@ -28,10 +27,10 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
     attributes: [ "description", "name", "createdAt", "id" ],
   });
 
-
   response.json({ notebooks });
 
 }));
+
 
 
 

@@ -5,6 +5,7 @@ const { express, initApp, setErrorHandlers } = require('./lib');
 // router here
 const users_router = require('./routes/users.js');
 const notebooks_router = require('./routes/notebooks.js');
+const notes_router = require('./routes/notes.js');
 
 const app = express();
 
@@ -16,6 +17,7 @@ initApp(app);
 // mount the api router here
 app.use('/api/users', users_router);
 app.use('/api/notebooks', notebooks_router);
+app.use('/api/notes', notes_router);
 
 
 
