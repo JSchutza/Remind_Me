@@ -3,12 +3,13 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 // import reducers here:
 import { userReducer } from '../reducers/session.js';
-import { notebooksReducer } from '../reducers/notebooks.js';
+import { notebooksReducer, notebookPageReducer } from '../reducers/notebooks.js';
 import { notesReducer } from '../reducers/notes.js';
 
 const rootReducer = combineReducers({
     userReducer,
     notebooksReducer,
+    notebookPageReducer,
     notesReducer,
 
 });
