@@ -15,7 +15,7 @@ const initialState = { notebooks: null };
 const notebooksReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_NOTEBOOKS:
-      return { ...state, ...action.notebooks };
+      return { ...state, notebooks: { ...action.notebooks.notebooks } };
     default:
       return state;
   }

@@ -25,8 +25,7 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
     where: {
       notebook_owner: Id
     },
-    attributes: [ "description", "name", "createdAt" ],
-
+    attributes: [ "description", "name", "createdAt", "id" ],
   });
 
 
