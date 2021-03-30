@@ -67,7 +67,7 @@ function LoginForm({ current_theme }) {
 
             <Div selectors={[styles.main_div]}>
             <h1> Login </h1>
-            <form className="login-form" onSubmit={onSubmit} >
+            <form onSubmit={onSubmit} >
                 <Div selectors={[styles.text_box]} >
                     <label className={styles.each_label} htmlFor="email"  /> Username
                         <br />

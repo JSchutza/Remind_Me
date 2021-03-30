@@ -3,9 +3,9 @@ import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { thunk_signupUser, thunk_checkIfThereIsAUser } from '../../thunks/session.js';
 import { useHistory } from 'react-router-dom';
+import Div from '../Div';
 
-
-
+import { styles }  from '../SignupForm';
 
 
 
@@ -21,6 +21,7 @@ function SignupForm (){
     const [ reminder, setReminder ] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
+
 
     useEffect(() => {
     const errors = [];
@@ -67,66 +68,71 @@ function SignupForm (){
 
     return (
         <>
-        <h1>Signup</h1>
         <ErrorMessage errors={errors}/>
 
         <div className="reminder-signup">
                 <p>{reminder}</p>
         </div>
-
-        <form className='signup-form' onSubmit={onSubmit}>
-            <div>
-                <label htmlFor="username" /> Username
+        <Div selectors={[styles.main_div]}>
+        <form onSubmit={onSubmit}>
+        <h1>Signup</h1>
+            <Div selectors={[styles.text_box]} >
+                <label className={styles.each_label} htmlFor="username" /> Username
                 <br/>
                 <input
                     type="text"
                     onChange={(event) => setUsername(event.target.value)}
                     value={username}
+                    placeholder="Your Username Here"
                     id="username"
                     name="username"
                 />
-            </div>
+            </Div>
 
-            <div>
-                <label htmlFor="email"  /> Email
+            <Div selectors={[styles.text_box]} >
+                <label className={styles.each_label} htmlFor="email"  /> Email
                 <br />
                 <input
                     type='text'
                     onChange={(e) => setEmail(e.target.value) }
                     value={email}
+                    placeholder="Your Email Here"
                     name='email'
                     id='email'
                 />
-            </div>
+            </Div>
 
-            <div>
-                    <label htmlFor="" /> Password
+            <Div selectors={[styles.text_box]} >
+                    <label className={styles.each_label} htmlFor="" /> Password
                     <br/>
                     <input
                         type='text'
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
+                        placeholder="Your Password Here"
                         name='password'
                         id='password'
                     />
-            </div>
+            </Div>
 
-            <div>
-                    <label htmlFor="" /> Confirmation
+            <Div selectors={[styles.text_box]} >
+                    <label className={styles.each_label} htmlFor="" /> Confirmation
                     <br/>
                     <input
                         type='text'
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         value={confirmPassword}
+                        placeholder="Confirmation Here"
                         name='confirmation'
                         id='confirmation'
                     />
-            </div>
+            </Div>
 
-            <div>
+
                 <button>Signup</button>
-            </div>
+
         </form>
+        </Div>
         </>
     );
 }
