@@ -1,4 +1,4 @@
-const { express, asyncHandler } = require('../lib');
+const { express, asyncHandler, Notebook } = require('../lib');
 
 
 
@@ -16,20 +16,21 @@ const router = express.Router();
 // routes here:
 
 
-// GET localhost:5000/api/notebooks
-router.get('/', asyncHandler(async (request, response) => {
-  const { user } = request;
+// GET localhost:5000/api/notebooks/:userId
+router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
+  const Id = request.params.userId;
 
-  if(user === null) {
-    response.json({ notebooks: "You currently do not have any notebooks created."});
-  }
+  const notebooks = await Notebook.findAll({
+    where: {
+      notebook_owner: Id
+    },
+    attributes: [ "description", "name", "createdAt", "id" ],
+  });
 
-  const userId = user.id;
-  // const notebooks = await
-  const notebooks = "testing";
   response.json({ notebooks });
 
 }));
+
 
 
 

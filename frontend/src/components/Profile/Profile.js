@@ -1,8 +1,8 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-
-
+import ShowNoteBooks from '../ShowNoteBooks';
+import MostRecentNote from '../MostRecentNote';
 
 const Profile = () => {
     // state here
@@ -26,13 +26,13 @@ const Profile = () => {
 
             {/* ShowNoteBooks  */}
                 {/* component that shows all of the users created notebooks ordered from most recent creation date */}
-
+            <ShowNoteBooks />
 
 
             {/* MostRecentNote  */}
                 {/* component that shows the users last worked on / or created note */}
                     {/* each note when clicked will go to that individual note */}
-
+            <MostRecentNote />
         </>
     );
 };

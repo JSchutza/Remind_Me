@@ -7,6 +7,7 @@ import SignupForm from '../SignupForm';
 import Div from '../Div';
 import Loader from '../Loader';
 import Profile from '../Profile';
+import NotebookPage from '../NotebookPage';
 
 import { useUser } from '../../context/UserContext.js';
 
@@ -60,6 +61,11 @@ function MainRouter(){
                     { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> }
             <Profile />
         </Route>
+
+        <Route path={`/notebook/:notebookId`}>
+            <NotebookPage />
+        </Route>
+
     </Switch>
     </>
     );
