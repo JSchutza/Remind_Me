@@ -1,0 +1,19 @@
+
+
+
+.main_content {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.fill {
+  background-color: transparent;
+  height: 50rem;
+  min-height: 100%;
+  display: flex;
+  margin-bottom: -142px;
+
+}

@@ -1,0 +1,17 @@
+
+
+.main_footer {
+  /* background-color: violet; */
+}
+
+
+
+
+.footer_container {
+  z-index: -1;
+  display: grid;
+  position: relative;
+  min-height: 12rem;
+  /* background-color:chartreuse; */
+
+}
