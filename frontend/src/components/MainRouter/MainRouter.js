@@ -7,6 +7,7 @@ import SignupForm from '../SignupForm';
 import Div from '../Div';
 import Loader from '../Loader';
 import Profile from '../Profile';
+import NotebookPage from '../NotebookPage';
 
 import { useUser } from '../../context/UserContext.js';
 
@@ -62,7 +63,7 @@ function MainRouter(){
         </Route>
 
         <Route path={`/notebook/:notebookId`}>
-            <h1>Individual Notebook Page</h1>
+            <NotebookPage />
         </Route>
 
     </Switch>
