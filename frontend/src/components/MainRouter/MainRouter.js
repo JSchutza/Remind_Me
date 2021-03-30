@@ -24,7 +24,7 @@ function MainRouter(){
         <>
         <Switch>
             <Route exact path="/">
-                <Div>
+                <Div selectors={[]}>
                     <NavBar />
                     <Home />
                 </Div>
