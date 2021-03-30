@@ -1,6 +1,6 @@
 // imports here:
 import { createContext, useContext, useState } from 'react';
-
+import dark_img from './dark_img.svg';
 
 
 export const ThemeContext = createContext();
@@ -13,7 +13,7 @@ function ThemeProvider({ children }) {
         // other properties specific to the dark theme here
         type: 'Dark',
         font: 'Roboto',
-        icon: 'dark icon here'
+        icon: dark_img
     });
 
 

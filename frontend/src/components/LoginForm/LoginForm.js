@@ -1,9 +1,12 @@
 // imports here:
+import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { thunk_login } from '../../thunks/session.js';
-
+import Div from '../Div';
+// css here
+import { styles } from '../LoginForm';
 
 
 
@@ -18,6 +21,8 @@ function LoginForm({ current_theme }) {
 
     // setup useDispatch
     const dispatch = useDispatch();
+    const history = useHistory();
+
 
     // for making the ErrorMessage component
     useEffect(() => {
@@ -41,6 +46,7 @@ function LoginForm({ current_theme }) {
         // dispatch the thunk for the login api route only if errors.length is 0
         if(errors.length === 0){
             dispatch(thunk_login({ credential: username, password }));
+            history.push('/profile');
         } else {
             // set reminder state here
             setReminder('Please check the above validation errors.');
@@ -53,16 +59,17 @@ function LoginForm({ current_theme }) {
 
     return (
         <>
-            <h1> Login </h1>
-                <ErrorMessage errors={errors}  />
+            <ErrorMessage errors={errors}  />
 
             <div className="reminder-login">
                 <p>{reminder}</p>
             </div>
 
-            <form className="login-form" onSubmit={onSubmit} >
-                <div>
-                    <label htmlFor="email"  /> Username
+            <Div selectors={[styles.main_div]}>
+            <h1> Login </h1>
+            <form onSubmit={onSubmit} >
+                <Div selectors={[styles.text_box]} >
+                    <label className={styles.each_label} htmlFor="email"  /> Username
                         <br />
                     <input
                         type="text"
@@ -72,9 +79,9 @@ function LoginForm({ current_theme }) {
                         id="username"
                         name="username"
                     />
-                </div>
-                <div>
-                    <label htmlFor="password" /> Password
+                </Div>
+                <Div selectors={[styles.text_box]} >
+                    <label className={styles.each_label} htmlFor="password" /> Password
                         <br />
                     <input
                         type="password"
@@ -84,9 +91,9 @@ function LoginForm({ current_theme }) {
                         id="password"
                         name="password"
                     />
-                </div>
-                <div>
-                    <label htmlFor="confirmation" /> Confirmation
+                </Div>
+                <Div selectors={[styles.text_box]} >
+                    <label className={styles.each_label} htmlFor="confirmation" /> Confirmation
                         <br />
                     <input
                         type="password"
@@ -96,11 +103,13 @@ function LoginForm({ current_theme }) {
                         id="confirmation"
                         name="confirmation"
                     />
-                </div>
-                <div>
+                </Div>
+
+
                     <button>Login</button>
-                </div>
+
             </form>
+            </Div>
         </>
     );
 }
