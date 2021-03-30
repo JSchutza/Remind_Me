@@ -29,10 +29,25 @@ function ThemeChanger() {
     }
 
 
+    const smartThemeClickHandler = (event, the_theme) => {
+        event.preventDefault();
+        if (the_theme.type === 'Light') {
+            setThemeType(darkMode);
+        } else if (the_theme.type === 'Dark') {
+            setThemeType(lightMode);
+        }
+    }
 
     return (
     <>
         <Div selectors={[styles.container]}>
+            <Div selectors={[]} >
+                    <a onClick={(event) => smartThemeClickHandler(event, themeType)}>
+                    <h1>{themeType.type} Mode </h1>
+                </a>
+            </Div>
+
+
             <Div selectors={[]}>
 
             {
