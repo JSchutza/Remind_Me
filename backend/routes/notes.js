@@ -16,13 +16,14 @@ const router = express.Router();
 router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
   const Id = request.params.notebookId;
 
-  const allNotes = await Note.findAll({
+  const notes = await Note.findAll({
     where: {
       notebook_id: Id
     },
   });
 
-  response.json({ allNotes });
+
+  response.json({ notes });
 
 }));
 

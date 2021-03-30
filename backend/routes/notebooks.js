@@ -33,6 +33,16 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
 
 
 
+// GET localhost:5000/api/notebooks/specific/:notebookId
+router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response) => {
+  const Id = request.params.notebookId;
+
+  const notebook = await Notebook.findByPk(Id);
+
+  response.json({ notebook});
+}));
+
+
 
 
 

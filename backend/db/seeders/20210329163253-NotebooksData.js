@@ -5,8 +5,8 @@ module.exports = {
     return queryInterface.bulkInsert('Notebooks', [
       {
         id: 1,
-        name: `is a testing note book name`,
-        description: `is a testing notebook description`,
+        name: `notebook name`,
+        description: `notebook description`,
         notebook_owner: 1,
         createdAt: new Date(),
         updatedAt: new Date

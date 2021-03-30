@@ -1,4 +1,4 @@
-import { getNoteBooks } from '../actions/notebooks.js';
+import { getNoteBooks, notebookForPage } from '../actions/notebooks.js';
 
 
 
@@ -18,7 +18,30 @@ const thunk_getNoteBooks = (userId) => async (dispatch) => {
 };
 
 
+
+
+const thunk_notebookForPage = (notebookId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notebooks/specific/${notebookId}`);
+
+  if (response.ok) {
+    const notebook = await response.json();
+    dispatch(notebookForPage(notebook));
+    return;
+  }
+  throw response;
+
+};
+
+
+
+
+
+
+
+
+
 export {
   thunk_getNoteBooks,
+  thunk_notebookForPage,
 
 };
