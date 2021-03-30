@@ -20,7 +20,13 @@ const UserProvider = ({ children }) => {
 
 
     return (
-        <UserContext.Provider value={ { isUser, toggleLoader, setToggleLoader } } >
+        <UserContext.Provider value={{
+            isUser,
+            toggleLoader,
+            setToggleLoader
+
+        }} >
+
             { children }
         </UserContext.Provider>
     );

@@ -6,10 +6,10 @@ import { GET_NOTEBOOKS } from '../types/notebooks.js';
 
 
 
-const getNoteBooks = (the_notebooks) => {
+const getNoteBooks = (notebooks) => {
   return {
     type: GET_NOTEBOOKS,
-    the_notebooks
+    notebooks
   };
 };
 

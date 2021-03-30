@@ -6,12 +6,12 @@ import { csrfFetch } from '../store/csrf.js';
 
 
 
-const thunk_getNoteBooks = () => async (dispatch) => {
-  const response = await csrfFetch('/api/notebooks');
+const thunk_getNoteBooks = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notebooks/${userId}`);
 
   if (response.ok) {
-    const the_notebooks = await response.json();
-    dispatch(getNoteBooks(the_notebooks));
+    const notebooks = await response.json();
+    dispatch(getNoteBooks(notebooks));
     return;
   }
   throw response;
