@@ -60,6 +60,11 @@ function MainRouter(){
                     { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> }
             <Profile />
         </Route>
+
+        <Route path={`/notebook/:notebookId`}>
+            <h1>Individual Notebook Page</h1>
+        </Route>
+
     </Switch>
     </>
     );
