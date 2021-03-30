@@ -24,7 +24,7 @@ const notebooksReducer = (state = initialState, action) => {
 const notebookPageReducer = (state = { notebook: null }, action) => {
   switch (action.type) {
     case NOTEBOOK_FOR_PAGE:
-      return { ...state, notebook: { ...action.notebook } };
+      return { ...state, notebook: { ...action.notebook.notebook } };
     default:
       return state;
   }

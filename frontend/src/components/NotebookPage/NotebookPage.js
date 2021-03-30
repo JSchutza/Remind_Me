@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunk_getSpecificNote } from '../../thunks/notes.js';
 
 
@@ -8,6 +8,7 @@ import { thunk_getSpecificNote } from '../../thunks/notes.js';
 const NotebookPage = () => {
   const { notebookId } = useParams();
   const dispatch = useDispatch();
+  const notebook_info = useSelector((store) => store.notebookPageReducer.notebook)
 
 
   useEffect(() => {
@@ -15,10 +16,16 @@ const NotebookPage = () => {
   },[dispatch]);
 
 
+
+  if(notebook_info === null) {
+    return null;
+  }
+
+
   return (
     <>
       <h1>Individual Notebook Page</h1>
-
+      <p>{notebook_info.name}</p>
     </>
   );
 };

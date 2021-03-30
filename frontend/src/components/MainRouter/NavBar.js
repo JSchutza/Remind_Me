@@ -16,19 +16,22 @@ function NavBar() {
 
     const logoutHandler = (event) => {
         event.preventDefault();
-        setToggleLoader(true);
+        dispatch(thunk_logoutUser());
+        history.push('/login');
 
-        const the_interval = setInterval(() => {
-            setToggleLoader(false);
-            setToggleLoader(true);
-        }, 19);
+        // setToggleLoader(true);
 
-        setTimeout(() => {
-            clearInterval(the_interval);
-            setToggleLoader(false);
-            dispatch(thunk_logoutUser());
-            history.push('/login');
-        }, 2000);
+        // const the_interval = setInterval(() => {
+        //     setToggleLoader(false);
+        //     setToggleLoader(true);
+        // }, 19);
+
+        // setTimeout(() => {
+        //     clearInterval(the_interval);
+        //     setToggleLoader(false);
+        //     dispatch(thunk_logoutUser());
+        // }, 2000);
+
     };
 
 

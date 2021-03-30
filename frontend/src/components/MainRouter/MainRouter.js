@@ -33,6 +33,7 @@ function MainRouter(){
 
             <Route exact path="/login">
                 <NavBar />
+                        {/* {toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div>} */}
                 <LoginForm />
             </Route>
 
