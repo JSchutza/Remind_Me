@@ -14,7 +14,7 @@ const thunk_getSpecificNote = (notebookId) => async (dispatch) => {
 
   if (response.ok) {
     const notes = await response.json();
-    dispatch(getNoteBooks(notes));
+    dispatch(getSpecificNote(notes));
     return;
   }
   throw response;

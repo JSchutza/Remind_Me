@@ -6,12 +6,22 @@ import { GET_SPECIFIC_NOTE } from '../types/notes.js';
 
 
 
-const getSpecificNote = (note) => {
+
+
+
+
+const getSpecificNote = (notes) => {
   return {
     type: GET_SPECIFIC_NOTE,
-    note
+    notes
   };
 };
+
+
+
+
+
+
 
 
 export {

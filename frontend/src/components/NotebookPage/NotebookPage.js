@@ -1,11 +1,18 @@
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { thunk_getSpecificNote } from '../../thunks/notes.js';
 
 
-
-// make a thunk to  http://localhost:5000/api/notes/notebookId
 
 const NotebookPage = () => {
   const { notebookId } = useParams();
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(thunk_getSpecificNote(notebookId));
+  },[dispatch]);
 
 
   return (
