@@ -18,8 +18,8 @@ import { styles } from '../Profile';
 const Profile = () => {
     // state here
 
-    // const user_info = useSelector((store) => store.userReducer.user);
-    const dispatch = useDispatch();
+    const user_info = useSelector((store) => store.userReducer.user);
+    // const dispatch = useDispatch();
 
 
 
@@ -27,7 +27,7 @@ const Profile = () => {
         <>
 
             <Div selectors={[styles.edituser_containter]}>
-                <EditUser />
+                <EditUser current_info={user_info} />
             </Div>
 
 

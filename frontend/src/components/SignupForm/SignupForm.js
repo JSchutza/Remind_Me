@@ -66,13 +66,16 @@ function SignupForm (){
 
     };
 
+
     return (
         <>
-        <ErrorMessage errors={errors}/>
+        <ErrorMessage type='main' errors={errors}/>
 
         <div className="reminder-signup">
                 <p>{reminder}</p>
         </div>
+
+
         <Div selectors={[styles.main_div]}>
         <form onSubmit={onSubmit}>
         <h1>Signup</h1>
