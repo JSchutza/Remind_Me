@@ -63,7 +63,7 @@ const previewClickHandler = (event) => {
 
 
                 {showPreview === true ?
-
+                    <Div selectors={[styles.preview_test]}>
                     <Div selectors={[styles.preview_container]}>
                         <Div selectors={[styles.preview_wrapper]} >
                             <Div selectors={[styles.preview_title]} >
@@ -77,6 +77,7 @@ const previewClickHandler = (event) => {
                         </Div>
 
                     </Div>
+                    </Div>
                     :
                     <p></p>
                 }
@@ -86,12 +87,14 @@ const previewClickHandler = (event) => {
 
 
                 <Div selectors={[styles.edit_container]} >
+                    <Div selectors={[styles.edit_test]} >
+
                     <Div selectors={[styles.edit_wrapper]} >
 
                         <Div selectors={[styles.edit_title]}>
                             <label>
                                 Title:
-    <input
+                                <input
                                     onChange={(event) => setTitle(event.target.value)}
                                     value={title}
                                 />
@@ -105,6 +108,7 @@ const previewClickHandler = (event) => {
                             />
                         </Div>
 
+                    </Div>
                     </Div>
 
                 </Div>
@@ -126,7 +130,7 @@ return (
 
 
         {showPreview === true ?
-
+            <Div selectors={[styles.preview_test]}>
             <Div selectors={[styles.preview_container]}>
                 <Div selectors={[styles.preview_wrapper]} >
                     <Div selectors={[styles.preview_title]} >
@@ -140,6 +144,7 @@ return (
                 </Div>
 
             </Div>
+            </Div>
             :
             <p></p>
         }
@@ -149,6 +154,7 @@ return (
 
 
         <Div selectors={[styles.edit_container]} >
+            <Div selectors={[styles.edit_test]} >
             <Div selectors={[styles.edit_wrapper]} >
 
                 <Div selectors={[styles.edit_title]}>
@@ -169,7 +175,7 @@ return (
                 </Div>
 
             </Div>
-
+            </Div>
         </Div>
     </>
     );

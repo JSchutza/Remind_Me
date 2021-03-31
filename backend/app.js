@@ -6,6 +6,7 @@ const { express, initApp, setErrorHandlers } = require('./lib');
 const users_router = require('./routes/users.js');
 const notebooks_router = require('./routes/notebooks.js');
 const notes_router = require('./routes/notes.js');
+const tags_router = require('./routes/tags.js');
 
 const app = express();
 
@@ -18,6 +19,7 @@ initApp(app);
 app.use('/api/users', users_router);
 app.use('/api/notebooks', notebooks_router);
 app.use('/api/notes', notes_router);
+app.use('/api/tags', notes_router);
 
 
 
