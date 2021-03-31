@@ -14,6 +14,14 @@ import { useUser } from '../../context/UserContext.js';
 
 
 
+
+
+
+
+
+
+
+
 // component definitions here:
 function MainRouter(){
     const { isUser, toggleLoader } = useUser();
@@ -59,7 +67,7 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
-                    {/* { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> } */}
+
             <Profile />
         </Route>
 

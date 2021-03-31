@@ -43,7 +43,7 @@ function Footer() {
         <>
         <footer className={styles.main_footer}>
             <Div selectors={[styles.footer_container]}>
-                <a onClick={(event) => footerClickHandler(event)}>
+                <a onClick={(event) => footerClickHandler(event)} >
                     <img className="" src={profile_photo} />
                 </a>
 
@@ -54,8 +54,15 @@ function Footer() {
                     <>
                         <ul>
                             <li> Joshua Schutza </li>
-                            <a href='https://github.com/JSchutza/Remind_Me'> <li> GitHub </li> </a>
-                            <a href=''> <li>README</li> </a>
+
+                            <a href='https://github.com/JSchutza/Remind_Me' target="_blank" >
+                                <li> GitHub </li>
+                            </a>
+
+
+                            <a href=''>
+                                <li>README</li>
+                            </a>
                         </ul>
                     </>
                     :
