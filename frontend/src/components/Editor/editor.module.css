@@ -1,4 +1,4 @@
-/*
+
 
 
 
@@ -19,7 +19,7 @@
   display: flex;
   padding: 5%;
   box-sizing: border-box;
-
+  max-width: 100%;
 }
 
 
@@ -30,6 +30,7 @@
   background-color: blue;
   display: block;
   padding: 5%;
+  max-width: 90%;
 }
 
 
@@ -38,6 +39,7 @@
 
 .preview_title {
   padding: 4%;
+  line-break: anywhere;
 }
 
 
@@ -52,6 +54,7 @@
   padding: 5%;
   position: relative;
   top: -25%;
+  line-break: anywhere;
 }
 
 
@@ -103,4 +106,4 @@
   height: 68rem;
   resize: none;
 
-} */
+}
