@@ -102,10 +102,6 @@ const EditUser = ({ current_info }) => {
             <>
             <ErrorMessage type='sidebar' errors={errors} />
 
-            <div className="reminder-signup">
-                <p>{reminder}</p>
-            </div>
-
             <form onSubmit={onSubmit} >
                 <h1>Update User</h1>
                 <Div selectors={[]} >
@@ -133,6 +129,15 @@ const EditUser = ({ current_info }) => {
                         id='email'
                     />
                 </Div>
+
+
+                    <button>Update</button>
+
+
+                    <div className="reminder-signup">
+                        <p>{reminder}</p>
+                    </div>
+
             </form>
             </>
         );
