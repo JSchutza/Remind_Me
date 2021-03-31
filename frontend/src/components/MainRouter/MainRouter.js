@@ -72,7 +72,8 @@ function MainRouter(){
         </Route>
 
         <Route path={`/notebook/:notebookId`}>
-            <NotebookPage />
+            <NavBar />
+                <NotebookPage />
         </Route>
 
     </Switch>

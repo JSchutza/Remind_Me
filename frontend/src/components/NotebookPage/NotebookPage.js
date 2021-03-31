@@ -38,7 +38,6 @@ const NotebookPage = () => {
 
   return (
     <>
-      <h1>Individual Notebook Page</h1>
       <ul>
         <li>{notebook_info.name}</li>
           <ul>
