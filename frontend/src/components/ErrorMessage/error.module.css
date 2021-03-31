@@ -1,5 +1,8 @@
 
 
+
+
+
 .errors_wrapper {
   display: grid;
   position: fixed;
@@ -12,4 +15,13 @@
 
 .errors_containter {
   background-color: red;
+  display: flex;
+  justify-content: center;
+  width: 12rem;
+}
+
+
+.errors_containter ul {
+  padding: 10px;
+
 }
