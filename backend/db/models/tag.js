@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
 
 
   Tag.associate = function(models) {
+    Tag.belongsTo(models.User, {
+      foreignKey: "creator_id",
+      onDelete: 'CASCADE',
+      hooks: true
+    });
 
   };
   return Tag;

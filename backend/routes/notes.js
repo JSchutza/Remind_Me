@@ -29,6 +29,12 @@ router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
 
 
 
+// GET localhost:5000/api/notes/:notebookId
+// most recent notes ....
+router.get('')
+
+
+
 
 
 
