@@ -1,13 +1,16 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+
+import Div from '../Div';
 import EditUser from '../EditUser';
 import TagCreator from '../TagCreator';
 import ShowNoteBooks from '../ShowNoteBooks';
 import MostRecentNote from '../MostRecentNote';
 
 
-
+//css
+import { styles } from '../Profile';
 
 
 
@@ -22,15 +25,26 @@ const Profile = () => {
 
     return (
         <>
-            <h1>Their Profile</h1>
 
-            <EditUser />
+            <Div selectors={[styles.edituser_containter]}>
+                <EditUser />
+            </Div>
 
-            <TagCreator />
 
-            <ShowNoteBooks />
+            <Div selectors={[styles.tagcreator_container]}>
+                <TagCreator />
+            </Div>
 
-            <MostRecentNote />
+
+            <Div selectors={[styles.main_div]}>
+                <ShowNoteBooks />
+            </Div>
+
+
+            <Div selectors={[styles.recentnote_container]}>
+                <MostRecentNote />
+            </Div>
+
         </>
     );
 };
