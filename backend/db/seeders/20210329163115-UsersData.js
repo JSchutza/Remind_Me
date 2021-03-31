@@ -10,11 +10,13 @@ module.exports = {
         email: faker.internet.email(),
         username: 'sam-user',
         hashedPassword: bcrypt.hashSync('password'),
+        avatar: faker.image.imageUrl()
       },
       {
         email: faker.internet.email(),
         username: 'jessica-user',
         hashedPassword: bcrypt.hashSync('password'),
+        avatar: faker.image.imageUrl()
       }
     ], {});
   },
