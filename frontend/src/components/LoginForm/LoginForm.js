@@ -59,7 +59,7 @@ function LoginForm({ current_theme }) {
 
     return (
         <>
-            <ErrorMessage errors={errors}  />
+            <ErrorMessage type='main' errors={errors}  />
 
             <div className="reminder-login">
                 <p>{reminder}</p>

@@ -1,38 +1,50 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+
+import Div from '../Div';
+import EditUser from '../EditUser';
+import TagCreator from '../TagCreator';
 import ShowNoteBooks from '../ShowNoteBooks';
 import MostRecentNote from '../MostRecentNote';
+
+
+//css
+import { styles } from '../Profile';
+
+
+
 
 const Profile = () => {
     // state here
 
-    // const user_info = useSelector((store) => store.userReducer.user);
-    const dispatch = useDispatch();
+    const user_info = useSelector((store) => store.userReducer.user);
+    // const dispatch = useDispatch();
 
 
 
     return (
         <>
-            <h1>Their Profile</h1>
-            {/* EditUser component -- shows a drop down side bar thingy that alows a user to edit their info */}
 
-            {/* TagCreator */}
-                {/*  component that shows / allows users to make / view tags */}
-                    {/*  they will have to on the created notebook assign the tag there */}
-                        {/*  add tag button will show a drop down selection of their currently created tags */}
+            <Div selectors={[styles.edituser_containter]}>
+                <EditUser current_info={user_info} />
+            </Div>
 
 
+            <Div selectors={[styles.tagcreator_container]}>
+                <TagCreator />
+            </Div>
 
-            {/* ShowNoteBooks  */}
-                {/* component that shows all of the users created notebooks ordered from most recent creation date */}
-            <ShowNoteBooks />
+
+            <Div selectors={[styles.main_div]}>
+                <ShowNoteBooks />
+            </Div>
 
 
-            {/* MostRecentNote  */}
-                {/* component that shows the users last worked on / or created note */}
-                    {/* each note when clicked will go to that individual note */}
-            <MostRecentNote />
+            <Div selectors={[styles.recentnote_container]}>
+                <MostRecentNote />
+            </Div>
+
         </>
     );
 };

@@ -24,6 +24,8 @@ function App() {
 
 
       <Div selectors={[styles.fill]}>
+        {/* put the loader here??? */}
+            {/* { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> } */}
       </Div>
 
 

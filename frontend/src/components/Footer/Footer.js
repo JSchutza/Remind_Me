@@ -12,18 +12,30 @@ import profile_photo from './profile_pic.jpg';
 function Footer() {
 // state here
     const [ show, setShow ] = useState(false);
-    const [ hidden, setHidden ] = useState('');
+    const [ first, setFirst ] = useState(0);
+    const [ second, setSecond ] = useState(false);
 
     useEffect(() => {
 
-    },[show, hidden]);
+    }, [show, first, second]);
 
 
-
-    const footerClickHandler = (event, boolean, is_hidden) => {
+    // DO NOT CHANGE
+    const footerClickHandler = (event) => {
         event.preventDefault();
-        setShow(boolean);
-        setHidden(is_hidden);
+
+        if(first === 0) {
+            setShow(true);
+            setFirst(1);
+            setSecond(true);
+        }
+
+        if (second === true) {
+            setShow(false);
+            setSecond(false);
+            setFirst(0);
+        }
+
     };
 
 
@@ -31,8 +43,8 @@ function Footer() {
         <>
         <footer className={styles.main_footer}>
             <Div selectors={[styles.footer_container]}>
-                <a onClick={(event) => footerClickHandler(event, true, '')}>
-                    <img className={`${hidden}`} src={profile_photo} />
+                <a onClick={(event) => footerClickHandler(event)} >
+                    <img className="" src={profile_photo} />
                 </a>
 
 
@@ -40,13 +52,17 @@ function Footer() {
                 {
                     show === true ?
                     <>
-                    <a onClick={(event) => footerClickHandler(event, false, 'hidden')}>
-                        <img className={`${hidden}`} src={profile_photo} />
-                    </a>
                         <ul>
                             <li> Joshua Schutza </li>
-                            <a href='https://github.com/JSchutza/Remind_Me'> <li> GitHub </li> </a>
-                            <a href=''> <li>README</li> </a>
+
+                            <a href='https://github.com/JSchutza/Remind_Me' target="_blank" >
+                                <li> GitHub </li>
+                            </a>
+
+
+                            <a href=''>
+                                <li>README</li>
+                            </a>
                         </ul>
                     </>
                     :
