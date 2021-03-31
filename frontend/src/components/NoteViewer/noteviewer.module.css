@@ -1,0 +1,34 @@
+
+
+
+
+
+.preview_button {
+  position: absolute;
+  left: 25%;
+  top: 16%;
+
+}
+
+
+
+
+.preview_container {
+  position: relative;
+  background-color:yellow;
+  display: flex;
+  padding: 5%;
+  box-sizing: border-box;
+
+}
+
+
+.preview_wrapper {
+
+}
+
+
+.preview_title {
+  padding: 4%;
+
+}
