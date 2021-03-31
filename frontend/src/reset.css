@@ -56,11 +56,3 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-
-footer {
-	  /* background-color: blueviolet; */
-    display: grid;
-    position: relative;
-    grid-area: footer
-}

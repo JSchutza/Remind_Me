@@ -13,6 +13,9 @@ import styles from './main.module.css';
 function App() {
     return (
       <>
+      <Div selectors={[styles.page_box]} >
+
+
         <Div selectors={[styles.main_content]}>
           <Div selectors={[]}>
             <MainRouter />
@@ -24,11 +27,14 @@ function App() {
       </Div>
 
 
-        <Div selectors={['test']}>
+        <Div selectors={[styles.footer_content_box]}>
           <Div selectors={[]}>
             <Footer />
           </Div>
         </Div>
+
+
+      </Div>
       </>
     );
 }

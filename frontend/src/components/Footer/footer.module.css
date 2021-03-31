@@ -1,17 +1,22 @@
 
 
 .main_footer {
-  /* background-color: violet; */
+  left: 45%;
+  justify-content: center;
+  height: auto;
 }
 
 
 
 
-.footer_container {
-  z-index: -1;
-  display: grid;
-  position: relative;
-  min-height: 12rem;
-  /* background-color:chartreuse; */
+.footer_container img {
+  width: 4%;
+  border-radius: 50px;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
 
+}
+
+
+img .hidden {
+  display: none;
 }
