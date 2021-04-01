@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from '../../context/UserContext.js';
 import { useState, useEffect } from 'react';
 import { thunk_getNoteBooks, thunk_notebookForPage } from '../../thunks/notebooks.js';
+import Div from '../Div';
 
-
-
+// css
+import { styles } from '../ShowNoteBooks';
 
 
 
@@ -38,16 +39,21 @@ const ShowNoteBooks = () => {
   return (
     <>
       <h1>Your Notebooks</h1>
+      <Div selectors={[styles.container]}>
       <ul>
       {Object.values(notebooks).map(eachNote => (
+        <>
         <NavLink
           key={eachNote.id}
           to={`/notebook/${eachNote.id}`}
           onClick={notebookHandler(eachNote.id)}
 
         > {eachNote.name} </NavLink>
+        <br/>
+        </>
       ))}
       </ul>
+      </Div>
     </>
   );
 

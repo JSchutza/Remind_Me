@@ -1,0 +1,13 @@
+
+
+
+
+
+
+.container {
+  background-color: sienna;
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  width: 30%;
+}

@@ -8,9 +8,10 @@ import Div from '../Div';
 import Loader from '../Loader';
 import Profile from '../Profile';
 import NotebookPage from '../NotebookPage';
+import ErrorMessage from '../ErrorMessage';
 
 import { useUser } from '../../context/UserContext.js';
-
+import { useError } from '../../context/ErrorContext.js';
 
 
 
@@ -25,6 +26,9 @@ import { useUser } from '../../context/UserContext.js';
 // component definitions here:
 function MainRouter(){
     const { isUser, toggleLoader } = useUser();
+    const { errors } = useError();
+
+
 
     // if there is not a user
     if(isUser === null){
@@ -69,6 +73,7 @@ function MainRouter(){
             <NavBar />
 
             <Profile />
+                    <ErrorMessage type='sidebar' errors={errors} />
         </Route>
 
         <Route path={`/notebook/:notebookId`}>

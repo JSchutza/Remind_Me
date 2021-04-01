@@ -1,9 +1,9 @@
 
 
 .edituser_containter {
-  position: absolute;
-  top: 70%;
-  left: 13%;
+  position: relative;
+  top: 30%;
+  left: 60%;
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
@@ -22,9 +22,9 @@
 
 
 .tagcreator_container {
-  position: absolute;
-  top: 25%;
-  left: 50%;
+  position: relative;
+  top: 7%;
+  left: 273%;
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);

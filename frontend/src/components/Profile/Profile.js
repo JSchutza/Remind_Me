@@ -2,6 +2,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
+
+
 import Div from '../Div';
 import EditUser from '../EditUser';
 import TagCreator from '../TagCreator';
@@ -22,12 +24,12 @@ const Profile = () => {
     // const dispatch = useDispatch();
 
 
-
     return (
         <>
 
             <Div selectors={[styles.edituser_containter]}>
                 <EditUser current_info={user_info} />
+
             </Div>
 
 

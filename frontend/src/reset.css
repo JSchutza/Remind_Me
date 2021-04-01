@@ -60,3 +60,8 @@ table {
 .hidden {
   display: none;
 }
+
+
+.selected {
+	color: red;
+}
