@@ -28,6 +28,8 @@ const Editor = ({ the_content = 'none' }) => {
     const [editpane, setEditpane ] = useState(true);
     const [first, setFirst] = useState(0);
     const [second, setSecond] = useState(false);
+    const [buttontext, setButtontext] = useState('Preview');
+    const [initStyle, setInitStyle] = useState('');
 
 
     const renderers = {
@@ -56,8 +58,13 @@ const Editor = ({ the_content = 'none' }) => {
 
 
     useEffect(() => {
+        if ((content === undefined || content === '') && (title === undefined || title === '')){
+            setInitStyle('hidden');
+        } else {
+            setInitStyle('');
+        }
 
-    }, [title, content, showPreview, editpane]);
+    }, [title, content, showPreview, editpane, buttontext]);
 
 
 
@@ -66,6 +73,7 @@ const Editor = ({ the_content = 'none' }) => {
 const previewClickHandler = (event) => {
     event.preventDefault();
     if (first === 0) {
+        setButtontext('Edit');
         setShowPreview(true);
         setEditpane(false);
         setFirst(1);
@@ -73,6 +81,7 @@ const previewClickHandler = (event) => {
     }
 
     if (second === true) {
+        setButtontext('Preview');
         setShowPreview(false);
         setEditpane(true);
         setSecond(false);
@@ -91,7 +100,7 @@ const previewClickHandler = (event) => {
                     <a
                         onClick={(event) => previewClickHandler(event)}
                     >
-                        <h1>Preview</h1>
+                        <h4>{buttontext}</h4>
                     </a>
                 </Div>
 
@@ -100,7 +109,7 @@ const previewClickHandler = (event) => {
                 {showPreview === true ?
 
                     <Div selectors={[styles.preview_test]}>
-                    <Div selectors={[styles.preview_container]}>
+                        <Div selectors={[styles.preview_container, `${initStyle}`]}>
                         <Div selectors={[styles.preview_wrapper]} >
                             <Div selectors={[styles.preview_title]} >
                                 <ReactMarkdown plugins={[gfm]} children={title} />
@@ -165,7 +174,7 @@ return (
             <a
                 onClick={(event) => previewClickHandler(event)}
             >
-                <h1>Preview</h1>
+                <h4>{buttontext}</h4>
             </a>
         </Div>
 
