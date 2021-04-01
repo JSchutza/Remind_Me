@@ -32,12 +32,6 @@ const Profile = () => {
 
             </Div>
 
-
-            <Div selectors={[styles.tagcreator_container]}>
-                <TagCreator />
-            </Div>
-
-
             <Div selectors={[styles.main_div]}>
                 <ShowNoteBooks />
             </Div>

@@ -1,13 +1,11 @@
 
 
 .edituser_containter {
+  grid-area: left;
   position: relative;
-  top: 30%;
-  left: 60%;
+  display: flex;
   width: 400px;
   padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
   border-radius: 10px;
@@ -16,24 +14,6 @@
 
 
 
-
-
-
-
-
-.tagcreator_container {
-  position: relative;
-  top: 7%;
-  left: 273%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 10px;
-
-}
 
 
 
@@ -43,15 +23,11 @@
 
 
 .main_div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  grid-area: center;
   width: 400px;
   padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
   border-radius: 10px;
 }
 
@@ -62,15 +38,11 @@
 
 
 .recentnote_container {
-  position: absolute;
-  top: 80%;
-  left: 50%;
   width: 400px;
   padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
   border-radius: 10px;
-
+  grid-column-start: center;
+  grid-column-end: center;
 }

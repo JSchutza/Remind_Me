@@ -9,13 +9,15 @@ import Loader from '../Loader';
 import Profile from '../Profile';
 import NotebookPage from '../NotebookPage';
 import ErrorMessage from '../ErrorMessage';
+import TagCreator from '../TagCreator';
+
 
 import { useUser } from '../../context/UserContext.js';
 import { useError } from '../../context/ErrorContext.js';
 
 
-
-
+//css
+import { styles } from '../MainRouter';
 
 
 
@@ -72,9 +74,21 @@ function MainRouter(){
         <Route exact path="/profile">
             <NavBar />
 
-            <Profile />
-                    <ErrorMessage type='sidebar' errors={errors} />
+
+            <Div selectors={[styles.main_grid]}>
+                    <Profile />
+
+                    <Div selectors={[styles.tagcreator_container]}>
+                        <TagCreator />
+                    </Div>
+
+            </Div>
+
+
+
+            <ErrorMessage type='sidebar' errors={errors} />
         </Route>
+
 
         <Route path={`/notebook/:notebookId`}>
             <NavBar />
