@@ -13,7 +13,7 @@ const router = express.Router();
 
 // routes here:
 
-
+// not working how i thought ...
 // GET localhost:5000/api/tags/
 router.get('/:tagId(\\d+)', asyncHandler(async (request, response) => {
   const their_tags = await Tag.findByPk(request.params.tagId)

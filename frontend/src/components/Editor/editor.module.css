@@ -35,6 +35,8 @@
   display: block;
   padding: 5%;
   max-width: 90%;
+  box-sizing: border-box;
+
 }
 
 
@@ -54,9 +56,6 @@
 
 
 .preview_content {
-  display: block;
-  padding: 5%;
-  position: relative;
   top: -25%;
   line-break: anywhere;
 }
