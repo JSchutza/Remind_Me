@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import Div from '../Div';
+import ReactMarkdown from 'react-markdown'
+import gfm from 'remark-gfm'
+
 
 // css
 import { styles } from '../Editor';
@@ -62,12 +65,13 @@ const previewClickHandler = (event) => {
                 </Div>
 
 
+
                 {showPreview === true ?
                     <Div selectors={[styles.preview_test]}>
                     <Div selectors={[styles.preview_container]}>
                         <Div selectors={[styles.preview_wrapper]} >
                             <Div selectors={[styles.preview_title]} >
-                                <h1>{title}</h1>
+                                <ReactMarkdown plugins={[gfm]} children={title} />
                             </Div>
 
                             <Div selectors={[styles.preview_content]} >
