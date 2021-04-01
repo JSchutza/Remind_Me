@@ -25,6 +25,7 @@ const Editor = ({ the_content = 'none' }) => {
     const [title, setTitle] = useState(the_content.title);
     const [content, setContent] = useState(the_content.content);
     const [showPreview, setShowPreview] = useState(false);
+    const [editpane, setEditpane ] = useState(true);
     const [first, setFirst] = useState(0);
     const [second, setSecond] = useState(false);
 
@@ -33,6 +34,15 @@ const Editor = ({ the_content = 'none' }) => {
         code: ({ language, value }) => {
             return (
             <SyntaxHighlighter
+                customStyle={
+                    {
+                        border: `none`,
+                        outline: `none`,
+                        background: `transparent`,
+                        resize: `none`,
+                        lineBreak: `anywhere`,
+                    }
+                }
                 showLineNumbers={true}
                 useInlineStyles={false}
                 language={language}
@@ -47,7 +57,7 @@ const Editor = ({ the_content = 'none' }) => {
 
     useEffect(() => {
 
-    }, [title, content, showPreview]);
+    }, [title, content, showPreview, editpane]);
 
 
 
@@ -57,12 +67,14 @@ const previewClickHandler = (event) => {
     event.preventDefault();
     if (first === 0) {
         setShowPreview(true);
+        setEditpane(false);
         setFirst(1);
         setSecond(true);
     }
 
     if (second === true) {
         setShowPreview(false);
+        setEditpane(true);
         setSecond(false);
         setFirst(0);
     }
@@ -109,6 +121,7 @@ const previewClickHandler = (event) => {
 
 
 
+                { editpane === true ?
 
                 <Div selectors={[styles.edit_container]} >
                     <Div selectors={[styles.edit_test]} >
@@ -137,6 +150,10 @@ const previewClickHandler = (event) => {
 
                 </Div>
 
+                :
+                    <p></p>
+                }
+
             </>
         );
     }
@@ -153,21 +170,23 @@ return (
         </Div>
 
 
-        {showPreview === true ?
-            <Div selectors={[styles.preview_test]}>
-            <Div selectors={[styles.preview_container]}>
-                <Div selectors={[styles.preview_wrapper]} >
-                    <Div selectors={[styles.preview_title]} >
-                        <h1>{title}</h1>
-                    </Div>
 
-                    <Div selectors={[styles.preview_content]} >
-                        <p>{content}</p>
+        {showPreview === true ?
+
+            <Div selectors={[styles.preview_test]}>
+                <Div selectors={[styles.preview_container]}>
+                    <Div selectors={[styles.preview_wrapper]} >
+                        <Div selectors={[styles.preview_title]} >
+                            <ReactMarkdown plugins={[gfm]} children={title} />
+                        </Div>
+
+                        <Div selectors={[styles.preview_content]} >
+                            <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
+                        </Div>
+
                     </Div>
 
                 </Div>
-
-            </Div>
             </Div>
             :
             <p></p>
@@ -176,31 +195,39 @@ return (
 
 
 
+        { editpane === true ?
 
-        <Div selectors={[styles.edit_container]} >
-            <Div selectors={[styles.edit_test]} >
-            <Div selectors={[styles.edit_wrapper]} >
+            <Div selectors={[styles.edit_container]} >
+                <Div selectors={[styles.edit_test]} >
 
-                <Div selectors={[styles.edit_title]}>
-                    <label>
-                        Title:
-                        <input
-                            onChange={(event) => setTitle(event.target.value)}
-                            value={title}
-                        />
-                    </label>
-                </Div>
+                    <Div selectors={[styles.edit_wrapper]} >
 
-                <Div selectors={[styles.edit_content]}>
-                    <textarea
-                        onChange={(event) => setContent(event.target.value)}
-                        value={content}
-                    />
+                        <Div selectors={[styles.edit_title]}>
+                            <label>
+                                Title:
+                                <input
+                                    onChange={(event) => setTitle(event.target.value)}
+                                    value={title}
+                                />
+                            </label>
+                        </Div>
+
+                        <Div selectors={[styles.edit_content]}>
+                            <textarea
+                                onChange={(event) => setContent(event.target.value)}
+                                value={content}
+                            />
+                        </Div>
+
+                    </Div>
                 </Div>
 
             </Div>
-            </Div>
-        </Div>
+
+            :
+            <p></p>
+        }
+
     </>
     );
 
