@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import Div from '../Div';
 import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+
 import gfm from 'remark-gfm'
+
+
 
 
 // css
@@ -23,6 +27,20 @@ const Editor = ({ the_content = 'none' }) => {
     const [showPreview, setShowPreview] = useState(false);
     const [first, setFirst] = useState(0);
     const [second, setSecond] = useState(false);
+
+
+    const renderers = {
+        code: ({ language, value }) => {
+            return (
+            <SyntaxHighlighter
+                showLineNumbers={true}
+                useInlineStyles={false}
+                language={language}
+                children={value}
+            />
+            );
+        }
+    }
 
 
 
@@ -54,6 +72,7 @@ const previewClickHandler = (event) => {
 
 
     if (the_content === 'none') {
+
         return (
             <>
                 <Div selectors={[styles.preview_button]} >
@@ -67,6 +86,7 @@ const previewClickHandler = (event) => {
 
 
                 {showPreview === true ?
+
                     <Div selectors={[styles.preview_test]}>
                     <Div selectors={[styles.preview_container]}>
                         <Div selectors={[styles.preview_wrapper]} >
@@ -75,7 +95,7 @@ const previewClickHandler = (event) => {
                             </Div>
 
                             <Div selectors={[styles.preview_content]} >
-                                <p>{content}</p>
+                                    <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
                             </Div>
 
                         </Div>
