@@ -50,7 +50,7 @@ const ShowNoteBooks = () => {
   if(notebooks === null) {
     return (
       <>
-      <h1>Your Notebooks</h1>
+      <h1>Notebooks</h1>
         <h3>You currently do not have any notebooks</h3>
       </>
     );
@@ -62,7 +62,7 @@ const ShowNoteBooks = () => {
       <Div selectors={[styles.show_outercontainer]}>
 
       <Div selectors={[styles.notebooks_title]}>
-      <h3>Your Notebooks</h3>
+      <h3>Notebooks</h3>
       </Div>
 
 

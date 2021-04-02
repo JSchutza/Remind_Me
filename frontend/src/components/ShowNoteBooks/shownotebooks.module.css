@@ -29,8 +29,8 @@
   position: relative;
   display: block;
   padding: 4%;
-  right: 50%;
-
+  right: 65%;
+  top: 13%;
 }
 
 
@@ -74,9 +74,10 @@
 
 
 .notebooks_title {
-    display: flex;
-    position: relative;
-    padding: 1%;
+  display: flex;
+  position: relative;
+  padding: 1%;
+  left: 7%;
 }
 
 

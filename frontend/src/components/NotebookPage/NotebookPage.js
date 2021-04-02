@@ -5,7 +5,7 @@ import { thunk_getSpecificNote } from '../../thunks/notes.js';
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { mostRecentNotes } from '../../actions/notes.js';
 import NoteViewer from '../NoteViewer';
-
+import Div from '../Div';
 
 
 
@@ -41,14 +41,23 @@ const NotebookPage = () => {
     return null;
   }
 
-// console.log(notebook_info.name);
+
 
   if (loaded === true) {
     return (
       <>
+      <Div selectors={[]}>
         <ul>
-          <li>{notebook_info.name}</li>
+
+          <Div selectors={[]}>
+            <Div selectors={[]}>
+              <li>{notebook_info.name}</li>
+            </Div>
+
+            <Div selectors={[]}>
             <ul>
+
+              <Div selectors={[]}>
                 <li key={allNotes[0].id}>
                   <a
                     onClick={(event) => noteClickHandler(event, {
@@ -60,10 +69,21 @@ const NotebookPage = () => {
                       createdAt: allNotes[0].createdAt,
                       updatedAt: allNotes[0].updatedAt
                     })}
-                    > {allNotes[0].title} </a>
+                    >
+                      <Div selectors={[]}>
+                      <img src='' />
+                      </Div>
+
+                    {allNotes[0].title} </a>
+
                 </li>
+                </Div>
             </ul>
+            </Div>
+
+            </Div>
         </ul>
+      </Div>
 
 
         { clicked ? <NoteViewer the_content={data} /> : <div></div> }
@@ -72,8 +92,11 @@ const NotebookPage = () => {
   } else {
     return (
       <>
+      <Div selectors={[]}>
         <h1>Fetching Your Data, One Moment Please...</h1>
+      </Div>
       </>
+
     );
   }
 

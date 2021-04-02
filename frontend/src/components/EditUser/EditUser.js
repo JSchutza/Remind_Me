@@ -6,6 +6,8 @@ import { useError } from '../../context/ErrorContext.js';
 import ErrorMessage from '../ErrorMessage';
 import Div from '../Div';
 
+// css
+import { styles } from '../EditUser';
 
 
 const EditUser = ({ current_info }) => {
@@ -75,16 +77,24 @@ const EditUser = ({ current_info }) => {
     if(show === false) {
         return (
             <>
+            <Div selectors={[styles.edit_users_container]}>
             <Div selectors={[]}>
+
             <Div selectors={[]}>
+                <Div selectors={[styles.edit_users_img_div]}>
+                    <img src={`${current_info.avatar}`} />
+                </Div>
+            </Div>
+
             <Div selectors={[]}>
                 <h4>{current_info.username}</h4>
-
             </Div>
+
             <Div selectors={[]}>
                 <h4>{current_info.email}</h4>
-
             </Div>
+
+
             <Div selectors={[]}>
                 <a onClick={(event) => editClickHandler(event)} >
                     Update

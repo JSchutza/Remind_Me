@@ -14,14 +14,12 @@ function ThemeChanger() {
     // predefined themeType objects here for ease of use
     const lightMode = {
         type: 'Light',
-        font: 'cursive',
         icon: light_img,
         light_syntax: coy
     };
 
     const darkMode = {
         type: 'Dark',
-        font: 'Roboto',
         icon: dark_img,
         dark_syntax: materialDark
     };
