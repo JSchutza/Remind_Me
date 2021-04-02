@@ -5,7 +5,7 @@
 
 
 .container {
-  background-color: sienna;
+  background-color: transparent;
   display: flex;
   padding: 2%;
   width: 100%;
@@ -25,13 +25,23 @@
   background-color:black;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 10px;
+  border-radius: 7px;
   position: relative;
   display: block;
   padding: 4%;
   right: 50%;
 
 }
+
+
+
+.container ul:hover {
+  cursor: pointer;
+}
+
+
+
+
 
 
 .newnotebook_input {
@@ -47,13 +57,14 @@
 
 
 .show_outercontainer {
-  background-color: yellowgreen;
+  background-color: transparent;
   display: flex;
   padding: 1%;
   box-sizing: border-box;
   position: relative;
   bottom: 25%;
   right: 24%;
+  height: auto;
 
 }
 
@@ -74,7 +85,26 @@
 .notebooks_links {
   display: grid;
   position: relative;
+}
 
+
+
+
+
+.notebooks_links a {
+  padding: 1%;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+
+
+
+
+.notebooks_links a:hover{
+  background-color:blue;
+  cursor: pointer;
+  color: white;
 }
 
 
