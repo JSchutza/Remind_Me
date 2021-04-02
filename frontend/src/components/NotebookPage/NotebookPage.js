@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_getSpecificNote } from '../../thunks/notes.js';
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
+import { mostRecentNotes } from '../../actions/notes.js';
 import NoteViewer from '../NoteViewer';
 
 
@@ -31,6 +32,8 @@ const NotebookPage = () => {
     event.preventDefault();
     setClicked(true);
     setData(payload);
+    // send dispatch to recent notes reducer
+    dispatch(mostRecentNotes(payload));
   };
 
 
