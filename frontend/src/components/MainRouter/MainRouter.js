@@ -56,6 +56,11 @@ function MainRouter(){
                 <NavBar />
                 <SignupForm />
             </Route>
+
+            <Route exact path="/readme">
+                <NavBar />
+
+            </Route>
         </Switch>
         </>
     );
@@ -100,6 +105,10 @@ function MainRouter(){
                 <NotebookPage />
         </Route>
 
+        <Route exact path="/readme">
+            <NavBar />
+
+        </Route>
     </Switch>
     </>
     );
