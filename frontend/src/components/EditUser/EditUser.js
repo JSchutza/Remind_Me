@@ -75,13 +75,29 @@ const EditUser = ({ current_info }) => {
     if(show === false) {
         return (
             <>
-                <h1>{current_info.username}</h1>
+            <Div selectors={[]}>
+            <Div selectors={[]}>
+            <Div selectors={[]}>
+                <h4>{current_info.username}</h4>
 
-                <h1>{current_info.email}</h1>
+            </Div>
+            <Div selectors={[]}>
+                <h4>{current_info.email}</h4>
 
+            </Div>
+            <Div selectors={[]}>
                 <a onClick={(event) => editClickHandler(event)} >
                     Update
                 </a>
+
+            </Div>
+
+            </Div>
+
+            </Div>
+
+
+
             </>
         );
     }

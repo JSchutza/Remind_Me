@@ -40,14 +40,17 @@ const ShowNoteBooks = () => {
     <>
       <Div selectors={[styles.show_outercontainer]}>
 
-    <div>
-      <h1>Your Notebooks</h1>
-    </div>
+      <Div selectors={[styles.notebooks_title]}>
+      <h3>Your Notebooks</h3>
+      </Div>
+
 
       <Div selectors={[styles.container]}>
       <ul>
       {Object.values(notebooks).map(eachNote => (
         <>
+        <Div selectors={[styles.notebooks_links]} >
+
         <NavLink
           key={eachNote.id}
           to={`/notebook/${eachNote.id}`}
@@ -55,20 +58,25 @@ const ShowNoteBooks = () => {
 
           > {eachNote.name} </NavLink>
         <br/>
+          </Div>
         </>
       ))}
       </ul>
       <br/>
 
-      <div>
+        <Div selectors={[styles.notebooks_create_title]} >
         <h3>Create a Notebook</h3>
-      </div>
+      </Div>
+
       <br/>
 
-      <label>
-          Notebook Name
-        <input />
-      </label>
+        <Div selectors={[styles.newnotebook_input]}>
+          <label>
+              Notebook Name
+            <input />
+          </label>
+        </Div>
+
       </Div>
       </Div>
     </>
