@@ -73,7 +73,9 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
-
+            <Div selectors={[styles.main_outer_flex]}>
+            <div></div>
+            <Div selectors={[styles.main_grid_flex]}>
 
             <Div selectors={[styles.main_grid]}>
                     <Profile />
@@ -84,7 +86,9 @@ function MainRouter(){
 
             </Div>
 
+            </Div>
 
+            </Div>
 
             <ErrorMessage type='sidebar' errors={errors} />
         </Route>

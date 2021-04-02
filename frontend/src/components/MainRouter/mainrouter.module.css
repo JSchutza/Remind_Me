@@ -1,9 +1,41 @@
 
+
+
+
+
+@media screen and (min-width: 1200px){
+
+
+
+
+.main_outer_flex {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  width: auto;
+  padding: 1%;
+}
+
+
+
+
+
+.main_grid_flex {
+  display: flex;
+  background-color: slateblue;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
 .main_grid {
   display: grid;
   position: relative;
-  background-color: aqua;
-  left: 7%;
+  /* background-color: aqua; */
   grid-template-columns:1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas: 'left center right';
@@ -24,4 +56,9 @@
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
   border-radius: 10px;
   grid-area: right;
+}
+
+
+
+
 }
