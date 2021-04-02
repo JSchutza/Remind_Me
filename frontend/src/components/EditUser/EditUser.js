@@ -118,8 +118,6 @@ const EditUser = ({ current_info }) => {
     if (show === true) {
         return (
             <>
-            {/* <ErrorMessage type='sidebar' errors={errors} /> */}
-
             <form onSubmit={onSubmit} >
                 <h1>Update User</h1>
                 <Div selectors={[]} >

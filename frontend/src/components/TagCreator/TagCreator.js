@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useError } from '../../context/ErrorContext.js';
 
-import ErrorMessage from '../ErrorMessage';
+
 import Div from '../Div';
 
 
@@ -11,11 +12,11 @@ import Div from '../Div';
 const TagCreator = () => {
 //state here
   const [ tagname, setTagname ] = useState('');
-  const [ errors, setErrors ] = useState([]);
   const [ reminder, setReminder ] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const { errors, setErrors } = useError();
 
 
 
@@ -67,9 +68,7 @@ const TagCreator = () => {
 
   return (
     <>
-      <ErrorMessage type='sidebar' errors={errors} />
-
-
+    <Div selectors={[]}>
       <form onSubmit={onSubmit}>
 
         <Div selectors={[]} >
@@ -92,6 +91,7 @@ const TagCreator = () => {
         <p>{reminder}</p>
       </div>
       </form>
+      </Div>
     </>
   );
 

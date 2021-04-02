@@ -3,10 +3,9 @@
 
 
 
-import TagViewer from '../TagViewer';
+import TagViewer from './TagViewer.js';
 
-import styles from '../tagviewer.module.css';
-
+import styles from './tagviewer.module.css';
 
 
 

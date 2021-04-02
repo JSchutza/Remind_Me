@@ -10,6 +10,7 @@ import Profile from '../Profile';
 import NotebookPage from '../NotebookPage';
 import ErrorMessage from '../ErrorMessage';
 import TagCreator from '../TagCreator';
+import TagViewer from '../TagViewer';
 
 
 import { useUser } from '../../context/UserContext.js';
@@ -73,24 +74,24 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
+
             <Div selectors={[styles.main_outer_flex]}>
-            <div></div>
             <Div selectors={[styles.main_grid_flex]}>
-
             <Div selectors={[styles.main_grid]}>
-                    <Profile />
+                <Profile />
 
-                    <Div selectors={[styles.tagcreator_container]}>
-                        <TagCreator />
-                    </Div>
+                <Div selectors={[styles.tagcreator_container]}>
+                    <TagCreator />
+                    <TagViewer />
+                </Div>
 
+                <Div selectors={[]} >
+                    <ErrorMessage type='sidebar' errors={errors} />
+                </Div>
+            </Div>
+            </Div>
             </Div>
 
-            </Div>
-
-            </Div>
-
-            <ErrorMessage type='sidebar' errors={errors} />
         </Route>
 
 
