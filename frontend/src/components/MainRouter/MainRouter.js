@@ -8,13 +8,16 @@ import Div from '../Div';
 import Loader from '../Loader';
 import Profile from '../Profile';
 import NotebookPage from '../NotebookPage';
+import ErrorMessage from '../ErrorMessage';
+import TagCreator from '../TagCreator';
+
 
 import { useUser } from '../../context/UserContext.js';
+import { useError } from '../../context/ErrorContext.js';
 
 
-
-
-
+//css
+import { styles } from '../MainRouter';
 
 
 
@@ -25,6 +28,9 @@ import { useUser } from '../../context/UserContext.js';
 // component definitions here:
 function MainRouter(){
     const { isUser, toggleLoader } = useUser();
+    const { errors } = useError();
+
+
 
     // if there is not a user
     if(isUser === null){
@@ -67,9 +73,26 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
+            <Div selectors={[styles.main_outer_flex]}>
+            <div></div>
+            <Div selectors={[styles.main_grid_flex]}>
 
-            <Profile />
+            <Div selectors={[styles.main_grid]}>
+                    <Profile />
+
+                    <Div selectors={[styles.tagcreator_container]}>
+                        <TagCreator />
+                    </Div>
+
+            </Div>
+
+            </Div>
+
+            </Div>
+
+            <ErrorMessage type='sidebar' errors={errors} />
         </Route>
+
 
         <Route path={`/notebook/:notebookId`}>
             <NavBar />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import { useError } from '../../context/ErrorContext.js';
 
 import ErrorMessage from '../ErrorMessage';
 import Div from '../Div';
@@ -11,14 +11,12 @@ import Div from '../Div';
 const EditUser = ({ current_info }) => {
     //state here
     const [ show, setShow ] = useState(false);
-
     const [ username, setUsername ] = useState(current_info.username);
     const [ email, setEmail ] = useState(current_info.email);
     const [ reminder, setReminder ] = useState('');
-    const [ errors, setErrors ] = useState([]);
     const history = useHistory();
 
-
+    const { errors, setErrors } = useError();
 
 
 
@@ -39,12 +37,6 @@ const EditUser = ({ current_info }) => {
     if (email.length <= 3 || email.length >= 256) {
         errors.push("Your email must be between 3 to 256 characters long.");
     }
-    // if (password.length === 0) {
-    //     errors.push("Please enter a password.");
-    // }
-    // if (password !== confirmPassword) {
-    //     errors.push("Your password must match the confirmation.");
-    // }
     setErrors(errors);
     }, [show, username, email]);
 
@@ -83,13 +75,29 @@ const EditUser = ({ current_info }) => {
     if(show === false) {
         return (
             <>
-                <h1>{current_info.username}</h1>
+            <Div selectors={[]}>
+            <Div selectors={[]}>
+            <Div selectors={[]}>
+                <h4>{current_info.username}</h4>
 
-                <h1>{current_info.email}</h1>
+            </Div>
+            <Div selectors={[]}>
+                <h4>{current_info.email}</h4>
 
+            </Div>
+            <Div selectors={[]}>
                 <a onClick={(event) => editClickHandler(event)} >
                     Update
                 </a>
+
+            </Div>
+
+            </Div>
+
+            </Div>
+
+
+
             </>
         );
     }
@@ -100,7 +108,7 @@ const EditUser = ({ current_info }) => {
     if (show === true) {
         return (
             <>
-            <ErrorMessage type='sidebar' errors={errors} />
+            {/* <ErrorMessage type='sidebar' errors={errors} /> */}
 
             <form onSubmit={onSubmit} >
                 <h1>Update User</h1>

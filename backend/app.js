@@ -19,7 +19,7 @@ initApp(app);
 app.use('/api/users', users_router);
 app.use('/api/notebooks', notebooks_router);
 app.use('/api/notes', notes_router);
-app.use('/api/tags', notes_router);
+app.use('/api/tags', tags_router);
 
 
 

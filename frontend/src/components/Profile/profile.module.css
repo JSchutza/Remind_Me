@@ -1,18 +1,5 @@
 
 
-.edituser_containter {
-  position: absolute;
-  top: 70%;
-  left: 13%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 10px;
-
-}
 
 
 
@@ -20,20 +7,23 @@
 
 
 
+  .edituser_containter {
+    grid-area: left;
+    position: relative;
+    display: flex;
+    width: auto;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 10px;
 
-.tagcreator_container {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 10px;
+  }
 
-}
+
+  .edituser_containter a:hover {
+    color:blue;
+    cursor: pointer;
+  }
 
 
 
@@ -42,18 +32,17 @@
 
 
 
-.main_div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
-}
+  .main_div {
+    grid-area: center;
+    width: auto;
+    padding: 100px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 10px;
+    display: flex;
+    height: auto;
+
+  }
 
 
 
@@ -61,16 +50,13 @@
 
 
 
-.recentnote_container {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  /* background: rgba(0,0,0,.5); */
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 10px;
-
-}
+  .recentnote_container {
+    width: auto;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 10px;
+    grid-column-start: center;
+    grid-column-end: center;
+    display: flex;
+  }

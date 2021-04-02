@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import gfm from 'remark-gfm'
-
+import { useTheme } from '../../context/ThemeContext.js';
 
 
 
@@ -28,36 +28,74 @@ const Editor = ({ the_content = 'none' }) => {
     const [editpane, setEditpane ] = useState(true);
     const [first, setFirst] = useState(0);
     const [second, setSecond] = useState(false);
+    const [buttontext, setButtontext] = useState('Preview');
+    const [initStyle, setInitStyle] = useState('');
+
+    const { themeType, setThemeType } = useTheme();
+    let renderers;
 
 
-    const renderers = {
-        code: ({ language, value }) => {
-            return (
-            <SyntaxHighlighter
-                customStyle={
-                    {
-                        border: `none`,
-                        outline: `none`,
-                        background: `transparent`,
-                        resize: `none`,
-                        lineBreak: `anywhere`,
-                    }
+    if(themeType.type === 'Light') {
+            renderers = {
+                code: ({ language, value }) => {
+                    return (
+                    <SyntaxHighlighter
+                        customStyle={
+                            {
+                                border: `none`,
+                                outline: `none`,
+                                background: `black`,
+                                resize: `none`,
+                                lineBreak: `anywhere`,
+
+                            }
+                        }
+                            style={themeType.light_syntax}
+                        showLineNumbers={true}
+                        language={language}
+                        children={value}
+                    />
+                    );
                 }
-                showLineNumbers={true}
-                useInlineStyles={false}
-                language={language}
-                children={value}
-            />
-            );
-        }
+            }
+        } else if(themeType.type === 'Dark') {
+
+            renderers = {
+                code: ({ language, value }) => {
+                    return (
+                    <SyntaxHighlighter
+                        customStyle={
+                            {
+                                border: `none`,
+                                outline: `none`,
+                                background: `black`,
+                                resize: `none`,
+                                lineBreak: `anywhere`,
+
+                            }
+                        }
+                            style={themeType.dark_syntax}
+                        showLineNumbers={true}
+                        language={language}
+                        children={value}
+                    />
+                    );
+                }
+            }
+
     }
 
 
 
 
     useEffect(() => {
+        if ((content === undefined || content === '') && (title === undefined || title === '')){
+            setInitStyle('hidden');
+        } else {
+            setInitStyle('');
+        }
 
-    }, [title, content, showPreview, editpane]);
+    }, [title, content, showPreview, editpane, buttontext]);
 
 
 
@@ -66,6 +104,7 @@ const Editor = ({ the_content = 'none' }) => {
 const previewClickHandler = (event) => {
     event.preventDefault();
     if (first === 0) {
+        setButtontext('Edit');
         setShowPreview(true);
         setEditpane(false);
         setFirst(1);
@@ -73,6 +112,7 @@ const previewClickHandler = (event) => {
     }
 
     if (second === true) {
+        setButtontext('Preview');
         setShowPreview(false);
         setEditpane(true);
         setSecond(false);
@@ -81,83 +121,7 @@ const previewClickHandler = (event) => {
 
 };
 
-
-
-    if (the_content === 'none') {
-
-        return (
-            <>
-                <Div selectors={[styles.preview_button]} >
-                    <a
-                        onClick={(event) => previewClickHandler(event)}
-                    >
-                        <h1>Preview</h1>
-                    </a>
-                </Div>
-
-
-
-                {showPreview === true ?
-
-                    <Div selectors={[styles.preview_test]}>
-                    <Div selectors={[styles.preview_container]}>
-                        <Div selectors={[styles.preview_wrapper]} >
-                            <Div selectors={[styles.preview_title]} >
-                                <ReactMarkdown plugins={[gfm]} children={title} />
-                            </Div>
-
-                            <Div selectors={[styles.preview_content]} >
-                                    <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
-                            </Div>
-
-                        </Div>
-
-                    </Div>
-                    </Div>
-                    :
-                    <p></p>
-                }
-
-
-
-
-                { editpane === true ?
-
-                <Div selectors={[styles.edit_container]} >
-                    <Div selectors={[styles.edit_test]} >
-
-                    <Div selectors={[styles.edit_wrapper]} >
-
-                        <Div selectors={[styles.edit_title]}>
-                            <label>
-                                Title:
-                                <input
-                                    onChange={(event) => setTitle(event.target.value)}
-                                    value={title}
-                                />
-                            </label>
-                        </Div>
-
-                        <Div selectors={[styles.edit_content]}>
-                            <textarea
-                                onChange={(event) => setContent(event.target.value)}
-                                value={content}
-                            />
-                        </Div>
-
-                    </Div>
-                    </Div>
-
-                </Div>
-
-                :
-                    <p></p>
-                }
-
-            </>
-        );
-    }
-
+if(the_content !== 'none') {
 
 return (
     <>
@@ -165,7 +129,7 @@ return (
             <a
                 onClick={(event) => previewClickHandler(event)}
             >
-                <h1>Preview</h1>
+                <h4>{buttontext}</h4>
             </a>
         </Div>
 
@@ -230,7 +194,83 @@ return (
 
     </>
     );
+}
 
+
+    if (the_content === 'none') {
+
+        return (
+            <>
+                <Div selectors={[styles.preview_button]} >
+                    <a
+                        onClick={(event) => previewClickHandler(event)}
+                    >
+                        <h4>{buttontext}</h4>
+                    </a>
+                </Div>
+
+
+
+                {showPreview === true ?
+
+                    <Div selectors={[styles.preview_test]}>
+                        <Div selectors={[styles.preview_container, `${initStyle}`]}>
+                            <Div selectors={[styles.preview_wrapper]} >
+                                <Div selectors={[styles.preview_title]} >
+                                    <ReactMarkdown plugins={[gfm]} children={title} />
+                                </Div>
+
+                                <Div selectors={[styles.preview_content]} >
+                                    <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
+                                </Div>
+
+                            </Div>
+
+                        </Div>
+                    </Div>
+                    :
+                    <p></p>
+                }
+
+
+
+
+                { editpane === true ?
+
+                    <Div selectors={[styles.edit_container]} >
+                        <Div selectors={[styles.edit_test]} >
+
+                            <Div selectors={[styles.edit_wrapper]} >
+
+                                <Div selectors={[styles.edit_title]}>
+                                    <label>
+                                        Title:
+                                <input
+                                            onChange={(event) => setTitle(event.target.value)}
+                                            value={title}
+                                        />
+                                    </label>
+                                </Div>
+
+                                <Div selectors={[styles.edit_content]}>
+                                    <textarea
+                                        onChange={(event) => setContent(event.target.value)}
+                                        value={content}
+                                    />
+                                </Div>
+
+                            </Div>
+                        </Div>
+
+                    </Div>
+
+                    :
+                    <p></p>
+                }
+
+            </>
+        );
+    }
 
 
 };

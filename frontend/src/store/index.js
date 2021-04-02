@@ -4,18 +4,20 @@ import thunk from 'redux-thunk';
 // import reducers here:
 import { userReducer } from '../reducers/session.js';
 import { notebooksReducer, notebookPageReducer } from '../reducers/notebooks.js';
-import { notesReducer } from '../reducers/notes.js';
+import { notesReducer, recentNoteReducer } from '../reducers/notes.js';
 
 const rootReducer = combineReducers({
     userReducer,
     notebooksReducer,
     notebookPageReducer,
     notesReducer,
+    recentNoteReducer,
 
 });
 
 
-
+// temp took out logger because it was anoyning
+// applyMiddleware(thunk, logger)
 
 let enhancer;
 
@@ -25,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
     const logger = require('redux-logger').default;
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+    enhancer = composeEnhancers(applyMiddleware(thunk));
 }
 
 

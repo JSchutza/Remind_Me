@@ -5,6 +5,8 @@ import App from './App';
 import ThemeChanger from './components/ThemeChanger';
 import ThemeProvider from './context/ThemeContext.js';
 import { UserProvider } from './context/UserContext.js';
+import { ErrorProvider } from './context/ErrorContext.js';
+
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -36,7 +38,9 @@ function Root() {
         <BrowserRouter>
           <ThemeChanger />
             <UserProvider>
-              <App />
+              <ErrorProvider>
+                <App />
+              </ErrorProvider>
           </UserProvider>
         </ BrowserRouter>
       </ThemeProvider>

@@ -1,0 +1,158 @@
+
+
+
+
+
+
+.container {
+  background-color: transparent;
+  display: flex;
+  padding: 2%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 40%;
+  bottom: 1%;
+
+}
+
+
+
+
+
+
+.container ul {
+  background-color:black;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+  border-radius: 7px;
+  position: relative;
+  display: block;
+  padding: 4%;
+  right: 50%;
+
+}
+
+
+
+.container ul:hover {
+  cursor: pointer;
+}
+
+
+
+
+
+
+.newnotebook_input {
+  display: flex;
+  position: relative;
+  padding: 1%;
+  right: 50%;
+  top: 25%
+}
+
+
+
+
+
+.show_outercontainer {
+  background-color: transparent;
+  display: flex;
+  padding: 1%;
+  box-sizing: border-box;
+  position: relative;
+  bottom: 25%;
+  right: 24%;
+  height: auto;
+
+}
+
+
+
+
+
+
+.notebooks_title {
+    display: flex;
+    position: relative;
+    padding: 1%;
+}
+
+
+
+
+.notebooks_links {
+  display: grid;
+  position: relative;
+}
+
+
+
+
+
+.notebooks_links a {
+  padding: 1%;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+
+
+
+
+.notebooks_links a:hover{
+  background-color:blue;
+  cursor: pointer;
+  color: white;
+}
+
+
+
+
+.notebooks_create_title {
+  position: relative;
+  display: flex;
+  padding: 1%;
+  right: 25%;
+
+}
+
+
+
+
+
+
+.create_notebooks_link {
+  display: flex;
+  position: relative;
+  height:5%;
+  padding: 8%;
+  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+  border-radius: 7px;
+  background-color:black;
+  left: 5%;
+
+}
+
+
+
+
+
+
+.create_notebooks_link a {
+  padding: 1%;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+
+
+
+
+
+.create_notebooks_link a:hover {
+  background-color:blue;
+  cursor: pointer;
+  color: white;
+}

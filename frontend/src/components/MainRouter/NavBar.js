@@ -4,7 +4,10 @@ import { useDispatch } from 'react-redux';
 import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
 import { useUser } from '../../context/UserContext.js';
 import { useHistory } from 'react-router-dom';
+import Div from '../Div';
 
+// css
+import styles from './navbar.module.css';
 
 
 
@@ -36,6 +39,9 @@ function NavBar() {
     };
 
 
+
+
+
     const demoLoginHandler = (event) => {
         event.preventDefault();
         dispatch(thunk_loginDemoUser());
@@ -43,10 +49,15 @@ function NavBar() {
     };
 
 
+
+
+
     // if there is not a user
     if(isUser === null) {
         return (
         <>
+        <Div selectors={[]}>
+
         <nav>
             <ul>
 
@@ -60,12 +71,17 @@ function NavBar() {
 
             </ul>
         </nav>
+        </Div>
         </>
         );
     }
+
+
     // if there is a user
     return (
     <>
+    <Div selectors={[]}>
+
     <nav>
         <ul>
 
@@ -77,6 +93,7 @@ function NavBar() {
 
         </ul>
     </nav>
+    </Div>
     </>
     );
 

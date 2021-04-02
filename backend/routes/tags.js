@@ -8,26 +8,38 @@ const { express, asyncHandler, Tag } = require('../lib');
 const router = express.Router();
 
 
+// creator_id and note_id on the DB cannnot be null -- remember for implementation
 
 
 
 // routes here:
 
-// not working how i thought ...
-// GET localhost:5000/api/tags/
+// gets a specific tag by its id
+// GET localhost:5000/api/tags/:tagId
 router.get('/:tagId(\\d+)', asyncHandler(async (request, response) => {
   const their_tags = await Tag.findByPk(request.params.tagId)
-
   response.json({ their_tags });
-
-
 }));
 
 
 
 
-// GET localhost:5000/api/tags/:creatorId
-router.get('/:creatorId(\\d+)', asyncHandler(async (request, response) => {
+
+
+
+// gets all the tags in the DB
+// GET localhost:5000/api/tags/all
+router.get('/all', asyncHandler(async (request, response) => {
+  const all_tags = await Tag.findAll();
+  response.json({ all_tags });
+}))
+
+
+
+
+// gets all the tags for a specific user
+// GET localhost:5000/api/tags/users/:creatorId
+router.get('/users/:creatorId(\\d+)', asyncHandler(async (request, response) => {
   const userId = request.params.creatorId;
   const their_tags = await Tag.findAll({
     where: {

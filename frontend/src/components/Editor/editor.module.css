@@ -10,17 +10,23 @@
 
 }
 
+.preview_button:hover {
+  background-color: rgba(0,0,0,0.1);
 
+}
 
-.preview_test{
+.preview_button h4:hover {
+  color: blue;
+  cursor: pointer;
 
 }
 
 
 
+
+
 .preview_container {
   position: relative;
-  background-color:yellow;
   display: flex;
   box-sizing: border-box;
   max-width: 100%;
@@ -31,7 +37,6 @@
 
 
 .preview_wrapper {
-  background-color: blue;
   display: block;
   padding: 5%;
   max-width: 90%;
@@ -72,9 +77,6 @@
 
 
 
-.edit_test {
-
-}
 
 .edit_wrapper {
   width: 100%;
@@ -107,12 +109,10 @@
   border: none;
   outline: none;
   background: transparent;
-  color: white;
   height: 68rem;
   resize: none;
   line-break: anywhere;
   position: absolute;
   left: 12%;
-  background-color: black;
 
 }
