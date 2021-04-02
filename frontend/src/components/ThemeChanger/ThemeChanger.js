@@ -1,4 +1,6 @@
 // imports here:
+import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
 import { useTheme } from '../../context/ThemeContext.js';
 import Div from '../Div';
 import { styles } from '../ThemeChanger';
@@ -13,13 +15,15 @@ function ThemeChanger() {
     const lightMode = {
         type: 'Light',
         font: 'cursive',
-        icon: light_img
+        icon: light_img,
+        light_syntax: coy
     };
 
     const darkMode = {
         type: 'Dark',
         font: 'Roboto',
-        icon: dark_img
+        icon: dark_img,
+        dark_syntax: materialDark
     };
 
 

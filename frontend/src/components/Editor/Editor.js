@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import gfm from 'remark-gfm'
-
+import { useTheme } from '../../context/ThemeContext.js';
 
 
 
@@ -31,27 +31,58 @@ const Editor = ({ the_content = 'none' }) => {
     const [buttontext, setButtontext] = useState('Preview');
     const [initStyle, setInitStyle] = useState('');
 
+    const { themeType, setThemeType } = useTheme();
+    let renderers;
 
-    const renderers = {
-        code: ({ language, value }) => {
-            return (
-            <SyntaxHighlighter
-                customStyle={
-                    {
-                        border: `none`,
-                        outline: `none`,
-                        background: `transparent`,
-                        resize: `none`,
-                        lineBreak: `anywhere`,
-                    }
+
+    if(themeType.type === 'Light') {
+            renderers = {
+                code: ({ language, value }) => {
+                    return (
+                    <SyntaxHighlighter
+                        customStyle={
+                            {
+                                border: `none`,
+                                outline: `none`,
+                                background: `black`,
+                                resize: `none`,
+                                lineBreak: `anywhere`,
+
+                            }
+                        }
+                            style={themeType.light_syntax}
+                        showLineNumbers={true}
+                        language={language}
+                        children={value}
+                    />
+                    );
                 }
-                showLineNumbers={true}
-                useInlineStyles={false}
-                language={language}
-                children={value}
-            />
-            );
-        }
+            }
+        } else if(themeType.type === 'Dark') {
+
+            renderers = {
+                code: ({ language, value }) => {
+                    return (
+                    <SyntaxHighlighter
+                        customStyle={
+                            {
+                                border: `none`,
+                                outline: `none`,
+                                background: `black`,
+                                resize: `none`,
+                                lineBreak: `anywhere`,
+
+                            }
+                        }
+                            style={themeType.dark_syntax}
+                        showLineNumbers={true}
+                        language={language}
+                        children={value}
+                    />
+                    );
+                }
+            }
+
     }
 
 

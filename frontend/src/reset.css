@@ -1,5 +1,5 @@
-html, body, div, span, applet, object, iframe, blockquote,
-a, abbr, acronym, address, big, cite, code,
+html, body, div, applet, object, iframe, blockquote,
+a, abbr, acronym, address, big, cite,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
@@ -63,5 +63,12 @@ table {
 
 
 .selected {
+	background-color:rgba(26, 26, 27, 0.692);
+	border-radius: 3%;
 	color: red;
+	text-decoration: none;
+}
+
+.selected:hover {
+	/* background-color: blue; */
 }
