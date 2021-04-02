@@ -18,12 +18,12 @@ const ShowNoteBooks = () => {
 
   // state here
   const [ notebookname, setNotebookname ] = useState('');
-
+  const [ triggerFetch, setTriggerFetch ] = useState(false);
 
 
   useEffect(() => {
     dispatch(thunk_getNoteBooks(isUser.id));
-  }, [dispatch]);
+  }, [dispatch, triggerFetch]);
 
 
 
@@ -43,6 +43,12 @@ const ShowNoteBooks = () => {
       description: null,
       notebook_owner: isUser.id
     }));
+
+    setTriggerFetch(true);
+
+    setTimeout(() => {
+      setTriggerFetch(false);
+    }, [2000])
 
   };
 
@@ -116,6 +122,19 @@ const ShowNoteBooks = () => {
               > Create </a>
           </Div>
 
+        </Div>
+
+        <Div selectors={[]} >
+
+            {triggerFetch === true ?
+
+            <Div selectors={[]} >
+              <h2>{notebookname} was successfully created. </h2>
+            </Div>
+
+            :
+            <p></p>
+            }
         </Div>
 
       </Div>
