@@ -1,6 +1,6 @@
 
 
-import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE } from '../types/notebooks.js';
+import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK } from '../types/notebooks.js';
 
 
 
@@ -19,12 +19,22 @@ const notebookForPage = (notebook) => {
   return {
     type: NOTEBOOK_FOR_PAGE,
     notebook
-  }
+  };
+};
+
+
+
+const createNewNotebook = (just_created) => {
+  return {
+    type: CREATE_NEW_NOTEBOOK,
+    just_created
+  };
 };
 
 
 export {
   getNoteBooks,
   notebookForPage,
+  createNewNotebook,
 
 };

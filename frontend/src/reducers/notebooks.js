@@ -2,7 +2,7 @@
 
 
 
-import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE } from '../types/notebooks.js';
+import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK } from '../types/notebooks.js';
 
 
 
@@ -32,10 +32,24 @@ const notebookPageReducer = (state = { notebook: null }, action) => {
 
 
 
+const newNotebookReducer = (state = { just_created: null }, action) => {
+  switch (action.type){
+    case CREATE_NEW_NOTEBOOK:
+      return { ...state, ...action.just_created };
+    default:
+      return state;
+  }
+};
+
+
+
+
 
 // exports here
 export {
   notebooksReducer,
   notebookPageReducer,
+  newNotebookReducer,
+
 
 };

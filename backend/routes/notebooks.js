@@ -48,7 +48,7 @@ router.post('/new', asyncHandler(async (request, response) => {
   const { name, description, notebook_owner } = request.body;
 
 
-  const created_notebook = await Notebook.create({
+  const just_created = await Notebook.create({
     name,
     description,
     notebook_owner: Number(notebook_owner)
@@ -56,11 +56,11 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 
-  if (!created_notebook) {
+  if (!just_created) {
     response.json({ error: "Could not create a notebook."});
   }
 
-  response.json({ created_notebook });
+  response.json({ just_created });
 }));
 
 

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from '../../context/UserContext.js';
 import { useState, useEffect } from 'react';
-import { thunk_getNoteBooks, thunk_notebookForPage } from '../../thunks/notebooks.js';
+import { thunk_getNoteBooks, thunk_notebookForPage, thunk_createNewNotebook } from '../../thunks/notebooks.js';
 import Div from '../Div';
 
 // css
@@ -16,12 +16,15 @@ const ShowNoteBooks = () => {
   const { isUser } = useUser();
   const notebooks = useSelector((store) => store.notebooksReducer.notebooks );
 
+  // state here
   const [ notebookname, setNotebookname ] = useState('');
+
 
 
   useEffect(() => {
     dispatch(thunk_getNoteBooks(isUser.id));
   }, [dispatch]);
+
 
 
 
@@ -35,6 +38,12 @@ const ShowNoteBooks = () => {
   const newNotebookHandler = (event) => {
     event.preventDefault();
     // dispatch thunk to create /POST a note book
+    dispatch(thunk_createNewNotebook({
+      name: notebookname,
+      description: null,
+      notebook_owner: isUser.id
+    }));
+
   };
 
 
@@ -103,7 +112,7 @@ const ShowNoteBooks = () => {
 
             <Div selectors={[styles.create_notebooks_link]}>
               <a
-                onChange={(event) => newNotebookHandler(event)}
+                onClick={(event) => newNotebookHandler(event)}
               > Create </a>
           </Div>
 
