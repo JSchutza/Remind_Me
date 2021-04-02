@@ -20,7 +20,7 @@ import { styles } from '../Editor';
 
 
 
-const Editor = ({ the_content = 'none' }) => {
+const Editor = ({ the_content = 'none', first_creation = false }) => {
     // state here
     const [title, setTitle] = useState(the_content.title);
     const [content, setContent] = useState(the_content.content);
@@ -132,6 +132,14 @@ return (
                 <h4>{buttontext}</h4>
             </a>
         </Div>
+        <Div selectors={[]}>
+            <a
+                // onClick={(event) => previewClickHandler(event)}
+            >
+                {/* <h4>{buttontext}</h4> */}
+                <h4>Update</h4>
+            </a>
+        </Div>
 
 
 
@@ -209,6 +217,18 @@ return (
                     </a>
                 </Div>
 
+                {first_creation === true ?
+                    <Div selectors={[]} >
+                        <a
+                        // onClick={(event) => previewClickHandler(event)}
+                        >
+                            {/* <h4>{buttontext}</h4> */}
+                            <h4>Create</h4>
+                        </a>
+                    </Div>
+                    :
+                    <p></p>
+                }
 
 
                 {showPreview === true ?

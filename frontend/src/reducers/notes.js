@@ -15,7 +15,11 @@ const initialState = { notes: null };
 const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPECIFIC_NOTE:
-      return { ...state, notes: { ...action.notes.notes } };
+      if (action.notes.notes.length === 0){
+        return initialState;
+      } else {
+        return { ...state, notes: { ...action.notes.notes } };
+      }
     default:
       return state;
   }
