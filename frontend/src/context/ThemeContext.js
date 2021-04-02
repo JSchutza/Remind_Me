@@ -16,7 +16,6 @@ function ThemeProvider({ children }) {
     const [ themeType, setThemeType ] = useState({
         // other properties specific to the dark theme here
         type: 'Dark',
-        font: 'Roboto',
         icon: dark_img,
         dark_syntax: materialDark
     });

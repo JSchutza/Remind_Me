@@ -1,3 +1,57 @@
+/* small font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap');
+/* font-family: 'JetBrains Mono', monospace; */
+
+
+/* big font  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+/* font-family: 'Roboto', sans-serif; */
+
+
+
+
+.default {
+	font-family: 'JetBrains Mono', monospace;
+	text-decoration: none;
+}
+
+
+
+
+
+/* small */
+p, a, h3, h4, h5 {
+	font-family: 'JetBrains Mono', monospace;
+}
+
+
+
+
+
+
+
+/* big  */
+h1, h2 {
+	font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+
+/* for labels */
+label, button {
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 1rem;
+}
+
+
+
+
+
+
+
+
 html, body, div, applet, object, iframe, blockquote,
 a, abbr, acronym, address, big, cite,
 del, dfn, em, img, ins, kbd, q, s, samp,

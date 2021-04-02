@@ -3,8 +3,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 // import reducers here:
 import { userReducer } from '../reducers/session.js';
-import { notebooksReducer, notebookPageReducer } from '../reducers/notebooks.js';
+import { notebooksReducer, notebookPageReducer, newNotebookReducer } from '../reducers/notebooks.js';
 import { notesReducer, recentNoteReducer } from '../reducers/notes.js';
+import { tagsReducer } from '../reducers/tags.js';
+
+
 
 const rootReducer = combineReducers({
     userReducer,
@@ -12,6 +15,9 @@ const rootReducer = combineReducers({
     notebookPageReducer,
     notesReducer,
     recentNoteReducer,
+    newNotebookReducer,
+    tagsReducer,
+
 
 });
 

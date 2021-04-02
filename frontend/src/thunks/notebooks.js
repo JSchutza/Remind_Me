@@ -1,4 +1,4 @@
-import { getNoteBooks, notebookForPage } from '../actions/notebooks.js';
+import { getNoteBooks, notebookForPage, createNewNotebook } from '../actions/notebooks.js';
 
 
 
@@ -35,7 +35,22 @@ const thunk_notebookForPage = (notebookId) => async (dispatch) => {
 
 
 
+const thunk_createNewNotebook = (form_info) => async (dispatch) => {
+  const { name, description, notebook_owner } = form_info;
 
+  const response = await csrfFetch('/api/notebooks/new', {
+    method: 'POST',
+    body: JSON.stringify({ name, description, notebook_owner })
+  });
+
+
+  if (response.ok) {
+    const notebook = await response.json();
+    dispatch(createNewNotebook(notebook));
+    return;
+  }
+  throw response;
+};
 
 
 
@@ -43,5 +58,6 @@ const thunk_notebookForPage = (notebookId) => async (dispatch) => {
 export {
   thunk_getNoteBooks,
   thunk_notebookForPage,
+  thunk_createNewNotebook,
 
 };

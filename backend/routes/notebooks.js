@@ -43,7 +43,25 @@ router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response)
 }));
 
 
+// POST localhost:5000/api/notebooks/new
+router.post('/new', asyncHandler(async (request, response) => {
+  const { name, description, notebook_owner } = request.body;
 
+
+  const just_created = await Notebook.create({
+    name,
+    description,
+    notebook_owner: Number(notebook_owner)
+  });
+
+
+
+  if (!just_created) {
+    response.json({ error: "Could not create a notebook."});
+  }
+
+  response.json({ just_created });
+}));
 
 
 // exports here:
