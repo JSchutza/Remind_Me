@@ -30,7 +30,7 @@ const recentNoteReducer = (state = null, action) => {
       // console.log(action.count);
       return { ...state, [action.count]: { ...action.note }};
     } else {
-      return state;
+      return null;
     }
     default:
       return state;
