@@ -17,10 +17,13 @@ const NotebookPage = () => {
   // state here
   const [ clicked, setClicked ] = useState(false);
   const [ data, setData ] = useState(null);
+  const [ loaded, setLoaded ] = useState(false);
+
 
   useEffect(() => {
     dispatch(thunk_notebookForPage(notebookId));
-    dispatch(thunk_getSpecificNote(notebookId));
+    dispatch(thunk_getSpecificNote(notebookId))
+      .then(() => setLoaded(true));
   },[dispatch, clicked, data]);
 
 
@@ -35,34 +38,42 @@ const NotebookPage = () => {
     return null;
   }
 
+// console.log(notebook_info.name);
 
-  return (
-    <>
-      <ul>
-        <li>{notebook_info.name}</li>
-          <ul>
-            {Object.values(allNotes).map(note => (
-              <li key={note.id}>
-                <a
-                  onClick={(event) => noteClickHandler(event, {
-                    id: note.id,
-                    due_date: note.due_date,
-                    title: note.title,
-                    content: note.content,
-                    notebook_id: note.notebook_id,
-                    createdAt: note.createdAt,
-                    updatedAt: note.updatedAt
-                  })}
-                > {note.title} </a>
-              </li>
-            ))}
-          </ul>
-      </ul>
+  if (loaded === true) {
+    return (
+      <>
+        <ul>
+          <li>{notebook_info.name}</li>
+            <ul>
+                <li key={allNotes[0].id}>
+                  <a
+                    onClick={(event) => noteClickHandler(event, {
+                      id: allNotes[0].id,
+                      due_date: allNotes[0].due_date,
+                      title: allNotes[0].title,
+                      content: allNotes[0].content,
+                      notebook_id: allNotes[0].notebook_id,
+                      createdAt: allNotes[0].createdAt,
+                      updatedAt: allNotes[0].updatedAt
+                    })}
+                    > {allNotes[0].title} </a>
+                </li>
+            </ul>
+        </ul>
 
 
-      { clicked ? <NoteViewer the_content={data} /> : <div></div> }
-    </>
-  );
+        { clicked ? <NoteViewer the_content={data} /> : <div></div> }
+      </>
+    );
+  } else {
+    return (
+      <>
+        <h1>Fetching Your Data, One Moment Please...</h1>
+      </>
+    );
+  }
+
 };
 
 
