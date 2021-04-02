@@ -16,14 +16,35 @@ const ShowNoteBooks = () => {
   const { isUser } = useUser();
   const notebooks = useSelector((store) => store.notebooksReducer.notebooks );
 
+  const [ notebookname, setNotebookname ] = useState('');
+
 
   useEffect(() => {
     dispatch(thunk_getNoteBooks(isUser.id));
   }, [dispatch]);
 
+
+
+  useEffect(() => {
+    // error handling here
+
+  }, [notebookname]);
+
+
+
+  const newNotebookHandler = (event) => {
+    event.preventDefault();
+    // dispatch thunk to create /POST a note book
+  };
+
+
+
+
   const notebookHandler = (notebookId) => {
     dispatch(thunk_notebookForPage(notebookId));
   }
+
+
 
 
   if(notebooks === null) {
@@ -73,8 +94,19 @@ const ShowNoteBooks = () => {
         <Div selectors={[styles.newnotebook_input]}>
           <label>
               Notebook Name
-            <input />
+            <input
+                value={notebookname}
+                onChange={(event) => setNotebookname(event.target.value)}
+              />
           </label>
+
+
+            <Div selectors={[styles.create_notebooks_link]}>
+              <a
+                onChange={(event) => newNotebookHandler(event)}
+              > Create </a>
+          </Div>
+
         </Div>
 
       </Div>

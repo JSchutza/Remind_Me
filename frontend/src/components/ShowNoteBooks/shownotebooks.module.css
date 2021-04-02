@@ -117,3 +117,42 @@
   right: 25%;
 
 }
+
+
+
+
+
+
+.create_notebooks_link {
+  display: flex;
+  position: relative;
+  height:5%;
+  padding: 8%;
+  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+  border-radius: 7px;
+  background-color:black;
+  left: 5%;
+
+}
+
+
+
+
+
+
+.create_notebooks_link a {
+  padding: 1%;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+
+
+
+
+
+.create_notebooks_link a:hover {
+  background-color:blue;
+  cursor: pointer;
+  color: white;
+}
