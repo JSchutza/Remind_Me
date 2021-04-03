@@ -1,4 +1,4 @@
-const fs = require('await-fs');
+
 
 
 
@@ -25,21 +25,13 @@ const count = initCounter();
 
 
 
-const getReadMe = async () => {
-  try {
-    let the_data = await fs.readFile('../../../../Remind_Me/README.md', 'utf8');
-    return the_data;
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 
 
 
 export {
   count,
-  getReadMe,
+
 
 
 }
