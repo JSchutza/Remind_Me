@@ -116,21 +116,28 @@ table {
 
 
 .selected {
-	background-color:rgba(78, 78, 78, 0.288);
+	background-color:#551A8B;
 	border-radius: 5%;
-	color: red;
+	color: #EACDC2;
 	text-decoration: none;
 	padding: 3%;
 	box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
 }
 
 .selected:hover {
-	/* background-color: blue; */
+	background-color:#551A8B;
 }
 
 
 
 .Dark  {
-	background-color:#1A1423;
+	background-color:#212529;
 	color: #EACDC2;
+}
+
+
+.Light {
+	background-color: #fff;
+	color: #000;
+
 }

@@ -34,6 +34,25 @@
 
 
 
+.navbar_navlink_unselected {
+  text-decoration: none;
+  color: #8338ec;
+}
+
+
+
+.navbar_navlink_unselected:hover {
+  background-color:#d62828;
+  color: #EACDC2;
+  padding: 3%;
+	box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+  border-radius: 5%;
+}
+
+
+
+
+
 .demouser_container {
   background-color:rgba(78, 78, 78, 0.288);
 	border-radius: 5%;

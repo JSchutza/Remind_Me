@@ -61,11 +61,11 @@ function NavBar() {
         <nav>
             <ul>
 
-            <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
 
-            <li> <NavLink activeClassName='selected' exact to='/login'> Login </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/login'> Login </NavLink> </li>
 
-            <li> <NavLink activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
 
 
             </ul>
@@ -90,9 +90,9 @@ function NavBar() {
     <nav>
         <ul>
 
-            <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
 
-            <li> <NavLink activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
 
 
         </ul>

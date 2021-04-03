@@ -96,6 +96,7 @@
   padding: 1%;
   border-radius: 2px;
   text-decoration: none;
+  color: #8338ec;
 }
 
 
@@ -103,9 +104,9 @@
 
 
 .notebooks_links a:hover{
-  background-color:blue;
+  background-color:#d62828;
   cursor: pointer;
-  color: white;
+  color: #EACDC2;
 }
 
 
