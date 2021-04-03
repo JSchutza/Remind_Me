@@ -5,6 +5,7 @@ import { thunk_getSpecificNote } from '../../thunks/notes.js';
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { mostRecentNotes } from '../../actions/notes.js';
 import NoteViewer from '../NoteViewer';
+import NoteCreator from '../NoteCreator';
 import Div from '../Div';
 
 
@@ -19,6 +20,7 @@ const NotebookPage = () => {
   const [ clicked, setClicked ] = useState(false);
   const [ data, setData ] = useState(null);
   const [ loaded, setLoaded ] = useState(false);
+  const [ showCreateButton, setShowCreateButton ] = useState(true);
 
 
   useEffect(() => {
@@ -37,15 +39,54 @@ const NotebookPage = () => {
   };
 
 
+  const toggleNoteCreator = (event) => {
+    event.preventDefault();
+    setShowCreateButton(false);
+
+  }
+
+
+  if(allNotes === null && loaded === true) {
+    return (
+      <>
+        <Div selectors={[]}>
+          <ul>
+            <Div selectors={[]}>
+              <Div selectors={[]}>
+                <li>{notebook_info.name}</li>
+              </Div>
+            </Div>
+          </ul>
+
+          {showCreateButton === true ?
+          <Div selectors={[]} >
+            <a
+              onClick={(event) => toggleNoteCreator(event)}
+            >
+              <h4>Create a Note</h4>
+            </a>
+          </Div>
+          :
+            <NoteCreator />
+          }
+
+        </Div>
+      </>
+    )
+  }
+
+
+
+
   if(notebook_info === null || allNotes === null) {
     return null;
   }
 
 
-
   if (loaded === true) {
     return (
       <>
+
       <Div selectors={[]}>
         <ul>
 

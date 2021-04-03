@@ -23,8 +23,15 @@ const initCounter = () => {
 const count = initCounter();
 
 
+
+
+
+
+
+
 export {
   count,
+
 
 
 }

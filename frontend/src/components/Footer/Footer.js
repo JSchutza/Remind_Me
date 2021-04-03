@@ -1,5 +1,6 @@
-import Div from '../Div';
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import Div from '../Div';
 
 
 // import styles
@@ -59,10 +60,10 @@ function Footer() {
                                 <li> GitHub </li>
                             </a>
 
-
-                            <a href=''>
+                            <NavLink exact to="/readme" >
                                 <li>README</li>
-                            </a>
+                            </NavLink>
+
                         </ul>
                     </>
                     :

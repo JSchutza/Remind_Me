@@ -11,7 +11,7 @@ import NotebookPage from '../NotebookPage';
 import ErrorMessage from '../ErrorMessage';
 import TagCreator from '../TagCreator';
 import TagViewer from '../TagViewer';
-
+import ReadMe from '../ReadMe';
 
 import { useUser } from '../../context/UserContext.js';
 import { useError } from '../../context/ErrorContext.js';
@@ -55,6 +55,11 @@ function MainRouter(){
             <Route exact path="/signup">
                 <NavBar />
                 <SignupForm />
+            </Route>
+
+            <Route exact path="/readme">
+                <NavBar />
+                    <ReadMe />
             </Route>
         </Switch>
         </>
@@ -100,6 +105,10 @@ function MainRouter(){
                 <NotebookPage />
         </Route>
 
+        <Route exact path="/readme">
+            <NavBar />
+                <ReadMe />
+        </Route>
     </Switch>
     </>
     );

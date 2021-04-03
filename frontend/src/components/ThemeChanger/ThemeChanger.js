@@ -45,7 +45,7 @@ function ThemeChanger() {
         <Div selectors={[styles.container]}>
             <Div selectors={[]} >
                     <a onClick={(event) => smartThemeClickHandler(event, themeType)}>
-                    <h1>{themeType.type} Mode </h1>
+                    <h4>{themeType.type} Mode </h4>
                 </a>
             </Div>
 
@@ -58,7 +58,6 @@ function ThemeChanger() {
             <Div selectors={[styles.the_icon]} >
                 <a onClick={(event) => changeThemeClickHandler(event, lightMode)} >
                     <img src={themeType.icon}/>
-                        {/* <span> {themeType.type} </span> */}
                 </a>
             </Div>
 
@@ -67,7 +66,6 @@ function ThemeChanger() {
             <Div selectors={[styles.the_icon]} >
                 <a onClick={(event) => changeThemeClickHandler(event, darkMode)} >
                     <img src={themeType.icon} />
-                        {/* <span> {themeType.type} </span> */}
                 </a>
             </Div>
             }
