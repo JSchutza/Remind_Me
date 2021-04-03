@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import readme_text from './README.md';
 
 
+// needed for parsing the markdown state item
+import ReactMarkdown from 'react-markdown'
+import gfm from 'remark-gfm'
+
+
 
 
 
@@ -73,14 +78,14 @@ const ReadMe = () => {
   } else if (!isLoaded) {
     return (
       <>
-        <div>Loading...</div>;
+        <div>Loading...</div>
       </>
     );
 
   } else {
     return (
       <>
-        <h1>Read Me</h1>
+        <ReactMarkdown plugins={[gfm]} children={markdown} />
       </>
     );
   }
