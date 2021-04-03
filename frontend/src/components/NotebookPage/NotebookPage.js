@@ -69,7 +69,7 @@ const NotebookPage = () => {
             </a>
           </Div>
           :
-            <NoteCreator />
+            <NoteCreator notebook_id={notebookId} />
           }
 
         </Div>

@@ -1,6 +1,6 @@
 
 
-import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES } from '../types/notes.js';
+import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE } from '../types/notes.js';
 
 
 
@@ -31,7 +31,6 @@ const recentNoteReducer = (state = null, action) => {
   switch (action.type){
     case MOST_RECENT_NOTES:
       if(action.count <= 5) {
-      // console.log(action.count);
       return { ...state, [action.count]: { ...action.note }};
     } else {
       return null;
@@ -43,10 +42,20 @@ const recentNoteReducer = (state = null, action) => {
 
 
 
+const recentlyCreatedNoteReducer = (state = null, action) => {
+  switch (action.type) {
+    case CREATE_NOTE:
+      return { ...state, ...action.note };
+    default:
+      return state;
+  }
+};
+
 // exports here
 export {
   notesReducer,
   recentNoteReducer,
+  recentlyCreatedNoteReducer,
 
 
 };

@@ -2,7 +2,7 @@
 
 
 
-import { getSpecificNote } from '../actions/notes.js';
+import { getSpecificNote, createNewNote } from '../actions/notes.js';
 
 
 import { csrfFetch } from '../store/csrf.js';
@@ -23,7 +23,30 @@ const thunk_getSpecificNote = (notebookId) => async (dispatch) => {
 
 
 
+
+
+
+
+
+const thunk_createNewNote = (form_info) => async (dispatch) => {
+  const { due_date, title, content, notebook_id } = form_info;
+
+  const response = await csrfFetch(`/api/notes/new`, {
+    method: 'POST',
+    body: JSON.stringify({ due_date, title, content, notebook_id })
+  });
+
+  if (response.ok) {
+    const note = await response.json();
+    dispatch(createNewNote(note));
+    return;
+  }
+  throw response;
+};
+
+
 export {
   thunk_getSpecificNote,
+  thunk_createNewNote,
 
 }

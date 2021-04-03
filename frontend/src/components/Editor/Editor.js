@@ -6,7 +6,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import gfm from 'remark-gfm'
 import { useTheme } from '../../context/ThemeContext.js';
 
-
+import { useDispatch } from 'react-redux';
+import { thunk_createNewNote } from '../../thunks/notes.js';
 
 // css
 import { styles } from '../Editor';
@@ -20,7 +21,7 @@ import { styles } from '../Editor';
 
 
 
-const Editor = ({ the_content = 'none', first_creation = false }) => {
+const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) => {
     // state here
     const [title, setTitle] = useState(the_content.title);
     const [content, setContent] = useState(the_content.content);
@@ -30,6 +31,8 @@ const Editor = ({ the_content = 'none', first_creation = false }) => {
     const [second, setSecond] = useState(false);
     const [buttontext, setButtontext] = useState('Preview');
     const [initStyle, setInitStyle] = useState('');
+
+    const dispatch = useDispatch();
 
     const { themeType, setThemeType } = useTheme();
     let renderers;
@@ -118,6 +121,16 @@ const previewClickHandler = (event) => {
         setSecond(false);
         setFirst(0);
     }
+
+};
+
+const notecreationClickHandler = (event) => {
+    dispatch(thunk_createNewNote({
+         due_date: new Date(),
+         title,
+         content,
+         notebook_id
+    }));
 
 };
 
@@ -220,9 +233,8 @@ return (
                 {first_creation === true ?
                     <Div selectors={[]} >
                         <a
-                        // onClick={(event) => previewClickHandler(event)}
+                            onClick={(event) => notecreationClickHandler(event)}
                         >
-                            {/* <h4>{buttontext}</h4> */}
                             <h4>Create</h4>
                         </a>
                     </Div>
