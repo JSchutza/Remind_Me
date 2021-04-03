@@ -42,7 +42,7 @@ const recentNoteReducer = (state = null, action) => {
 
 
 
-const recentlyCreatedNoteReducer = (state = null, action) => {
+const recentlyCreatedNoteReducer = (state = { note: null }, action) => {
   switch (action.type) {
     case CREATE_NOTE:
       return { ...state, ...action.note };
