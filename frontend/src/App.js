@@ -29,11 +29,11 @@ function App() {
       </Div>
 
 
-        <Div selectors={[styles.footer_content_box]}>
-          <Div selectors={[]}>
+        <div className={styles.footer_content_box}>
+            <div>
             <Footer />
-          </Div>
-        </Div>
+            </div>
+        </div>
 
 
       </Div>

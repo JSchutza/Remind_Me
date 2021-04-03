@@ -80,7 +80,7 @@ function MainRouter(){
         <Route exact path="/profile">
             <NavBar />
 
-            <Div selectors={[styles.main_outer_flex]}>
+            <div className={styles.main_outer_flex}>
             <Div selectors={[styles.main_grid_flex]}>
             <Div selectors={[styles.main_grid]}>
                 <Profile />
@@ -95,7 +95,7 @@ function MainRouter(){
                 </Div>
             </Div>
             </Div>
-            </Div>
+            </div>
 
         </Route>
 

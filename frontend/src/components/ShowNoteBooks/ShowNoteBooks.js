@@ -74,14 +74,14 @@ const ShowNoteBooks = () => {
 
   return (
     <>
-      <Div selectors={[styles.show_outercontainer]}>
+      <div className={styles.show_outercontainer}>
 
       <Div selectors={[styles.notebooks_title]}>
       <h3>Notebooks</h3>
       </Div>
 
 
-      <Div selectors={[styles.container]}>
+        <div className={styles.container}>
       <ul>
       {Object.values(notebooks).map(eachNote => (
         <>
@@ -137,8 +137,8 @@ const ShowNoteBooks = () => {
             }
         </Div>
 
-      </Div>
-      </Div>
+      </div>
+      </div>
     </>
   );
 

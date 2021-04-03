@@ -8,6 +8,8 @@ import NoteViewer from '../NoteViewer';
 import NoteCreator from '../NoteCreator';
 import Div from '../Div';
 
+//css
+import { styles } from '../NotebookPage';
 
 
 
