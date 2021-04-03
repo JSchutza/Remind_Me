@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -19,7 +19,11 @@ const RecentlyCreatedNotes = () => {
   return(
     <>
     <h1>Recently Created Notes</h1>
-      <h3>{last_note.title}</h3>
+      <br/>
+
+      <Link to={`/note/${last_note.id}`}>
+        <h4>{last_note.title}</h4>
+      </Link>
     </>
   );
 }
