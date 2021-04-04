@@ -39,10 +39,10 @@ const Profile = () => {
                 </Div>
 
 
-                <Div selectors={[styles.recentnote_container]}>
+                <div className={styles.recentnote_container}>
                     <MostRecentNote />
                     <RecentlyCreatedNotes />
-                </Div>
+                </div>
 
             </>
         );

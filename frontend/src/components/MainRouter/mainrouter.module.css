@@ -3,7 +3,7 @@
 
 
 
-@media screen and (min-width: 1500px){
+
 
 
 
@@ -31,37 +31,9 @@
 
 
 
-
-/*
-
-.main_grid {
-  display: grid;
+.sidebar_errors {
   position: relative;
-  grid-template-columns:1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 'left center right';
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-}
- */
-
-
-
-
-/*
-
-.tagcreator_container {
-  position: relative;
+  left: 19%;
   display: flex;
-  width: 400px;
-  padding: 5%;
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 10px;
-  grid-area: right;
-} */
-
-
-
-
+  bottom: 8%;
 }

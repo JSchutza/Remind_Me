@@ -92,9 +92,9 @@ function MainRouter(){
                     <TagViewer />
                 </Div>
 
-                <Div selectors={[]} >
+                <div className={styles.sidebar_errors} >
                     <ErrorMessage type='sidebar' errors={errors} />
-                </Div>
+                </div>
             </Div>
             </Div>
             </div>
