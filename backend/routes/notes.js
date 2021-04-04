@@ -52,5 +52,25 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 
+
+// DELETE  localhost:5000/api/notes/:noteId/delete
+router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) => {
+  const id = request.params.noteId;
+  const the_note = await Note.findByPk(id);
+  if(the_note) {
+    await the_note.destroy();
+    response.json({ status: 200 });
+  }
+
+  response.json({ message: "Error, could not find or delete the requested note." });
+
+}));
+
+
+
+
+
+
+
 // exports here:
 module.exports = router;
