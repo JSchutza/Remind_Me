@@ -46,9 +46,11 @@ router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response)
 // POST localhost:5000/api/notebooks/new
 router.post('/new', asyncHandler(async (request, response) => {
   const { name, description, notebook_owner } = request.body;
+  const lastId = await Notebook.latestId();
 
 
   const just_created = await Notebook.create({
+    id: Number(lastId.id) + 1,
     name,
     description,
     notebook_owner: Number(notebook_owner)
@@ -65,6 +67,11 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 
+
+
+
+
+
 // DELETE localhost:5000/api/notebooks/:notebookId/remove
 router.delete('/:notebookId(\\d+)/remove', asyncHandler(async (request, response) => {
   const id = request.params.notebookId;
@@ -76,7 +83,8 @@ router.delete('/:notebookId(\\d+)/remove', asyncHandler(async (request, response
     await the_notebook.destroy();
     response.json({ notebook });
   }
-  response.json({ message: "Error, could not find and remove the resource. "});
+
+  response.end();
 
 }));
 

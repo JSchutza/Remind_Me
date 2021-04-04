@@ -33,8 +33,10 @@ router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
 // POST localhost:5000/api/notes/new
 router.post('/new', asyncHandler(async (request, response) => {
   const { due_date, title, content, notebook_id } = request.body;
+  const lastId = await Note.latestId();
 
   const note = await Note.create({
+    id: Number(lastId.id) + 1,
     due_date,
     title,
     content,
@@ -65,7 +67,7 @@ router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) =>
     response.status(200);
   }
 
-  response.status(500);
+  response.end();
 
 }));
 
