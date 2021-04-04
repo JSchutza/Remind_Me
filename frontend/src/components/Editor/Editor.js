@@ -7,7 +7,7 @@ import gfm from 'remark-gfm'
 import { useTheme } from '../../context/ThemeContext.js';
 
 import { useDispatch } from 'react-redux';
-import { thunk_createNewNote, thunk_updateNote } from '../../thunks/notes.js';
+import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
 
 // css
 import { styles } from '../Editor';
@@ -149,7 +149,10 @@ const notecreationClickHandler = (event) => {
 };
 
 
+const noteDeleteClickHandler = (event, noteId) => {
+    dispatch(thunk_deleteNote(noteId));
 
+};
 
 
 
@@ -165,11 +168,19 @@ return (
                 <h4>{buttontext}</h4>
             </a>
         </Div>
-        <Div selectors={[]}>
+        <Div selectors={[styles.update_button]}>
             <a
                 onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
             >
                 <h4>Update</h4>
+            </a>
+        </Div>
+
+        <Div selectors={[styles.delete_button]}>
+            <a
+                onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
+            >
+                <h4>Delete</h4>
             </a>
         </Div>
 

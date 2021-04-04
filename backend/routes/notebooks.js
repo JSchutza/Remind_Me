@@ -70,10 +70,11 @@ router.delete('/:notebookId(\\d+)/remove', asyncHandler(async (request, response
   const id = request.params.notebookId;
 
   const the_notebook = await Notebook.findByPk(id);
+  const notebook = the_notebook;
 
   if (the_notebook){
     await the_notebook.destroy();
-    response.json({ status: 200 });
+    response.json({ notebook });
   }
   response.json({ message: "Error, could not find and remove the resource. "});
 

@@ -22,6 +22,7 @@ router.post('/login', validateLogin, asyncHandler(async (request, response, next
         err.status = 401;
         err.title = 'Login failed';
         err.errors = ['The provided credentials were invalid.'];
+        response.json({ err });
         return next(err);
     }
 

@@ -32,10 +32,10 @@ const createNewNotebook = (just_created) => {
 };
 
 
-const deleteNotebook = (status) => {
+const deleteNotebook = (notebook) => {
   return {
     type: DELETE_NOTEBOOK,
-    status
+    notebook
   };
 };
 

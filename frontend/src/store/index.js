@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 // import reducers here:
 import { userReducer } from '../reducers/session.js';
 import { notebooksReducer, notebookPageReducer, newNotebookReducer, deleteNotebookReducer } from '../reducers/notebooks.js';
-import { notesReducer, recentNoteReducer, recentlyCreatedNoteReducer } from '../reducers/notes.js';
+import { notesReducer, recentNoteReducer, recentlyCreatedNoteReducer, recentlyDeletedNoteReducer } from '../reducers/notes.js';
 import { tagsReducer } from '../reducers/tags.js';
 
 
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
     tagsReducer,
     recentlyCreatedNoteReducer,
     deleteNotebookReducer,
+    recentlyDeletedNoteReducer,
 
 
 });

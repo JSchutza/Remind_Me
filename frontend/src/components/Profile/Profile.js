@@ -22,28 +22,42 @@ const Profile = () => {
 
     const user_info = useSelector((store) => store.userReducer.user);
     // const dispatch = useDispatch();
+    const failedLogin = useSelector((store) => store.userReducer.err);
+
+    // successful user loginin
+    if (user_info && failedLogin === undefined) {
+        return (
+            <>
+
+                <Div selectors={[styles.edituser_containter]}>
+                    <EditUser current_info={user_info} />
+
+                </Div>
+
+                <Div selectors={[styles.main_div]}>
+                    <ShowNoteBooks />
+                </Div>
+
+
+                <Div selectors={[styles.recentnote_container]}>
+                    <MostRecentNote />
+                    <RecentlyCreatedNotes />
+                </Div>
+
+            </>
+        );
+    }
 
 
     return (
         <>
-
-            <Div selectors={[styles.edituser_containter]}>
-                <EditUser current_info={user_info} />
-
-            </Div>
-
-            <Div selectors={[styles.main_div]}>
-                <ShowNoteBooks />
-            </Div>
-
-
-            <Div selectors={[styles.recentnote_container]}>
-                <MostRecentNote />
-                <RecentlyCreatedNotes />
-            </Div>
-
+        <h1>Failed Login</h1>
         </>
     );
+
+
+
+
 };
 
 

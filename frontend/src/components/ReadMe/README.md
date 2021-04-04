@@ -1,7 +1,5 @@
 -----------
 
-![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
-
 # [Remind_Me](https://github.com/JSchutza/Remind_Me/)
 Welcome to the **Remind_Me** README!
 
