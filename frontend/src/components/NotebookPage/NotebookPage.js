@@ -24,12 +24,24 @@ const NotebookPage = () => {
   const [ loaded, setLoaded ] = useState(false);
   const [ showCreateButton, setShowCreateButton ] = useState(true);
 
+  // important that this is NOT state as it will cause to many re-renders
+  let length = [];
+
 
   useEffect(() => {
     dispatch(thunk_notebookForPage(notebookId));
     dispatch(thunk_getSpecificNote(notebookId))
       .then(() => setLoaded(true));
   },[dispatch, clicked, data]);
+
+
+
+  if(loaded){
+    length = Object.keys(allNotes);
+  }
+
+
+
 
 
   const noteClickHandler = (event, payload) => {
@@ -101,25 +113,27 @@ const NotebookPage = () => {
             <ul>
 
               <Div selectors={[]}>
-                <li key={allNotes[0].id}>
-                  <a
-                    onClick={(event) => noteClickHandler(event, {
-                      id: allNotes[0].id,
-                      due_date: allNotes[0].due_date,
-                      title: allNotes[0].title,
-                      content: allNotes[0].content,
-                      notebook_id: allNotes[0].notebook_id,
-                      createdAt: allNotes[0].createdAt,
-                      updatedAt: allNotes[0].updatedAt
-                    })}
-                    >
-                      <Div selectors={[]}>
-                      <img src='' />
-                      </Div>
+                {length.map(eachIndex => (
+                  <li key={allNotes[eachIndex].id}>
+                    <a
+                      onClick={(event) => noteClickHandler(event, {
+                        id: allNotes[eachIndex].id,
+                        due_date: allNotes[eachIndex].due_date,
+                        title: allNotes[eachIndex].title,
+                        content: allNotes[eachIndex].content,
+                        notebook_id: allNotes[eachIndex].notebook_id,
+                        createdAt: allNotes[eachIndex].createdAt,
+                        updatedAt: allNotes[eachIndex].updatedAt
+                      })}
+                      >
+                        <Div selectors={[]}>
+                        <img src='' />
+                        </Div>
 
-                    {allNotes[0].title} </a>
+                      {allNotes[eachIndex].title} </a>
 
-                </li>
+                  </li>
+                ))}
                 </Div>
             </ul>
             </Div>
