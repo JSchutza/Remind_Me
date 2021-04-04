@@ -23,6 +23,8 @@ const NotebookPage = () => {
   const [ data, setData ] = useState(null);
   const [ loaded, setLoaded ] = useState(false);
   const [ showCreateButton, setShowCreateButton ] = useState(true);
+  const [first, setFirst] = useState(0);
+  const [second, setSecond] = useState(false);
 
   // important that this is NOT state as it will cause to many re-renders
   let length = [];
@@ -46,10 +48,22 @@ const NotebookPage = () => {
 
   const noteClickHandler = (event, payload) => {
     event.preventDefault();
-    setClicked(true);
-    setData(payload);
-    // send dispatch to recent notes reducer
-    dispatch(mostRecentNotes(payload));
+
+    if(first === 0) {
+      setData(payload);
+      dispatch(mostRecentNotes(payload));
+      setClicked(true);
+      setFirst(1);
+      setSecond(true);
+    }
+
+    if (second === true) {
+      setClicked(false);
+      setSecond(false);
+      setFirst(0);
+    }
+
+
   };
 
 
