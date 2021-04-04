@@ -32,24 +32,23 @@
 
 
 
-
+/*
 
 .main_grid {
   display: grid;
   position: relative;
-  /* background-color: aqua; */
   grid-template-columns:1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas: 'left center right';
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
+ */
 
 
 
 
-
-
+/*
 
 .tagcreator_container {
   position: relative;
@@ -60,7 +59,7 @@
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
   border-radius: 10px;
   grid-area: right;
-}
+} */
 
 
 

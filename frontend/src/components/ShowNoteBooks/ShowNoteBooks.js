@@ -107,17 +107,14 @@ const ShowNoteBooks = () => {
       </ul>
       <br/>
 
-        <Div selectors={[styles.notebooks_create_title]} >
+
+
         <h3>Create a Notebook</h3>
-      </Div>
 
-      <Div selectors={[]}>
-
-      </Div>
-
-      <br/>
 
         <Div selectors={[styles.newnotebook_input]}>
+        <Div selectors={[styles.notebooks_create_title]} >
+      </Div>
           <label>
               Notebook Name
             <input
@@ -127,15 +124,7 @@ const ShowNoteBooks = () => {
           </label>
 
 
-            <Div selectors={[styles.create_notebooks_link]}>
-              <a
-                onClick={(event) => newNotebookHandler(event)}
-              > Create </a>
-          </Div>
-
-        </Div>
-
-        <Div selectors={[]} >
+          <Div selectors={[styles.notebook_creation_message]} >
 
             {triggerFetch === true ?
 
@@ -147,6 +136,14 @@ const ShowNoteBooks = () => {
             <p></p>
             }
         </Div>
+
+        </Div>
+
+          <div className={styles.create_notebooks_link}>
+            <a
+              onClick={(event) => newNotebookHandler(event)}
+            > Create </a>
+          </div>
 
       </div>
       </div>

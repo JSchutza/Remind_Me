@@ -5,15 +5,9 @@
 
 
 .container {
-  background-color: transparent;
-  display: flex;
   padding: 2%;
-  width: 100%;
   height: 100%;
   position: relative;
-  left: 40%;
-  bottom: 1%;
-
 }
 
 
@@ -22,15 +16,10 @@
 
 
 .container ul {
-  background-color:transparent;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
   border-radius: 7px;
-  position: relative;
-  display: block;
   padding: 4%;
-  right: 65%;
-  top: 13%;
 }
 
 
@@ -45,11 +34,7 @@
 
 
 .newnotebook_input {
-  display: flex;
   position: relative;
-  padding: 1%;
-  right: 50%;
-  top: 25%
 }
 
 
@@ -57,13 +42,10 @@
 
 
 .show_outercontainer {
-  background-color: transparent;
   display: flex;
   padding: 1%;
   box-sizing: border-box;
   position: relative;
-  bottom: 25%;
-  right: 24%;
   height: auto;
 
 }
@@ -74,10 +56,8 @@
 
 
 .notebooks_title {
-  display: flex;
   position: relative;
   padding: 1%;
-  left: 7%;
 }
 
 
@@ -114,10 +94,7 @@
 
 .notebooks_create_title {
   position: relative;
-  display: flex;
   padding: 1%;
-  right: 25%;
-
 }
 
 
@@ -126,13 +103,7 @@
 
 
 .create_notebooks_link {
-  display: flex;
   position: relative;
-  height:5%;
-  padding: 8%;
-  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-  border-radius: 7px;
-  background-color: transparent;
   left: 5%;
 
 }
@@ -157,4 +128,13 @@
   background-color:blue;
   cursor: pointer;
   color: white;
+}
+
+
+
+
+
+.notebook_creation_message {
+  display: flex;
+  position: relative;
 }

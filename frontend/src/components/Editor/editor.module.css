@@ -1,32 +1,19 @@
 
 
 
-
-
-.preview_button {
-  position: absolute;
-  left: 25%;
-  top: 16%;
-
-}
-
-
-
-
 .update_button h4 {
 color: #8338ec;
 }
+
+
+
+
 .delete_button h4 {
 color: red;
 }
 
 
 
-
-.preview_button:hover {
-  background-color: rgba(0,0,0,0.1);
-
-}
 
 .preview_button h4:hover {
   color: blue;
