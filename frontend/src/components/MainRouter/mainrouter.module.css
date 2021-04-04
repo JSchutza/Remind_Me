@@ -22,7 +22,7 @@
 
 .main_grid_flex {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.699);
+  background-color: transparent;
   padding: 2%;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgb(0 0 0 / 60%);

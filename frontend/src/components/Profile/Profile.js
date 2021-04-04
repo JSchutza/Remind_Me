@@ -9,7 +9,7 @@ import EditUser from '../EditUser';
 import TagCreator from '../TagCreator';
 import ShowNoteBooks from '../ShowNoteBooks';
 import MostRecentNote from '../MostRecentNote';
-
+import RecentlyCreatedNotes from '../RecentlyCreatedNotes';
 
 //css
 import { styles } from '../Profile';
@@ -39,6 +39,7 @@ const Profile = () => {
 
             <Div selectors={[styles.recentnote_container]}>
                 <MostRecentNote />
+                <RecentlyCreatedNotes />
             </Div>
 
         </>

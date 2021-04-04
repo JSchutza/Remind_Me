@@ -72,8 +72,8 @@ module.exports = (sequelize, DataTypes) => {
 
     User.hasMany(models.Tag, {
       foreignKey: "creator_id",
-      onDelete: 'CASCADE',
-      hooks: true
+      // onDelete: 'CASCADE',
+      // hooks: true
     });
 
 

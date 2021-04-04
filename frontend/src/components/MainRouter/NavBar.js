@@ -56,22 +56,27 @@ function NavBar() {
     if(isUser === null) {
         return (
         <>
-        <Div selectors={[]}>
+        <Div selectors={[styles.navbar_container]}>
 
         <nav>
             <ul>
 
-            <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
 
-            <li> <NavLink activeClassName='selected' exact to='/login'> Login </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/login'> Login </NavLink> </li>
 
-            <li> <NavLink activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
 
-            <li> <a onClick={demoLoginHandler} > Demo </a> </li>
 
             </ul>
         </nav>
         </Div>
+
+
+        <Div selectors={[styles.demouser_container]}>
+            <a onClick={demoLoginHandler} > Demo </a>
+        </Div>
+
         </>
         );
     }
@@ -80,19 +85,22 @@ function NavBar() {
     // if there is a user
     return (
     <>
-    <Div selectors={[]}>
+    <Div selectors={[styles.navbar_container]}>
 
     <nav>
         <ul>
 
-            <li> <NavLink activeClassName='selected' exact to='/'> Home </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
 
-            <li> <NavLink activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
+            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
 
-            <li> <a onClick={logoutHandler}> Logout </a> </li>
 
         </ul>
     </nav>
+    </Div>
+
+    <Div selectors={[styles.logout_container]}>
+        <a onClick={logoutHandler}> Logout </a>
     </Div>
     </>
     );

@@ -5,13 +5,13 @@
 
 .container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  position: relative;
 
 }
 
 
 .the_icon img {
-  /* background-color: yellow; */
   width: 2rem;
   position: fixed;
 

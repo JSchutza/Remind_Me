@@ -54,6 +54,35 @@ router.get('/users/:creatorId(\\d+)', asyncHandler(async (request, response) => 
 
 
 
+// DELETE  localhost:5000/api/tags/:creatorId(\\d+)/:tagId(\\d+)/delete
+
+// router.get('/:creatorId(\\d+)/:tagId(\\d+)/delete', asyncHandler(async (request, response) => {
+//   const userId = request.params.creatorId;
+//   const tag_id = request.params.tagId;
+
+//   const the_tag = await Tag.findOne({
+//     where: {
+//       creator_id: userId,
+//       id: tag_id
+//     }
+//   });
+
+
+//   if (the_tag) {
+//     await the_tag.destroy();
+//     response.json({ status: 200 });
+//   }
+
+//   response.json({ message: "Error, could not find or delete your tag."});
+// }));
+
+
+
+
+
+
+
+
 
 // exports here:
 module.exports = router;

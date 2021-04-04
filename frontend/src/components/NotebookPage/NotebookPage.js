@@ -7,7 +7,11 @@ import { mostRecentNotes } from '../../actions/notes.js';
 import NoteViewer from '../NoteViewer';
 import NoteCreator from '../NoteCreator';
 import Div from '../Div';
+import open_img from './open_folder.svg';
+import closed_img from './closed_folder.svg';
 
+//css
+import { styles } from '../NotebookPage';
 
 
 
@@ -21,6 +25,12 @@ const NotebookPage = () => {
   const [ data, setData ] = useState(null);
   const [ loaded, setLoaded ] = useState(false);
   const [ showCreateButton, setShowCreateButton ] = useState(true);
+  const [ first, setFirst ] = useState(0);
+  const [ second, setSecond ] = useState(false);
+  const [ imgUrl, setImgUrl ] = useState(closed_img);
+
+  // important that this is NOT state as it will cause to many re-renders
+  let length = [];
 
 
   useEffect(() => {
@@ -30,12 +40,35 @@ const NotebookPage = () => {
   },[dispatch, clicked, data]);
 
 
+
+  if(loaded && allNotes !== null){
+    length = Object.keys(allNotes);
+  }
+
+
+
+
+
   const noteClickHandler = (event, payload) => {
     event.preventDefault();
-    setClicked(true);
-    setData(payload);
-    // send dispatch to recent notes reducer
-    dispatch(mostRecentNotes(payload));
+
+    if(first === 0) {
+      setData(payload);
+      dispatch(mostRecentNotes(payload));
+      setClicked(true);
+      setImgUrl(open_img);
+      setFirst(1);
+      setSecond(true);
+    }
+
+    if (second === true) {
+      setClicked(false);
+      setImgUrl(closed_img);
+      setSecond(false);
+      setFirst(0);
+    }
+
+
   };
 
 
@@ -53,6 +86,7 @@ const NotebookPage = () => {
           <ul>
             <Div selectors={[]}>
               <Div selectors={[]}>
+                <img src={`${open_img}`} />
                 <li>{notebook_info.name}</li>
               </Div>
             </Div>
@@ -67,7 +101,7 @@ const NotebookPage = () => {
             </a>
           </Div>
           :
-            <NoteCreator />
+            <NoteCreator notebook_id={notebookId} />
           }
 
         </Div>
@@ -92,6 +126,7 @@ const NotebookPage = () => {
 
           <Div selectors={[]}>
             <Div selectors={[]}>
+                <img src={`${open_img}`} />
               <li>{notebook_info.name}</li>
             </Div>
 
@@ -99,25 +134,24 @@ const NotebookPage = () => {
             <ul>
 
               <Div selectors={[]}>
-                <li key={allNotes[0].id}>
-                  <a
-                    onClick={(event) => noteClickHandler(event, {
-                      id: allNotes[0].id,
-                      due_date: allNotes[0].due_date,
-                      title: allNotes[0].title,
-                      content: allNotes[0].content,
-                      notebook_id: allNotes[0].notebook_id,
-                      createdAt: allNotes[0].createdAt,
-                      updatedAt: allNotes[0].updatedAt
-                    })}
-                    >
-                      <Div selectors={[]}>
-                      <img src='' />
-                      </Div>
+                    <img src={`${imgUrl}`} />
 
-                    {allNotes[0].title} </a>
+                {length.map(eachIndex => (
+                  <li key={allNotes[eachIndex].id}>
+                    <a
+                      onClick={(event) => noteClickHandler(event, {
+                        id: allNotes[eachIndex].id,
+                        due_date: allNotes[eachIndex].due_date,
+                        title: allNotes[eachIndex].title,
+                        content: allNotes[eachIndex].content,
+                        notebook_id: allNotes[eachIndex].notebook_id,
+                        createdAt: allNotes[eachIndex].createdAt,
+                        updatedAt: allNotes[eachIndex].updatedAt
+                      })}
+                      > {allNotes[eachIndex].title} </a>
 
-                </li>
+                  </li>
+                ))}
                 </Div>
             </ul>
             </Div>
@@ -127,7 +161,7 @@ const NotebookPage = () => {
       </Div>
 
 
-        { clicked ? <NoteViewer the_content={data} /> : <div></div> }
+        { clicked ? <NoteViewer the_content={data} notebook_id={data.id} /> : <div></div> }
       </>
     );
   } else {

@@ -12,10 +12,12 @@ import ErrorMessage from '../ErrorMessage';
 import TagCreator from '../TagCreator';
 import TagViewer from '../TagViewer';
 import ReadMe from '../ReadMe';
+import NoteViewer from '../NoteViewer';
+
 
 import { useUser } from '../../context/UserContext.js';
 import { useError } from '../../context/ErrorContext.js';
-
+import { useSelector } from 'react-redux';
 
 //css
 import { styles } from '../MainRouter';
@@ -30,7 +32,7 @@ import { styles } from '../MainRouter';
 function MainRouter(){
     const { isUser, toggleLoader } = useUser();
     const { errors } = useError();
-
+    const recentCreatedNote = useSelector((store) => store.recentlyCreatedNoteReducer.note);
 
 
     // if there is not a user
@@ -80,7 +82,7 @@ function MainRouter(){
         <Route exact path="/profile">
             <NavBar />
 
-            <Div selectors={[styles.main_outer_flex]}>
+            <div className={styles.main_outer_flex}>
             <Div selectors={[styles.main_grid_flex]}>
             <Div selectors={[styles.main_grid]}>
                 <Profile />
@@ -95,7 +97,7 @@ function MainRouter(){
                 </Div>
             </Div>
             </Div>
-            </Div>
+            </div>
 
         </Route>
 
@@ -103,6 +105,11 @@ function MainRouter(){
         <Route path={`/notebook/:notebookId`}>
             <NavBar />
                 <NotebookPage />
+        </Route>
+
+        <Route path={`/note/:noteId`}>
+            <NavBar />
+                <NoteViewer the_content={recentCreatedNote} />
         </Route>
 
         <Route exact path="/readme">
