@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
 
     Notebook.hasMany(models.Note, {
       foreignKey: "notebook_id",
-      // onDelete: 'CASCADE',
-      // hooks: true
+      onDelete: 'CASCADE',
+      hooks: true
     });
 
 
