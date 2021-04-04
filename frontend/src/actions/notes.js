@@ -2,7 +2,7 @@
 
 
 
-import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE } from '../types/notes.js';
+import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE, UPDATE_NOTE } from '../types/notes.js';
 import { count } from '../lib';
 
 
@@ -36,9 +36,21 @@ const createNewNote = (note) => {
 };
 
 
+const updateNote = (note) => {
+  return {
+    type: UPDATE_NOTE,
+    note
+  };
+};
+
+
+
+
 export {
   getSpecificNote,
   mostRecentNotes,
   createNewNote,
+  updateNote,
+
 
 }

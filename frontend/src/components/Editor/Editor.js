@@ -7,7 +7,7 @@ import gfm from 'remark-gfm'
 import { useTheme } from '../../context/ThemeContext.js';
 
 import { useDispatch } from 'react-redux';
-import { thunk_createNewNote } from '../../thunks/notes.js';
+import { thunk_createNewNote, thunk_updateNote } from '../../thunks/notes.js';
 
 // css
 import { styles } from '../Editor';
@@ -124,15 +124,35 @@ const previewClickHandler = (event) => {
 
 };
 
+
+
 const notecreationClickHandler = (event) => {
     dispatch(thunk_createNewNote({
-         due_date: new Date(),
-         title,
-         content,
-         notebook_id
+        due_date: new Date(),
+        title,
+        content,
+        notebook_id
     }));
 
 };
+
+
+    const noteUpdateClickHandler = (event, noteId) => {
+    dispatch(thunk_updateNote({
+        due_date: new Date(),
+        title,
+        content,
+        notebook_id,
+        noteId
+    }));
+
+};
+
+
+
+
+
+
 
 if(the_content !== 'none') {
 
@@ -147,9 +167,8 @@ return (
         </Div>
         <Div selectors={[]}>
             <a
-                // onClick={(event) => previewClickHandler(event)}
+                onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
             >
-                {/* <h4>{buttontext}</h4> */}
                 <h4>Update</h4>
             </a>
         </Div>

@@ -1,6 +1,6 @@
 
 
-import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE } from '../types/notes.js';
+import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE, UPDATE_NOTE } from '../types/notes.js';
 
 
 
@@ -46,10 +46,18 @@ const recentlyCreatedNoteReducer = (state = { note: null }, action) => {
   switch (action.type) {
     case CREATE_NOTE:
       return { ...state, ...action.note };
+    case UPDATE_NOTE:
+      return { ...state, ...action.note };
     default:
       return state;
   }
 };
+
+
+
+
+
+
 
 // exports here
 export {

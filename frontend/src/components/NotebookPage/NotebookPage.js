@@ -7,6 +7,8 @@ import { mostRecentNotes } from '../../actions/notes.js';
 import NoteViewer from '../NoteViewer';
 import NoteCreator from '../NoteCreator';
 import Div from '../Div';
+import open_img from './open_folder.svg';
+import closed_img from './closed_folder.svg';
 
 //css
 import { styles } from '../NotebookPage';
@@ -23,8 +25,9 @@ const NotebookPage = () => {
   const [ data, setData ] = useState(null);
   const [ loaded, setLoaded ] = useState(false);
   const [ showCreateButton, setShowCreateButton ] = useState(true);
-  const [first, setFirst] = useState(0);
-  const [second, setSecond] = useState(false);
+  const [ first, setFirst ] = useState(0);
+  const [ second, setSecond ] = useState(false);
+  const [ imgUrl, setImgUrl ] = useState(closed_img);
 
   // important that this is NOT state as it will cause to many re-renders
   let length = [];
@@ -38,7 +41,7 @@ const NotebookPage = () => {
 
 
 
-  if(loaded){
+  if(loaded && allNotes !== null){
     length = Object.keys(allNotes);
   }
 
@@ -53,12 +56,14 @@ const NotebookPage = () => {
       setData(payload);
       dispatch(mostRecentNotes(payload));
       setClicked(true);
+      setImgUrl(open_img);
       setFirst(1);
       setSecond(true);
     }
 
     if (second === true) {
       setClicked(false);
+      setImgUrl(closed_img);
       setSecond(false);
       setFirst(0);
     }
@@ -81,6 +86,7 @@ const NotebookPage = () => {
           <ul>
             <Div selectors={[]}>
               <Div selectors={[]}>
+                <img src={`${open_img}`} />
                 <li>{notebook_info.name}</li>
               </Div>
             </Div>
@@ -120,6 +126,7 @@ const NotebookPage = () => {
 
           <Div selectors={[]}>
             <Div selectors={[]}>
+                <img src={`${open_img}`} />
               <li>{notebook_info.name}</li>
             </Div>
 
@@ -127,6 +134,8 @@ const NotebookPage = () => {
             <ul>
 
               <Div selectors={[]}>
+                    <img src={`${imgUrl}`} />
+
                 {length.map(eachIndex => (
                   <li key={allNotes[eachIndex].id}>
                     <a
@@ -139,12 +148,7 @@ const NotebookPage = () => {
                         createdAt: allNotes[eachIndex].createdAt,
                         updatedAt: allNotes[eachIndex].updatedAt
                       })}
-                      >
-                        <Div selectors={[]}>
-                        <img src='' />
-                        </Div>
-
-                      {allNotes[eachIndex].title} </a>
+                      > {allNotes[eachIndex].title} </a>
 
                   </li>
                 ))}
@@ -157,7 +161,7 @@ const NotebookPage = () => {
       </Div>
 
 
-        { clicked ? <NoteViewer the_content={data} /> : <div></div> }
+        { clicked ? <NoteViewer the_content={data} notebook_id={data.id} /> : <div></div> }
       </>
     );
   } else {
