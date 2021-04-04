@@ -25,5 +25,22 @@ module.exports = (sequelize, DataTypes) => {
 
 
   };
+
+
+  // must give back the higest id currently in the db
+  Notebook.latestId = async function() {
+    const all_ids = await Notebook.findAll({
+      attributes: ['id']
+    });
+    // because it gives us an array just get the last item in the array which should be the most recent id object
+    const index = all_ids.length - 1;
+    return all_ids[index];
+  };
+
+
+
+
+
+
   return Notebook;
 };
