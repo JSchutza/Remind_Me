@@ -67,7 +67,7 @@ router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) =>
     response.status(200);
   }
 
-  // response.status(500);
+  response.end();
 
 }));
 
