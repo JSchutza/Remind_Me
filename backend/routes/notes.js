@@ -68,7 +68,27 @@ router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) =>
 
 
 
+// PUT localhost:5000/api/notes/:noteId/update
+router.put('/:noteId(\\d+)/update', asyncHandler(async (request, response) => {
+  const id = request.params.noteId;
 
+  const { due_date, title, content, notebook_id } = request.body;
+
+  const note = await Note.findByPk(id)
+
+  if(note){
+    await note.update({
+      due_date,
+      title,
+      content,
+      notebook_id: Number(notebook_id)
+    });
+
+    response.json({ note });
+  }
+
+  response.json({ status: 500 });
+}));
 
 
 
