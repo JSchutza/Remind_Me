@@ -1,4 +1,4 @@
-import { getNoteBooks, notebookForPage, createNewNotebook } from '../actions/notebooks.js';
+import { getNoteBooks, notebookForPage, createNewNotebook, deleteNotebook } from '../actions/notebooks.js';
 
 
 
@@ -54,10 +54,26 @@ const thunk_createNewNotebook = (form_info) => async (dispatch) => {
 
 
 
+// DELETE localhost:5000/api/notebooks/:notebookId/remove
+const thunk_deleteNotebook = (notebookId) => async (dispatch) => {
+
+  const response = await csrfFetch(`/api/notebooks/${notebookId}/remove`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const status = await response.json();
+    dispatch(deleteNotebook(status));
+    return;
+  }
+  throw response;
+};
+
 
 export {
   thunk_getNoteBooks,
   thunk_notebookForPage,
   thunk_createNewNotebook,
+  thunk_deleteNotebook,
 
 };

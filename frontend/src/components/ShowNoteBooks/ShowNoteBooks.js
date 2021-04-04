@@ -5,6 +5,9 @@ import { useUser } from '../../context/UserContext.js';
 import { useState, useEffect } from 'react';
 import { thunk_getNoteBooks, thunk_notebookForPage, thunk_createNewNotebook } from '../../thunks/notebooks.js';
 import Div from '../Div';
+import DeleteNotebook from '../DeleteNotebooks';
+
+
 
 // css
 import { styles } from '../ShowNoteBooks';
@@ -15,6 +18,8 @@ const ShowNoteBooks = () => {
   const dispatch = useDispatch();
   const { isUser } = useUser();
   const notebooks = useSelector((store) => store.notebooksReducer.notebooks );
+  const status = useSelector((store) => store.deleteNotebookReducer.status);
+
 
   // state here
   const [ notebookname, setNotebookname ] = useState('');
@@ -95,6 +100,8 @@ const ShowNoteBooks = () => {
           > {eachNote.name} </NavLink>
         <br/>
           </Div>
+
+          <DeleteNotebook notebookId={eachNote.id} />
         </>
       ))}
       </ul>
@@ -102,6 +109,10 @@ const ShowNoteBooks = () => {
 
         <Div selectors={[styles.notebooks_create_title]} >
         <h3>Create a Notebook</h3>
+      </Div>
+
+      <Div selectors={[]}>
+
       </Div>
 
       <br/>
