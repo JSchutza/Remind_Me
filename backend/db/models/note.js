@@ -9,14 +9,12 @@ module.exports = (sequelize, DataTypes) => {
 
   Note.associate = function(models) {
     Note.belongsTo(models.Notebook, {
-      foreignKey: "notebook_id",
-      onDelete: 'CASCADE',
-      hooks: true
+      foreignKey: "notebook_id"
     });
 
     Note.belongsToMany(models.User, {
       through: "Tag",
-      foreignKey: "note_id"
+      foreignKey: "note_id",
       onDelete: 'CASCADE',
       hooks: true
     });

@@ -14,9 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Notebook.associate = function(models) {
     Notebook.belongsTo(models.User, {
-      foreignKey: "notebook_owner",
-      onDelete: 'CASCADE',
-      hooks: true
+      foreignKey: "notebook_owner"
     });
 
     Notebook.hasMany(models.Note, {
