@@ -66,7 +66,7 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 // DELETE localhost:5000/api/notebooks/:notebookId/remove
-router.get('/:notebookId(\\d+)/remove', asyncHandler(async (request, response) => {
+router.delete('/:notebookId(\\d+)/remove', asyncHandler(async (request, response) => {
   const id = request.params.notebookId;
 
   const the_notebook = await Notebook.findByPk(id);
