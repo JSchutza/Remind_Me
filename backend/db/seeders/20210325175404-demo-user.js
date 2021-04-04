@@ -17,13 +17,13 @@ module.exports = {
       {
         email: faker.internet.email(),
         username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync('password'),
         avatar: faker.image.imageUrl()
       },
       {
         email: faker.internet.email(),
         username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync('password'),
         avatar: faker.image.imageUrl()
       },
     ], {});

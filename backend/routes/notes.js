@@ -62,9 +62,10 @@ router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) =>
   if(the_note) {
     await the_note.destroy();
     response.json({ note });
+    response.status(200);
   }
 
-  response.json({ message: "Error, could not find or delete the requested note." });
+  response.status(500);
 
 }));
 
