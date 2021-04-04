@@ -1,6 +1,6 @@
 
 
-import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK } from '../types/notebooks.js';
+import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK } from '../types/notebooks.js';
 
 
 
@@ -32,9 +32,20 @@ const createNewNotebook = (just_created) => {
 };
 
 
+const deleteNotebook = (status) => {
+  return {
+    type: DELETE_NOTEBOOK,
+    status
+  };
+};
+
+
+
 export {
   getNoteBooks,
   notebookForPage,
   createNewNotebook,
+  deleteNotebook,
+
 
 };
