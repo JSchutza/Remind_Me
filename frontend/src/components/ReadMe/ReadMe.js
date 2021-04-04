@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
-
+import logo from './logo_img.svg';
 
 
 // thank you MDN for helping me :)
@@ -144,6 +144,7 @@ const ReadMe = () => {
   } else {
     return (
       <>
+        <img src={`${logo}`} />
         <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
       </>
     );
