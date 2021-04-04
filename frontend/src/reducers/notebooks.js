@@ -42,10 +42,10 @@ const newNotebookReducer = (state = { just_created: null }, action) => {
 };
 
 
-const deleteNotebookReducer = (state = { status: null }, action) => {
+const deleteNotebookReducer = (state = { notebook: null }, action) => {
   switch (action.type){
     case DELETE_NOTEBOOK:
-      return { ...state, ...action.status };
+      return { ...state, ...action.notebook };
     default:
       return state;
   };

@@ -2,7 +2,7 @@
 
 
 
-import { getSpecificNote, createNewNote, updateNote } from '../actions/notes.js';
+import { getSpecificNote, createNewNote, updateNote, deleteNote } from '../actions/notes.js';
 
 
 import { csrfFetch } from '../store/csrf.js';
@@ -65,9 +65,32 @@ const thunk_updateNote = (form_info) => async (dispatch) => {
 };
 
 
+
+
+// DELETE  /api/notes/:noteId/delete
+const thunk_deleteNote = (noteId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notes/${noteId}/delete`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const note = await response.json();
+    dispatch(deleteNote(note));
+    return;
+  }
+  throw response;
+
+};
+
+
+
+
+
+
 export {
   thunk_getSpecificNote,
   thunk_createNewNote,
   thunk_updateNote,
+  thunk_deleteNote,
 
 }

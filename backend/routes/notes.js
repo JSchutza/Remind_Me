@@ -57,9 +57,11 @@ router.post('/new', asyncHandler(async (request, response) => {
 router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) => {
   const id = request.params.noteId;
   const the_note = await Note.findByPk(id);
+  const note = the_note;
+
   if(the_note) {
     await the_note.destroy();
-    response.json({ status: 200 });
+    response.json({ note });
   }
 
   response.json({ message: "Error, could not find or delete the requested note." });
