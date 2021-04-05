@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { thunk_getNoteBooks, thunk_notebookForPage, thunk_createNewNotebook } from '../../thunks/notebooks.js';
 import Div from '../Div';
 import DeleteNotebook from '../DeleteNotebooks';
-
+import { useMessage } from '../../context/MessageContext.js';
 
 
 // css
@@ -19,7 +19,7 @@ const ShowNoteBooks = () => {
   const { isUser } = useUser();
   const notebooks = useSelector((store) => store.notebooksReducer.notebooks );
   const status = useSelector((store) => store.deleteNotebookReducer.status);
-
+  const { message } = useMessage();
 
   // state here
   const [ notebookname, setNotebookname ] = useState('');
@@ -83,6 +83,7 @@ const ShowNoteBooks = () => {
 
       <Div selectors={[styles.notebooks_title]}>
       <h3>Notebooks</h3>
+          <h4>{message}</h4>
       </Div>
 
 
@@ -107,17 +108,14 @@ const ShowNoteBooks = () => {
       </ul>
       <br/>
 
-        <Div selectors={[styles.notebooks_create_title]} >
+
+
         <h3>Create a Notebook</h3>
-      </Div>
 
-      <Div selectors={[]}>
-
-      </Div>
-
-      <br/>
 
         <Div selectors={[styles.newnotebook_input]}>
+        <Div selectors={[styles.notebooks_create_title]} >
+      </Div>
           <label>
               Notebook Name
             <input
@@ -127,15 +125,7 @@ const ShowNoteBooks = () => {
           </label>
 
 
-            <Div selectors={[styles.create_notebooks_link]}>
-              <a
-                onClick={(event) => newNotebookHandler(event)}
-              > Create </a>
-          </Div>
-
-        </Div>
-
-        <Div selectors={[]} >
+          <Div selectors={[styles.notebook_creation_message]} >
 
             {triggerFetch === true ?
 
@@ -147,6 +137,14 @@ const ShowNoteBooks = () => {
             <p></p>
             }
         </Div>
+
+        </Div>
+
+          <div className={styles.create_notebooks_link}>
+            <a
+              onClick={(event) => newNotebookHandler(event)}
+            > Create </a>
+          </div>
 
       </div>
       </div>
