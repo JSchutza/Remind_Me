@@ -8,6 +8,7 @@ import { useTheme } from '../../context/ThemeContext.js';
 
 import { useDispatch } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
+import { useMessage } from '../../context/MessageContext.js';
 
 // css
 import { styles } from '../Editor';
@@ -34,6 +35,7 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
 
     const dispatch = useDispatch();
 
+    const { message, setMessage } = useMessage();
     const { themeType, setThemeType } = useTheme();
     let renderers;
 
@@ -133,7 +135,11 @@ const notecreationClickHandler = (event) => {
         content,
         notebook_id
     }));
+    setMessage('Your note was created.');
 
+    setTimeout(() => {
+        setMessage('');
+    }, 1000);
 };
 
 
@@ -145,13 +151,22 @@ const notecreationClickHandler = (event) => {
         notebook_id,
         noteId
     }));
+    setMessage('Your note was updated.');
+
+    setTimeout(() => {
+        setMessage('');
+    }, 1000);
 
 };
 
 
 const noteDeleteClickHandler = (event, noteId) => {
     dispatch(thunk_deleteNote(noteId));
+    setMessage('Your has been deleted.');
 
+    setTimeout(() => {
+        setMessage('');
+    }, 1000);
 };
 
 
@@ -174,6 +189,8 @@ return (
             >
                 <h4>Update</h4>
             </a>
+
+            <h4>{message}</h4>
         </Div>
 
         <Div selectors={[styles.delete_button]}>
@@ -182,6 +199,8 @@ return (
             >
                 <h4>Delete</h4>
             </a>
+
+            <h4>{message}</h4>
         </Div>
 
 
@@ -267,6 +286,8 @@ return (
                         >
                             <h4>Create</h4>
                         </a>
+
+                        <h4>{message}</h4>
                     </Div>
                     :
                     <p></p>
