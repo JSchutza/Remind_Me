@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { thunk_getNoteBooks, thunk_notebookForPage, thunk_createNewNotebook } from '../../thunks/notebooks.js';
 import Div from '../Div';
 import DeleteNotebook from '../DeleteNotebooks';
-
+import { useMessage } from '../../context/MessageContext.js';
 
 
 // css
@@ -19,7 +19,7 @@ const ShowNoteBooks = () => {
   const { isUser } = useUser();
   const notebooks = useSelector((store) => store.notebooksReducer.notebooks );
   const status = useSelector((store) => store.deleteNotebookReducer.status);
-
+  const { message } = useMessage();
 
   // state here
   const [ notebookname, setNotebookname ] = useState('');
@@ -83,6 +83,7 @@ const ShowNoteBooks = () => {
 
       <Div selectors={[styles.notebooks_title]}>
       <h3>Notebooks</h3>
+          <h4>{message}</h4>
       </Div>
 
 

@@ -6,7 +6,7 @@ import ThemeChanger from './components/ThemeChanger';
 import ThemeProvider from './context/ThemeContext.js';
 import { UserProvider } from './context/UserContext.js';
 import { ErrorProvider } from './context/ErrorContext.js';
-
+import { MessageProvider } from './context/MessageContext.js';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -21,8 +21,6 @@ const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
 
-  // window.csrfFetch = csrfFetch;
-  // window.store = store;
 }
 
 
@@ -38,9 +36,11 @@ function Root() {
         <BrowserRouter>
           <ThemeChanger />
             <UserProvider>
-              <ErrorProvider>
-                <App />
-              </ErrorProvider>
+              <MessageProvider>
+                <ErrorProvider>
+                  <App />
+                </ErrorProvider>
+              </MessageProvider>
           </UserProvider>
         </ BrowserRouter>
       </ThemeProvider>
