@@ -30,7 +30,9 @@ router.get('/:tagId(\\d+)', asyncHandler(async (request, response) => {
 // gets all the tags in the DB
 // GET localhost:5000/api/tags/all
 router.get('/all', asyncHandler(async (request, response) => {
-  const all_tags = await Tag.findAll();
+  const all_tags = await Tag.findAll({
+    attributes: ["createdAt", "creator_id", "name", "note_id", "updatedAt", "id"],
+  });
   response.json({ all_tags });
 }))
 
