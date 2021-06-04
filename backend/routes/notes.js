@@ -23,7 +23,13 @@ router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
   });
 
 
-  response.json({ notes });
+  let result = {}
+  notes.forEach(note => {
+    result[note.id] = note;
+  });
+
+
+  response.json({ notes: result });
 
 }));
 
