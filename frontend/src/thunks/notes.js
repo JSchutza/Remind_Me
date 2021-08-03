@@ -75,7 +75,6 @@ const thunk_deleteNote = (noteId, notebook_id) => async (dispatch) => {
   if (response.ok) {
     const note = await response.json();
     dispatch(deleteNote(noteId, note));
-    dispatch(thunk_getSpecificNote(notebook_id))
     return;
   }
   throw response;
