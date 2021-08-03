@@ -169,7 +169,7 @@ const NotebookPage = () => {
           <Link
             onClick={(event) => toggleNoteCreator(event)}
           >
-            <h4>Create a Note</h4>
+            <h4>New Note</h4>
           </Link>
           {showCreateButton ?
             <NoteCreator notebook_id={notebookId} />

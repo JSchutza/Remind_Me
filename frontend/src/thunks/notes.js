@@ -28,8 +28,7 @@ const thunk_getSpecificNote = (notebookId) => async (dispatch) => {
 
 
 
-const thunk_createNewNote = (form_info) => async (dispatch) => {
-  const { due_date, title, content, notebook_id } = form_info;
+const thunk_createNewNote = ({ due_date, title, content, notebook_id }) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notes/new`, {
     method: 'POST',
