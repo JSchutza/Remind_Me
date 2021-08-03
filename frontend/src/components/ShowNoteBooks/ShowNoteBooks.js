@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { thunk_getNoteBooks, thunk_notebookForPage, thunk_createNewNotebook } from '../../thunks/notebooks.js';
 import Div from '../Div';
 import DeleteNotebook from '../DeleteNotebooks';
+import UpdateNotebooks from '../UpdateNotebooks';
 import { useMessage } from '../../context/MessageContext.js';
 
 
@@ -103,6 +104,7 @@ const ShowNoteBooks = () => {
           </Div>
 
           <DeleteNotebook notebookId={eachNote.id} />
+          <UpdateNotebooks notebookId={eachNote.id} />
         </>
       ))}
       </ul>
