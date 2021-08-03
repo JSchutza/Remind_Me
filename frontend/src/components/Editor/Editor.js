@@ -162,7 +162,7 @@ const notecreationClickHandler = (event) => {
 
 
 const noteDeleteClickHandler = (event, noteId) => {
-    dispatch(thunk_deleteNote(noteId));
+    dispatch(thunk_deleteNote(noteId, notebook_id));
     setMessage('Your has been deleted.');
 
     setTimeout(() => {

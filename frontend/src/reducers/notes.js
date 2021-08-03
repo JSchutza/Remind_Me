@@ -5,21 +5,27 @@ import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE, UPDATE_NOTE, DELETE_
 
 
 
-const initialState = { notes: null };
+
+
 
 
 
 
 
 // reducers here
-const notesReducer = (state = initialState, action) => {
+const notesReducer = (state = { notes: null }, action) => {
   switch (action.type) {
     case GET_SPECIFIC_NOTE:
-      if (action.notes.notes.length === 0){
-        return initialState;
-      } else {
         return { ...state, notes: { ...action.notes.notes } };
-      }
+
+    case CREATE_NOTE:
+      return { notes: { ...state.notes, [action.note.note.id]: action.note.note } };
+
+    case DELETE_NOTE:
+      const id = action.noteId;
+      delete state.notes[id];
+      return { notes: { ...state.notes } };
+
     default:
       return state;
   }
