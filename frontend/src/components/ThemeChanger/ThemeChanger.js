@@ -7,6 +7,7 @@ import { styles } from '../ThemeChanger';
 
 import dark_img from './dark_img.svg';
 import light_img from './light_img.svg';
+import { Link } from "react-router-dom";
 
 // component definitions here:
 function ThemeChanger() {
@@ -44,9 +45,9 @@ function ThemeChanger() {
     <>
         <Div selectors={[styles.container]}>
             <Div selectors={[]} >
-                    <a onClick={(event) => smartThemeClickHandler(event, themeType)}>
+                    <Link onClick={(event) => smartThemeClickHandler(event, themeType)}>
                     <h4>{themeType.type} Mode </h4>
-                </a>
+                </ Link>
             </Div>
 
 
@@ -56,17 +57,17 @@ function ThemeChanger() {
             themeType.type === 'Dark' ?
 
             <Div selectors={[styles.the_icon]} >
-                <a onClick={(event) => changeThemeClickHandler(event, lightMode)} >
+                <Link onClick={(event) => changeThemeClickHandler(event, lightMode)} >
                     <img src={themeType.icon}/>
-                </a>
+                </Link>
             </Div>
 
             :
 
             <Div selectors={[styles.the_icon]} >
-                <a onClick={(event) => changeThemeClickHandler(event, darkMode)} >
+                <Link onClick={(event) => changeThemeClickHandler(event, darkMode)} >
                     <img src={themeType.icon} />
-                </a>
+                </Link>
             </Div>
             }
 

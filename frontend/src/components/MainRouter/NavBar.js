@@ -1,5 +1,5 @@
 // imports here:
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
 import { useUser } from '../../context/UserContext.js';
@@ -74,7 +74,7 @@ function NavBar() {
 
 
         <Div selectors={[styles.demouser_container]}>
-            <a onClick={demoLoginHandler} > Demo </a>
+            <Link onClick={demoLoginHandler}> Demo </ Link>
         </Div>
 
         </>
@@ -100,7 +100,7 @@ function NavBar() {
     </Div>
 
     <Div selectors={[styles.logout_container]}>
-        <a onClick={logoutHandler}> Logout </a>
+        <Link onClick={logoutHandler}> Logout </ Link>
     </Div>
     </>
     );
