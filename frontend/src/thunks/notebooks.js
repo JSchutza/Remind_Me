@@ -52,11 +52,11 @@ const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async
 };
 
 
-const thunk_updateNotebook = ({ name, description, notebook_owner }) => async (dispatch) => {
+const thunk_updateNotebook = ({ name, description, notebookId }) => async (dispatch) => {
 
-  const response = await csrfFetch('/api/notebooks/${notebook_owner}/update', {
+  const response = await csrfFetch('/api/notebooks/${notebookId}/update', {
     method: 'PUT',
-    body: JSON.stringify({ name, description, notebook_owner })
+    body: JSON.stringify({ name, description })
   });
 
   if(response.ok){
@@ -65,7 +65,7 @@ const thunk_updateNotebook = ({ name, description, notebook_owner }) => async (d
     return;
   }
   throw response;
-}
+};
 
 
 // DELETE localhost:5000/api/notebooks/:notebookId/remove
