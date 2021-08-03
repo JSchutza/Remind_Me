@@ -1,4 +1,4 @@
-import { getNoteBooks, notebookForPage, createNewNotebook, deleteNotebook } from '../actions/notebooks.js';
+import { getNoteBooks, notebookForPage, createNewNotebook, deleteNotebook, updateNotebook } from '../actions/notebooks.js';
 
 
 
@@ -35,8 +35,8 @@ const thunk_notebookForPage = (notebookId) => async (dispatch) => {
 
 
 
-const thunk_createNewNotebook = (form_info) => async (dispatch) => {
-  const { name, description, notebook_owner } = form_info;
+const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async (dispatch) => {
+  // const { name, description, notebook_owner } = form_info;
 
   const response = await csrfFetch('/api/notebooks/new', {
     method: 'POST',
@@ -52,6 +52,21 @@ const thunk_createNewNotebook = (form_info) => async (dispatch) => {
   throw response;
 };
 
+
+const thunk_updateNotebook = ({ name, description, notebook_owner }) => async (dispatch) => {
+
+  const response = await csrfFetch('/api/notebooks/${notebook_owner}/update', {
+    method: 'PUT',
+    body: JSON.stringify({ name, description, notebook_owner })
+  });
+
+  if(response.ok){
+    const notebook = await response.json();
+    dispatch(updateNotebook(notebook));
+    return;
+  }
+  throw response;
+}
 
 
 // DELETE localhost:5000/api/notebooks/:notebookId/remove

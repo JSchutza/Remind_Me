@@ -1,6 +1,6 @@
 
 
-import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK } from '../types/notebooks.js';
+import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK, UPDATE_NOTEBOOK } from '../types/notebooks.js';
 
 
 
@@ -41,12 +41,21 @@ const deleteNotebook = (notebookId, notebook) => {
 };
 
 
+const updateNotebook = (notebook) => {
+  return {
+    type: UPDATE_NOTEBOOK,
+    notebook
+  };
+};
+
+
 
 export {
   getNoteBooks,
   notebookForPage,
   createNewNotebook,
   deleteNotebook,
+  updateNotebook,
 
 
 };
