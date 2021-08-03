@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Div from '../Div';
 import ReactMarkdown from 'react-markdown'
+import { Link } from "react-router-dom";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import gfm from 'remark-gfm'
@@ -177,28 +178,28 @@ if(the_content !== 'none') {
 return (
     <>
         <Div selectors={[styles.preview_button]} >
-            <a
+            <Link
                 onClick={(event) => previewClickHandler(event)}
             >
                 <h4>{buttontext}</h4>
-            </a>
+            </ Link>
         </Div>
         <Div selectors={[styles.update_button]}>
-            <a
+            <Link
                 onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
             >
                 <h4>Update</h4>
-            </a>
+            </Link>
 
             <h4>{message}</h4>
         </Div>
 
         <Div selectors={[styles.delete_button]}>
-            <a
+            <Link
                 onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
             >
                 <h4>Delete</h4>
-            </a>
+            </Link>
 
             <h4>{message}</h4>
         </Div>
@@ -272,20 +273,20 @@ return (
         return (
             <>
                 <Div selectors={[styles.preview_button]} >
-                    <a
+                    <Link
                         onClick={(event) => previewClickHandler(event)}
                     >
                         <h4>{buttontext}</h4>
-                    </a>
+                    </Link>
                 </Div>
 
                 {first_creation === true ?
                     <Div selectors={[]} >
-                        <a
+                        <Link
                             onClick={(event) => notecreationClickHandler(event)}
                         >
                             <h4>Create</h4>
-                        </a>
+                        </Link>
 
                         <h4>{message}</h4>
                     </Div>

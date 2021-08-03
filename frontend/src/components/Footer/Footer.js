@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Div from '../Div';
 
 
@@ -44,9 +44,9 @@ function Footer() {
         <>
         <footer className={styles.main_footer}>
             <Div selectors={[styles.footer_container]}>
-                <a onClick={(event) => footerClickHandler(event)} >
+                <Link onClick={(event) => footerClickHandler(event)} >
                     <img className="" src={profile_photo} />
-                </a>
+                </Link>
 
 
 
