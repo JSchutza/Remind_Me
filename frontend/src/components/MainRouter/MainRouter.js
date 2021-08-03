@@ -35,7 +35,7 @@ function MainRouter(){
     const recentCreatedNote = useSelector((store) => store.recentlyCreatedNoteReducer.note);
 
 
-    // if there is not a user
+    // if there is NOT a user
     if(isUser === null){
         return (
         <>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_getSpecificNote } from '../../thunks/notes.js';
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
@@ -24,10 +24,13 @@ const NotebookPage = () => {
   const [ clicked, setClicked ] = useState(false);
   const [ data, setData ] = useState(null);
   const [ loaded, setLoaded ] = useState(false);
-  const [ showCreateButton, setShowCreateButton ] = useState(true);
+  const [ showCreateButton, setShowCreateButton ] = useState(false);
   const [ first, setFirst ] = useState(0);
   const [ second, setSecond ] = useState(false);
   const [ imgUrl, setImgUrl ] = useState(closed_img);
+
+  const [ firstclick,  setFirstClick ] = useState(0);
+  const [ secondclick,  setSecondClick ] = useState(false);
 
   // important that this is NOT state as it will cause to many re-renders
   let length = [];
@@ -74,7 +77,17 @@ const NotebookPage = () => {
 
   const toggleNoteCreator = (event) => {
     event.preventDefault();
-    setShowCreateButton(false);
+    if (firstclick === 0){
+      setShowCreateButton(true);
+      setSecondClick(true);
+      setFirstClick(1);
+    }
+
+    if (secondclick === true) {
+      setShowCreateButton(false);
+      setSecondClick(false);
+      setFirstClick(0);
+    }
 
   }
 
@@ -86,25 +99,14 @@ const NotebookPage = () => {
           <ul>
             <Div selectors={[]}>
               <Div selectors={[]}>
-                <img src={`${open_img}`} />
-                <li>{notebook_info.name}</li>
+                {/* <Link> */}
+                  <img src={`${open_img}`} />
+                  <li>{notebook_info.name}</li>
+                {/* </Link> */}
               </Div>
             </Div>
           </ul>
-
-          {showCreateButton === true ?
-          <Div selectors={[]} >
-            <a
-              onClick={(event) => toggleNoteCreator(event)}
-            >
-              <h4>Create a Note</h4>
-            </a>
-          </Div>
-          :
-            <NoteCreator notebook_id={notebookId} />
-          }
-
-        </Div>
+          </ Div>
       </>
     )
   }
@@ -138,7 +140,7 @@ const NotebookPage = () => {
 
                 {length.map(eachIndex => (
                   <li key={allNotes[eachIndex].id}>
-                    <a
+                    <Link
                       onClick={(event) => noteClickHandler(event, {
                         id: allNotes[eachIndex].id,
                         due_date: allNotes[eachIndex].due_date,
@@ -148,7 +150,7 @@ const NotebookPage = () => {
                         createdAt: allNotes[eachIndex].createdAt,
                         updatedAt: allNotes[eachIndex].updatedAt
                       })}
-                      > {allNotes[eachIndex].title} </a>
+                      > {allNotes[eachIndex].title} </Link>
 
                   </li>
                 ))}
@@ -162,6 +164,21 @@ const NotebookPage = () => {
 
 
         { clicked ? <NoteViewer the_content={data} notebook_id={data.id} /> : <div></div> }
+
+        <Div selectors={[]} >
+          <Link
+            onClick={(event) => toggleNoteCreator(event)}
+          >
+            <h4>Create a Note</h4>
+          </Link>
+          {showCreateButton ?
+            <NoteCreator notebook_id={notebookId} />
+          :
+          <></>
+          }
+        </Div>
+
+
       </>
     );
   } else {
