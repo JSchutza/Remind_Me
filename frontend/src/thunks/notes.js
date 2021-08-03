@@ -67,14 +67,15 @@ const thunk_updateNote = (form_info) => async (dispatch) => {
 
 
 // DELETE  /api/notes/:noteId/delete
-const thunk_deleteNote = (noteId) => async (dispatch) => {
+const thunk_deleteNote = (noteId, notebook_id) => async (dispatch) => {
   const response = await csrfFetch(`/api/notes/${noteId}/delete`, {
     method: 'DELETE'
   });
 
   if (response.ok) {
     const note = await response.json();
-    dispatch(deleteNote(note));
+    dispatch(deleteNote(noteId, note));
+    dispatch(thunk_getSpecificNote(notebook_id))
     return;
   }
   throw response;

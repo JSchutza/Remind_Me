@@ -46,9 +46,10 @@ const updateNote = (note) => {
 
 
 
-const deleteNote = (note) => {
+const deleteNote = (noteId, note) => {
   return {
     type: DELETE_NOTE,
+    noteId,
     note
   };
 };

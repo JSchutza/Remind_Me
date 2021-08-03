@@ -23,6 +23,10 @@ const notesReducer = (state = { notes: null }, action) => {
       }
     case CREATE_NOTE:
       return { notes: { ...state.notes, [action.note.note.id]: action.note.note } }
+    case DELETE_NOTE:
+      const id = action.noteId;
+      delete state.notes[id];
+      return { ...state };
     default:
       return state;
   }
