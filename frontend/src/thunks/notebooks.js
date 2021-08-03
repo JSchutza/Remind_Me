@@ -36,7 +36,6 @@ const thunk_notebookForPage = (notebookId) => async (dispatch) => {
 
 
 const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async (dispatch) => {
-  // const { name, description, notebook_owner } = form_info;
 
   const response = await csrfFetch('/api/notebooks/new', {
     method: 'POST',
@@ -90,5 +89,6 @@ export {
   thunk_notebookForPage,
   thunk_createNewNotebook,
   thunk_deleteNotebook,
+  thunk_updateNotebook,
 
 };
