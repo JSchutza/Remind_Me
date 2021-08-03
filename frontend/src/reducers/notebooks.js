@@ -7,12 +7,16 @@ import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK 
 
 
 
-const initialState = { notebooks: null };
+
 // reducers here
-const notebooksReducer = (state = initialState, action) => {
+const notebooksReducer = (state = { notebooks: null }, action) => {
   switch (action.type) {
     case GET_NOTEBOOKS:
       return { ...state, notebooks: { ...action.notebooks.notebooks } };
+    case DELETE_NOTEBOOK:
+      const id = action.notebookId;
+      delete state.notebooks[id];
+      return { notebooks: { ...state.notebooks } };
     default:
       return state;
   }

@@ -63,7 +63,7 @@ const thunk_deleteNotebook = (notebookId) => async (dispatch) => {
 
   if (response.ok) {
     const notebook = await response.json();
-    dispatch(deleteNotebook(notebook));
+    dispatch(deleteNotebook(notebookId, notebook));
     return;
   }
   throw response;

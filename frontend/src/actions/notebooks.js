@@ -32,9 +32,10 @@ const createNewNotebook = (just_created) => {
 };
 
 
-const deleteNotebook = (notebook) => {
+const deleteNotebook = (notebookId, notebook) => {
   return {
     type: DELETE_NOTEBOOK,
+    notebookId,
     notebook
   };
 };

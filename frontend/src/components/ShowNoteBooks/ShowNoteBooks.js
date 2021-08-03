@@ -1,5 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from '../../context/UserContext.js';
 import { useState, useEffect } from 'react';
@@ -141,9 +141,9 @@ const ShowNoteBooks = () => {
         </Div>
 
           <div className={styles.create_notebooks_link}>
-            <a
+            <Link
               onClick={(event) => newNotebookHandler(event)}
-            > Create </a>
+            > Create </Link>
           </div>
 
       </div>
