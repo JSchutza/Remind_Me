@@ -79,3 +79,14 @@
   width: auto;
   padding: 1%;
 }
+
+
+
+.notebooks_containter {
+  background-color: rgba(78, 78, 78, 0.288);
+  border-radius: 5%;
+  box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+  display: flex;
+  width: auto;
+  padding: 1%;
+}

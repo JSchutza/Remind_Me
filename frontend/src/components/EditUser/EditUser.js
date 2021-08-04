@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useError } from '../../context/ErrorContext.js';
 
 import ErrorMessage from '../ErrorMessage';
@@ -44,13 +44,16 @@ const EditUser = ({ current_info }) => {
 
 
 
+    const backButton = event => {
+        event.preventDefault();
+        setShow(false);
+    }
 
 
 
 
     const editClickHandler = (event) => {
         event.preventDefault();
-
         setShow(true);
     };
 
@@ -78,36 +81,29 @@ const EditUser = ({ current_info }) => {
         return (
             <>
             <Div selectors={[styles.edit_users_container]}>
-            <Div selectors={[]}>
 
-            <Div selectors={[]}>
-                <Div selectors={[styles.edit_users_img_div]}>
-                    <img src={`${current_info.avatar}`} />
+                <Div selectors={[]}>
+                    <Div selectors={[styles.edit_users_img_div]}>
+                        <img src={`${current_info.avatar}`} />
+                    </Div>
                 </Div>
-            </Div>
 
-            <Div selectors={[]}>
-                <h4>{current_info.username}</h4>
-            </Div>
+                <Div selectors={[]}>
+                    <h4>{current_info.username}</h4>
+                </Div>
 
-            <Div selectors={[]}>
-                <h4>{current_info.email}</h4>
-            </Div>
+                <Div selectors={[]}>
+                    <h4>{current_info.email}</h4>
+                </Div>
 
 
-            <Div selectors={[]}>
-                <a onClick={(event) => editClickHandler(event)} >
-                    Update
-                </a>
-
-            </Div>
+                <Div selectors={[]}>
+                    <a onClick={(event) => editClickHandler(event)} >
+                        Update
+                    </a>
+                </Div>
 
             </Div>
-
-            </Div>
-
-
-
             </>
         );
     }
@@ -147,7 +143,7 @@ const EditUser = ({ current_info }) => {
                 </Div>
 
 
-                    <button>Update</button>
+                    <button type="submit"> Update </button>
 
 
                     <div className="reminder-signup">
@@ -155,6 +151,11 @@ const EditUser = ({ current_info }) => {
                     </div>
 
             </form>
+
+            <Div selectors={[]}>
+                    <Link onClick={event => backButton(event) }> Back </Link>
+            </Div>
+
             </>
         );
     }
