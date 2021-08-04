@@ -92,24 +92,7 @@ const NotebookPage = () => {
   }
 
 
-  if(allNotes === null && loaded === true) {
-    return (
-      <>
-        <Div selectors={[]}>
-          <ul>
-            <Div selectors={[]}>
-              <Div selectors={[]}>
-                {/* <Link> */}
-                  <img src={`${open_img}`} />
-                  <li>{notebook_info.name}</li>
-                {/* </Link> */}
-              </Div>
-            </Div>
-          </ul>
-          </ Div>
-      </>
-    )
-  }
+
 
 
 
@@ -124,19 +107,16 @@ const NotebookPage = () => {
       <>
 
       <Div selectors={[]}>
-        <ul>
 
-          <Div selectors={[]}>
-            <Div selectors={[]}>
-                <img src={`${open_img}`} />
-              <li>{notebook_info.name}</li>
-            </Div>
+          <p>{notebook_info.name}</p>
 
             <Div selectors={[]}>
             <ul>
 
               <Div selectors={[]}>
+                <Div selectors={[styles.close_open_img]}>
                     <img src={`${imgUrl}`} />
+                </Div>
 
                 {length.map(eachIndex => (
                   <li key={allNotes[eachIndex].id}>
@@ -158,8 +138,6 @@ const NotebookPage = () => {
             </ul>
             </Div>
 
-            </Div>
-        </ul>
       </Div>
 
 
