@@ -51,7 +51,6 @@ function MainRouter(){
 
             <Route exact path="/login">
                 <NavBar />
-                        {/* {toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div>} */}
                 <LoginForm />
             </Route>
 
@@ -82,24 +81,10 @@ function MainRouter(){
 
         <Route exact path="/profile">
             <NavBar />
-
-            <div className={styles.main_outer_flex}>
-            <Div selectors={[styles.main_grid_flex]}>
-            <Div selectors={[styles.main_grid]}>
-                <Profile />
-
-                <Div selectors={[styles.tagcreator_container]}>
-                    <TagCreator />
-                    <TagViewer />
-                </Div>
-
-                <div className={styles.sidebar_errors} >
-                    <ErrorMessage type='sidebar' errors={errors} />
-                </div>
-            </Div>
-            </Div>
-            </div>
-
+            <Profile />
+            <TagCreator />
+            <TagViewer />
+            <ErrorMessage type='sidebar' errors={errors} />
         </Route>
 
         <Route exact path="/notebooks">

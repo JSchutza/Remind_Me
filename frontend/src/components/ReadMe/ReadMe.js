@@ -7,8 +7,11 @@ import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
+import Div from '../Div';
 import logo from './logo_img.svg';
 
+// css
+import { styles } from '../ReadMe';
 
 // thank you MDN for helping me :)
 // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream
@@ -144,8 +147,13 @@ const ReadMe = () => {
   } else {
     return (
       <>
-        <img src={`${logo}`} />
-        <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
+        <Div selectors={[styles.readme_logo]}>
+          <img src={`${logo}`} />
+        </Div>
+
+        <Div selectors={[styles.markdown_container]}>
+          <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
+        </Div>
       </>
     );
   }
