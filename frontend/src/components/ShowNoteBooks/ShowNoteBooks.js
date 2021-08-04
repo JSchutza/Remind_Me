@@ -80,31 +80,29 @@ const ShowNoteBooks = () => {
 
   return (
     <>
-      <div className={styles.show_outercontainer}>
 
       <Div selectors={[styles.notebooks_title]}>
-      <h3>Notebooks</h3>
+        <h3>Notebooks</h3>
           <h4>{message}</h4>
       </Div>
 
-
-        <div className={styles.container}>
       <ul>
       {Object.values(notebooks).map(eachNote => (
         <>
-        <Div selectors={[styles.notebooks_links]} >
-
-        <NavLink
-          key={eachNote.id}
-          to={`/notebook/${eachNote.id}`}
-          onClick={notebookHandler(eachNote.id)}
-
-          > {eachNote.name} </NavLink>
-        <br/>
+        <Div selectors={[]}>
+          <Div selectors={[styles.notebooks_links]} >
+            <NavLink key={eachNote.id} to={`/notebook/${eachNote.id}`} onClick={notebookHandler(eachNote.id)} > {eachNote.name} </NavLink>
           </Div>
 
-          <DeleteNotebook notebookId={eachNote.id} />
-          <UpdateNotebooks notebookId={eachNote.id} />
+
+            <Div selectors={[]}>
+              <DeleteNotebook notebookId={eachNote.id} />
+            </Div>
+
+            <Div selectors={[]}>
+              <UpdateNotebooks notebookId={eachNote.id} />
+            </Div>
+          </Div>
         </>
       ))}
       </ul>
@@ -112,12 +110,12 @@ const ShowNoteBooks = () => {
 
 
 
-        <h3>Create a Notebook</h3>
 
+        <Div selectors={[styles.notebooks_create_title]} >
+          <h3>Create a Notebook</h3>
+        </Div>
 
         <Div selectors={[styles.newnotebook_input]}>
-        <Div selectors={[styles.notebooks_create_title]} >
-      </Div>
           <label>
               Notebook Name
             <input
@@ -128,15 +126,12 @@ const ShowNoteBooks = () => {
 
 
           <Div selectors={[styles.notebook_creation_message]} >
-
-            {triggerFetch === true ?
-
+            {triggerFetch ?
             <Div selectors={[]} >
               <h2>{notebookname} was successfully created. </h2>
             </Div>
-
             :
-            <p></p>
+            <></>
             }
         </Div>
 
@@ -148,8 +143,6 @@ const ShowNoteBooks = () => {
             > Create </Link>
           </div>
 
-      </div>
-      </div>
     </>
   );
 
