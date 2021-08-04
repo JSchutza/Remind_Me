@@ -84,6 +84,7 @@ function NavBar() {
             <ul>
                 <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
                 <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
+                <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/notebooks'> Notebooks </NavLink> </li>
             </ul>
         </nav>
     </Div>
@@ -92,9 +93,6 @@ function NavBar() {
         <Link onClick={logoutHandler}> Logout </ Link>
     </Div>
 
-    <Div selectors={[styles.notebooks_containter]}>
-        <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/notebooks'> Notebooks </NavLink>
-    </Div>
     </>
     );
 
