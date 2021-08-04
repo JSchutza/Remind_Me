@@ -54,7 +54,7 @@ const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async
 
 const thunk_updateNotebook = ({ name, description, notebookId }) => async (dispatch) => {
 
-  const response = await csrfFetch('/api/notebooks/${notebookId}/update', {
+  const response = await csrfFetch(`/api/notebooks/${notebookId}/update`, {
     method: 'PUT',
     body: JSON.stringify({ name, description })
   });
