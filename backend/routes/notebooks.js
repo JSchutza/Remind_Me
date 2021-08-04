@@ -72,7 +72,24 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 
+// PUT localhost:5000/api/notebooks/:notebookId/update
+router.put('/:notebookId(\\d+)/update', asyncHandler(async (request, response) => {
+  const notebookId = request.params.notebookId;
+  const { name, description } = request.body;
 
+  const notebook = await Notebook.findByPk(notebookId);
+
+  if(notebook) {
+    await notebook.update({
+      name,
+      description
+    });
+
+    response.json({ notebook });
+  }
+
+  response.json({ status: 500 });
+}));
 
 
 
