@@ -52,24 +52,18 @@ function NavBar() {
 
 
 
-    // if there is not a user
+    // if there is NOT a user
     if(isUser === null) {
         return (
         <>
         <Div selectors={[styles.navbar_container]}>
-
-        <nav>
-            <ul>
-
-            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
-
-            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/login'> Login </NavLink> </li>
-
-            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
-
-
-            </ul>
-        </nav>
+            <nav>
+                <ul>
+                    <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
+                    <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/login'> Login </NavLink> </li>
+                    <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
+                </ul>
+            </nav>
         </Div>
 
 
@@ -82,25 +76,24 @@ function NavBar() {
     }
 
 
-    // if there is a user
+    // if there IS a user
     return (
     <>
     <Div selectors={[styles.navbar_container]}>
-
-    <nav>
-        <ul>
-
-            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
-
-            <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
-
-
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
+                <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/profile'> Profile </NavLink> </li>
+            </ul>
+        </nav>
     </Div>
 
     <Div selectors={[styles.logout_container]}>
         <Link onClick={logoutHandler}> Logout </ Link>
+    </Div>
+
+    <Div selectors={[styles.notebooks_containter]}>
+        <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/notebooks'> Notebooks </NavLink>
     </Div>
     </>
     );

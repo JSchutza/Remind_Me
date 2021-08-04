@@ -13,6 +13,7 @@ import TagCreator from '../TagCreator';
 import TagViewer from '../TagViewer';
 import ReadMe from '../ReadMe';
 import NoteViewer from '../NoteViewer';
+import ShowNoteBooks from '../ShowNoteBooks';
 
 
 import { useUser } from '../../context/UserContext.js';
@@ -99,6 +100,11 @@ function MainRouter(){
             </Div>
             </div>
 
+        </Route>
+
+        <Route exact path="/notebooks">
+            <NavBar />
+                <ShowNoteBooks />
         </Route>
 
 
