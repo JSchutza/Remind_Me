@@ -1,0 +1,9 @@
+
+
+
+
+
+.close_open_img img{
+  object-fit: contain;
+  width: 20px;
+}
