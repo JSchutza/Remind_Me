@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunk_getSpecificNote } from '../../thunks/notes.js';
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { mostRecentNotes } from '../../actions/notes.js';
-import NoteViewer from '../NoteViewer';
+
 import NoteCreator from '../NoteCreator';
+import DropDownArrow from '../DropDownArrow';
 import Div from '../Div';
 import open_img from './open_folder.svg';
 import closed_img from './closed_folder.svg';
@@ -21,13 +22,8 @@ const NotebookPage = () => {
   const notebook_info = useSelector((store) => store.notebookPageReducer.notebook)
   const allNotes = useSelector((store) => store.notesReducer.notes)
   // state here
-  const [ clicked, setClicked ] = useState(false);
-  const [ data, setData ] = useState(null);
   const [ loaded, setLoaded ] = useState(false);
   const [ showCreateButton, setShowCreateButton ] = useState(false);
-  const [ first, setFirst ] = useState(0);
-  const [ second, setSecond ] = useState(false);
-  const [ imgUrl, setImgUrl ] = useState(closed_img);
 
   const [ firstclick,  setFirstClick ] = useState(0);
   const [ secondclick,  setSecondClick ] = useState(false);
@@ -40,7 +36,7 @@ const NotebookPage = () => {
     dispatch(thunk_notebookForPage(notebookId));
     dispatch(thunk_getSpecificNote(notebookId))
       .then(() => setLoaded(true));
-  },[dispatch, clicked, data]);
+  },[dispatch]);
 
 
 
@@ -52,27 +48,6 @@ const NotebookPage = () => {
 
 
 
-  const noteClickHandler = (event, payload) => {
-    event.preventDefault();
-
-    if(first === 0) {
-      setData(payload);
-      dispatch(mostRecentNotes(payload));
-      setClicked(true);
-      setImgUrl(open_img);
-      setFirst(1);
-      setSecond(true);
-    }
-
-    if (second === true) {
-      setClicked(false);
-      setImgUrl(closed_img);
-      setSecond(false);
-      setFirst(0);
-    }
-
-
-  };
 
 
   const toggleNoteCreator = (event) => {
@@ -92,24 +67,7 @@ const NotebookPage = () => {
   }
 
 
-  if(allNotes === null && loaded === true) {
-    return (
-      <>
-        <Div selectors={[]}>
-          <ul>
-            <Div selectors={[]}>
-              <Div selectors={[]}>
-                {/* <Link> */}
-                  <img src={`${open_img}`} />
-                  <li>{notebook_info.name}</li>
-                {/* </Link> */}
-              </Div>
-            </Div>
-          </ul>
-          </ Div>
-      </>
-    )
-  }
+
 
 
 
@@ -122,48 +80,29 @@ const NotebookPage = () => {
   if (loaded === true) {
     return (
       <>
-
-      <Div selectors={[]}>
-        <ul>
-
-          <Div selectors={[]}>
-            <Div selectors={[]}>
-                <img src={`${open_img}`} />
-              <li>{notebook_info.name}</li>
-            </Div>
-
-            <Div selectors={[]}>
+          <p>{notebook_info.name}</p>
             <ul>
-
-              <Div selectors={[]}>
-                    <img src={`${imgUrl}`} />
-
                 {length.map(eachIndex => (
                   <li key={allNotes[eachIndex].id}>
-                    <Link
-                      onClick={(event) => noteClickHandler(event, {
-                        id: allNotes[eachIndex].id,
-                        due_date: allNotes[eachIndex].due_date,
-                        title: allNotes[eachIndex].title,
-                        content: allNotes[eachIndex].content,
-                        notebook_id: allNotes[eachIndex].notebook_id,
-                        createdAt: allNotes[eachIndex].createdAt,
-                        updatedAt: allNotes[eachIndex].updatedAt
-                      })}
-                      > {allNotes[eachIndex].title} </Link>
+                    <DropDownArrow
+                        payload={ {
+                          id: allNotes[eachIndex].id,
+                          due_date: allNotes[eachIndex].due_date,
+                          title: allNotes[eachIndex].title,
+                          content: allNotes[eachIndex].content,
+                          notebook_id: allNotes[eachIndex].notebook_id,
+                          createdAt: allNotes[eachIndex].createdAt,
+                          updatedAt: allNotes[eachIndex].updatedAt
+                        } }
 
+                        closedImg={closed_img}
+                        openedImg={open_img}
+                        title={allNotes[eachIndex].title}
+                    />
                   </li>
                 ))}
-                </Div>
             </ul>
-            </Div>
 
-            </Div>
-        </ul>
-      </Div>
-
-
-        { clicked ? <NoteViewer the_content={data} notebook_id={data.id} /> : <div></div> }
 
         <Div selectors={[]} >
           <Link
@@ -177,7 +116,6 @@ const NotebookPage = () => {
           <></>
           }
         </Div>
-
 
       </>
     );

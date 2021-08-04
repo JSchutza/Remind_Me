@@ -13,30 +13,11 @@ import styles from './main.module.css';
 function App() {
     return (
       <>
-      <Div selectors={[styles.page_box]} >
+        <Div selectors={[]}>
+          <MainRouter />
+          <Footer />
+        </Div>
 
-
-        <Div selectors={[styles.main_content]}>
-          <Div selectors={[]}>
-            <MainRouter />
-          </Div>
-      </Div>
-
-
-      <Div selectors={[styles.fill]}>
-        {/* put the loader here??? */}
-            {/* { toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div> } */}
-      </Div>
-
-
-        <div className={styles.footer_content_box}>
-            <div>
-            <Footer />
-            </div>
-        </div>
-
-
-      </Div>
       </>
     );
 }

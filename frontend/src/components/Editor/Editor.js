@@ -25,8 +25,8 @@ import { styles } from '../Editor';
 
 const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) => {
     // state here
-    const [title, setTitle] = useState(the_content.title);
-    const [content, setContent] = useState(the_content.content);
+    const [title, setTitle] = useState(the_content?.title);
+    const [content, setContent] = useState(the_content?.content);
     const [showPreview, setShowPreview] = useState(false);
     const [editpane, setEditpane ] = useState(true);
     const [first, setFirst] = useState(0);
