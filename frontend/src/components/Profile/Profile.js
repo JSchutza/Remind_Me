@@ -31,11 +31,11 @@ const Profile = () => {
 
                 <Div selectors={[styles.edituser_containter]}>
                     <EditUser current_info={user_info} />
-
                 </Div>
 
+
                 <Div selectors={[styles.main_div]}>
-                    <ShowNoteBooks />
+                    <ShowNoteBooks limit={true}/>
                 </Div>
 
 

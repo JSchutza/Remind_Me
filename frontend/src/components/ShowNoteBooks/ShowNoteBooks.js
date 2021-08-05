@@ -15,16 +15,17 @@ import { styles } from '../ShowNoteBooks';
 
 
 
-const ShowNoteBooks = () => {
+const ShowNoteBooks = ({ limit=null}) => {
   const dispatch = useDispatch();
   const { isUser } = useUser();
-  const notebooks = useSelector((store) => store.notebooksReducer.notebooks );
-  const status = useSelector((store) => store.deleteNotebookReducer.status);
+  const notebooks = useSelector((store) => store.notebooksReducer.notebooks);
+  // const status = useSelector((store) => store.deleteNotebookReducer.status);
   const { message } = useMessage();
 
   // state here
   const [ notebookname, setNotebookname ] = useState('');
   const [ triggerFetch, setTriggerFetch ] = useState(false);
+
 
 
   useEffect(() => {
@@ -77,6 +78,10 @@ const ShowNoteBooks = () => {
     );
   }
 
+  let limitedNotebooks = Object.values(notebooks);
+  let result = [limitedNotebooks[limitedNotebooks.length - 1], limitedNotebooks[limitedNotebooks.length - 2], limitedNotebooks[limitedNotebooks.length - 3]];
+
+
 
   return (
     <>
@@ -86,7 +91,12 @@ const ShowNoteBooks = () => {
           <h4>{message}</h4>
       </Div>
 
+
+
       <ul>
+
+      {limit === null ?
+      <>
       {Object.values(notebooks).map(eachNote => (
         <>
         <Div selectors={[]}>
@@ -105,6 +115,31 @@ const ShowNoteBooks = () => {
           </Div>
         </>
       ))}
+      </>
+
+      :
+
+      <>
+      {result.map(eachNote => (
+        <>
+          <Div selectors={[]}>
+            <Div selectors={[styles.notebooks_links]} >
+              <NavLink key={eachNote.id} to={`/notebook/${eachNote.id}`} onClick={notebookHandler(eachNote.id)} > {eachNote.name} </NavLink>
+            </Div>
+
+
+            <Div selectors={[]}>
+              <DeleteNotebook notebookId={eachNote.id} />
+            </Div>
+
+            <Div selectors={[]}>
+              <UpdateNotebooks notebookId={eachNote.id} />
+            </Div>
+          </Div>
+        </>
+      ))}
+      </>
+      }
       </ul>
       <br/>
 

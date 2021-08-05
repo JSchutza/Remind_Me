@@ -88,11 +88,11 @@ const EditUser = ({ current_info }) => {
                     </Div>
                 </Div>
 
-                <Div selectors={[]}>
+                <Div selectors={[styles.username]}>
                     <h4>{current_info.username}</h4>
                 </Div>
 
-                <Div selectors={[]}>
+                <Div selectors={[styles.email]}>
                     <h4>{current_info.email}</h4>
                 </Div>
 
