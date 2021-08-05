@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 
 
+import UpdateUserForm from '../UpdateUserForm';
+
 
 const Profile = () => {
   const { isUser } = useUser();
@@ -42,7 +44,7 @@ const Profile = () => {
       </div>
 
       <ReactModal isOpen={open_close} onRequestClose={closeModal} >
-        <p>test</p>
+        <UpdateUserForm />
       </ReactModal>
     </>
   )
