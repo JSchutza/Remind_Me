@@ -55,6 +55,14 @@ const MainRouter = () => {
         <ReadMe />
       </Route>
 
+      <Route path='/login' exact>
+        {/* show login form */}
+      </Route>
+
+      <Route path='/signup' exact>
+          {/* show signup form */}
+      </Route>
+
       <Route>
         <NavBar />
         <h2>Page Not Found</h2>
