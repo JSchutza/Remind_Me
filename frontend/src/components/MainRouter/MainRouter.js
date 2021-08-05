@@ -6,7 +6,7 @@ import NavBar from '../NavBar';
 import ReadMe from '../ReadMe';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
-
+import Editor from '../Editor';
 
 
 
@@ -23,6 +23,7 @@ const MainRouter = () => {
 
         <Route path='/' exact>
           <NavBar />
+            <Editor />
         </Route>
 
         <Route path='/readme' exact>
@@ -54,6 +55,7 @@ const MainRouter = () => {
 
       <Route path='/' exact>
         <NavBar />
+        <Editor />
       </Route>
 
       <Route path='/readme' exact>

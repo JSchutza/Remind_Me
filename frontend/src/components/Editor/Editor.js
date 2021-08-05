@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown'
 import { Link } from "react-router-dom";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
+
+import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import gfm from 'remark-gfm'
-import { useTheme } from '../../context/ThemeContext.js';
+
+
 
 import { useDispatch } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
-import { useMessage } from '../../context/MessageContext.js';
+
+
 
 // css
 import { styles } from '../Editor';
@@ -35,60 +39,30 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
 
     const dispatch = useDispatch();
 
-    const { message, setMessage } = useMessage();
-    const { themeType, setThemeType } = useTheme();
+
+
     let renderers;
-
-
-    if(themeType.type === 'Light') {
-            renderers = {
-                code: ({ language, value }) => {
-                    return (
-                    <SyntaxHighlighter
-                        customStyle={
-                            {
-                                border: `none`,
-                                outline: `none`,
-                                background: `black`,
-                                resize: `none`,
-                                lineBreak: `anywhere`,
-
-                            }
-                        }
-                            style={themeType.light_syntax}
-                        showLineNumbers={true}
-                        language={language}
-                        children={value}
-                    />
-                    );
-                }
-            }
-        } else if(themeType.type === 'Dark') {
-
-            renderers = {
-                code: ({ language, value }) => {
-                    return (
-                    <SyntaxHighlighter
-                        customStyle={
-                            {
-                                border: `none`,
-                                outline: `none`,
-                                background: `black`,
-                                resize: `none`,
-                                lineBreak: `anywhere`,
-
-                            }
-                        }
-                            style={themeType.dark_syntax}
-                        showLineNumbers={true}
-                        language={language}
-                        children={value}
-                    />
-                    );
-                }
-            }
-
+    renderers = {
+        code: ({ language, value }) => {
+            return (
+            <SyntaxHighlighter
+                customStyle={ {
+                        border: `none`,
+                        outline: `none`,
+                        background: `black`,
+                        resize: `none`,
+                        lineBreak: `anywhere`
+                    } }
+                style={materialDark}
+                showLineNumbers={true}
+                language={language}
+                children={value}
+            />);
+        }
     }
+
+
+
 
 
 
@@ -106,250 +80,225 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
 
 
 
-const previewClickHandler = (event) => {
-    event.preventDefault();
-    if (first === 0) {
-        setButtontext('Edit');
-        setShowPreview(true);
-        setEditpane(false);
-        setFirst(1);
-        setSecond(true);
-    }
+    const previewClickHandler = (event) => {
+        event.preventDefault();
+        if (first === 0) {
+            setButtontext('Edit');
+            setShowPreview(true);
+            setEditpane(false);
+            setFirst(1);
+            setSecond(true);
+        }
 
-    if (second === true) {
-        setButtontext('Preview');
-        setShowPreview(false);
-        setEditpane(true);
-        setSecond(false);
-        setFirst(0);
-    }
+        if (second === true) {
+            setButtontext('Preview');
+            setShowPreview(false);
+            setEditpane(true);
+            setSecond(false);
+            setFirst(0);
+        }
 
-};
+    };
 
 
 
-const notecreationClickHandler = (event) => {
-    dispatch(thunk_createNewNote({
-        due_date: new Date(),
-        title,
-        content,
-        notebook_id
-    }));
-    setMessage('Your note was created.');
-
-    setTimeout(() => {
-        setMessage('');
-    }, 1000);
-};
+    const notecreationClickHandler = (event) => {
+        const payload = { due_date: new Date(), title, content, notebook_id };
+        dispatch(thunk_createNewNote(payload));
+    }  ;
 
 
     const noteUpdateClickHandler = (event, noteId) => {
-    dispatch(thunk_updateNote({
-        due_date: new Date(),
-        title,
-        content,
-        notebook_id,
-        noteId
-    }));
-    setMessage('Your note was updated.');
-
-    setTimeout(() => {
-        setMessage('');
-    }, 1000);
-
-};
+        const payload = { due_date: new Date(), title, content, notebook_id, noteId };
+        dispatch(thunk_updateNote(payload));
+    };
 
 
-const noteDeleteClickHandler = (event, noteId) => {
-    dispatch(thunk_deleteNote(noteId, notebook_id));
-    setMessage('Your has been deleted.');
-
-    setTimeout(() => {
-        setMessage('');
-    }, 1000);
-};
+    const noteDeleteClickHandler = (event, noteId) => {
+        dispatch(thunk_deleteNote(noteId, notebook_id));
+    };
 
 
 
 
-if(the_content !== 'none') {
+    if(the_content !== 'none') {
 
-return (
-    <>
-        <div className={styles.preview_button} >
-            <Link
-                onClick={(event) => previewClickHandler(event)}
-            >
-                <h4>{buttontext}</h4>
-            </ Link>
-        </div>
-        <div className={styles.update_button}>
-            <Link
-                onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
-            >
-                <h4>Update</h4>
-            </Link>
-
-            <h4>{message}</h4>
-        </div>
-
-        <div className={styles.delete_button}>
-            <Link
-                onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
-            >
-                <h4>Delete</h4>
-            </Link>
-
-            <h4>{message}</h4>
-        </div>
+    return (
+        <>
+            <div className={styles.preview_button} >
+                <Link
+                    onClick={(event) => previewClickHandler(event)}
+                >
+                    <h4>{buttontext}</h4>
+                </ Link>
+            </div>
+            <div className={styles.update_button}>
+                <Link
+                    onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
+                >
+                    <h4>Update</h4>
+                </Link>
 
 
+            </div>
 
-        {showPreview === true ?
+            <div className={styles.delete_button}>
+                <Link
+                    onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
+                >
+                    <h4>Delete</h4>
+                </Link>
 
-            <div className={styles.preview_test}>
-                <div className={styles.preview_container}>
-                    <div className={styles.preview_wrapper} >
-                        <div className={styles.preview_title} >
-                            <ReactMarkdown plugins={[gfm]} children={title} />
-                        </div>
 
-                        <div className={styles.preview_content} >
-                            <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
+            </div>
+
+
+
+            {showPreview === true ?
+
+                <div className={styles.preview_test}>
+                    <div className={styles.preview_container}>
+                        <div className={styles.preview_wrapper} >
+                            <div className={styles.preview_title} >
+                                <ReactMarkdown plugins={[gfm]} children={title} />
+                            </div>
+
+                            <div className={styles.preview_content} >
+                                <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
-            </div>
-            :
-            <p></p>
-        }
+                :
+                <p></p>
+            }
 
 
 
 
-        { editpane === true ?
+            { editpane === true ?
 
-            <div className={styles.edit_container} >
-                <div className={styles.edit_test} >
+                <div className={styles.edit_container} >
+                    <div className={styles.edit_test} >
 
-                    <div className={styles.edit_wrapper} >
+                        <div className={styles.edit_wrapper} >
 
-                        <div className={styles.edit_title}>
-                            <label>
-                                Title:
-                                <input
-                                    onChange={(event) => setTitle(event.target.value)}
-                                    value={title}
+                            <div className={styles.edit_title}>
+                                <label>
+                                    Title:
+                                    <input
+                                        onChange={(event) => setTitle(event.target.value)}
+                                        value={title}
+                                    />
+                                </label>
+                            </div>
+
+                            <div className={styles.edit_content}>
+                                <textarea
+                                    onChange={(event) => setContent(event.target.value)}
+                                    value={content}
                                 />
-                            </label>
-                        </div>
+                            </div>
 
-                        <div className={styles.edit_content}>
-                            <textarea
-                                onChange={(event) => setContent(event.target.value)}
-                                value={content}
-                            />
                         </div>
-
                     </div>
+
                 </div>
 
-            </div>
+                :
+                <p></p>
+            }
 
-            :
-            <p></p>
-        }
-
-    </>
-    );
-}
+        </>
+        );
+    }
 
 
     if (the_content === 'none') {
 
-        return (
-            <>
-                <div className={styles.preview_button} >
+    return (
+        <>
+            <div className={styles.preview_button} >
+                <Link
+                    onClick={(event) => previewClickHandler(event)}
+                >
+                    <h4>{buttontext}</h4>
+                </Link>
+            </div>
+
+            {first_creation === true ?
+                <div className={'default'} >
                     <Link
-                        onClick={(event) => previewClickHandler(event)}
+                        onClick={(event) => notecreationClickHandler(event)}
                     >
-                        <h4>{buttontext}</h4>
+                        <h4>Create</h4>
                     </Link>
+
+
+                </div>
+                :
+                <p></p>
+            }
+
+
+            {showPreview === true ?
+
+                <div className={styles.preview_test}>
+                    <div className={styles.preview_container, `${initStyle}`}>
+                        <div className={styles.preview_wrapper} >
+                            <div className={styles.preview_title} >
+                                <ReactMarkdown plugins={[gfm]} children={title} />
+                            </div>
+
+                            <div className={styles.preview_content} >
+                                <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                :
+                <p></p>
+            }
+
+
+
+
+            { editpane === true ?
+
+                <div className={styles.edit_container} >
+                    <div className={styles.edit_test} >
+
+                        <div className={styles.edit_wrapper} >
+
+                            <div className={styles.edit_title}>
+                                <label>
+                                    Title:
+                            <input
+                                        onChange={(event) => setTitle(event.target.value)}
+                                        value={title}
+                                    />
+                                </label>
+                            </div>
+
+                            <div className={styles.edit_content}>
+                                <textarea
+                                    onChange={(event) => setContent(event.target.value)}
+                                    value={content}
+                                />
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
 
-                {first_creation === true ?
-                    <div className={'default'} >
-                        <Link
-                            onClick={(event) => notecreationClickHandler(event)}
-                        >
-                            <h4>Create</h4>
-                        </Link>
-
-                        <h4>{message}</h4>
-                    </div>
-                    :
-                    <p></p>
-                }
-
-
-                {showPreview === true ?
-
-                    <div className={styles.preview_test}>
-                        <div className={styles.preview_container, `${initStyle}`}>
-                            <div className={styles.preview_wrapper} >
-                                <div className={styles.preview_title} >
-                                    <ReactMarkdown plugins={[gfm]} children={title} />
-                                </div>
-
-                                <div className={styles.preview_content} >
-                                    <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    :
-                    <p></p>
-                }
-
-
-
-
-                { editpane === true ?
-
-                    <div className={styles.edit_container} >
-                        <div className={styles.edit_test} >
-
-                            <div className={styles.edit_wrapper} >
-
-                                <div className={styles.edit_title}>
-                                    <label>
-                                        Title:
-                                <input
-                                            onChange={(event) => setTitle(event.target.value)}
-                                            value={title}
-                                        />
-                                    </label>
-                                </div>
-
-                                <div className={styles.edit_content}>
-                                    <textarea
-                                        onChange={(event) => setContent(event.target.value)}
-                                        value={content}
-                                    />
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    :
-                    <p></p>
-                }
+                :
+                <p></p>
+            }
 
             </>
         );
