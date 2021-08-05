@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Div from '../Div';
 import ReactMarkdown from 'react-markdown'
 import { Link } from "react-router-dom";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
