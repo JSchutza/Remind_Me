@@ -7,7 +7,6 @@ import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
-import Div from '../Div';
 import logo from './logo_img.svg';
 
 // css
@@ -147,13 +146,13 @@ const ReadMe = () => {
   } else {
     return (
       <>
-        <Div selectors={[styles.readme_logo]}>
+        <div className={styles.readme_logo}>
           <img src={`${logo}`} />
-        </Div>
+        </div>
 
-        <Div selectors={[styles.markdown_container]}>
+        <div className={styles.markdown_container}>
           <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
-        </Div>
+        </div>
       </>
     );
   }

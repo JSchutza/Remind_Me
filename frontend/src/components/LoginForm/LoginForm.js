@@ -1,10 +1,10 @@
 // imports here:
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { thunk_login } from '../../thunks/session.js';
-import Div from '../Div';
+
+
 // css here
 import { styles } from '../LoginForm';
 
@@ -59,16 +59,16 @@ function LoginForm({ current_theme }) {
 
     return (
         <>
-            <ErrorMessage type='main' errors={errors}  />
+            {/* <ErrorMessage type='main' errors={errors}  /> */}
 
             <div className="reminder-login">
                 <p>{reminder}</p>
             </div>
 
-            <Div selectors={[styles.main_div]}>
+            <div className={styles.main_div}>
             <h1> Login </h1>
             <form onSubmit={onSubmit} >
-                <Div selectors={[styles.text_box]} >
+                <div className={styles.text_box} >
                     <label className={styles.each_label} htmlFor="email"  /> Username
                         <br />
                     <input
@@ -79,8 +79,8 @@ function LoginForm({ current_theme }) {
                         id="username"
                         name="username"
                     />
-                </Div>
-                <Div selectors={[styles.text_box]} >
+                </div>
+                <div className={styles.text_box} >
                     <label className={styles.each_label} htmlFor="password" /> Password
                         <br />
                     <input
@@ -91,8 +91,8 @@ function LoginForm({ current_theme }) {
                         id="password"
                         name="password"
                     />
-                </Div>
-                <Div selectors={[styles.text_box]} >
+                </div>
+                <div className={styles.text_box} >
                     <label className={styles.each_label} htmlFor="confirmation" /> Confirmation
                         <br />
                     <input
@@ -103,13 +103,13 @@ function LoginForm({ current_theme }) {
                         id="confirmation"
                         name="confirmation"
                     />
-                </Div>
+                </div>
 
 
                     <button>Login</button>
 
             </form>
-            </Div>
+            </div>
         </>
     );
 }

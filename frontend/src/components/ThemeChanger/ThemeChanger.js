@@ -2,7 +2,6 @@
 import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { useTheme } from '../../context/ThemeContext.js';
-import Div from '../Div';
 import { styles } from '../ThemeChanger';
 
 import dark_img from './dark_img.svg';
@@ -43,36 +42,36 @@ function ThemeChanger() {
 
     return (
     <>
-        <Div selectors={[styles.container]}>
-            <Div selectors={[]} >
+        <div className={styles.container}>
+            <div className={''} >
                     <Link onClick={(event) => smartThemeClickHandler(event, themeType)}>
                     <h4>{themeType.type} Mode </h4>
                 </ Link>
-            </Div>
+            </div>
 
 
-            <Div selectors={[]}>
+            <div className={''}>
 
             {
             themeType.type === 'Dark' ?
 
-            <Div selectors={[styles.the_icon]} >
+            <div className={styles.the_icon} >
                 <Link onClick={(event) => changeThemeClickHandler(event, lightMode)} >
                     <img src={themeType.icon}/>
                 </Link>
-            </Div>
+            </div>
 
             :
 
-            <Div selectors={[styles.the_icon]} >
+            <div className={styles.the_icon} >
                 <Link onClick={(event) => changeThemeClickHandler(event, darkMode)} >
                     <img src={themeType.icon} />
                 </Link>
-            </Div>
+            </div>
             }
 
-            </Div>
-        </Div>
+            </div>
+        </div>
     </>
     );
 

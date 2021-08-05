@@ -4,12 +4,6 @@ import { useState, useEffect } from 'react';
 
 
 
-import Div from '../Div';
-import EditUser from '../EditUser';
-import TagCreator from '../TagCreator';
-import ShowNoteBooks from '../ShowNoteBooks';
-import MostRecentNote from '../MostRecentNote';
-import RecentlyCreatedNotes from '../RecentlyCreatedNotes';
 
 //css
 import { styles } from '../Profile';
@@ -29,19 +23,19 @@ const Profile = () => {
         return (
             <>
 
-                <Div selectors={[styles.edituser_containter]}>
-                    <EditUser current_info={user_info} />
-                </Div>
+                <div className={styles.edituser_containter}>
+                    {/* <EditUser current_info={user_info} /> */}
+                </div>
 
 
-                <Div selectors={[styles.main_div]}>
-                    <ShowNoteBooks limit={true}/>
-                </Div>
+                <div className={styles.main_div}>
+                    {/* <ShowNoteBooks limit={true}/> */}
+                </div>
 
 
                 <div className={styles.recentnote_container}>
-                    <MostRecentNote />
-                    <RecentlyCreatedNotes />
+                    {/* <MostRecentNote /> */}
+                    {/* <RecentlyCreatedNotes /> */}
                 </div>
 
             </>

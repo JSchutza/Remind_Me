@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Div from '../Div';
 import Editor from '../Editor';
 
 

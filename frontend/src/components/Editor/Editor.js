@@ -176,14 +176,14 @@ if(the_content !== 'none') {
 
 return (
     <>
-        <Div selectors={[styles.preview_button]} >
+        <div className={styles.preview_button} >
             <Link
                 onClick={(event) => previewClickHandler(event)}
             >
                 <h4>{buttontext}</h4>
             </ Link>
-        </Div>
-        <Div selectors={[styles.update_button]}>
+        </div>
+        <div className={styles.update_button}>
             <Link
                 onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
             >
@@ -191,9 +191,9 @@ return (
             </Link>
 
             <h4>{message}</h4>
-        </Div>
+        </div>
 
-        <Div selectors={[styles.delete_button]}>
+        <div className={styles.delete_button}>
             <Link
                 onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
             >
@@ -201,27 +201,27 @@ return (
             </Link>
 
             <h4>{message}</h4>
-        </Div>
+        </div>
 
 
 
         {showPreview === true ?
 
-            <Div selectors={[styles.preview_test]}>
-                <Div selectors={[styles.preview_container]}>
-                    <Div selectors={[styles.preview_wrapper]} >
-                        <Div selectors={[styles.preview_title]} >
+            <div className={styles.preview_test}>
+                <div className={styles.preview_container}>
+                    <div className={styles.preview_wrapper} >
+                        <div className={styles.preview_title} >
                             <ReactMarkdown plugins={[gfm]} children={title} />
-                        </Div>
+                        </div>
 
-                        <Div selectors={[styles.preview_content]} >
+                        <div className={styles.preview_content} >
                             <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
-                        </Div>
+                        </div>
 
-                    </Div>
+                    </div>
 
-                </Div>
-            </Div>
+                </div>
+            </div>
             :
             <p></p>
         }
@@ -231,12 +231,12 @@ return (
 
         { editpane === true ?
 
-            <Div selectors={[styles.edit_container]} >
-                <Div selectors={[styles.edit_test]} >
+            <div className={styles.edit_container} >
+                <div className={styles.edit_test} >
 
-                    <Div selectors={[styles.edit_wrapper]} >
+                    <div className={styles.edit_wrapper} >
 
-                        <Div selectors={[styles.edit_title]}>
+                        <div className={styles.edit_title}>
                             <label>
                                 Title:
                                 <input
@@ -244,19 +244,19 @@ return (
                                     value={title}
                                 />
                             </label>
-                        </Div>
+                        </div>
 
-                        <Div selectors={[styles.edit_content]}>
+                        <div className={styles.edit_content}>
                             <textarea
                                 onChange={(event) => setContent(event.target.value)}
                                 value={content}
                             />
-                        </Div>
+                        </div>
 
-                    </Div>
-                </Div>
+                    </div>
+                </div>
 
-            </Div>
+            </div>
 
             :
             <p></p>
@@ -271,16 +271,16 @@ return (
 
         return (
             <>
-                <Div selectors={[styles.preview_button]} >
+                <div className={styles.preview_button} >
                     <Link
                         onClick={(event) => previewClickHandler(event)}
                     >
                         <h4>{buttontext}</h4>
                     </Link>
-                </Div>
+                </div>
 
                 {first_creation === true ?
-                    <Div selectors={[]} >
+                    <div className={'default'} >
                         <Link
                             onClick={(event) => notecreationClickHandler(event)}
                         >
@@ -288,7 +288,7 @@ return (
                         </Link>
 
                         <h4>{message}</h4>
-                    </Div>
+                    </div>
                     :
                     <p></p>
                 }
@@ -296,21 +296,21 @@ return (
 
                 {showPreview === true ?
 
-                    <Div selectors={[styles.preview_test]}>
-                        <Div selectors={[styles.preview_container, `${initStyle}`]}>
-                            <Div selectors={[styles.preview_wrapper]} >
-                                <Div selectors={[styles.preview_title]} >
+                    <div className={styles.preview_test}>
+                        <div className={styles.preview_container, `${initStyle}`}>
+                            <div className={styles.preview_wrapper} >
+                                <div className={styles.preview_title} >
                                     <ReactMarkdown plugins={[gfm]} children={title} />
-                                </Div>
+                                </div>
 
-                                <Div selectors={[styles.preview_content]} >
+                                <div className={styles.preview_content} >
                                     <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
-                                </Div>
+                                </div>
 
-                            </Div>
+                            </div>
 
-                        </Div>
-                    </Div>
+                        </div>
+                    </div>
                     :
                     <p></p>
                 }
@@ -320,12 +320,12 @@ return (
 
                 { editpane === true ?
 
-                    <Div selectors={[styles.edit_container]} >
-                        <Div selectors={[styles.edit_test]} >
+                    <div className={styles.edit_container} >
+                        <div className={styles.edit_test} >
 
-                            <Div selectors={[styles.edit_wrapper]} >
+                            <div className={styles.edit_wrapper} >
 
-                                <Div selectors={[styles.edit_title]}>
+                                <div className={styles.edit_title}>
                                     <label>
                                         Title:
                                 <input
@@ -333,19 +333,19 @@ return (
                                             value={title}
                                         />
                                     </label>
-                                </Div>
+                                </div>
 
-                                <Div selectors={[styles.edit_content]}>
+                                <div className={styles.edit_content}>
                                     <textarea
                                         onChange={(event) => setContent(event.target.value)}
                                         value={content}
                                     />
-                                </Div>
+                                </div>
 
-                            </Div>
-                        </Div>
+                            </div>
+                        </div>
 
-                    </Div>
+                    </div>
 
                     :
                     <p></p>

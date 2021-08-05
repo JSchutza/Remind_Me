@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { thunk_logoutUser, thunk_loginDemoUser } from '../../thunks/session.js';
 import { useUser } from '../../context/UserContext.js';
 import { useHistory } from 'react-router-dom';
-import Div from '../Div';
 
 // css
 import styles from './navbar.module.css';
@@ -56,7 +55,7 @@ function NavBar() {
     if(isUser === null) {
         return (
         <>
-        <Div selectors={[styles.navbar_container]}>
+        <div className={styles.navbar_container}>
             <nav>
                 <ul>
                     <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
@@ -64,12 +63,12 @@ function NavBar() {
                     <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/signup'> Signup </NavLink> </li>
                 </ul>
             </nav>
-        </Div>
+        </div>
 
 
-        <Div selectors={[styles.demouser_container]}>
+        <div className={styles.demouser_container}>
             <Link onClick={demoLoginHandler}> Demo </ Link>
-        </Div>
+        </div>
 
         </>
         );
@@ -79,7 +78,7 @@ function NavBar() {
     // if there IS a user
     return (
     <>
-    <Div selectors={[styles.navbar_container]}>
+    <div className={styles.navbar_container}>
         <nav>
             <ul>
                 <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/'> Home </NavLink> </li>
@@ -87,11 +86,11 @@ function NavBar() {
                 <li> <NavLink className={styles.navbar_navlink_unselected} activeClassName='selected' exact to='/notebooks'> Notebooks </NavLink> </li>
             </ul>
         </nav>
-    </Div>
+    </div>
 
-    <Div selectors={[styles.logout_container]}>
+    <div className={styles.logout_container}>
         <Link onClick={logoutHandler}> Logout </ Link>
-    </Div>
+    </div>
 
     </>
     );
