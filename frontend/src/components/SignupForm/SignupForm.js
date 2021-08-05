@@ -67,8 +67,6 @@ function SignupForm (){
 
     return (
         <>
-        {/* <ErrorMessage type='main' errors={errors}/> */}
-
         <div className="reminder-signup">
                 <p>{reminder}</p>
         </div>

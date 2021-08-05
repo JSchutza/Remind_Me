@@ -11,7 +11,7 @@ import { styles } from '../LoginForm';
 
 
 // component definitions here:
-function LoginForm({ current_theme }) {
+function LoginForm() {
     // state for the form here:
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -59,8 +59,6 @@ function LoginForm({ current_theme }) {
 
     return (
         <>
-            {/* <ErrorMessage type='main' errors={errors}  /> */}
-
             <div className="reminder-login">
                 <p>{reminder}</p>
             </div>

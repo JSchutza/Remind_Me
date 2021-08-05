@@ -30,11 +30,11 @@ function Root() {
   return (
     <>
     <Provider store={store}>
-        <BrowserRouter>
-            <UserProvider>
-            <App />
-          </UserProvider>
-        </ BrowserRouter>
+      <BrowserRouter>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </ BrowserRouter>
     </Provider>
     </>
   );

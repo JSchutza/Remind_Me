@@ -3,6 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 import { useUser } from '../../context/UserContext.js';
 
 
+import ReadMe from '../ReadMe';
+
+
+
+
+
 const MainRouter = () => {
   const { isUser } = useUser();
 
@@ -16,6 +22,11 @@ const MainRouter = () => {
         <Route path='/' exact>
         {/* component here */}
         </Route>
+
+        <Route path='/readme' exact>
+          <ReadMe />
+        </Route>
+
 
         <Route>
         <h2>Page Not Found</h2>
