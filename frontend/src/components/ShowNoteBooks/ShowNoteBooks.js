@@ -101,16 +101,16 @@ const ShowNoteBooks = ({ limit=null}) => {
         <>
         <Div selectors={[]}>
           <Div selectors={[styles.notebooks_links]} >
-            <NavLink key={eachNote.id} to={`/notebook/${eachNote.id}`} onClick={notebookHandler(eachNote.id)} > {eachNote.name} </NavLink>
+            <NavLink key={eachNote?.id} to={`/notebook/${eachNote?.id}`} onClick={notebookHandler(eachNote?.id)} > {eachNote?.name} </NavLink>
           </Div>
 
 
             <Div selectors={[]}>
-              <DeleteNotebook notebookId={eachNote.id} />
+              <DeleteNotebook notebookId={eachNote?.id} />
             </Div>
 
             <Div selectors={[]}>
-              <UpdateNotebooks notebookId={eachNote.id} />
+              <UpdateNotebooks notebookId={eachNote?.id} />
             </Div>
           </Div>
         </>
@@ -124,16 +124,16 @@ const ShowNoteBooks = ({ limit=null}) => {
         <>
           <Div selectors={[]}>
             <Div selectors={[styles.notebooks_links]} >
-              <NavLink key={eachNote.id} to={`/notebook/${eachNote.id}`} onClick={notebookHandler(eachNote.id)} > {eachNote.name} </NavLink>
+              <NavLink key={eachNote?.id} to={`/notebook/${eachNote?.id}`} onClick={notebookHandler(eachNote?.id)} > {eachNote?.name} </NavLink>
             </Div>
 
 
             <Div selectors={[]}>
-              <DeleteNotebook notebookId={eachNote.id} />
+              <DeleteNotebook notebookId={eachNote?.id} />
             </Div>
 
             <Div selectors={[]}>
-              <UpdateNotebooks notebookId={eachNote.id} />
+              <UpdateNotebooks notebookId={eachNote?.id} />
             </Div>
           </Div>
         </>
