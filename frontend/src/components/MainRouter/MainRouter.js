@@ -2,7 +2,7 @@
 import { Route, Switch } from 'react-router-dom';
 import { useUser } from '../../context/UserContext.js';
 
-
+import NavBar from '../NavBar';
 import ReadMe from '../ReadMe';
 
 
@@ -20,16 +20,18 @@ const MainRouter = () => {
         <Switch>
 
         <Route path='/' exact>
-        {/* component here */}
+          <NavBar />
         </Route>
 
         <Route path='/readme' exact>
+          <NavBar />
           <ReadMe />
         </Route>
 
 
         <Route>
-        <h2>Page Not Found</h2>
+          <NavBar />
+          <h2>Page Not Found</h2>
         </Route>
 
         </Switch>
@@ -45,12 +47,17 @@ const MainRouter = () => {
       <Switch>
 
       <Route path='/' exact>
-      {/* component here */}
+        <NavBar />
       </Route>
 
+      <Route path='/readme' exact>
+        <NavBar />
+        <ReadMe />
+      </Route>
 
       <Route>
-      <h2>Page Not Found</h2>
+        <NavBar />
+        <h2>Page Not Found</h2>
       </Route>
 
       </Switch>

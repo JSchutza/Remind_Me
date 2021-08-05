@@ -5,6 +5,7 @@ import readme_text from './README.md';
 // needed for parsing the markdown state item
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
+import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import logo from './logo_img.svg';
@@ -21,59 +22,22 @@ const ReadMe = () => {
   const [markdown, setMarkdown] = useState('');
 
 
-  const { themeType, setThemeType } = useTheme();
+
   let renderers;
-
-
-  if (themeType.type === 'Light') {
-    renderers = {
-      code: ({ language, value }) => {
-        return (
-          <SyntaxHighlighter
-            customStyle={
-              {
-                border: `none`,
-                outline: `none`,
-                background: `black`,
-                resize: `none`,
-                lineBreak: `anywhere`,
-
-              }
-            }
-            style={themeType.light_syntax}
-            showLineNumbers={true}
-            language={language}
-            children={value}
-          />
-        );
-      }
+  renderers = {
+    code: ({ language, value }) => {
+      return (
+        <SyntaxHighlighter
+          customStyle={ { border: `none`, outline: `none`, background: `black`, resize: `none`, lineBreak: `anywhere` } }
+          style={materialDark}
+          showLineNumbers={true}
+          language={language}
+          children={value}
+        />
+      );
     }
-  } else if (themeType.type === 'Dark') {
-
-    renderers = {
-      code: ({ language, value }) => {
-        return (
-          <SyntaxHighlighter
-            customStyle={
-              {
-                border: `none`,
-                outline: `none`,
-                background: `black`,
-                resize: `none`,
-                lineBreak: `anywhere`,
-
-              }
-            }
-            style={themeType.dark_syntax}
-            showLineNumbers={true}
-            language={language}
-            children={value}
-          />
-        );
-      }
     }
 
-  }
 
 
 
