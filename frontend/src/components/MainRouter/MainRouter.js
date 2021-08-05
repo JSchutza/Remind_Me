@@ -31,7 +31,7 @@ const MainRouter = () => {
         </Route>
 
       <Route path='/profile' exact>
-        {/* profile component */}
+          <NavBar />
         <h1>Profile </h1>
       </Route>
 

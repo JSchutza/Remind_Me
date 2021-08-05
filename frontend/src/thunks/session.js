@@ -34,8 +34,7 @@ const thunk_checkIfThereIsAUser = () => async (dispatch) => {
 
 
 
-const thunk_login = (form_info) => async (dispatch) => {
-    const { credential, password } = form_info;
+const thunk_login = ({ credential, password }) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/login', {
         method: 'POST',
@@ -67,8 +66,7 @@ const thunk_logoutUser = () => async (dispatch) => {
 
 
 
-const thunk_signupUser = (form_info) => async (dispatch) => {
-    const { email, password, username } = form_info;
+const thunk_signupUser = ({ email, password, username }) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/signup', {
         method: 'POST',
