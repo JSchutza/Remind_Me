@@ -2,11 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import ThemeChanger from './components/ThemeChanger';
-import ThemeProvider from './context/ThemeContext.js';
+
 import { UserProvider } from './context/UserContext.js';
-import { ErrorProvider } from './context/ErrorContext.js';
-import { MessageProvider } from './context/MessageContext.js';
+
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -32,19 +30,11 @@ function Root() {
   return (
     <>
     <Provider store={store}>
-      <ThemeProvider>
         <BrowserRouter>
             <UserProvider>
-              <MessageProvider>
-                <ErrorProvider>
-                  <ThemeChanger>
-                      <App />
-                  </ThemeChanger>
-                </ErrorProvider>
-              </MessageProvider>
+            <App />
           </UserProvider>
         </ BrowserRouter>
-      </ThemeProvider>
     </Provider>
     </>
   );
