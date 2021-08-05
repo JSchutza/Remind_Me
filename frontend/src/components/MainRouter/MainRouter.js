@@ -7,6 +7,7 @@ import ReadMe from '../ReadMe';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Editor from '../Editor';
+import Profile from '../Profile';
 
 
 
@@ -33,8 +34,15 @@ const MainRouter = () => {
 
       <Route path='/profile' exact>
           <NavBar />
-        <h1>Profile </h1>
+          <Profile />
       </Route>
+
+      <Route path='/notebooks' exact>
+        {/* notebooks here  */}
+          <NavBar />
+            <h1>Notebooks</h1>
+      </Route>
+
 
         <Route>
           <NavBar />
