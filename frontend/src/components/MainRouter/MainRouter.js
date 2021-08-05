@@ -44,6 +44,13 @@ const MainRouter = () => {
       </Route>
 
 
+      <Route path='/notebook/:notebookId' exact>
+        <NavBar />
+            <h1>Notebook</h1>
+            {/* EachNotebook component here */}
+      </Route>
+
+
         <Route>
           <NavBar />
           <h2>Page Not Found</h2>
