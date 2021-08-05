@@ -18,7 +18,7 @@ const Profile = () => {
   const { isUser } = useUser();
   const [ open_close, setOpen_Close ] = useState(false);
 
-
+  const notebooks = useSelector(store => store.notebooksReducer.notebooks);
 
   useEffect(() => {
     dispatch(thunk_getLimitedNotebooks(3))
@@ -57,6 +57,23 @@ const Profile = () => {
       <ReactModal isOpen={open_close} onRequestClose={closeModal} >
         <UpdateUserForm />
       </ReactModal>
+
+      <div>
+        <h3>Recent Notebooks</h3>
+        <div>
+          {notebooks ?
+            <>
+            {Object.values(notebooks).map(eachBook => (
+              <>
+                <Link to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
+              </>
+            ))}
+            </>
+          :
+            <></>
+          }
+        </div>
+      </div>
     </>
   )
 };
