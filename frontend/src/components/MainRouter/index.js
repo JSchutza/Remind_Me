@@ -1,14 +1,6 @@
-// imports here:
-import MainRouter from './MainRouter.js'
-
-import styles from './mainrouter.module.css';
 
 
-// exports here:
+import MainRouter from './MainRouter.js';
+
+
 export default MainRouter;
-
-
-export {
-  styles,
-
-}

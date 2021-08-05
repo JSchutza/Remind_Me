@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import ErrorMessage from '../ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { thunk_signupUser, thunk_checkIfThereIsAUser } from '../../thunks/session.js';
 import { useHistory } from 'react-router-dom';
-import Div from '../Div';
 
 import { styles }  from '../SignupForm';
 
@@ -69,17 +67,15 @@ function SignupForm (){
 
     return (
         <>
-        <ErrorMessage type='main' errors={errors}/>
-
         <div className="reminder-signup">
                 <p>{reminder}</p>
         </div>
 
 
-        <Div selectors={[styles.main_div]}>
+        <div className={styles.main_div}>
         <form onSubmit={onSubmit}>
         <h1>Signup</h1>
-            <Div selectors={[styles.text_box]} >
+            <div className={styles.text_box} >
                 <label className={styles.each_label} htmlFor="username" /> Username
                 <br/>
                 <input
@@ -90,9 +86,9 @@ function SignupForm (){
                     id="username"
                     name="username"
                 />
-            </Div>
+            </div>
 
-            <Div selectors={[styles.text_box]} >
+            <div className={styles.text_box} >
                 <label className={styles.each_label} htmlFor="email"  /> Email
                 <br />
                 <input
@@ -103,9 +99,9 @@ function SignupForm (){
                     name='email'
                     id='email'
                 />
-            </Div>
+            </div>
 
-            <Div selectors={[styles.text_box]} >
+            <div className={styles.text_box} >
                     <label className={styles.each_label} htmlFor="" /> Password
                     <br/>
                     <input
@@ -116,9 +112,9 @@ function SignupForm (){
                         name='password'
                         id='password'
                     />
-            </Div>
+            </div>
 
-            <Div selectors={[styles.text_box]} >
+            <div className={styles.text_box} >
                     <label className={styles.each_label} htmlFor="" /> Confirmation
                     <br/>
                     <input
@@ -129,13 +125,13 @@ function SignupForm (){
                         name='confirmation'
                         id='confirmation'
                     />
-            </Div>
+            </div>
 
 
                 <button>Signup</button>
 
         </form>
-        </Div>
+        </div>
         </>
     );
 }

@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import readme_text from './README.md';
-import { useTheme } from '../../context/ThemeContext.js';
+
 
 // needed for parsing the markdown state item
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
+import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import logo from './logo_img.svg';
 
+// css
+import { styles } from '../ReadMe';
 
 // thank you MDN for helping me :)
 // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream
@@ -19,59 +22,22 @@ const ReadMe = () => {
   const [markdown, setMarkdown] = useState('');
 
 
-  const { themeType, setThemeType } = useTheme();
+
   let renderers;
-
-
-  if (themeType.type === 'Light') {
-    renderers = {
-      code: ({ language, value }) => {
-        return (
-          <SyntaxHighlighter
-            customStyle={
-              {
-                border: `none`,
-                outline: `none`,
-                background: `black`,
-                resize: `none`,
-                lineBreak: `anywhere`,
-
-              }
-            }
-            style={themeType.light_syntax}
-            showLineNumbers={true}
-            language={language}
-            children={value}
-          />
-        );
-      }
+  renderers = {
+    code: ({ language, value }) => {
+      return (
+        <SyntaxHighlighter
+          customStyle={ { border: `none`, outline: `none`, background: `black`, resize: `none`, lineBreak: `anywhere` } }
+          style={materialDark}
+          showLineNumbers={true}
+          language={language}
+          children={value}
+        />
+      );
     }
-  } else if (themeType.type === 'Dark') {
-
-    renderers = {
-      code: ({ language, value }) => {
-        return (
-          <SyntaxHighlighter
-            customStyle={
-              {
-                border: `none`,
-                outline: `none`,
-                background: `black`,
-                resize: `none`,
-                lineBreak: `anywhere`,
-
-              }
-            }
-            style={themeType.dark_syntax}
-            showLineNumbers={true}
-            language={language}
-            children={value}
-          />
-        );
-      }
     }
 
-  }
 
 
 
@@ -144,8 +110,13 @@ const ReadMe = () => {
   } else {
     return (
       <>
-        <img src={`${logo}`} />
-        <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
+        <div className={styles.readme_logo}>
+          <img src={`${logo}`} />
+        </div>
+
+        <div className={styles.markdown_container}>
+          <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
+        </div>
       </>
     );
   }

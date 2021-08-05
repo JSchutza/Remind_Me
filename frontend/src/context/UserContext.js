@@ -11,7 +11,7 @@ const useUser = () => useContext(UserContext);
 const UserProvider = ({ children }) => {
     const dispatch = useDispatch();
     const isUser = useSelector((store) => store.userReducer.user);
-    const [ toggleLoader, setToggleLoader ] = useState(false);
+
 
 
     useEffect(() => {
@@ -20,13 +20,7 @@ const UserProvider = ({ children }) => {
 
 
     return (
-        <UserContext.Provider value={{
-            isUser,
-            toggleLoader,
-            setToggleLoader
-
-        }} >
-
+        <UserContext.Provider value={{ isUser }} >
             { children }
         </UserContext.Provider>
     );

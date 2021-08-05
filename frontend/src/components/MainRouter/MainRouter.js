@@ -1,133 +1,85 @@
-// imports here:
-import { Switch, Route } from 'react-router-dom';
-import NavBar from './NavBar';
-import Home from '../Home';
+
+import { Route, Switch } from 'react-router-dom';
+import { useUser } from '../../context/UserContext.js';
+
+import NavBar from '../NavBar';
+import ReadMe from '../ReadMe';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
-import Div from '../Div';
-import Loader from '../Loader';
-import Profile from '../Profile';
-import NotebookPage from '../NotebookPage';
-import ErrorMessage from '../ErrorMessage';
-import TagCreator from '../TagCreator';
-import TagViewer from '../TagViewer';
-import ReadMe from '../ReadMe';
-import NoteViewer from '../NoteViewer';
-import ShowNoteBooks from '../ShowNoteBooks';
-
-
-import { useUser } from '../../context/UserContext.js';
-import { useError } from '../../context/ErrorContext.js';
-import { useSelector } from 'react-redux';
-
-//css
-import { styles } from '../MainRouter';
 
 
 
 
+const MainRouter = () => {
+  const { isUser } = useUser();
 
 
-
-// component definitions here:
-function MainRouter(){
-    const { isUser, toggleLoader } = useUser();
-    const { errors } = useError();
-    const recentCreatedNote = useSelector((store) => store.recentlyCreatedNoteReducer.note);
-
-
-    // if there is NOT a user
-    if(isUser === null){
-        return (
-        <>
-        <Switch>
-            <Route exact path="/">
-                <Div selectors={[]}>
-                    <NavBar />
-                    <Home />
-                </Div>
-            </Route>
-
-
-            <Route exact path="/login">
-                <NavBar />
-                        {/* {toggleLoader === true ? <Loader the_message={`Logging you out`} /> : <div></div>} */}
-                <LoginForm />
-            </Route>
-
-            <Route exact path="/signup">
-                <NavBar />
-                <SignupForm />
-            </Route>
-
-            <Route exact path="/readme">
-                <NavBar />
-                    <ReadMe />
-            </Route>
-        </Switch>
-        </>
-    );
-
-    }
-    // if there is a user
+  // if the user IS logged in
+  if(isUser) {
     return (
+      <>
+        <Switch>
+            {/* home */}
+
+        <Route path='/' exact>
+          <NavBar />
+        </Route>
+
+        <Route path='/readme' exact>
+          <NavBar />
+          <ReadMe />
+        </Route>
+
+      <Route path='/profile' exact>
+          <NavBar />
+        <h1>Profile </h1>
+      </Route>
+
+        <Route>
+          <NavBar />
+          <h2>Page Not Found</h2>
+        </Route>
+
+        </Switch>
+      </>
+    )
+  }
+
+
+
+  //  if the user is NOT logged in
+  return (
     <>
-    <Switch>
-        <Route exact path="/">
-            <Div selectors={[]}>
-                <NavBar />
-                <Home />
-            </Div>
-        </Route>
+      <Switch>
 
-        <Route exact path="/profile">
-            <NavBar />
+      <Route path='/' exact>
+        <NavBar />
+      </Route>
 
-            <div className={styles.main_outer_flex}>
-            <Div selectors={[styles.main_grid_flex]}>
-            <Div selectors={[styles.main_grid]}>
-                <Profile />
+      <Route path='/readme' exact>
+        <NavBar />
+        <ReadMe />
+      </Route>
 
-                <Div selectors={[styles.tagcreator_container]}>
-                    <TagCreator />
-                    <TagViewer />
-                </Div>
+      <Route path='/login' exact>
+        <NavBar />
+        <LoginForm />
+      </Route>
 
-                <div className={styles.sidebar_errors} >
-                    <ErrorMessage type='sidebar' errors={errors} />
-                </div>
-            </Div>
-            </Div>
-            </div>
+      <Route path='/signup' exact>
+          <NavBar />
+          <SignupForm />
+      </Route>
 
-        </Route>
+      <Route>
+        <NavBar />
+        <h2>Page Not Found</h2>
+      </Route>
 
-        <Route exact path="/notebooks">
-            <NavBar />
-                <ShowNoteBooks />
-        </Route>
-
-
-        <Route path={`/notebook/:notebookId`}>
-            <NavBar />
-                <NotebookPage />
-        </Route>
-
-        <Route path={`/note/:noteId`}>
-            <NavBar />
-                <NoteViewer the_content={recentCreatedNote} />
-        </Route>
-
-        <Route exact path="/readme">
-            <NavBar />
-                <ReadMe />
-        </Route>
-    </Switch>
+      </Switch>
     </>
-    );
-}
+  )
+};
 
 
-
-// exports here:
 export default MainRouter;
