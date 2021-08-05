@@ -4,7 +4,8 @@ import { useUser } from '../../context/UserContext.js';
 
 import NavBar from '../NavBar';
 import ReadMe from '../ReadMe';
-
+import LoginForm from '../LoginForm';
+import SignupForm from '../SignupForm';
 
 
 
@@ -18,6 +19,7 @@ const MainRouter = () => {
     return (
       <>
         <Switch>
+            {/* home */}
 
         <Route path='/' exact>
           <NavBar />
@@ -28,6 +30,10 @@ const MainRouter = () => {
           <ReadMe />
         </Route>
 
+      <Route path='/profile' exact>
+        {/* profile component */}
+        <h1>Profile </h1>
+      </Route>
 
         <Route>
           <NavBar />
@@ -56,11 +62,13 @@ const MainRouter = () => {
       </Route>
 
       <Route path='/login' exact>
-        {/* show login form */}
+        <NavBar />
+        <LoginForm />
       </Route>
 
       <Route path='/signup' exact>
-          {/* show signup form */}
+          <NavBar />
+          <SignupForm />
       </Route>
 
       <Route>
