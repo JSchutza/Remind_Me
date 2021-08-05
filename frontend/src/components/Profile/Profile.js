@@ -1,19 +1,25 @@
-
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useUser } from '../../context/UserContext.js';
 import { Link } from 'react-router-dom';
+
+import ReactModal from 'react-modal';
 
 
 
 const Profile = () => {
   const { isUser } = useUser();
-
+  const [ open_close, setOpen_Close ] = useState(false);
 
 
   const showUpdateForm = event => {
     event.preventDefault();
+    setOpen_Close(true);
   }
 
+  const closeModal = () => {
+    setOpen_Close(false);
+  }
 
 
   return (
@@ -34,6 +40,10 @@ const Profile = () => {
         </div>
 
       </div>
+
+      <ReactModal isOpen={open_close} onRequestClose={closeModal} >
+        <p>test</p>
+      </ReactModal>
     </>
   )
 };
