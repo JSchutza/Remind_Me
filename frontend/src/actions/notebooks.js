@@ -1,6 +1,6 @@
 
 
-import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK, UPDATE_NOTEBOOK } from '../types/notebooks.js';
+import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK, UPDATE_NOTEBOOK, GET_LIMIT_NOTEBOOKS } from '../types/notebooks.js';
 
 
 
@@ -50,12 +50,19 @@ const updateNotebook = (notebook) => {
 
 
 
+const getLimitedNotebooks = (notebooks) => ({
+  type: GET_LIMIT_NOTEBOOKS,
+  notebooks
+});
+
+
 export {
   getNoteBooks,
   notebookForPage,
   createNewNotebook,
   deleteNotebook,
   updateNotebook,
+  getLimitedNotebooks,
 
 
 };
