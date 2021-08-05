@@ -126,14 +126,14 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
     return (
         <>
             <div className={styles.preview_button} >
-                <Link
+                <Link to={'/'}
                     onClick={(event) => previewClickHandler(event)}
                 >
                     <h4>{buttontext}</h4>
                 </ Link>
             </div>
             <div className={styles.update_button}>
-                <Link
+                <Link to={'/'}
                     onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
                 >
                     <h4>Update</h4>
@@ -143,7 +143,7 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
             </div>
 
             <div className={styles.delete_button}>
-                <Link
+                <Link to={'/'}
                     onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
                 >
                     <h4>Delete</h4>
@@ -221,7 +221,7 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
     return (
         <>
             <div className={styles.preview_button} >
-                <Link
+                <Link to={'/'}
                     onClick={(event) => previewClickHandler(event)}
                 >
                     <h4>{buttontext}</h4>
@@ -230,7 +230,7 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
 
             {first_creation === true ?
                 <div className={'default'} >
-                    <Link
+                    <Link to={'/'}
                         onClick={(event) => notecreationClickHandler(event)}
                     >
                         <h4>Create</h4>
