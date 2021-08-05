@@ -34,11 +34,12 @@ function Root() {
     <Provider store={store}>
       <ThemeProvider>
         <BrowserRouter>
-          <ThemeChanger />
             <UserProvider>
               <MessageProvider>
                 <ErrorProvider>
-                  <App />
+                  <ThemeChanger>
+                      <App />
+                  </ThemeChanger>
                 </ErrorProvider>
               </MessageProvider>
           </UserProvider>
