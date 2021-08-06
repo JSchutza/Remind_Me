@@ -39,11 +39,7 @@ const notesReducer = (state = { notes: null }, action) => {
 const recentNoteReducer = (state = null, action) => {
   switch (action.type){
     case MOST_RECENT_NOTES:
-      if(action.count <= 5) {
-      return { ...state, [action.count]: { ...action.note }};
-    } else {
-      return null;
-    }
+      return { note: { ...action.note } };
     default:
       return state;
   }
