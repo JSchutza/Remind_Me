@@ -21,7 +21,7 @@ const NavBar = () => {
   const loginDemoUser = event => {
     event.preventDefault();
     dispatch(thunk_loginDemoUser());
-    history.push('/');
+    history.push('/profile');
   }
 
 
@@ -41,6 +41,7 @@ const NavBar = () => {
         <nav>
           <li> <NavLink to={'/'}> Home </NavLink> </li>
           <li> <NavLink to={'/profile'}> Profile </NavLink> </li>
+          <li> <NavLink to={'/notebooks'}> Notebooks </NavLink> </li>
           <li> <NavLink to={'/'} onClick={event => logoutUser(event)} > Logout </NavLink> </li>
 
         </nav>

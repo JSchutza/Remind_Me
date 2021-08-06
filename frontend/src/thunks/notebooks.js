@@ -1,4 +1,4 @@
-import { getNoteBooks, notebookForPage, createNewNotebook, deleteNotebook, updateNotebook } from '../actions/notebooks.js';
+import { getNoteBooks, notebookForPage, createNewNotebook, deleteNotebook, updateNotebook, getLimitedNotebooks } from '../actions/notebooks.js';
 
 
 
@@ -84,11 +84,28 @@ const thunk_deleteNotebook = (notebookId) => async (dispatch) => {
 };
 
 
+
+
+// GET localhost:5000/api/notebooks/limit/:amount
+const thunk_getLimitedNotebooks = (amount) => async (dispatch) => {
+
+  const response = await csrfFetch(`/api/notebooks/limit/${amount}`);
+
+  if (response.ok) {
+    const notebooks = await response.json();
+    dispatch(getLimitedNotebooks(notebooks));
+    return;
+  }
+  throw response;
+};
+
+
 export {
   thunk_getNoteBooks,
   thunk_notebookForPage,
   thunk_createNewNotebook,
   thunk_deleteNotebook,
   thunk_updateNotebook,
+  thunk_getLimitedNotebooks,
 
 };

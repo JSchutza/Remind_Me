@@ -43,7 +43,7 @@ function Footer() {
         <>
         <footer className={styles.main_footer}>
             <div className={styles.footer_container}>
-                <Link onClick={(event) => footerClickHandler(event)} >
+                <Link to={'/'} onClick={(event) => footerClickHandler(event)} >
                     <img className="" src={profile_photo} />
                 </Link>
 

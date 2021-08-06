@@ -6,7 +6,8 @@ import NavBar from '../NavBar';
 import ReadMe from '../ReadMe';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
-
+import Editor from '../Editor';
+import Profile from '../Profile';
 
 
 
@@ -23,6 +24,7 @@ const MainRouter = () => {
 
         <Route path='/' exact>
           <NavBar />
+            <Editor />
         </Route>
 
         <Route path='/readme' exact>
@@ -32,8 +34,22 @@ const MainRouter = () => {
 
       <Route path='/profile' exact>
           <NavBar />
-        <h1>Profile </h1>
+          <Profile />
       </Route>
+
+      <Route path='/notebooks' exact>
+        {/* notebooks here  */}
+          <NavBar />
+            <h1>Notebooks</h1>
+      </Route>
+
+
+      <Route path='/notebook/:notebookId' exact>
+        <NavBar />
+            <h1>Notebook</h1>
+            {/* EachNotebook component here */}
+      </Route>
+
 
         <Route>
           <NavBar />
@@ -54,6 +70,7 @@ const MainRouter = () => {
 
       <Route path='/' exact>
         <NavBar />
+        <Editor />
       </Route>
 
       <Route path='/readme' exact>

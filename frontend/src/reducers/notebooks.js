@@ -2,7 +2,7 @@
 
 
 
-import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK, UPDATE_NOTEBOOK } from '../types/notebooks.js';
+import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK, UPDATE_NOTEBOOK, GET_LIMIT_NOTEBOOKS } from '../types/notebooks.js';
 
 
 
@@ -14,6 +14,9 @@ const notebooksReducer = (state = { notebooks: null }, action) => {
     case GET_NOTEBOOKS:
       return { notebooks: { ...state.notebooks, [action.notebook?.notebook?.id]: action.notebook?.notebook } };
 
+    case GET_LIMIT_NOTEBOOKS:
+      return { ...action.notebooks };
+
     case DELETE_NOTEBOOK:
       const id = action.notebookId;
       delete state.notebooks[id];
@@ -21,6 +24,7 @@ const notebooksReducer = (state = { notebooks: null }, action) => {
 
     case UPDATE_NOTEBOOK:
       return { notebooks: { ...state.notebooks, [action.notebook.notebook.id]: action.notebook.notebook } };
+
 
     default:
       return state;
