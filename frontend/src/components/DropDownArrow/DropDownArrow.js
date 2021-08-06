@@ -5,8 +5,12 @@ import { VscChevronDown } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 
 
+import Editor from "../Editor";
 
-const DropDownArrow = ({ eachNote }) => {
+
+
+
+const DropDownArrow = ({ eachNote, notebookId }) => {
   const [ open, setOpen ] = useState(false);
 
 
@@ -24,6 +28,7 @@ const DropDownArrow = ({ eachNote }) => {
             <VscChevronDown />
               <p>{eachNote.title}</p>
           </div>
+
         </>
         :
         <>
@@ -31,6 +36,8 @@ const DropDownArrow = ({ eachNote }) => {
             <VscChevronRight />
               <p>{eachNote.title}</p>
           </div>
+
+            <Editor the_content={eachNote} notebook_id={notebookId}/>
         </>
       }
     </>

@@ -56,7 +56,7 @@ const NotebookViewer = () => {
           <>
             {Object.values(allNotes).map(eachNote => (
               <>
-                <DropDownArrow eachNote={eachNote} />
+                <DropDownArrow eachNote={eachNote} notebookId={notebookId} />
               </>
             ))}
           </>
