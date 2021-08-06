@@ -8,6 +8,8 @@ import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import Editor from '../Editor';
 import Profile from '../Profile';
+import NotebookViewer from "../NotebookViewer";
+import NotebooksPage from "../NotebooksPage";
 
 
 
@@ -40,14 +42,13 @@ const MainRouter = () => {
       <Route path='/notebooks' exact>
         {/* notebooks here  */}
           <NavBar />
-            <h1>Notebooks</h1>
+            <NotebooksPage />
       </Route>
 
 
       <Route path='/notebook/:notebookId' exact>
         <NavBar />
-            <h1>Notebook</h1>
-            {/* EachNotebook component here */}
+            <NotebookViewer />
       </Route>
 
 

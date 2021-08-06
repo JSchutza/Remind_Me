@@ -19,6 +19,8 @@ const Profile = () => {
   const [ open_close, setOpen_Close ] = useState(false);
 
   const notebooks = useSelector(store => store.notebooksReducer.notebooks);
+// create an input and state so that users can enter a number of notebooks they want to list
+
 
   useEffect(() => {
     dispatch(thunk_getLimitedNotebooks(3))
