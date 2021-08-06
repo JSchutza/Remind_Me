@@ -9,7 +9,7 @@ import SignupForm from '../SignupForm';
 import Editor from '../Editor';
 import Profile from '../Profile';
 import NotebookViewer from "../NotebookViewer";
-
+import NotebooksPage from "../NotebooksPage";
 
 
 
@@ -43,6 +43,7 @@ const MainRouter = () => {
         {/* notebooks here  */}
           <NavBar />
             <h1>Notebooks</h1>
+            <NotebooksPage />
       </Route>
 
 
