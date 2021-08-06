@@ -8,6 +8,8 @@ import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { thunk_getSpecificNote } from "../../thunks/notes.js";
 
 
+import DropDownArrow from "../DropDownArrow";
+
 
 
 const NotebookViewer = () => {
@@ -54,7 +56,7 @@ const NotebookViewer = () => {
           <>
             {Object.values(allNotes).map(eachNote => (
               <>
-                
+                <DropDownArrow eachNote={eachNote} />
               </>
             ))}
           </>
