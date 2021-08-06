@@ -2,9 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+
 
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { useUser } from "../../context/UserContext.js";
+
+
+
 
 
 const NotebooksPage = () => {
@@ -30,7 +36,10 @@ const NotebooksPage = () => {
           <>
             {Object.values(notebooks).map(eachNotebook => (
               <>
-                <h3>{eachNotebook.name}</h3>
+                <Link to={`/notebook/${eachNotebook.id}`} >
+                  <h3>{eachNotebook.name}</h3>
+                </Link>
+                {/* update and delete notebook components here */}
               </>
             ))}
           </>
