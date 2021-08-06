@@ -37,11 +37,15 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
 }));
 
 
-// GET localhost:5000/api/notebooks/limit/:amount
-router.get('/limit/:amount(\\d+)', asyncHandler(async (request, response)=> {
+// GET localhost:5000/api/notebooks/limit/:amount/:notebookOwner
+router.get('/limit/:amount(\\d+)/:notebookOwner(\\d+)', asyncHandler(async (request, response)=> {
   const amount = request.params.amount;
+  const notebookOwner = request.params.notebookOwner;
 
-  const notebooks = await Notebook.findAll({ order: [['id','DESC']], limit: Number(amount) });
+
+  const notebooks = await Notebook.findAll({ order: [['id','DESC']], limit: Number(amount), where: {
+    notebook_owner: Number(notebookOwner)
+  } });
   // normalize data here
   const result = {};
   notebooks.forEach(eachNotebook => {
