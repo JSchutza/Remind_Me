@@ -29,6 +29,7 @@ const DropDownArrow = ({ eachNote, notebookId }) => {
               <p>{eachNote.title}</p>
           </div>
 
+          <Editor the_content={eachNote} notebook_id={notebookId}/>
         </>
         :
         <>
@@ -37,7 +38,6 @@ const DropDownArrow = ({ eachNote, notebookId }) => {
               <p>{eachNote.title}</p>
           </div>
 
-            <Editor the_content={eachNote} notebook_id={notebookId}/>
         </>
       }
     </>
