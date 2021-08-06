@@ -26,7 +26,7 @@ import { styles } from '../Editor';
 
 
 
-const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) => {
+const Editor = ({ the_content = 'none', notebook_id }) => {
     // state here
     const [title, setTitle] = useState(the_content?.title);
     const [content, setContent] = useState(the_content?.content);
@@ -109,12 +109,14 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
 
 
     const noteUpdateClickHandler = (event, noteId) => {
+        event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id, noteId };
         dispatch(thunk_updateNote(payload));
     };
 
 
     const noteDeleteClickHandler = (event, noteId) => {
+        event.preventDefault();
         dispatch(thunk_deleteNote(noteId, notebook_id));
     };
 
@@ -227,20 +229,6 @@ const Editor = ({ the_content = 'none', first_creation = false, notebook_id }) =
                     <h4>{buttontext}</h4>
                 </Link>
             </div>
-
-            {first_creation === true ?
-                <div className={'default'} >
-                    <Link to={'/'}
-                        onClick={(event) => notecreationClickHandler(event)}
-                    >
-                        <h4>Create</h4>
-                    </Link>
-
-
-                </div>
-                :
-                <p></p>
-            }
 
 
             {showPreview === true ?
