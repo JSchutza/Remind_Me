@@ -42,7 +42,6 @@ const MainRouter = () => {
       <Route path='/notebooks' exact>
         {/* notebooks here  */}
           <NavBar />
-            <h1>Notebooks</h1>
             <NotebooksPage />
       </Route>
 

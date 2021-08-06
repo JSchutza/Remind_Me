@@ -12,7 +12,7 @@ import { GET_NOTEBOOKS, NOTEBOOK_FOR_PAGE, CREATE_NEW_NOTEBOOK, DELETE_NOTEBOOK,
 const notebooksReducer = (state = { notebooks: null }, action) => {
   switch (action.type) {
     case GET_NOTEBOOKS:
-      return { notebooks: { ...state.notebooks, [action.notebook?.notebook?.id]: action.notebook?.notebook } };
+      return { ...action.notebooks };
 
     case GET_LIMIT_NOTEBOOKS:
       return { ...action.notebooks };
