@@ -23,7 +23,7 @@ const Profile = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getLimitedNotebooks(3))
+    dispatch(thunk_getLimitedNotebooks(3, isUser.id))
   },[]);
 
 

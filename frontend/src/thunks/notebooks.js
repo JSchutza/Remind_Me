@@ -86,10 +86,10 @@ const thunk_deleteNotebook = (notebookId) => async (dispatch) => {
 
 
 
-// GET localhost:5000/api/notebooks/limit/:amount
-const thunk_getLimitedNotebooks = (amount) => async (dispatch) => {
+// GET localhost:5000/api/notebooks/limit/:amount/:notebookOwner
+const thunk_getLimitedNotebooks = (amount, notebookOwner) => async (dispatch) => {
 
-  const response = await csrfFetch(`/api/notebooks/limit/${amount}`);
+  const response = await csrfFetch(`/api/notebooks/limit/${amount}/${notebookOwner}`);
 
   if (response.ok) {
     const notebooks = await response.json();
