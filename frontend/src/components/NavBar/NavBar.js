@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { thunk_loginDemoUser, thunk_logoutUser } from '../../thunks/session.js';
 
 
+import styles from "./navbar.module.css";
 
 
 
@@ -36,29 +37,68 @@ const NavBar = () => {
 
   // if the user IS logged in
   if(isUser) {
+    // create an array of paths for nav bar
+    const paths = [
+      { path: '/', name: 'Home', onclick: false, func: null },
+      { path: '/profile', name: 'Profile', onclick: false, func: null },
+      { path: '/notebooks', name: 'Notebooks', onclick: false, func: null },
+      { path: '/', name: 'Logout', onclick: true, func: (event) => logoutUser(event)  },
+    ];
     return (
       <>
-        <nav>
-          <li> <NavLink to={'/'}> Home </NavLink> </li>
-          <li> <NavLink to={'/profile'}> Profile </NavLink> </li>
-          <li> <NavLink to={'/notebooks'}> Notebooks </NavLink> </li>
-          <li> <NavLink to={'/'} onClick={event => logoutUser(event)} > Logout </NavLink> </li>
-
-        </nav>
+        <div className={styles.nav_containter}>
+          <nav>
+            {paths.map(eachLink => (
+              <>
+                <div>
+                  {eachLink.onclick ?
+                    <>
+                      <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
+                    </>
+                  :
+                    <>
+                      <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
+                    </>
+                  }
+                </div>
+              </>
+            ))}
+          </nav>
+        </div>
       </>
     )
 
   }
 
+  // create an array of paths for nav bar
+  const paths = [
+    { path: '/', name: 'Home', onclick: false, func: null },
+    { path: '/login', name: 'Login', onclick: false, func: null },
+    { path: '/signup', name: 'Sign Up', onclick: false, func: null },
+    { path: '/', name: 'Demo', onclick: true, func: (event) => loginDemoUser(event) },
+  ];
   // if the user is NOT logged in
   return (
     <>
-      <nav>
-        <li> <NavLink to={'/'}> Home </NavLink> </li>
-        <li> <NavLink to={'/login'}> Login </NavLink> </li>
-        <li> <NavLink to={'/signup'}> Sign Up </NavLink> </li>
-        <li> <NavLink to={'/'} onClick={event => loginDemoUser(event)}> Demo </NavLink> </li>
-      </nav>
+      <div className={styles.nav_containter}>
+        <nav>
+          {paths.map(eachLink => (
+            <>
+              <div>
+                {eachLink.onclick ?
+                  <>
+                    <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
+                  </>
+                  :
+                  <>
+                    <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
+                  </>
+                }
+              </div>
+            </>
+          ))}
+        </nav>
+      </div>
     </>
   )
 
