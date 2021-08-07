@@ -10,6 +10,7 @@ import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { useUser } from "../../context/UserContext.js";
 
 import DeleteNotebook from "../DeleteNotebook";
+import UpdateNotebook from "../UpdateNotebook";
 
 
 
@@ -42,6 +43,7 @@ const NotebooksPage = () => {
                 </Link>
                 {/* update and delete notebook components here */}
                 <DeleteNotebook notebookId={eachNotebook.id} />
+                <UpdateNotebook notebookId={eachNotebook.id} />
               </>
             ))}
           </>
