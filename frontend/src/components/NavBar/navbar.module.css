@@ -2,17 +2,11 @@
 
 
 .nav_containter {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  padding: 5%;
   box-sizing: border-box;
 }
 
 
-.nav_containter li {
 
+.each_li_div {
+  padding: 1%;
 }

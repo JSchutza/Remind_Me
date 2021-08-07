@@ -46,11 +46,12 @@ const NavBar = () => {
     ];
     return (
       <>
+
         <div className={styles.nav_containter}>
           <nav>
             {paths.map(eachLink => (
               <>
-                <div>
+                <div className={styles.each_li_div}>
                   {eachLink.onclick ?
                     <>
                       <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
@@ -65,6 +66,7 @@ const NavBar = () => {
             ))}
           </nav>
         </div>
+
       </>
     )
 
@@ -80,11 +82,12 @@ const NavBar = () => {
   // if the user is NOT logged in
   return (
     <>
+
       <div className={styles.nav_containter}>
         <nav>
           {paths.map(eachLink => (
             <>
-              <div>
+              <div className={styles.each_li_div}>
                 {eachLink.onclick ?
                   <>
                     <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
@@ -99,6 +102,7 @@ const NavBar = () => {
           ))}
         </nav>
       </div>
+
     </>
   )
 
