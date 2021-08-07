@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { useUser } from "../../context/UserContext.js";
 
+import DeleteNotebook from "../DeleteNotebook";
 
 
 
@@ -40,6 +41,7 @@ const NotebooksPage = () => {
                   <h3>{eachNotebook.name}</h3>
                 </Link>
                 {/* update and delete notebook components here */}
+                <DeleteNotebook notebookId={eachNotebook.id} />
               </>
             ))}
           </>

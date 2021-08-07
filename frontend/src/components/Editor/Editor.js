@@ -28,14 +28,14 @@ import { styles } from '../Editor';
 
 const Editor = ({ the_content = 'none', notebook_id }) => {
     // state here
-    const [title, setTitle] = useState(the_content?.title);
-    const [content, setContent] = useState(the_content?.content);
-    const [showPreview, setShowPreview] = useState(false);
-    const [editpane, setEditpane ] = useState(true);
-    const [first, setFirst] = useState(0);
-    const [second, setSecond] = useState(false);
-    const [buttontext, setButtontext] = useState('Preview');
-    const [initStyle, setInitStyle] = useState('');
+    const [ title, setTitle ] = useState(the_content?.title);
+    const [ content, setContent ] = useState(the_content?.content);
+    const [ showPreview, setShowPreview ] = useState(false);
+    const [ editpane, setEditpane ] = useState(true);
+    const [ first, setFirst ] = useState(0);
+    const [ second, setSecond ] = useState(false);
+    const [ buttontext, setButtontext ] = useState('Preview');
+    const [ initStyle, setInitStyle ] = useState('');
 
     const dispatch = useDispatch();
 
@@ -128,31 +128,24 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
     return (
         <>
             <div className={styles.preview_button} >
-                <Link to={'/'}
-                    onClick={(event) => previewClickHandler(event)}
-                >
+                <Link to={'/'} onClick={(event) => previewClickHandler(event)} >
                     <h4>{buttontext}</h4>
                 </ Link>
             </div>
+
             <div className={styles.update_button}>
-                <Link to={'/'}
-                    onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
-                >
+                <Link to={'/'} onClick={(event) => noteUpdateClickHandler(event, the_content.id)} >
                     <h4>Update</h4>
                 </Link>
-
-
             </div>
 
             <div className={styles.delete_button}>
-                <Link to={'/'}
-                    onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
-                >
+                <Link to={'/'} onClick={(event) => noteDeleteClickHandler(event, the_content.id)} >
                     <h4>Delete</h4>
                 </Link>
-
-
             </div>
+
+
 
 
 
@@ -168,13 +161,11 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
                             <div className={styles.preview_content} >
                                 <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
                             </div>
-
                         </div>
-
                     </div>
                 </div>
                 :
-                <p></p>
+                <></>
             }
 
 
@@ -206,11 +197,11 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
 
                         </div>
                     </div>
-
                 </div>
 
+
                 :
-                <p></p>
+                <></>
             }
 
         </>
@@ -223,10 +214,12 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
     return (
         <>
             <div className={styles.preview_button} >
-                <Link to={'/'}
-                    onClick={(event) => previewClickHandler(event)}
-                >
-                    <h4>{buttontext}</h4>
+                <Link to={'/'} onClick={(event) => previewClickHandler(event)} >
+                    {!title?.length || !content?.length ?
+                        <></>
+                        :
+                        <h4>{buttontext}</h4>
+                    }
                 </Link>
             </div>
 
@@ -245,11 +238,11 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
                             </div>
 
                         </div>
-
                     </div>
                 </div>
+
                 :
-                <p></p>
+                <></>
             }
 
 
@@ -281,11 +274,10 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
 
                         </div>
                     </div>
-
                 </div>
 
                 :
-                <p></p>
+                <></>
             }
 
             </>
