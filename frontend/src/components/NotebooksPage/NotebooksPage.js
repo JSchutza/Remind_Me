@@ -40,6 +40,7 @@ const NotebooksPage = () => {
                   <h3>{eachNotebook.name}</h3>
                 </Link>
                 {/* update and delete notebook components here */}
+                
               </>
             ))}
           </>
