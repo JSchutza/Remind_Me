@@ -27,7 +27,9 @@ const NotebooksPage = () => {
   },[]);
 
 
-
+// need to check the length of notebooks ... but it is an empty object if there are no notebooks
+// also cant convert null to an array AKA notebooks at some time so need to think of a way to fix this
+  // check notebooks in the backend and send the length?
 
 
   return (
@@ -48,7 +50,9 @@ const NotebooksPage = () => {
             ))}
           </>
         :
-          <></>
+          <>
+            <h2>You currently do not have any notebooks!</h2>
+          </>
         }
     </div>
       </>
