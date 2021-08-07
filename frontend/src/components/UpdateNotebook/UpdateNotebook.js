@@ -1,27 +1,40 @@
 import { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
-import { thunk_updateNotebook } from "../../thunks/notebooks.js";
+import ReactModal from 'react-modal';
+
+
+import UpdateNotebookForm from "../UpdateNotebookForm";
 
 
 
 
 
 const UpdateNotebook = ({ notebookId }) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const [ showModal, setShowModal ] = useState(false);
+
 
   const handleUpdate = event => {
     event.preventDefault();
-    dispatch();
+    setShowModal(true);
+  }
+
+
+  const closeModal = () => {
+    setShowModal(false);
   }
 
 
 
   return (
     <>
+      <Link to={'/'} onClick={event => handleUpdate(event)} > Update </Link>
+
+
+      <ReactModal isOpen={showModal} onRequestClose={closeModal} >
+        <UpdateNotebookForm />
+      </ReactModal>
     </>
   )
 
