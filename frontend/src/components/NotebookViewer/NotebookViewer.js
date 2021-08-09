@@ -34,6 +34,9 @@ const NotebookViewer = () => {
 
 
 
+
+
+
   return (
     <>
       <h1>Notebook</h1>
@@ -50,8 +53,10 @@ const NotebookViewer = () => {
         }
       </div>
 
+
       <div>
         <h1>Notes</h1>
+
         {allNotes !== null ?
           <>
             {Object.values(allNotes).map(eachNote => (

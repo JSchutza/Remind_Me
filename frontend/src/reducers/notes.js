@@ -16,7 +16,11 @@ import { GET_SPECIFIC_NOTE, MOST_RECENT_NOTES, CREATE_NOTE, UPDATE_NOTE, DELETE_
 const notesReducer = (state = { notes: null }, action) => {
   switch (action.type) {
     case GET_SPECIFIC_NOTE:
-        return { ...state, notes: { ...action.notes.notes } };
+      if (action.notes.notes === null) {
+        return { notes: null };
+      }
+
+      return { ...state, notes: { ...action.notes.notes } };
 
     case CREATE_NOTE:
       return { notes: { ...state.notes, [action.note.note.id]: action.note.note } };
