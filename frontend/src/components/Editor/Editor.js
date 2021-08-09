@@ -26,7 +26,7 @@ import { styles } from '../Editor';
 
 
 
-const Editor = ({ the_content = 'none', notebook_id, closeModal }) => {
+const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
     // state here
     const [ title, setTitle ] = useState(the_content?.title);
     const [ content, setContent ] = useState(the_content?.content);
@@ -279,7 +279,13 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal }) => {
                 </div>
 
                 <div>
-                    <Link to={'/'} onClick={event => notecreationClickHandler(event)}> Create </Link>
+                    {homepage ?
+                        <></>
+                    :
+                        <>
+                            <Link to={'/'} onClick={event => notecreationClickHandler(event)}> Create </Link>
+                        </>
+                    }
                 </div>
                 </>
                 :

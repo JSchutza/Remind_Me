@@ -22,11 +22,10 @@ const MainRouter = () => {
     return (
       <>
         <Switch>
-            {/* home */}
 
         <Route path='/' exact>
           <NavBar />
-            <Editor />
+            <Editor homepage={true} />
         </Route>
 
         <Route path='/readme' exact>
@@ -71,7 +70,7 @@ const MainRouter = () => {
 
       <Route path='/' exact>
         <NavBar />
-        <Editor />
+        <Editor homepage={true} />
       </Route>
 
       <Route path='/readme' exact>
