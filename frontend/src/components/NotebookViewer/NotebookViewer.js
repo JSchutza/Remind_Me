@@ -2,18 +2,23 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-
+import { Link } from 'react-router-dom';
 
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { thunk_getSpecificNote } from "../../thunks/notes.js";
 
 
 import DropDownArrow from "../DropDownArrow";
+import ReactModal from 'react-modal';
+import Editor from "../Editor";
+
 
 
 
 const NotebookViewer = () => {
   const [ onrefresh, setOnRefresh ] = useState(false);
+  const [ showModal, setShowModal ] = useState(false);
+
   const { notebookId } = useParams();
   const notebook = useSelector(store => store.notebooksReducer.notebooks);
   const re_notebook = useSelector(store => store.notebookPageReducer?.notebook);
@@ -34,6 +39,15 @@ const NotebookViewer = () => {
 
 
 
+  const handleCreate = event => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
+
+  const closeModal = () => {
+    setShowModal(false);
+  }
 
 
 
@@ -56,6 +70,13 @@ const NotebookViewer = () => {
 
       <div>
         <h1>Notes</h1>
+        <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
+
+
+          <ReactModal isOpen={showModal} onRequestClose={closeModal} >
+            <Editor notebook_id={notebookId} />
+          </ReactModal>
+
 
         {allNotes !== null ?
           <>
@@ -67,7 +88,6 @@ const NotebookViewer = () => {
           </>
         :
         <h3>There are no notes for this Notebook</h3>
-          // show create button that shows a editor to create a note
         }
       </div>
 
