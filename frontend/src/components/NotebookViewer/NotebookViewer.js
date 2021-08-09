@@ -67,6 +67,7 @@ const NotebookViewer = () => {
           </>
         :
         <h3>There are no notes for this Notebook</h3>
+          // show create button that shows a editor to create a note
         }
       </div>
 

@@ -27,10 +27,15 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
     attributes: [ "description", "name", "createdAt", "id" ],
   });
 
+
   let result = {};
-  notebooks.forEach(eachNotebook => {
-    result[eachNotebook.id] = eachNotebook;
-  });
+  if(notebooks.length > 0) {
+    notebooks.forEach(eachNotebook => {
+      result[eachNotebook.id] = eachNotebook;
+    });
+  } else {
+    result = null;
+  }
 
   response.json({ notebooks: result });
 
