@@ -40,7 +40,6 @@ const Profile = () => {
   return (
     <>
       <div>
-
         <div>
           <img src={isUser.avatar} />
         </div>
@@ -53,8 +52,8 @@ const Profile = () => {
         <div>
           <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
         </div>
-
       </div>
+
 
       <ReactModal isOpen={open_close} onRequestClose={closeModal} >
         <UpdateUserForm />
@@ -76,6 +75,8 @@ const Profile = () => {
           }
         </div>
       </div>
+
+
     </>
   )
 };

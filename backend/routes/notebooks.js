@@ -27,10 +27,15 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
     attributes: [ "description", "name", "createdAt", "id" ],
   });
 
+
   let result = {};
-  notebooks.forEach(eachNotebook => {
-    result[eachNotebook.id] = eachNotebook;
-  });
+  if(notebooks.length > 0) {
+    notebooks.forEach(eachNotebook => {
+      result[eachNotebook.id] = eachNotebook;
+    });
+  } else {
+    result = null;
+  }
 
   response.json({ notebooks: result });
 
@@ -72,11 +77,9 @@ router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response)
 // POST localhost:5000/api/notebooks/new
 router.post('/new', asyncHandler(async (request, response) => {
   const { name, description, notebook_owner } = request.body;
-  const lastId = await Notebook.latestId();
 
 
   const just_created = await Notebook.create({
-    id: Number(lastId.id) + 1,
     name,
     description,
     notebook_owner: Number(notebook_owner)

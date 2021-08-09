@@ -17,6 +17,9 @@ const notebooksReducer = (state = { notebooks: null }, action) => {
     case GET_LIMIT_NOTEBOOKS:
       return { ...action.notebooks };
 
+    case CREATE_NEW_NOTEBOOK:
+      return { notebooks: { ...state.notebooks, [action.just_created.just_created.id]: action.just_created.just_created } };
+
     case DELETE_NOTEBOOK:
       const id = action.notebookId;
       delete state.notebooks[id];
@@ -53,6 +56,7 @@ const newNotebookReducer = (state = { just_created: null }, action) => {
       return state;
   };
 };
+
 
 
 const deleteNotebookReducer = (state = { notebook: null }, action) => {
