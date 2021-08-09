@@ -11,7 +11,7 @@ import { useUser } from "../../context/UserContext.js";
 
 
 
-const CreateNotebookForm = ({ notebookId }) => {
+const CreateNotebookForm = ({ notebookId, closeModal }) => {
   const [ name, setName ] = useState('');
   const [ description, setDescription ] = useState('');
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const CreateNotebookForm = ({ notebookId }) => {
     event.preventDefault();
     const payload = { name, description, notebook_owner: isUser.id };
     dispatch(thunk_createNewNotebook(payload));
+    closeModal();
   }
 
 

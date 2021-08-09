@@ -57,7 +57,7 @@ const NotebooksPage = () => {
 
 
       <ReactModal isOpen={showModal} onRequestClose={closeModal} >
-        <CreateNotebookForm  />
+        <CreateNotebookForm closeModal={closeModal} />
       </ReactModal>
 
 
