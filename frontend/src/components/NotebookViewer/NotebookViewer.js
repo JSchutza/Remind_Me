@@ -74,7 +74,7 @@ const NotebookViewer = () => {
 
 
           <ReactModal isOpen={showModal} onRequestClose={closeModal} >
-            <Editor notebook_id={notebookId} />
+            <Editor notebook_id={notebookId} closeModal={closeModal}/>
           </ReactModal>
 
 

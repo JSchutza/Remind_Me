@@ -26,7 +26,7 @@ import { styles } from '../Editor';
 
 
 
-const Editor = ({ the_content = 'none', notebook_id }) => {
+const Editor = ({ the_content = 'none', notebook_id, closeModal }) => {
     // state here
     const [ title, setTitle ] = useState(the_content?.title);
     const [ content, setContent ] = useState(the_content?.content);
@@ -103,9 +103,11 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
 
 
     const notecreationClickHandler = (event) => {
+        event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id };
         dispatch(thunk_createNewNote(payload));
-    }  ;
+        closeModal();
+    };
 
 
     const noteUpdateClickHandler = (event, noteId) => {
@@ -249,7 +251,7 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
 
 
             { editpane === true ?
-
+                <>
                 <div className={styles.edit_container} >
                     <div className={styles.edit_test} >
 
@@ -258,10 +260,10 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
                             <div className={styles.edit_title}>
                                 <label>
                                     Title:
-                            <input
-                                        onChange={(event) => setTitle(event.target.value)}
-                                        value={title}
-                                    />
+                                <input
+                                    onChange={(event) => setTitle(event.target.value)}
+                                    value={title}
+                                />
                                 </label>
                             </div>
 
@@ -276,6 +278,10 @@ const Editor = ({ the_content = 'none', notebook_id }) => {
                     </div>
                 </div>
 
+                <div>
+                    <Link to={'/'} onClick={event => notecreationClickHandler(event)}> Create </Link>
+                </div>
+                </>
                 :
                 <></>
             }
