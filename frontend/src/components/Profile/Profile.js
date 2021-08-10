@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { thunk_getLimitedNotebooks } from '../../thunks/notebooks.js';
 
+import no_user from "./no_user.svg";
+
 import ReactModal from 'react-modal';
 
 
@@ -41,7 +43,11 @@ const Profile = () => {
     <>
       <div>
         <div>
-          <img src={isUser.avatar} />
+          {isUser.avatar === null ?
+            <img src={no_user} />
+          :
+            <img src={isUser.avatar} />
+          }
         </div>
 
         <div>
@@ -50,7 +56,11 @@ const Profile = () => {
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
+          {isUser.id === 1 && isUser.email === 'demo@gmail.com' ?
+            <></>
+            :
+              <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
+           }
         </div>
       </div>
 

@@ -9,7 +9,7 @@ import { thunk_updateNotebook } from "../../thunks/notebooks.js";
 
 
 
-const UpdateNotebookForm = ({ notebookId }) => {
+const UpdateNotebookForm = ({ notebookId, closeModal }) => {
   const [ name, setName ] = useState('');
   const [ description, setDescription ] = useState('');
 
@@ -20,6 +20,7 @@ const UpdateNotebookForm = ({ notebookId }) => {
     event.preventDefault();
     const payload = { name, description, notebookId };
     dispatch(thunk_updateNotebook(payload));
+    closeModal();
   }
 
 

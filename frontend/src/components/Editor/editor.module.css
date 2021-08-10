@@ -108,14 +108,12 @@ color: red;
   padding: 10px 0;
   font-size: 1rem;
   margin-bottom: 30px;
-  border: none;
   outline: none;
   background: transparent;
   height: 32rem;
   resize: none;
   line-break: anywhere;
   position: absolute;
-  left: 12%;
   color: #8338ec;
   font-family: 'JetBrains Mono', monospace;
 }
