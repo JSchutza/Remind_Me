@@ -50,7 +50,11 @@ const Profile = () => {
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
+          {isUser.id === 1 && isUser.email === 'demo@gmail.com' ?
+            <></>
+            :
+              <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
+           }
         </div>
       </div>
 
