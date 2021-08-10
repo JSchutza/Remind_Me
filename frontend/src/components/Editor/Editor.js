@@ -175,34 +175,34 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
             { editpane === true ?
+                <>
+                    <EditorNav content={content} setContent={setContent} />
 
-                <div className={styles.edit_container} >
-                    <div className={styles.edit_test} >
+                    <div className={styles.edit_container} >
+                        <div className={styles.edit_test} >
 
-                        <div className={styles.edit_wrapper} >
+                            <div className={styles.edit_wrapper} >
 
-                            <div className={styles.edit_title}>
-                                <label>
-                                    Title:
-                                    <input
-                                        onChange={(event) => setTitle(event.target.value)}
-                                        value={title}
+                                <div className={styles.edit_title}>
+                                    <label>
+                                        Title:
+                                        <input
+                                            onChange={(event) => setTitle(event.target.value)}
+                                            value={title}
+                                        />
+                                    </label>
+                                </div>
+
+                                <div className={styles.edit_content}>
+                                    <textarea
+                                        onChange={(event) => setContent(event.target.value)}
+                                        value={content}
                                     />
-                                </label>
+                                </div>
                             </div>
-
-                            <div className={styles.edit_content}>
-                                <textarea
-                                    onChange={(event) => setContent(event.target.value)}
-                                    value={content}
-                                />
-                            </div>
-
                         </div>
                     </div>
-                </div>
-
-
+                </>
                 :
                 <></>
             }
