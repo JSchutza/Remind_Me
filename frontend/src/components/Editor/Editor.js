@@ -18,6 +18,7 @@ import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../t
 import { styles } from '../Editor';
 
 
+import EditorNav from "./EditorNav.js";
 
 
 
@@ -252,6 +253,8 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
             { editpane === true ?
                 <>
+                    <EditorNav content={content} setContent={setContent} />
+
                 <div className={styles.edit_container} >
                     <div className={styles.edit_test} >
 
