@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 
 
+import styles from "../Editor";
 
 
 const EditorNav = ({ content, setContent }) => {
@@ -74,31 +75,31 @@ const EditorNav = ({ content, setContent }) => {
   return (
     <>
       <div>
+        <nav>
+          <div className={styles.each_li_div} >
+            <li> <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link> </li>
+          </div>
 
-        <div>
-          <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link>
-        </div>
+          <div className={styles.each_li_div} >
+            <li> <Link to={'/'} onClick={event => insertHTwo(event)}> {'<h2>'} </Link> </li>
+          </div>
 
-        <div>
-          <Link to={'/'} onClick={event => insertHTwo(event)}> {'<h2>'} </Link>
-        </div>
+          <div className={styles.each_li_div} >
+            <li> <Link to={'/'} onClick={event => insertHThree(event)}> {'<h3>'} </Link> </li>
+          </div>
 
-        <div>
-          <Link to={'/'} onClick={event => insertHThree(event)}> {'<h3>'} </Link>
-        </div>
+          <div className={styles.each_li_div} >
+            <li> <Link to={'/'} onClick={event => insertCodeBlock(event)}> <VscJson /> </Link> </li>
+          </div>
 
-        <div>
-          <Link to={'/'} onClick={event => insertCodeBlock(event)}> <VscJson /> </Link>
-        </div>
+          <div className={styles.each_li_div} >
+            <li> <Link to={'/'} onClick={event => insertLine(event)}> <VscChromeMinimize /> </Link> </li>
+          </div>
 
-        <div>
-          <Link to={'/'} onClick={event => insertLine(event)}> <VscChromeMinimize /> </Link>
-        </div>
-
-        <div>
-          <Link to={'/'} onClick={event => insertBulletpoint(event)}> <VscListOrdered /> </Link>
-        </div>
-
+          <div className={styles.each_li_div} >
+            <li> <Link to={'/'} onClick={event => insertBulletpoint(event)}> <VscListOrdered /> </Link> </li>
+          </div>
+        </nav>
       </div>
     </>
   )
