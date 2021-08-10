@@ -9,15 +9,53 @@ import { Link } from 'react-router-dom';
 const EditorNav = ({ content, setContent }) => {
 
 
-  const handleHOne = event => {
+  const insertHOne = event => {
     event.preventDefault();
-
-    if(content === undefined) {
-      setContent('' + '# ')
+    if (content === undefined) {
+      setContent('' + '# ');
     } else {
-      setContent(content + '# ')
+      setContent(content + '# ');
     }
+  };
 
+
+  const insertHTwo = event => {
+    event.preventDefault();
+    if (content === undefined) {
+      setContent('' + '## ');
+    } else {
+      setContent(content + '## ');
+    }
+  }
+
+
+  const insertHThree = event => {
+    event.preventDefault();
+    if (content === undefined) {
+      setContent('' + '### ');
+    } else {
+      setContent(content + '### ');
+    }
+  }
+
+
+  const insertCodeBlock = event => {
+    event.preventDefault();
+    if (content === undefined){
+      setContent('' + '~~~\nEnter code here\n~~~');
+    } else {
+      setContent(content + '~~~\nEnter code here\n~~~');
+    }
+  }
+
+
+  const instertLine = event => {
+    event.preventDefault();
+    if (content === undefined){
+      setContent('' + '-----\n');
+    } else {
+      setContent(content + '-----\n');
+    }
   }
 
 
@@ -27,8 +65,25 @@ const EditorNav = ({ content, setContent }) => {
       <div>
 
         <div>
-          <Link to={'/'} onClick={event => handleHOne(event)}> h1 </Link>
+          <Link to={'/'} onClick={event => insertHOne(event)}> h1 </Link>
         </div>
+
+        <div>
+          <Link to={'/'} onClick={event => insertHTwo(event)}> h2 </Link>
+        </div>
+
+        <div>
+          <Link to={'/'} onClick={event => insertHThree(event)}> h3 </Link>
+        </div>
+
+        <div>
+          <Link to={'/'} onClick={event => insertCodeBlock(event)}> Code </Link>
+        </div>
+
+        <div>
+          <Link to={'/'} onClick={event => instertLine(event)}> Line </Link>
+        </div>
+
 
       </div>
     </>
