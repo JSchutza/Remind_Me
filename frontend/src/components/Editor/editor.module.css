@@ -119,6 +119,10 @@ color: red;
 }
 
 
+.nav_containter {
+  box-sizing: border-box;
+}
+
 
 .each_li_div {
   padding: 1%;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 
 
-import styles from "../Editor";
+import { styles } from "../Editor";
 
 
 const EditorNav = ({ content, setContent }) => {
@@ -74,7 +74,7 @@ const EditorNav = ({ content, setContent }) => {
 
   return (
     <>
-      <div>
+      <div className={styles.nav_containter}>
         <nav>
           <div className={styles.each_li_div} >
             <li> <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link> </li>
