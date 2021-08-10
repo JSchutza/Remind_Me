@@ -52,8 +52,8 @@ function Footer() {
                 {
                     show === true ?
                     <>
-                        <ul>
-                            <li> Joshua Schutza </li>
+                        <div>
+                            <p> Joshua Schutza </p>
 
                             <a href='https://github.com/JSchutza/Remind_Me' target="_blank" >
                                 <li> GitHub </li>
@@ -63,10 +63,10 @@ function Footer() {
                                 <li>README</li>
                             </NavLink>
 
-                        </ul>
+                        </div>
                     </>
                     :
-                    <div></div>
+                    <></>
                 }
             </div>
         </footer>
