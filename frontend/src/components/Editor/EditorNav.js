@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 
-import { VscJson, VscChromeMinimize } from "react-icons/vsc";
+import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 
 
 
@@ -50,12 +50,22 @@ const EditorNav = ({ content, setContent }) => {
   }
 
 
-  const instertLine = event => {
+  const insertLine = event => {
     event.preventDefault();
     if (content === undefined){
       setContent('' + '-----\n');
     } else {
       setContent(content + '\n-----\n');
+    }
+  }
+
+
+  const insertBulletpoint = event => {
+    event.preventDefault();
+    if(content === undefined) {
+      setContent('' + '* \n- ');
+    } else {
+      setContent(content + '\n* \n- ');
     }
   }
 
@@ -82,9 +92,12 @@ const EditorNav = ({ content, setContent }) => {
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => instertLine(event)}> <VscChromeMinimize /> </Link>
+          <Link to={'/'} onClick={event => insertLine(event)}> <VscChromeMinimize /> </Link>
         </div>
 
+        <div>
+          <Link to={'/'} onClick={event => insertBulletpoint(event)}> <VscListOrdered /> </Link>
+        </div>
 
       </div>
     </>
