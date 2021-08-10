@@ -2,6 +2,7 @@
 import { Route, Switch } from 'react-router-dom';
 import { useUser } from '../../context/UserContext.js';
 
+import Home from "../Home";
 import NavBar from '../NavBar';
 import ReadMe from '../ReadMe';
 import LoginForm from '../LoginForm';
@@ -25,6 +26,7 @@ const MainRouter = () => {
 
         <Route path='/' exact>
           <NavBar />
+            <Home />
             <Editor homepage={true} />
         </Route>
 
@@ -70,6 +72,7 @@ const MainRouter = () => {
 
       <Route path='/' exact>
         <NavBar />
+          <Home />
         <Editor homepage={true} />
       </Route>
 
