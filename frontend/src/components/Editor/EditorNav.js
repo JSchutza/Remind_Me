@@ -14,7 +14,7 @@ const EditorNav = ({ content, setContent }) => {
     if (content === undefined) {
       setContent('' + '# ');
     } else {
-      setContent(content + '# ');
+      setContent(content + '\n# ');
     }
   };
 
@@ -24,7 +24,7 @@ const EditorNav = ({ content, setContent }) => {
     if (content === undefined) {
       setContent('' + '## ');
     } else {
-      setContent(content + '## ');
+      setContent(content + '\n## ');
     }
   }
 
@@ -34,7 +34,7 @@ const EditorNav = ({ content, setContent }) => {
     if (content === undefined) {
       setContent('' + '### ');
     } else {
-      setContent(content + '### ');
+      setContent(content + '\n### ');
     }
   }
 
@@ -44,7 +44,7 @@ const EditorNav = ({ content, setContent }) => {
     if (content === undefined){
       setContent('' + '~~~\nEnter code here\n~~~');
     } else {
-      setContent(content + '~~~\nEnter code here\n~~~');
+      setContent(content + '\n~~~\nEnter code here\n~~~');
     }
   }
 
@@ -54,7 +54,7 @@ const EditorNav = ({ content, setContent }) => {
     if (content === undefined){
       setContent('' + '-----\n');
     } else {
-      setContent(content + '-----\n');
+      setContent(content + '\n-----\n');
     }
   }
 
