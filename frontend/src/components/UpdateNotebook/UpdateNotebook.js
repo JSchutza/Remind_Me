@@ -33,7 +33,7 @@ const UpdateNotebook = ({ notebookId }) => {
 
 
       <ReactModal isOpen={showModal} onRequestClose={closeModal} >
-        <UpdateNotebookForm notebookId={notebookId} />
+        <UpdateNotebookForm notebookId={notebookId} closeModal={closeModal} />
       </ReactModal>
     </>
   )
