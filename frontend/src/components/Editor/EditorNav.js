@@ -1,7 +1,8 @@
 
-// import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 
+import { VscJson, VscChromeMinimize } from "react-icons/vsc";
 
 
 
@@ -65,23 +66,23 @@ const EditorNav = ({ content, setContent }) => {
       <div>
 
         <div>
-          <Link to={'/'} onClick={event => insertHOne(event)}> h1 </Link>
+          <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link>
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => insertHTwo(event)}> h2 </Link>
+          <Link to={'/'} onClick={event => insertHTwo(event)}> {'<h2>'} </Link>
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => insertHThree(event)}> h3 </Link>
+          <Link to={'/'} onClick={event => insertHThree(event)}> {'<h3>'} </Link>
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => insertCodeBlock(event)}> Code </Link>
+          <Link to={'/'} onClick={event => insertCodeBlock(event)}> <VscJson /> </Link>
         </div>
 
         <div>
-          <Link to={'/'} onClick={event => instertLine(event)}> Line </Link>
+          <Link to={'/'} onClick={event => instertLine(event)}> <VscChromeMinimize /> </Link>
         </div>
 
 
