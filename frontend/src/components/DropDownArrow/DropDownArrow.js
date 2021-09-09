@@ -8,6 +8,8 @@ import { VscChevronRight } from "react-icons/vsc";
 import Editor from "../Editor";
 
 
+import styles from './dropdownarrow.module.css';
+
 
 
 const DropDownArrow = ({ eachNote, notebookId }) => {
@@ -24,18 +26,22 @@ const DropDownArrow = ({ eachNote, notebookId }) => {
     <>
       {open ?
         <>
-          <div onClick={ () => handleClose() }>
-            <VscChevronDown />
-              <p>{eachNote.title}</p>
+          <div
+            className={styles.notetitle_wrap}
+            onClick={ () => handleClose() }>
+                <VscChevronDown />
+                <p>{eachNote.title}</p>
           </div>
 
           <Editor the_content={eachNote} notebook_id={notebookId}/>
         </>
         :
         <>
-          <div onClick={ () => handleOpen() }>
-            <VscChevronRight />
-              <p>{eachNote.title}</p>
+          <div
+            className={styles.notetitle_wrap}
+            onClick={ () => handleOpen() }>
+                <VscChevronRight />
+                <p>{eachNote.title}</p>
           </div>
 
         </>
