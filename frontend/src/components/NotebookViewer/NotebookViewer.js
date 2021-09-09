@@ -62,11 +62,11 @@ const NotebookViewer = () => {
 
         {onrefresh && re_notebook !== null ?
           <>
-          <h3>{re_notebook.name}</h3>
+            <h3 className={styles.notebook_name} >{re_notebook.name}</h3>
           </>
         :
         <>
-            <h3>{notebook?.[notebookId].name}</h3>
+          <h3 className={styles.notebook_name} >{notebook?.[notebookId].name}</h3>
         </>
         }
 
@@ -89,7 +89,7 @@ const NotebookViewer = () => {
             ))}
           </>
         :
-        <h3>There are no notes for this Notebook</h3>
+        <h3 className={styles.no_note_message} >There are no notes for this Notebook</h3>
         }
 
     </>
