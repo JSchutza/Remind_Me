@@ -9,6 +9,9 @@ import { thunk_createNewNotebook } from "../../thunks/notebooks.js";
 import { useUser } from "../../context/UserContext.js";
 
 
+import styles from './createnotebookform.module.css';
+
+
 
 
 const CreateNotebookForm = ({ notebookId, closeModal }) => {
@@ -32,14 +35,15 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit} >
+      <div className={styles.createnotebook_wrap}>
+        <form className={styles.createnotebook_form} onSubmit={onSubmit} >
         <label>
           Name
           <input
             type="text"
             value={name}
             onChange={event => setName(event.target.value)}
-          />
+            />
         </label>
 
         <label>
@@ -48,11 +52,12 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
             type="text"
             value={description}
             onChange={event => setDescription(event.target.value)}
-          />
+            />
         </label>
 
         <button type="submit" > Create </button>
       </form>
+      </div>
     </>
   )
 };

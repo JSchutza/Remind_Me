@@ -14,6 +14,10 @@ import UpdateUserForm from '../UpdateUserForm';
 
 
 
+import styles from "./profile.module.css";
+
+
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -41,7 +45,7 @@ const Profile = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.userinfo_wrap}>
         <div>
           {isUser.avatar === null ?
             <img src={no_user} />
@@ -69,7 +73,7 @@ const Profile = () => {
         <UpdateUserForm />
       </ReactModal>
 
-      <div>
+      <div className={styles.recentnotebooks_wrap}>
         <h3>Recent Notebooks</h3>
         <div>
           {notebooks ?

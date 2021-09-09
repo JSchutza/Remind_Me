@@ -1,0 +1,35 @@
+
+
+
+
+
+
+
+
+.notebooks_wrap {
+  margin-left: 11.5vw;
+  padding: 25px;
+}
+
+
+.eachnotebook_container {
+  margin-left: 7.5vw;
+}
+
+
+
+.eachnotebook_wrap {
+  padding: 20px;
+  width: 39.5vw;
+}
+
+
+
+.eachnotebook_buttons_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}

@@ -1,7 +1,7 @@
-
-
-
 import { useState } from 'react';
+
+
+import styles from "./updateuserform.module.css";
 
 
 
@@ -18,7 +18,8 @@ const UpdateUserForm = () => {
 
   return (
     <>
-    <form onSubmit={onSubmit}>
+    <div className={styles.updateuser_wrap}>
+    <form className={styles.updateuser_form} onSubmit={onSubmit}>
 
       <label>
         Username
@@ -50,6 +51,7 @@ const UpdateUserForm = () => {
 
       <button type='submit'> Update </button>
     </form>
+    </div>
     </>
   )
 };

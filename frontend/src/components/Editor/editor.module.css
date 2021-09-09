@@ -1,17 +1,34 @@
 
 
+.update_button {
+  margin-left: 13vw;
+}
+
 
 .update_button h4 {
-color: #8338ec;
+  color: #8338ec;
+}
+
+
+
+
+.delete_button {
+  margin-left: 13vw;
 }
 
 
 
 
 .delete_button h4 {
-color: red;
+  color: red;
 }
 
+
+
+
+.preview_button {
+  margin-left: 10vw;
+}
 
 
 
