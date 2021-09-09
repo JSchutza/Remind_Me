@@ -14,6 +14,9 @@ import Editor from "../Editor";
 
 
 
+import styles from './notebookviewer.module.css';
+
+
 
 const NotebookViewer = () => {
   const [ onrefresh, setOnRefresh ] = useState(false);
@@ -53,9 +56,10 @@ const NotebookViewer = () => {
 
   return (
     <>
+      <div className={styles.notebookviewer_wrap} >
       <h1>Notebook</h1>
       {/* if the user refresh page */}
-      <div>
+
         {onrefresh && re_notebook !== null ?
           <>
           <h3>{re_notebook.name}</h3>
@@ -65,12 +69,10 @@ const NotebookViewer = () => {
             <h3>{notebook?.[notebookId].name}</h3>
         </>
         }
-      </div>
 
-
-      <div>
         <h1>Notes</h1>
         <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
+      </div>
 
 
           <ReactModal isOpen={showModal} onRequestClose={closeModal} >
@@ -89,7 +91,6 @@ const NotebookViewer = () => {
         :
         <h3>There are no notes for this Notebook</h3>
         }
-      </div>
 
     </>
   )
