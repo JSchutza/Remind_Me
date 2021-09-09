@@ -17,6 +17,7 @@ import UpdateNotebook from "../UpdateNotebook";
 import ReactModal from 'react-modal';
 
 
+import styles from "./notebookspage.module.css";
 
 
 const NotebooksPage = () => {
@@ -52,6 +53,7 @@ const NotebooksPage = () => {
 
   return (
     <>
+      <div className={styles.notebooks_wrap} >
       <h1>Notebooks</h1>
       <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
 
@@ -61,25 +63,38 @@ const NotebooksPage = () => {
       </ReactModal>
 
 
-      <div>
-        {notebooks !== null ?
-          <>
-            {Object.values(notebooks).map(eachNotebook => (
-              <>
-                <Link to={`/notebook/${eachNotebook.id}`} >
-                  <h3>{eachNotebook.name}</h3>
-                </Link>
-                {/* update and delete notebook components here */}
-                <DeleteNotebook notebookId={eachNotebook.id} />
-                <UpdateNotebook notebookId={eachNotebook.id} />
-              </>
-            ))}
-          </>
-        :
-          <>
-            <h2>You currently do not have any notebooks!</h2>
-          </>
-        }
+        <div className={styles.eachnotebook_container}>
+          {notebooks !== null ?
+            <>
+              {Object.values(notebooks).map(eachNotebook => (
+                <>
+                <div className={styles.eachnotebook_wrap}>
+                  <div>
+                    <Link to={`/notebook/${eachNotebook.id}`} >
+                      <h3>{eachNotebook.name}</h3>
+                    </Link>
+                  </div>
+
+                  <div className={styles.eachnotebook_buttons_wrap}>
+                    <div>
+                      <DeleteNotebook notebookId={eachNotebook.id} />
+                    </div>
+
+                    <div>
+                      <UpdateNotebook notebookId={eachNotebook.id} />
+                    </div>
+                  </div>
+
+                </div>
+                </>
+              ))}
+            </>
+          :
+            <>
+              <h2>You currently do not have any notebooks!</h2>
+            </>
+          }
+      </div>
     </div>
       </>
   )
