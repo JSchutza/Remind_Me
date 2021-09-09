@@ -41,13 +41,11 @@ function Footer() {
 
     return (
         <>
-        <footer className={styles.main_footer}>
+        <div className={styles.footer_wrap}>
             <div className={styles.footer_container}>
                 <Link to={'/'} onClick={(event) => footerClickHandler(event)} >
                     <img className="" src={profile_photo} />
                 </Link>
-
-
 
                 {
                     show === true ?
@@ -69,7 +67,7 @@ function Footer() {
                     <></>
                 }
             </div>
-        </footer>
+    </div>
         </>
     );
 }
