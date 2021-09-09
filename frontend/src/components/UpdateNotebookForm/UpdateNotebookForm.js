@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 import { thunk_updateNotebook } from "../../thunks/notebooks.js";
 
 
+import styles from './updatenotebookform.module.css';
+
 
 
 
@@ -28,7 +30,8 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit} >
+    <div className={styles.updatenotebook_wrap} >
+      <form className={styles.updatenotebook_form} onSubmit={onSubmit} >
         <label>
           Name
           <input
@@ -49,6 +52,7 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
 
         <button type="submit" > Update </button>
       </form>
+      </div>
     </>
   )
 };
