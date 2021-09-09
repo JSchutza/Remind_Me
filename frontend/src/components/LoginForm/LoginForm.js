@@ -16,53 +16,24 @@ function LoginForm() {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmation, setConfirmation ] = useState('');
-    const [ reminder, setReminder ] = useState('');
-    const [ errors, setErrors ] = useState([]);
 
     // setup useDispatch
     const dispatch = useDispatch();
     const history = useHistory();
 
 
-    // for making the ErrorMessage component
-    useEffect(() => {
-        // make the errors array for ErrorMessage component
-        let errors_array = [];
-
-        if(password.length <= 6) {
-            errors_array.push('Must have a password that is longer than six characters.');
-        }
-
-        if(password !== confirmation) {
-            errors_array.push('Your password does not match the confirmation box.');
-        }
-
-        setErrors([...errors_array]);
-    }, [username, password, confirmation]);
 
 
     const onSubmit = e => {
-    e.preventDefault();
-        // dispatch the thunk for the login api route only if errors.length is 0
-        if(errors.length === 0){
-            dispatch(thunk_login({ credential: username, password }));
-            history.push('/profile');
-        } else {
-            // set reminder state here
-            setReminder('Please check the above validation errors.');
-        }
-
-    // history.push('/');
+        e.preventDefault();
+        dispatch(thunk_login({ credential: username, password }));
+        // history.push('/profile');
     };
 
 
 
     return (
         <>
-            <div className="reminder-login">
-                <p>{reminder}</p>
-            </div>
-
             <div className={styles.main_div}>
             <h1> Login </h1>
             <form onSubmit={onSubmit} >

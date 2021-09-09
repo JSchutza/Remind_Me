@@ -41,12 +41,13 @@ const thunk_login = ({ credential, password }) => async (dispatch) => {
         body: JSON.stringify({ credential, password })
     });
 
-    if(response.ok) {
-        const the_user = await response.json();
+    const the_user = await response.json();
+    if (!the_user.errors) {
         dispatch(loginUser(the_user));
         return;
     }
-    throw response;
+    // dispatch error handler here
+    
 };
 
 
