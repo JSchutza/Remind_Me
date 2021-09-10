@@ -17,10 +17,9 @@ function LoginForm() {
     const [ password, setPassword ] = useState('');
     const [ confirmation, setConfirmation ] = useState('');
     const [ error, setError ] = useState([]);
+    const dispatch = useDispatch();
     const errors = useSelector(store => store.errorReducer.errors);
 
-    // setup useDispatch
-    const dispatch = useDispatch();
     const history = useHistory();
 
 
@@ -37,8 +36,7 @@ function LoginForm() {
 
     const onSubmit = e => {
         e.preventDefault();
-        dispatch(thunk_login({ credential: username, password }));
-        // history.push('/profile');
+        dispatch(thunk_login({ credential: username, password }, history));
     };
 
 

@@ -1,5 +1,6 @@
 // holds all the thunk functions for the session
 
+
 // import action creators here
 import { loginUser, checkForUser, logoutUser, signupUser, loginDemoUser } from '../actions/session.js';
 import { setError, clearError } from "../actions/error.js";
@@ -35,7 +36,7 @@ const thunk_checkIfThereIsAUser = () => async (dispatch) => {
 
 
 
-const thunk_login = ({ credential, password }) => async (dispatch) => {
+const thunk_login = ({ credential, password }, history) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/login', {
         method: 'POST',
@@ -46,6 +47,7 @@ const thunk_login = ({ credential, password }) => async (dispatch) => {
     if (!the_user.errors) {
         dispatch(clearError());
         dispatch(loginUser(the_user));
+        history.push('/profile');
         return;
     }
     // dispatch error handler here
