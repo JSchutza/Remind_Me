@@ -33,9 +33,11 @@ function SignupForm (){
 
 
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
-        dispatch(thunk_signupUser({ username, email, password }, history));
+        await dispatch(thunk_signupUser({ username, email, password }));
+        await dispatch(thunk_checkIfThereIsAUser());
+        history.push('/profile');
     };
 
 

@@ -72,7 +72,7 @@ const thunk_logoutUser = (history) => async (dispatch) => {
 
 
 
-const thunk_signupUser = ({ email, password, username }, history) => async (dispatch) => {
+const thunk_signupUser = ({ email, password, username }) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/signup', {
         method: 'POST',
@@ -83,8 +83,6 @@ const thunk_signupUser = ({ email, password, username }, history) => async (disp
     if(!the_user.errors) {
         dispatch(clearError());
         dispatch(signupUser(the_user));
-        dispatch(thunk_checkIfThereIsAUser());
-        history.push('/profile');
         return;
     }
     // dispatch error handler here
@@ -93,7 +91,7 @@ const thunk_signupUser = ({ email, password, username }, history) => async (disp
 
 
 
-const thunk_loginDemoUser = (history) => async (dispatch) => {
+const thunk_loginDemoUser = () => async (dispatch) => {
     const credential = 'demo-user';
     const password = 'password';
 
@@ -105,7 +103,6 @@ const thunk_loginDemoUser = (history) => async (dispatch) => {
     if(response.ok){
         const the_user = await response.json();
         dispatch(loginDemoUser(the_user));
-        history.push('/profile');
         return;
     }
     throw response;

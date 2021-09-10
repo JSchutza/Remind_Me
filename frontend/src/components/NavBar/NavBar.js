@@ -23,10 +23,11 @@ const NavBar = () => {
 
 
 
-  const loginDemoUser = event => {
+  const loginDemoUser = async event => {
     event.preventDefault();
-    dispatch(thunk_loginDemoUser(history));
+    await dispatch(thunk_loginDemoUser());
     dispatch(clearError());
+    history.push('/profile');
   }
 
 
