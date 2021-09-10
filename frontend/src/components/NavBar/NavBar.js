@@ -32,9 +32,8 @@ const NavBar = () => {
 
   const logoutUser = event => {
     event.preventDefault();
-    dispatch(thunk_logoutUser());
+    dispatch(thunk_logoutUser(history));
     dispatch(clearError());
-    history.push('/');
   }
 
 
