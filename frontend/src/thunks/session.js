@@ -92,7 +92,7 @@ const thunk_signupUser = ({ email, password, username }, history) => async (disp
 
 
 
-const thunk_loginDemoUser = () => async (dispatch) => {
+const thunk_loginDemoUser = (history) => async (dispatch) => {
     const credential = 'demo-user';
     const password = 'password';
 
@@ -104,6 +104,7 @@ const thunk_loginDemoUser = () => async (dispatch) => {
     if(response.ok){
         const the_user = await response.json();
         dispatch(loginDemoUser(the_user));
+        history.push('/profile');
         return;
     }
     throw response;

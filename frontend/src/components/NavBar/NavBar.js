@@ -25,9 +25,8 @@ const NavBar = () => {
 
   const loginDemoUser = event => {
     event.preventDefault();
-    dispatch(thunk_loginDemoUser());
+    dispatch(thunk_loginDemoUser(history));
     dispatch(clearError());
-    history.push('/profile');
   }
 
 
