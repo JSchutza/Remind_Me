@@ -119,8 +119,19 @@ module.exports = (sequelize, DataTypes) => {
 
 
   User.signup = async function ({ username, email, password }) {
+
+    if(username.length === 0 || username.length < 3 || username.length > 30){
+      return false;
+    } else if (email.length === 0 || email.length < 3 || email.length > 256 || !email.includes('@') || !email.includes('.')){
+      return false;
+    } else if (password.length === 0 || password.length > 60) {
+      return false;
+    }
+
+
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({ username, email, hashedPassword });
+
 
     if (user) {
       return await User.scope('currentUser').findByPk(user.id);

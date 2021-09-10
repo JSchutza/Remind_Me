@@ -12,18 +12,14 @@ const router = express.Router();
 // routes here:
 
 //POST  localhost:5000/api/users/login
-router.post('/login', validateLogin, asyncHandler(async (request, response, next) => {
+router.post('/login', asyncHandler(async (request, response) => {
     const { credential, password } = request.body;
 
     const user = await User.login({ credential, password });
 
     if (user === false) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        response.json({ err });
-        return next(err);
+        const errors = ['The provided credentials were invalid.'];
+        response.json({ errors });
     }
 
     setTokenCookie(response, user);
@@ -44,18 +40,14 @@ router.delete('/logout', (request, response) => {
 
 
 //POST localhost:5000/api/users/signup
-router.post('/signup', validateSignup, asyncHandler(async (request, response, next) => {
+router.post('/signup', asyncHandler(async (request, response) => {
     const { email, password, username } = request.body;
 
     const user = await User.signup({ email, username, password });
 
-
     if (user === false) {
-        const err = new Error('Signup failed.');
-        err.status = 401;
-        err.title = 'Signup failed';
-        err.errors = ['Signup failed'];
-        return next(err);
+        const errors = ['Signup failed'];
+        response.json({ errors });
     }
 
     setTokenCookie(response, user);

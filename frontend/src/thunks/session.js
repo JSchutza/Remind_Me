@@ -1,7 +1,9 @@
 // holds all the thunk functions for the session
 
+
 // import action creators here
 import { loginUser, checkForUser, logoutUser, signupUser, loginDemoUser } from '../actions/session.js';
+import { setError, clearError } from "../actions/error.js";
 
 // import csrfFetch here
 import { csrfFetch } from '../store/csrf.js';
@@ -34,19 +36,22 @@ const thunk_checkIfThereIsAUser = () => async (dispatch) => {
 
 
 
-const thunk_login = ({ credential, password }) => async (dispatch) => {
+const thunk_login = ({ credential, password }, history) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({ credential, password })
     });
 
-    if(response.ok) {
-        const the_user = await response.json();
+    const the_user = await response.json();
+    if (!the_user.errors) {
+        dispatch(clearError());
         dispatch(loginUser(the_user));
+        history.push('/profile');
         return;
     }
-    throw response;
+    // dispatch error handler here
+    dispatch(setError(the_user.errors));
 };
 
 
@@ -66,19 +71,23 @@ const thunk_logoutUser = () => async (dispatch) => {
 
 
 
-const thunk_signupUser = ({ email, password, username }) => async (dispatch) => {
+const thunk_signupUser = ({ email, password, username }, history) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({ email, password, username })
     });
 
-    if(response.ok) {
-        const the_user = await response.json();
+    const the_user = await response.json();
+    if(!the_user.errors) {
+        dispatch(clearError());
         dispatch(signupUser(the_user));
+        dispatch(thunk_checkIfThereIsAUser());
+        history.push('/profile');
         return;
     }
-    throw response;
+    // dispatch error handler here
+    dispatch(setError(the_user.errors));
 };
 
 

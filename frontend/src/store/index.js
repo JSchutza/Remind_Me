@@ -6,7 +6,7 @@ import { userReducer } from '../reducers/session.js';
 import { notebooksReducer, notebookPageReducer, newNotebookReducer, deleteNotebookReducer } from '../reducers/notebooks.js';
 import { notesReducer, recentNoteReducer, recentlyCreatedNoteReducer, recentlyDeletedNoteReducer } from '../reducers/notes.js';
 import { tagsReducer } from '../reducers/tags.js';
-
+import { errorReducer } from "../reducers/error.js";
 
 
 const rootReducer = combineReducers({
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
     recentlyCreatedNoteReducer,
     deleteNotebookReducer,
     recentlyDeletedNoteReducer,
+    errorReducer,
 
 
 });

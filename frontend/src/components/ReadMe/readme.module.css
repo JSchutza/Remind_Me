@@ -1,16 +1,29 @@
 
 
 
+.readme_logo {
+  margin-left: 18vw;
+}
+
+
+
+
 .readme_logo img {
   object-fit: contain;
   width: 100px;
 }
 
+
+
+
+
+
 .markdown_container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 18vw;
 }
