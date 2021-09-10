@@ -81,8 +81,8 @@ const NavBar = () => {
   // create an array of paths for nav bar
   const paths = [
     { path: '/', name: 'Home', onclick: false, func: null },
-    { path: '/login', name: 'Login', onclick: false, func: null },
-    { path: '/signup', name: 'Sign Up', onclick: false, func: null },
+    { path: '/login', name: 'Login', onclick: true, func: () => dispatch(clearError()) },
+    { path: '/signup', name: 'Sign Up', onclick: true, func: () => dispatch(clearError()) },
     { path: '/', name: 'Demo', onclick: true, func: (event) => loginDemoUser(event) },
   ];
 
