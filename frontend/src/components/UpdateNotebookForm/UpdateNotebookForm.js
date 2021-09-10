@@ -34,8 +34,7 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
   const onSubmit = event => {
     event.preventDefault();
     const payload = { name, description, notebookId };
-    dispatch(thunk_updateNotebook(payload));
-    // closeModal();
+    dispatch(thunk_updateNotebook(payload, closeModal));
   }
 
 

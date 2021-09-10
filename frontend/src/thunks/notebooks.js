@@ -54,7 +54,7 @@ const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async
 
 
 // PUT localhost:5000/api/notebooks/:notebookId/update
-const thunk_updateNotebook = ({ name, description, notebookId }) => async (dispatch) => {
+const thunk_updateNotebook = ({ name, description, notebookId }, closeModal) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notebooks/${notebookId}/update`, {
     method: 'PUT',
@@ -65,6 +65,7 @@ const thunk_updateNotebook = ({ name, description, notebookId }) => async (dispa
   if (!notebook.errors){
     dispatch(clearError());
     dispatch(updateNotebook(notebook));
+    closeModal();
     return;
   }
 
