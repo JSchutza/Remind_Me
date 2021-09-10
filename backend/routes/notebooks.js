@@ -100,19 +100,16 @@ router.post('/new', asyncHandler(async (request, response) => {
 router.put('/:notebookId(\\d+)/update', asyncHandler(async (request, response) => {
   const notebookId = request.params.notebookId;
   const { name, description } = request.body;
+  const payload = { name, description };
+  const notebook = await Notebook.validateBeforeUpdate(notebookId, payload);
 
-  const notebook = await Notebook.findByPk(notebookId);
-
-  if(notebook) {
-    await notebook.update({
-      name,
-      description
-    });
-
-    response.json({ notebook });
+  if (!notebook) {
+    const errors = ['Must enter a name or your name was too short.', "Error finding previous notebook." ];
+    response.json({ errors });
   }
 
-  response.json({ status: 500 });
+  response.json({ notebook });
+
 }));
 
 
