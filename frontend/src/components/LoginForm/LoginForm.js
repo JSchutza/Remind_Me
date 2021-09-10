@@ -1,7 +1,7 @@
 // imports here:
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunk_login } from '../../thunks/session.js';
 
 
@@ -16,10 +16,21 @@ function LoginForm() {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmation, setConfirmation ] = useState('');
+    const [ error, setError ] = useState([]);
+    const errors = useSelector(store => store.errorReducer.errors);
 
     // setup useDispatch
     const dispatch = useDispatch();
     const history = useHistory();
+
+
+
+    useEffect(() => {
+        if (errors !== null){
+            setError(errors);
+        }
+    }, [errors]);
+
 
 
 
@@ -34,6 +45,13 @@ function LoginForm() {
 
     return (
         <>
+            <div>
+                {error.map(eachError => (
+                    <li> {eachError}</li>
+                ))}
+            </div>
+
+
             <div className={styles.main_div}>
             <h1> Login </h1>
             <form onSubmit={onSubmit} >
