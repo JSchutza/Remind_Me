@@ -1,7 +1,7 @@
 
 
 
-import { SET_ERROR } from "../types/error.js";
+import { SET_ERROR, CLEAR_ERROR } from "../types/error.js";
 
 
 
@@ -13,8 +13,15 @@ const setError = (errors) => ({
 
 
 
+const clearError = () => ({
+  type: CLEAR_ERROR,
+});
+
+
+
 
 export {
   setError,
+  clearError,
 
 }
