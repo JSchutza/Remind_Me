@@ -40,18 +40,14 @@ router.delete('/logout', (request, response) => {
 
 
 //POST localhost:5000/api/users/signup
-router.post('/signup', validateSignup, asyncHandler(async (request, response, next) => {
+router.post('/signup', asyncHandler(async (request, response) => {
     const { email, password, username } = request.body;
 
     const user = await User.signup({ email, username, password });
 
-
     if (user === false) {
-        const err = new Error('Signup failed.');
-        err.status = 401;
-        err.title = 'Signup failed';
-        err.errors = ['Signup failed'];
-        return next(err);
+        const errors = ['Signup failed'];
+        response.json({ errors });
     }
 
     setTokenCookie(response, user);
