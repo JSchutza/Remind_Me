@@ -7,9 +7,12 @@ import { useDispatch } from 'react-redux';
 
 
 import { thunk_loginDemoUser, thunk_logoutUser } from '../../thunks/session.js';
+import { clearError } from "../../actions/error.js";
+
 
 
 import styles from "./navbar.module.css";
+
 
 
 
@@ -19,9 +22,11 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
 
+
   const loginDemoUser = event => {
     event.preventDefault();
     dispatch(thunk_loginDemoUser());
+    dispatch(clearError());
     history.push('/profile');
   }
 
@@ -29,6 +34,7 @@ const NavBar = () => {
   const logoutUser = event => {
     event.preventDefault();
     dispatch(thunk_logoutUser());
+    dispatch(clearError());
     history.push('/');
   }
 
@@ -44,6 +50,8 @@ const NavBar = () => {
       { path: '/notebooks', name: 'Notebooks', onclick: false, func: null },
       { path: '/', name: 'Logout', onclick: true, func: (event) => logoutUser(event)  },
     ];
+
+
     return (
       <>
 
@@ -79,6 +87,8 @@ const NavBar = () => {
     { path: '/signup', name: 'Sign Up', onclick: false, func: null },
     { path: '/', name: 'Demo', onclick: true, func: (event) => loginDemoUser(event) },
   ];
+
+
   // if the user is NOT logged in
   return (
     <>
