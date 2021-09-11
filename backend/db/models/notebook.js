@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
   // must give back the higest id currently in the db
-  Notebook.latestId = async function() {
+  Notebook.latestId = async () => {
     const all_ids = await Notebook.findAll({
       attributes: ['id']
     });
@@ -38,7 +38,20 @@ module.exports = (sequelize, DataTypes) => {
   };
 
 
+  Notebook.validateBeforeUpdate = async (notebookId, { name, description }) => {
+    if(name.length === 0 || name.length <= 3) {
+      return false;
+    }
 
+    const notebook = await Notebook.findByPk(notebookId);
+
+    if (notebook) {
+      await notebook.update({ name, description });
+      return notebook;
+    }
+
+    return false;
+  }
 
 
 

@@ -1,5 +1,5 @@
 import { getNoteBooks, notebookForPage, createNewNotebook, deleteNotebook, updateNotebook, getLimitedNotebooks } from '../actions/notebooks.js';
-
+import { setError, clearError } from "../actions/error.js";
 
 
 import { csrfFetch } from '../store/csrf.js';
@@ -52,19 +52,25 @@ const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async
 };
 
 
-const thunk_updateNotebook = ({ name, description, notebookId }) => async (dispatch) => {
+
+// PUT localhost:5000/api/notebooks/:notebookId/update
+const thunk_updateNotebook = ({ name, description, notebookId }, closeModal) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notebooks/${notebookId}/update`, {
     method: 'PUT',
     body: JSON.stringify({ name, description })
   });
 
-  if(response.ok){
-    const notebook = await response.json();
+  const notebook = await response.json();
+  if (!notebook.errors){
+    dispatch(clearError());
     dispatch(updateNotebook(notebook));
+    closeModal();
     return;
   }
-  throw response;
+
+  dispatch(setError(notebook.errors));
+
 };
 
 

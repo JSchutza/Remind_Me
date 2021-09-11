@@ -52,7 +52,7 @@ router.post('/signup', asyncHandler(async (request, response) => {
 
     setTokenCookie(response, user);
 
-    response.json({ user });
+    response.json({ user: user.toSafeObject() });
 }));
 
 

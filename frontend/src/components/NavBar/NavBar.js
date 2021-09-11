@@ -7,9 +7,12 @@ import { useDispatch } from 'react-redux';
 
 
 import { thunk_loginDemoUser, thunk_logoutUser } from '../../thunks/session.js';
+import { clearError } from "../../actions/error.js";
+
 
 
 import styles from "./navbar.module.css";
+
 
 
 
@@ -19,17 +22,19 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
 
-  const loginDemoUser = event => {
+
+  const loginDemoUser = async event => {
     event.preventDefault();
-    dispatch(thunk_loginDemoUser());
+    await dispatch(thunk_loginDemoUser());
+    dispatch(clearError());
     history.push('/profile');
   }
 
 
   const logoutUser = event => {
     event.preventDefault();
-    dispatch(thunk_logoutUser());
-    history.push('/');
+    dispatch(thunk_logoutUser(history));
+    dispatch(clearError());
   }
 
 
@@ -44,6 +49,8 @@ const NavBar = () => {
       { path: '/notebooks', name: 'Notebooks', onclick: false, func: null },
       { path: '/', name: 'Logout', onclick: true, func: (event) => logoutUser(event)  },
     ];
+
+
     return (
       <>
 
@@ -75,10 +82,12 @@ const NavBar = () => {
   // create an array of paths for nav bar
   const paths = [
     { path: '/', name: 'Home', onclick: false, func: null },
-    { path: '/login', name: 'Login', onclick: false, func: null },
-    { path: '/signup', name: 'Sign Up', onclick: false, func: null },
+    { path: '/login', name: 'Login', onclick: true, func: () => dispatch(clearError()) },
+    { path: '/signup', name: 'Sign Up', onclick: true, func: () => dispatch(clearError()) },
     { path: '/', name: 'Demo', onclick: true, func: (event) => loginDemoUser(event) },
   ];
+
+
   // if the user is NOT logged in
   return (
     <>

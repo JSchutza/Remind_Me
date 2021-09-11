@@ -5,21 +5,29 @@
 import { LOGIN_USER, CHECK_USER, LOGOUT_USER, LOGIN_DEMO } from '../types/session.js';
 
 
-// make the initalState
-const initialState = { user: null };
+
+
 
 
 // reducers here
-const userReducer = (state = initialState, action) => {
+const userReducer = (state={ user: null }, action) => {
     switch (action.type) {
         case CHECK_USER:
-            return { ...state, ...action.user };
+
+            if (action.user.user === null) {
+                return { ...state, user: null };
+            }
+            return { ...state, user: { ...action.user.user } };
+
         case LOGIN_USER:
-            return { ...state, ...action.user };
+            return { ...state, user: { ...action.user.user } };
+
         case LOGOUT_USER:
-            return { ...state, ...action.user };
+            return { ...state, user: null };
+
         case LOGIN_DEMO:
-            return { ...state, ...action.user };
+            return { ...state, user: { ...action.user.user } };
+
         default:
             return state;
     }
