@@ -11,6 +11,7 @@ import gfm from 'remark-gfm'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
+import { clearError } from '../../actions/error.js';
 
 
 
@@ -42,7 +43,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     const [ error, setError ] = useState([]);
     const errors = useSelector(store => store.errorReducer.errors);
     const dispatch = useDispatch();
-
+    let delayClearErrors;
 
 
     let renderers;
@@ -87,6 +88,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
         if (errors !== null) {
             setError(errors)
         }
+        return () => {
+            clearTimeout(delayClearErrors);
+            setError([]);
+        }
     },[errors]);
 
 
@@ -129,7 +134,12 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id, noteId };
         const success = await dispatch(thunk_updateNote(payload));
-
+        // if there was an error with the update
+        if(success === undefined) {
+            delayClearErrors = setTimeout(() => {
+                dispatch(clearError());
+            }, 2000);
+        }
     };
 
 

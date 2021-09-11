@@ -58,12 +58,15 @@ const thunk_updateNote = ({ due_date, title, content, notebook_id, noteId }) => 
     body: JSON.stringify({ due_date, title, content, notebook_id })
   });
 
-  if (response.ok) {
-    const note = await response.json();
+  const note = await response.json();
+  if (!note.errors) {
+    dispatch(clearError());
     dispatch(updateNote(note));
-    return;
+    return true;
   }
-  throw response;
+
+  dispatch(setError(note.errors));
+
 };
 
 
