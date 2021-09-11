@@ -129,7 +129,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
-
+    // if it is an update / there should be content in the editor
     if(the_content !== 'none') {
 
     return (
@@ -215,7 +215,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
         );
     }
 
-
+    // if it is a fresh editor WITHOUT content
     if (the_content === 'none') {
 
     return (
@@ -257,7 +257,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
             { editpane === true ?
                 <>
-                    <EditorNav content={content} setContent={setContent} />
+                    <EditorNav  content={content}  setContent={setContent}  freshEditor={true} />
 
                 <div className={styles.edit_container} >
                     <div className={styles.edit_test} >
