@@ -22,13 +22,14 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
     const payload = { name, description, notebook_owner: isUser.id };
-    dispatch(thunk_createNewNotebook(payload));
-    closeModal();
-    
-  }
+    const success = await dispatch(thunk_createNewNotebook(payload));
+    if (success) {
+      closeModal();
+    }
+  };
 
 
 
