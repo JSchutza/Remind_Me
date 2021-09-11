@@ -42,16 +42,12 @@ router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
 // POST localhost:5000/api/notes/new
 router.post('/new', asyncHandler(async (request, response) => {
   const { due_date, title, content, notebook_id } = request.body;
-
-  const note = await Note.create({
-    due_date,
-    title,
-    content,
-    notebook_id: Number(notebook_id)
-  });
+  const payload = { due_date, title, content, notebook_id };
+  const note = await Note.validateBeforeCreation(payload);
 
   if(!note) {
-    response.json({ message: "Error creating note."});
+    const errors = [ 'You must enter a title or your title was too short.', 'Error creating a note.' ];
+    response.json({ errors });
   }
 
   response.json({ note });
@@ -101,6 +97,8 @@ router.put('/:noteId(\\d+)/update', asyncHandler(async (request, response) => {
 
   response.json({ status: 500 });
 }));
+
+
 
 
 

@@ -45,6 +45,7 @@ const NotebookViewer = () => {
   const handleCreate = event => {
     event.preventDefault();
     setShowModal(true);
+    
   };
 
 
