@@ -34,9 +34,12 @@ function LoginForm() {
 
 
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
-        dispatch(thunk_login({ credential: username, password }, history));
+        const success = await dispatch(thunk_login({ credential: username, password }));
+        if(success) {
+            history.push('/profile');
+        }
     };
 
 

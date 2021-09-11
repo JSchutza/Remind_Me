@@ -6,6 +6,8 @@ import { csrfFetch } from '../store/csrf.js';
 
 
 
+
+
 const thunk_getNoteBooks = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/notebooks/${userId}`);
 
@@ -16,6 +18,8 @@ const thunk_getNoteBooks = (userId) => async (dispatch) => {
   }
   throw response;
 };
+
+
 
 
 
@@ -31,6 +35,8 @@ const thunk_notebookForPage = (notebookId) => async (dispatch) => {
   throw response;
 
 };
+
+
 
 
 
@@ -53,8 +59,12 @@ const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async
 
 
 
+
+
+
+
 // PUT localhost:5000/api/notebooks/:notebookId/update
-const thunk_updateNotebook = ({ name, description, notebookId }, closeModal) => async (dispatch) => {
+const thunk_updateNotebook = ({ name, description, notebookId }) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notebooks/${notebookId}/update`, {
     method: 'PUT',
@@ -65,13 +75,18 @@ const thunk_updateNotebook = ({ name, description, notebookId }, closeModal) => 
   if (!notebook.errors){
     dispatch(clearError());
     dispatch(updateNotebook(notebook));
-    closeModal();
-    return;
+    return true;
   }
 
   dispatch(setError(notebook.errors));
 
 };
+
+
+
+
+
+
 
 
 // DELETE localhost:5000/api/notebooks/:notebookId/remove
@@ -92,6 +107,10 @@ const thunk_deleteNotebook = (notebookId) => async (dispatch) => {
 
 
 
+
+
+
+
 // GET localhost:5000/api/notebooks/limit/:amount/:notebookOwner
 const thunk_getLimitedNotebooks = (amount, notebookOwner) => async (dispatch) => {
 
@@ -104,6 +123,9 @@ const thunk_getLimitedNotebooks = (amount, notebookOwner) => async (dispatch) =>
   }
   throw response;
 };
+
+
+
 
 
 export {

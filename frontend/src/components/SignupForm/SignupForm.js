@@ -15,11 +15,15 @@ function SignupForm (){
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
+
     const [ error, setError ] = useState([]);
     const dispatch = useDispatch();
     const errors = useSelector(store => store.errorReducer.errors);
-    // const user = useSelector((store) => store.userReducer.user);
+
     const history = useHistory();
+
+
+
 
 
 
@@ -36,9 +40,11 @@ function SignupForm (){
 
     const onSubmit = async e => {
         e.preventDefault();
-        await dispatch(thunk_signupUser({ username, email, password }));
+        const success = await dispatch(thunk_signupUser({ username, email, password }));
+        if(success) {
+            history.push('/profile');
+        }
 
-        // console.log(user, "<----- here");
     };
 
 

@@ -31,10 +31,14 @@ const NavBar = () => {
   }
 
 
-  const logoutUser = event => {
+
+
+
+  const logoutUser = async event => {
     event.preventDefault();
-    dispatch(thunk_logoutUser(history));
-    dispatch(clearError());
+    await dispatch(thunk_logoutUser(history));
+    await dispatch(clearError());
+    history.push('/');
   }
 
 
