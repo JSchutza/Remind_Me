@@ -56,6 +56,10 @@ const thunk_login = ({ credential, password }) => async (dispatch) => {
 
 
 
+
+
+
+
 const thunk_logoutUser = () => async (dispatch) => {
     const response = await csrfFetch('/api/users/logout', { method: 'DELETE' });
 
@@ -66,6 +70,10 @@ const thunk_logoutUser = () => async (dispatch) => {
     }
     throw response;
 };
+
+
+
+
 
 
 
@@ -89,6 +97,9 @@ const thunk_signupUser = ({ email, password, username }) => async (dispatch) => 
 
 
 
+
+
+
 const thunk_loginDemoUser = () => async (dispatch) => {
     const credential = 'demo-user';
     const password = 'password';
@@ -105,6 +116,9 @@ const thunk_loginDemoUser = () => async (dispatch) => {
     }
     throw response;
 };
+
+
+
 
 
 

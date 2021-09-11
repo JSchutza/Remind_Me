@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { thunk_updateNotebook } from "../../thunks/notebooks.js";
@@ -31,10 +32,13 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
     const payload = { name, description, notebookId };
-    dispatch(thunk_updateNotebook(payload, closeModal));
+    const success = await dispatch(thunk_updateNotebook(payload));
+    if (success) {
+      closeModal();
+    }
   }
 
 
