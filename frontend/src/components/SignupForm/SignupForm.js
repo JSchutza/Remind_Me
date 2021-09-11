@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunk_signupUser, thunk_checkIfThereIsAUser } from '../../thunks/session.js';
+import { thunk_signupUser } from '../../thunks/session.js';
 import { useHistory } from 'react-router-dom';
 
 import { styles }  from '../SignupForm';
@@ -18,7 +18,7 @@ function SignupForm (){
     const [ error, setError ] = useState([]);
     const dispatch = useDispatch();
     const errors = useSelector(store => store.errorReducer.errors);
-
+    // const user = useSelector((store) => store.userReducer.user);
     const history = useHistory();
 
 
@@ -33,11 +33,12 @@ function SignupForm (){
 
 
 
+
     const onSubmit = async e => {
         e.preventDefault();
         await dispatch(thunk_signupUser({ username, email, password }));
-        await dispatch(thunk_checkIfThereIsAUser());
-        history.push('/profile');
+
+        // console.log(user, "<----- here");
     };
 
 

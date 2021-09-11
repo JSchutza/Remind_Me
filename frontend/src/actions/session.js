@@ -35,14 +35,6 @@ const logoutUser = (the_user) => {
 
 
 
-const signupUser = (the_user) => {
-    return {
-        type: SIGNUP_USER,
-        user: the_user
-    };
-}
-
-
 
 
 const loginDemoUser = (the_user) => {
@@ -60,7 +52,6 @@ export {
     checkForUser,
     loginUser,
     logoutUser,
-    signupUser,
     loginDemoUser,
 
 

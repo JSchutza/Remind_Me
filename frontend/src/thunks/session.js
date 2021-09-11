@@ -2,7 +2,7 @@
 
 
 // import action creators here
-import { loginUser, checkForUser, logoutUser, signupUser, loginDemoUser } from '../actions/session.js';
+import { loginUser, checkForUser, logoutUser, loginDemoUser } from '../actions/session.js';
 import { setError, clearError } from "../actions/error.js";
 
 // import csrfFetch here
@@ -82,7 +82,7 @@ const thunk_signupUser = ({ email, password, username }) => async (dispatch) => 
     const the_user = await response.json();
     if(!the_user.errors) {
         dispatch(clearError());
-        dispatch(signupUser(the_user));
+        dispatch(checkForUser(the_user));
         return;
     }
     // dispatch error handler here
