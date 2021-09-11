@@ -107,6 +107,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id };
         dispatch(thunk_createNewNote(payload));
+        
         closeModal();
     };
 
