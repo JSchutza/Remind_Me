@@ -28,9 +28,11 @@ import EditorNav from "./EditorNav.js";
 
 
 const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
+    const defaultTitle = the_content?.title  ?  the_content?.title : '';
+    const defaultContent = the_content?.content  ?  the_content?.content : '';
     // state here
-    const [ title, setTitle ] = useState(the_content?.title);
-    const [ content, setContent ] = useState(the_content?.content);
+    const [ title, setTitle ] = useState(defaultTitle);
+    const [ content, setContent ] = useState(defaultContent);
     const [ showPreview, setShowPreview ] = useState(false);
     const [ editpane, setEditpane ] = useState(true);
     const [ first, setFirst ] = useState(0);
@@ -103,12 +105,13 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
-    const notecreationClickHandler = (event) => {
+    const notecreationClickHandler = async event => {
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id };
-        dispatch(thunk_createNewNote(payload));
-        
-        closeModal();
+        const success = await dispatch(thunk_createNewNote(payload));
+        if(success) {
+            closeModal();
+        }
     };
 
 

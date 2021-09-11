@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
 
+  
   Note.validateBeforeCreation = async ({ due_date, title, content, notebook_id }) => {
     if(title.length === 0 || title.length <= 3) {
       return false;

@@ -42,6 +42,7 @@ const thunk_createNewNote = ({ due_date, title, content, notebook_id }) => async
     return true;
   }
 
+  
   dispatch(setError(note.errors));
 
 };
