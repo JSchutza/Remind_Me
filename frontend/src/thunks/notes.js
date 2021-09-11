@@ -3,7 +3,7 @@
 
 
 import { getSpecificNote, createNewNote, updateNote, deleteNote } from '../actions/notes.js';
-
+import { setError, clearError } from "../actions/error.js";
 
 import { csrfFetch } from '../store/csrf.js';
 
@@ -27,7 +27,7 @@ const thunk_getSpecificNote = (notebookId) => async (dispatch) => {
 
 
 
-
+// POST localhost:5000/api/notes/new
 const thunk_createNewNote = ({ due_date, title, content, notebook_id }) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notes/new`, {
@@ -35,12 +35,16 @@ const thunk_createNewNote = ({ due_date, title, content, notebook_id }) => async
     body: JSON.stringify({ due_date, title, content, notebook_id })
   });
 
-  if (response.ok) {
-    const note = await response.json();
+  const note = await response.json();
+  if (!note.errors) {
+    dispatch(clearError());
     dispatch(createNewNote(note));
-    return;
+    return true;
   }
-  throw response;
+
+
+  dispatch(setError(note.errors));
+
 };
 
 

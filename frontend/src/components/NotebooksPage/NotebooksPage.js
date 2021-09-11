@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-
+import { clearError } from '../../actions/error.js';
 
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { useUser } from "../../context/UserContext.js";
@@ -41,6 +41,7 @@ const NotebooksPage = () => {
 
   const handleCreate = event => {
     event.preventDefault();
+    dispatch(clearError());
     setShowModal(true);
   }
 

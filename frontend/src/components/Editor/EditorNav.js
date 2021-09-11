@@ -1,5 +1,6 @@
 
-
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
@@ -8,7 +9,20 @@ import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 import { styles } from "../Editor";
 
 
-const EditorNav = ({ content, setContent }) => {
+const EditorNav = ({ content, setContent, freshEditor=false }) => {
+  const [ error, setError ] = useState([]);
+  const errors = useSelector(store => store.errorReducer.errors);
+
+
+
+  useEffect(() => {
+    if (errors !== null) {
+      setError(errors);
+    }
+   }, [errors]);
+
+
+
 
 
   const insertHOne = event => {
@@ -101,6 +115,21 @@ const EditorNav = ({ content, setContent }) => {
           </div>
         </nav>
       </div>
+
+
+      {freshEditor ?
+        <div>
+          <div>
+            {error.map(eachError => (
+              <li> {eachError}</li>
+            ))}
+          </div>
+        </div>
+        :
+          <></>
+        }
+
+
     </>
   )
 

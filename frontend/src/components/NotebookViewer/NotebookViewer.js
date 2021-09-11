@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 
+import { clearError } from "../../actions/error.js";
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { thunk_getSpecificNote } from "../../thunks/notes.js";
 
@@ -44,7 +45,9 @@ const NotebookViewer = () => {
 
   const handleCreate = event => {
     event.preventDefault();
+    dispatch(clearError());
     setShowModal(true);
+
   };
 
 

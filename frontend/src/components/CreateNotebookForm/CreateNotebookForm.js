@@ -1,8 +1,8 @@
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { thunk_createNewNotebook } from "../../thunks/notebooks.js";
 
@@ -17,17 +17,31 @@ import styles from './createnotebookform.module.css';
 const CreateNotebookForm = ({ notebookId, closeModal }) => {
   const [ name, setName ] = useState('');
   const [ description, setDescription ] = useState('');
+  const [error, setError] = useState([]);
+  const errors = useSelector(store => store.errorReducer.errors);
   const dispatch = useDispatch();
   const { isUser } = useUser();
 
 
 
-  const onSubmit = event => {
+
+  useEffect(() => {
+    if (errors !== null) {
+      setError(errors)
+    }
+  }, [errors]);
+
+
+
+
+  const onSubmit = async event => {
     event.preventDefault();
     const payload = { name, description, notebook_owner: isUser.id };
-    dispatch(thunk_createNewNotebook(payload));
-    closeModal();
-  }
+    const success = await dispatch(thunk_createNewNotebook(payload));
+    if (success) {
+      closeModal();
+    }
+  };
 
 
 
@@ -35,6 +49,12 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
 
   return (
     <>
+      <div>
+        {error.map(eachError => (
+          <li> {eachError}</li>
+        ))}
+      </div>
+
       <div className={styles.createnotebook_wrap}>
         <form className={styles.createnotebook_form} onSubmit={onSubmit} >
         <label>
