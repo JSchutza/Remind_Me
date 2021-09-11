@@ -74,24 +74,20 @@ router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response)
 }));
 
 
+
 // POST localhost:5000/api/notebooks/new
 router.post('/new', asyncHandler(async (request, response) => {
   const { name, description, notebook_owner } = request.body;
 
+  const just_created = Notebook.validateBeforeCreation({ name, description, notebook_owner });
 
-  const just_created = await Notebook.create({
-    name,
-    description,
-    notebook_owner: Number(notebook_owner)
-  });
-
-
-
-  if (!just_created) {
-    response.json({ error: "Could not create a notebook."});
+  if (!just_created){
+    const errors = [ 'Must enter a name or your name was too short.', "Error when creating a notebook." ];
+    response.json({ errors });
   }
 
   response.json({ just_created });
+
 }));
 
 
@@ -104,7 +100,7 @@ router.put('/:notebookId(\\d+)/update', asyncHandler(async (request, response) =
   const notebook = await Notebook.validateBeforeUpdate(notebookId, payload);
 
   if (!notebook) {
-    const errors = ['Must enter a name or your name was too short.', "Error finding previous notebook." ];
+    const errors = [ 'Must enter a name or your name was too short.', "Error finding previous notebook." ];
     response.json({ errors });
   }
 

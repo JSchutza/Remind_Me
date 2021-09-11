@@ -55,5 +55,29 @@ module.exports = (sequelize, DataTypes) => {
 
 
 
+  Notebook.validateBeforeCreation = async ({ name, description, notebook_owner }) => {
+    if (name.length === 0 || name.length <= 3) {
+      return false;
+    }
+
+    const just_created = await Notebook.create({ name, description,
+      notebook_owner: Number(notebook_owner)
+    });
+
+    if (just_created) {
+      return just_created;
+    }
+
+    return false;
+
+  }
+
+
+
+
+
+
+
+
   return Notebook;
 };

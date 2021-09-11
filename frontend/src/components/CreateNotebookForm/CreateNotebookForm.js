@@ -27,6 +27,7 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
     const payload = { name, description, notebook_owner: isUser.id };
     dispatch(thunk_createNewNotebook(payload));
     closeModal();
+    
   }
 
 

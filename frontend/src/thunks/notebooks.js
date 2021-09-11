@@ -41,6 +41,7 @@ const thunk_notebookForPage = (notebookId) => async (dispatch) => {
 
 
 
+// POST localhost:5000/api/notebooks/new
 const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async (dispatch) => {
 
   const response = await csrfFetch('/api/notebooks/new', {
@@ -49,12 +50,15 @@ const thunk_createNewNotebook = ({ name, description, notebook_owner }) => async
   });
 
 
-  if (response.ok) {
-    const notebook = await response.json();
+  const notebook = await response.json();
+  if (!notebook.errors) {
+    dispatch(clearError());
     dispatch(createNewNotebook(notebook));
-    return;
+    return true;
   }
-  throw response;
+
+  dispatch(setError(notebook.errors));
+
 };
 
 
