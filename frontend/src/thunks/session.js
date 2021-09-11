@@ -57,13 +57,12 @@ const thunk_login = ({ credential, password }, history) => async (dispatch) => {
 
 
 
-const thunk_logoutUser = (history) => async (dispatch) => {
+const thunk_logoutUser = () => async (dispatch) => {
     const response = await csrfFetch('/api/users/logout', { method: 'DELETE' });
 
     if(response.ok){
         const the_user = await response.json();
         dispatch(logoutUser(the_user));
-        history.push('/');
         return;
     }
     throw response;
