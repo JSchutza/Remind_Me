@@ -79,7 +79,7 @@ router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response)
 router.post('/new', asyncHandler(async (request, response) => {
   const { name, description, notebook_owner } = request.body;
 
-  const just_created = Notebook.validateBeforeCreation({ name, description, notebook_owner });
+  const just_created = await Notebook.validateBeforeCreation({ name, description, notebook_owner });
 
   if (!just_created){
     const errors = [ 'Must enter a name or your name was too short.', "Error when creating a notebook." ];
