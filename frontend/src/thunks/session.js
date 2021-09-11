@@ -36,7 +36,7 @@ const thunk_checkIfThereIsAUser = () => async (dispatch) => {
 
 
 
-const thunk_login = ({ credential, password }, history) => async (dispatch) => {
+const thunk_login = ({ credential, password }) => async (dispatch) => {
 
     const response = await csrfFetch('/api/users/login', {
         method: 'POST',
@@ -47,8 +47,7 @@ const thunk_login = ({ credential, password }, history) => async (dispatch) => {
     if (!the_user.errors) {
         dispatch(clearError());
         dispatch(loginUser(the_user));
-        history.push('/profile');
-        return;
+        return true;
     }
     // dispatch error handler here
     dispatch(setError(the_user.errors));
