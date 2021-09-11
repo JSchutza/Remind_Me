@@ -9,7 +9,7 @@ import gfm from 'remark-gfm'
 
 
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
 
 
@@ -39,7 +39,8 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     const [ second, setSecond ] = useState(false);
     const [ buttontext, setButtontext ] = useState('Preview');
     const [ initStyle, setInitStyle ] = useState('');
-
+    const [ error, setError ] = useState([]);
+    const errors = useSelector(store => store.errorReducer.errors);
     const dispatch = useDispatch();
 
 
@@ -81,6 +82,15 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+    // error useEffect here
+    useEffect(() => {
+        if (errors !== null) {
+            setError(errors)
+        }
+    },[errors]);
+
+
+
 
 
     const previewClickHandler = (event) => {
@@ -115,10 +125,11 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     };
 
 
-    const noteUpdateClickHandler = (event, noteId) => {
+    const noteUpdateClickHandler = async (event, noteId) => {
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id, noteId };
-        dispatch(thunk_updateNote(payload));
+        const success = await dispatch(thunk_updateNote(payload));
+
     };
 
 
@@ -153,7 +164,13 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
             </div>
 
 
-
+            <div>
+                <div>
+                    {error.map(eachError => (
+                        <li> {eachError}</li>
+                    ))}
+                </div>
+            </div>
 
 
             {showPreview === true ?

@@ -50,7 +50,7 @@ const thunk_createNewNote = ({ due_date, title, content, notebook_id }) => async
 
 
 
-// /api/notes/:noteId/update
+// PUT localhost:5000/api/notes/:noteId/update
 const thunk_updateNote = ({ due_date, title, content, notebook_id, noteId }) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notes/${noteId}/update`, {

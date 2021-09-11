@@ -56,6 +56,22 @@ module.exports = (sequelize, DataTypes) => {
 
 
 
+  Note.validateBeforeUpdate = async (noteId, { due_date, title, content, notebook_id }) => {
+    if (title.length === 0 || title.length <= 3) {
+      return false;
+    }
+
+    const note = await Note.findByPk(noteId);
+
+    if(note) {
+      await note.update({ due_date, title, content, notebook_id: Number(notebook_id) });
+      return note;
+    }
+
+    return false;
+
+  }
+
 
   return Note;
 };
