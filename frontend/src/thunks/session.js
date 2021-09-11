@@ -83,7 +83,7 @@ const thunk_signupUser = ({ email, password, username }) => async (dispatch) => 
     if(!the_user.errors) {
         dispatch(clearError());
         dispatch(checkForUser(the_user));
-        return;
+        return true;
     }
     // dispatch error handler here
     dispatch(setError(the_user.errors));
