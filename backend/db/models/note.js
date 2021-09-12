@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     const lastId = await Note.latestId();
+    // console.log(lastId.id);
 
     const note = await Note.create({ id: lastId.id + 1, due_date, title, content,
       notebook_id: Number(notebook_id)

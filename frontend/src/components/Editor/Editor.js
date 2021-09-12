@@ -83,6 +83,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+
+
+
+
     // error useEffect here
     useEffect(() => {
         if (errors !== null) {
@@ -93,6 +97,8 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
             setError([]);
         }
     },[errors]);
+
+
 
 
 
@@ -120,6 +126,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+
+
+
+
     const notecreationClickHandler = async event => {
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id };
@@ -128,6 +138,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
             closeModal();
         }
     };
+
+
+
+
 
 
     const noteUpdateClickHandler = async (event, noteId) => {
@@ -143,10 +157,15 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     };
 
 
+
+
+
     const noteDeleteClickHandler = (event, noteId) => {
         event.preventDefault();
         dispatch(thunk_deleteNote(noteId, notebook_id));
     };
+
+
 
 
 
@@ -173,14 +192,6 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                 </Link>
             </div>
 
-
-            <div>
-                <div>
-                    {error.map(eachError => (
-                        <li> {eachError}</li>
-                    ))}
-                </div>
-            </div>
 
 
             {showPreview === true ?
