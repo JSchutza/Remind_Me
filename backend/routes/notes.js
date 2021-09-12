@@ -76,26 +76,22 @@ router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) =>
 
 
 
+
 // PUT localhost:5000/api/notes/:noteId/update
 router.put('/:noteId(\\d+)/update', asyncHandler(async (request, response) => {
-  const id = request.params.noteId;
-
+  const noteId = request.params.noteId;
   const { due_date, title, content, notebook_id } = request.body;
+  const payload = { due_date, title, content, notebook_id };
 
-  const note = await Note.findByPk(id)
+  const note = await Note.validateBeforeUpdate(noteId, payload);
 
-  if(note){
-    await note.update({
-      due_date,
-      title,
-      content,
-      notebook_id: Number(notebook_id)
-    });
-
-    response.json({ note });
+  if (!note) {
+    const errors = [ 'You must enter a title or your title was too short.', 'Error updating your note.' ];
+    response.json({ errors });
   }
 
-  response.json({ status: 500 });
+  response.json({ note });
+
 }));
 
 

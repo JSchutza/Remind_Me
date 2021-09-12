@@ -3,7 +3,7 @@
 
 
 import { getSpecificNote, createNewNote, updateNote, deleteNote } from '../actions/notes.js';
-import { setError, clearError } from "../actions/error.js";
+import { setError, clearError, setUpdateNoteError, clearUpdateNoteError } from "../actions/error.js";
 
 import { csrfFetch } from '../store/csrf.js';
 
@@ -50,7 +50,7 @@ const thunk_createNewNote = ({ due_date, title, content, notebook_id }) => async
 
 
 
-// /api/notes/:noteId/update
+// PUT localhost:5000/api/notes/:noteId/update
 const thunk_updateNote = ({ due_date, title, content, notebook_id, noteId }) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/notes/${noteId}/update`, {
@@ -58,12 +58,15 @@ const thunk_updateNote = ({ due_date, title, content, notebook_id, noteId }) => 
     body: JSON.stringify({ due_date, title, content, notebook_id })
   });
 
-  if (response.ok) {
-    const note = await response.json();
+  const note = await response.json();
+  if (!note.errors) {
+    dispatch(clearUpdateNoteError());
     dispatch(updateNote(note));
-    return;
+    return true;
   }
-  throw response;
+
+  dispatch(setUpdateNoteError(note.errors));
+
 };
 
 

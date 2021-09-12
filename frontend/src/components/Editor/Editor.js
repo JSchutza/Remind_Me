@@ -9,8 +9,9 @@ import gfm from 'remark-gfm'
 
 
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
+import { clearError, clearUpdateNoteError } from '../../actions/error.js';
 
 
 
@@ -39,9 +40,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     const [ second, setSecond ] = useState(false);
     const [ buttontext, setButtontext ] = useState('Preview');
     const [ initStyle, setInitStyle ] = useState('');
-
+    const [ error, setError ] = useState([]);
+    const errors = useSelector(store => store.noteErrorReducer.errors);
     const dispatch = useDispatch();
-
+    let delayClearErrors;
 
 
     let renderers;
@@ -83,6 +85,25 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+
+
+    // error useEffect here
+    useEffect(() => {
+        if (errors !== null) {
+            setError(errors)
+        }
+        return () => {
+            clearTimeout(delayClearErrors);
+            setError([]);
+        }
+    },[errors]);
+
+
+
+
+
+
+
     const previewClickHandler = (event) => {
         event.preventDefault();
         if (first === 0) {
@@ -105,6 +126,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+
+
+
+
     const notecreationClickHandler = async event => {
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id };
@@ -115,17 +140,32 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     };
 
 
-    const noteUpdateClickHandler = (event, noteId) => {
+
+
+
+
+    const noteUpdateClickHandler = async (event, noteId) => {
         event.preventDefault();
         const payload = { due_date: new Date(), title, content, notebook_id, noteId };
-        dispatch(thunk_updateNote(payload));
+        const success = await dispatch(thunk_updateNote(payload));
+        // if there was an error with the update
+        if(success === undefined) {
+            delayClearErrors = setTimeout(() => {
+                dispatch(clearUpdateNoteError());
+            }, 2000);
+        }
     };
+
+
+
 
 
     const noteDeleteClickHandler = (event, noteId) => {
         event.preventDefault();
         dispatch(thunk_deleteNote(noteId, notebook_id));
     };
+
+
 
 
 
@@ -153,7 +193,11 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
             </div>
 
 
-
+            <div>
+                {error.map(eachError => (
+                    <li> {eachError}</li>
+                ))}
+            </div>
 
 
             {showPreview === true ?

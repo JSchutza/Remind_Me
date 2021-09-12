@@ -23,6 +23,7 @@ const NotebookViewer = () => {
   const [ onrefresh, setOnRefresh ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
 
+
   const { notebookId } = useParams();
   const notebook = useSelector(store => store.notebooksReducer.notebooks);
   const re_notebook = useSelector(store => store.notebookPageReducer?.notebook);
@@ -46,6 +47,7 @@ const NotebookViewer = () => {
   const handleCreate = event => {
     event.preventDefault();
     dispatch(clearError());
+
     setShowModal(true);
 
   };
@@ -79,7 +81,7 @@ const NotebookViewer = () => {
 
 
           <ReactModal isOpen={showModal} onRequestClose={closeModal} >
-            <Editor notebook_id={notebookId} closeModal={closeModal}/>
+        <Editor notebook_id={notebookId} closeModal={closeModal}  />
           </ReactModal>
 
 
