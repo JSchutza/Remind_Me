@@ -1,7 +1,7 @@
 
 
 
-import { SET_ERROR, CLEAR_ERROR } from "../types/error.js";
+import { SET_ERROR, CLEAR_ERROR, SET_UPDATE_NOTE_ERROR, CLEAR_UPDATE_ERROR } from "../types/error.js";
 
 
 
@@ -20,8 +20,25 @@ const clearError = () => ({
 
 
 
+const setUpdateNoteError = (errors) => ({
+  type: SET_UPDATE_NOTE_ERROR,
+  errors
+});
+
+
+
+const clearUpdateNoteError = () => ({
+  type: CLEAR_UPDATE_ERROR,
+});
+
+
+
+
 export {
   setError,
   clearError,
+  setUpdateNoteError,
+  clearUpdateNoteError,
+
 
 }

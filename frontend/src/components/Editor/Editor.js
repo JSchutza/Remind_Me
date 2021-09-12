@@ -11,7 +11,7 @@ import gfm from 'remark-gfm'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
-import { clearError } from '../../actions/error.js';
+import { clearError, clearUpdateNoteError } from '../../actions/error.js';
 
 
 
@@ -41,7 +41,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     const [ buttontext, setButtontext ] = useState('Preview');
     const [ initStyle, setInitStyle ] = useState('');
     const [ error, setError ] = useState([]);
-    const errors = useSelector(store => store.errorReducer.errors);
+    const errors = useSelector(store => store.noteErrorReducer.errors);
     const dispatch = useDispatch();
     let delayClearErrors;
 
@@ -151,7 +151,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
         // if there was an error with the update
         if(success === undefined) {
             delayClearErrors = setTimeout(() => {
-                dispatch(clearError());
+                dispatch(clearUpdateNoteError());
             }, 2000);
         }
     };
@@ -192,6 +192,12 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                 </Link>
             </div>
 
+
+            <div>
+                {error.map(eachError => (
+                    <li> {eachError}</li>
+                ))}
+            </div>
 
 
             {showPreview === true ?

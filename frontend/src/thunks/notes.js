@@ -3,7 +3,7 @@
 
 
 import { getSpecificNote, createNewNote, updateNote, deleteNote } from '../actions/notes.js';
-import { setError, clearError } from "../actions/error.js";
+import { setError, clearError, setUpdateNoteError, clearUpdateNoteError } from "../actions/error.js";
 
 import { csrfFetch } from '../store/csrf.js';
 
@@ -60,12 +60,12 @@ const thunk_updateNote = ({ due_date, title, content, notebook_id, noteId }) => 
 
   const note = await response.json();
   if (!note.errors) {
-    dispatch(clearError());
+    dispatch(clearUpdateNoteError());
     dispatch(updateNote(note));
     return true;
   }
 
-  dispatch(setError(note.errors));
+  dispatch(setUpdateNoteError(note.errors));
 
 };
 
