@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunk_updateNotebook } from "../../thunks/notebooks.js";
 
 
+import Error from "../Error";
 import styles from './updatenotebookform.module.css';
 
 
@@ -48,10 +49,9 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
   return (
     <>
       <div>
-        {error.map(eachError => (
-          <li> {eachError}</li>
-        ))}
+        <Error error={error} />
       </div>
+
 
     <div className={styles.updatenotebook_wrap} >
       <form className={styles.updatenotebook_form} onSubmit={onSubmit} >
