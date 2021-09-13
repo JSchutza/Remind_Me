@@ -15,4 +15,23 @@
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin-top: 10vh;
+}
+
+
+
+
+.aboutme_links {
+  margin-top: 15vw;
+}
+
+
+
+
+.aboutme_img {
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  height: 125px;
+  width: 300px;
+  object-fit: cover;
+  object-position: 33% 33%;
 }
