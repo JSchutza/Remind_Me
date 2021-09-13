@@ -11,7 +11,7 @@ import Editor from '../Editor';
 import Profile from '../Profile';
 import NotebookViewer from "../NotebookViewer";
 import NotebooksPage from "../NotebooksPage";
-
+import AboutMe from "../AboutMe";
 
 
 const MainRouter = () => {
@@ -54,7 +54,7 @@ const MainRouter = () => {
 
         <Route path='/about' exact>
           <NavBar />
-
+            <AboutMe />
         </Route>
 
         <Route>
@@ -97,7 +97,7 @@ const MainRouter = () => {
 
       <Route path='/about' exact>
         <NavBar />
-
+          <AboutMe />
       </Route>
 
       <Route>

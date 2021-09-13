@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunk_signupUser } from '../../thunks/session.js';
 import { useHistory } from 'react-router-dom';
 
+import Error from "../Error";
+
 import { styles }  from '../SignupForm';
 
 
@@ -55,12 +57,8 @@ function SignupForm (){
 
     return (
         <>
-        <div>
-            {error.map(eachError => (
-                <li> {eachError}</li>
-            ))}
-        </div>
-
+        <div className={styles.signup_wrap}>
+            <Error error={error} />
 
         <div className={styles.main_div}>
         <form onSubmit={onSubmit}>
@@ -121,6 +119,7 @@ function SignupForm (){
                 <button>Signup</button>
 
         </form>
+        </div>
         </div>
         </>
     );
