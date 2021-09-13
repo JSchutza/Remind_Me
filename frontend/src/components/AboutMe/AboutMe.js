@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 
 
-
+import styles from "./aboutme.module.css";
 
 
 
@@ -13,7 +13,7 @@ const AboutMe = () => {
 
   return (
     <>
-    <div>
+    <div className={styles.aboutme_wrap}>
       <p> Joshua Schutza </p>
 
         <a href='https://github.com/JSchutza/Remind_Me' target="_blank" >
