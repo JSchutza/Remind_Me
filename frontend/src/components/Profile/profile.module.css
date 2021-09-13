@@ -5,9 +5,42 @@
 
 
 .userinfo_wrap {
-  margin-left: 11.5vw;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
 }
+
+
+
+
+
+
+.user_img {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+
+
+
+.user_img img {
+  border-radius: 100px;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: 33% 33%;
+}
+
 
 
 
