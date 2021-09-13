@@ -52,6 +52,10 @@ const MainRouter = () => {
             <NotebookViewer />
       </Route>
 
+        <Route path='/about' exact>
+          <NavBar />
+
+        </Route>
 
         <Route>
           <NavBar />
@@ -89,6 +93,11 @@ const MainRouter = () => {
       <Route path='/signup' exact>
           <NavBar />
           <SignupForm />
+      </Route>
+
+      <Route path='/about' exact>
+        <NavBar />
+
       </Route>
 
       <Route>
