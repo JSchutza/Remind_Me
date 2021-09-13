@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_login } from '../../thunks/session.js';
 
+import Error from "../Error";
+
 
 // css here
 import { styles } from '../LoginForm';
@@ -46,11 +48,7 @@ function LoginForm() {
 
     return (
         <>
-            <div>
-                {error.map(eachError => (
-                    <li> {eachError}</li>
-                ))}
-            </div>
+            <Error error={error} />
 
 
             <div className={styles.main_div}>
