@@ -1,15 +1,15 @@
 
+
 .main_div {
-  position: absolute;
-  top: 50%;
-  left: 54%;
   width: 400px;
   padding: 40px;
-  transform: translate(-50%, -50%);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
 }
+
+
+
 
 .main_div h1 {
   margin: 0 0 30px;
@@ -24,6 +24,7 @@
 .main_div .text_box {
   position: relative;
 }
+
 
 
 
