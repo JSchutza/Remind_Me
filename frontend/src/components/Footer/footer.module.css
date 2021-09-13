@@ -12,7 +12,9 @@
 
 
 
+.footer_container {
 
+}
 
 
 
@@ -21,8 +23,8 @@
 .footer_container img {
   border-radius: 50px;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  height: 9vh;
-  width: 4vw;
+  height: 50px;
+  width: 50px;
   object-fit: cover;
   object-position: 33% 33%;
 }
