@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 
 
+import Error from "../Error";
 import { styles } from "../Editor";
+
 
 
 const EditorNav = ({ content, setContent, freshEditor=false }) => {
@@ -120,9 +122,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
       {freshEditor ?
         <div>
           <div>
-            {error.map(eachError => (
-              <li> {eachError}</li>
-            ))}
+            <Error error={error} />
           </div>
         </div>
         :

@@ -11,7 +11,7 @@ import { useUser } from "../../context/UserContext.js";
 
 import styles from './createnotebookform.module.css';
 
-
+import Error from "../Error";
 
 
 const CreateNotebookForm = ({ notebookId, closeModal }) => {
@@ -49,11 +49,9 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
 
   return (
     <>
-      <div>
-        {error.map(eachError => (
-          <li> {eachError}</li>
-        ))}
-      </div>
+
+      <Error error={error} />
+
 
       <div className={styles.createnotebook_wrap}>
         <form className={styles.createnotebook_form} onSubmit={onSubmit} >

@@ -18,7 +18,7 @@ import { clearError, clearUpdateNoteError } from '../../actions/error.js';
 // css
 import { styles } from '../Editor';
 
-
+import Error from "../Error";
 import EditorNav from "./EditorNav.js";
 
 
@@ -194,9 +194,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
             <div>
-                {error.map(eachError => (
-                    <li> {eachError}</li>
-                ))}
+                <Error error={error} />
             </div>
 
 

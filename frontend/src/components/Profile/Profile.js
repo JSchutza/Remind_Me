@@ -46,7 +46,7 @@ const Profile = () => {
   return (
     <>
       <div className={styles.userinfo_wrap}>
-        <div>
+        <div className={styles.user_img} >
           {isUser.avatar === null ?
             <img src={no_user} />
           :
