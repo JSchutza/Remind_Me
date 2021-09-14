@@ -79,9 +79,9 @@ const Profile = () => {
           {notebooks ?
             <>
             {Object.values(notebooks).map(eachBook => (
-              <>
-                <Link key={nanoid()} to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
-              </>
+              <div key= { nanoid() } >
+                <Link to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
+              </div>
             ))}
             </>
           :

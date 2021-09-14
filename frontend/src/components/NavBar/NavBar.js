@@ -62,7 +62,6 @@ const NavBar = () => {
         <div className={styles.nav_containter}>
           <nav>
             {paths.map(eachLink => (
-
               <div key={nanoid()} className={styles.each_li_div}>
                   {eachLink.onclick ?
                     <>
@@ -74,7 +73,6 @@ const NavBar = () => {
                     </>
                   }
                 </div>
-
             ))}
           </nav>
         </div>
@@ -100,7 +98,6 @@ const NavBar = () => {
       <div className={styles.nav_containter}>
         <nav>
           {paths.map(eachLink => (
-
             <div key={nanoid()} className={styles.each_li_div}>
                 {eachLink.onclick ?
                   <>
@@ -112,7 +109,6 @@ const NavBar = () => {
                   </>
                 }
               </div>
-
           ))}
         </nav>
       </div>
