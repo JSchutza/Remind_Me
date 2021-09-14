@@ -49,7 +49,7 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
 
   return (
     <>
-
+      <div className={styles.createnotebook_container} >
       <Error error={error} />
 
 
@@ -61,6 +61,7 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
             type="text"
             value={name}
             onChange={event => setName(event.target.value)}
+            placeholder='Name'
             />
         </label>
 
@@ -70,11 +71,13 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
             type="text"
             value={description}
             onChange={event => setDescription(event.target.value)}
+            placeholder='Description'
             />
         </label>
 
         <button type="submit" > Create </button>
       </form>
+      </div>
       </div>
     </>
   )
