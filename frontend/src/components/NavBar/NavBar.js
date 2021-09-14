@@ -5,6 +5,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
+import { nanoid } from 'nanoid';
 
 import { thunk_loginDemoUser, thunk_logoutUser } from '../../thunks/session.js';
 import { clearError } from "../../actions/error.js";
@@ -65,11 +66,11 @@ const NavBar = () => {
                 <div className={styles.each_li_div}>
                   {eachLink.onclick ?
                     <>
-                      <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
+                      <li key={nanoid()}> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
                     </>
                   :
                     <>
-                      <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
+                      <li key={nanoid()}> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
                     </>
                   }
                 </div>
@@ -103,11 +104,11 @@ const NavBar = () => {
               <div className={styles.each_li_div}>
                 {eachLink.onclick ?
                   <>
-                    <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
+                    <li key={nanoid()}> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
                   </>
                   :
                   <>
-                    <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
+                    <li key={nanoid()}> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
                   </>
                 }
               </div>
