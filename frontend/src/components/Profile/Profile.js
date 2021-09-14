@@ -69,7 +69,11 @@ const Profile = () => {
       </div>
 
 
-      <ReactModal isOpen={open_close} onRequestClose={closeModal} >
+      <ReactModal
+        isOpen={open_close}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
         <UpdateUserForm />
       </ReactModal>
 

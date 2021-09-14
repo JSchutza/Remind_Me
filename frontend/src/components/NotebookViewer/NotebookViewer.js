@@ -80,8 +80,12 @@ const NotebookViewer = () => {
       </div>
 
 
-          <ReactModal isOpen={showModal} onRequestClose={closeModal} >
-        <Editor notebook_id={notebookId} closeModal={closeModal}  />
+          <ReactModal
+            isOpen={showModal}
+            onRequestClose={closeModal}
+            appElement={document.getElementById('root')}
+          >
+            <Editor notebook_id={notebookId} closeModal={closeModal}  />
           </ReactModal>
 
 

@@ -60,7 +60,11 @@ const NotebooksPage = () => {
       <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
 
 
-      <ReactModal isOpen={showModal} onRequestClose={closeModal} >
+      <ReactModal
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
         <CreateNotebookForm closeModal={closeModal} />
       </ReactModal>
 

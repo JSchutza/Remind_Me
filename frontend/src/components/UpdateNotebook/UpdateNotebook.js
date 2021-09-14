@@ -34,7 +34,11 @@ const UpdateNotebook = ({ notebookId }) => {
       <Link to={'/'} onClick={event => handleUpdate(event)} > Update </Link>
 
 
-      <ReactModal isOpen={showModal} onRequestClose={closeModal} >
+      <ReactModal
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
         <UpdateNotebookForm notebookId={notebookId} closeModal={closeModal} />
       </ReactModal>
     </>
