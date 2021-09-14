@@ -193,7 +193,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
             </div>
 
 
-            <div>
+            <div className={styles.edit_errors} >
                 <Error error={error} />
             </div>
 

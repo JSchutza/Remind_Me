@@ -105,6 +105,11 @@
 
 
 
+.edit_errors {
+  margin-left: 10vw;
+}
+
+
 
 
 .edit_title input{
@@ -118,6 +123,8 @@
   color: #8338ec;
   font-family: 'JetBrains Mono', monospace;
 }
+
+
 
 
 .edit_content textarea{
@@ -136,9 +143,14 @@
 }
 
 
+
+
 .nav_containter {
   box-sizing: border-box;
 }
+
+
+
 
 
 .each_li_div {
