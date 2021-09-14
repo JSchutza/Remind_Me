@@ -9,7 +9,7 @@ import no_user from "./no_user.svg";
 
 import ReactModal from 'react-modal';
 
-
+import { nanoid } from 'nanoid';
 import UpdateUserForm from '../UpdateUserForm';
 
 
@@ -80,7 +80,7 @@ const Profile = () => {
             <>
             {Object.values(notebooks).map(eachBook => (
               <>
-                <Link to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
+                <Link key={nanoid()} to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
               </>
             ))}
             </>

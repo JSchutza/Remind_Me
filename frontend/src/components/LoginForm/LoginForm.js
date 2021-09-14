@@ -64,6 +64,7 @@ function LoginForm() {
                             placeholder="Your Username Here"
                             id="username"
                             name="username"
+                            autoComplete={'username'}
                         />
                     </div>
                     <div className={styles.text_box} >
@@ -76,6 +77,7 @@ function LoginForm() {
                             placeholder="Password Here"
                             id="password"
                             name="password"
+                            autoComplete={'new-password'}
                         />
                     </div>
                     <div className={styles.text_box} >
@@ -88,6 +90,7 @@ function LoginForm() {
                             placeholder="Confirmation Here"
                             id="confirmation"
                             name="confirmation"
+                            autoComplete={'new-password'}
                         />
                     </div>
 
