@@ -45,3 +45,18 @@
   transition: .5s;
 
 }
+
+
+
+.updatenotebook_wrap  form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
