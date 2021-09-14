@@ -48,9 +48,9 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
 
   return (
     <>
-      <div>
+      <div className={styles.updatenotebook_container} >
         <Error error={error} />
-      </div>
+
 
 
     <div className={styles.updatenotebook_wrap} >
@@ -61,8 +61,11 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
             type="text"
             value={name}
             onChange={event => setName(event.target.value)}
+            placeholder='Name'
           />
         </label>
+        <br />
+
 
         <label>
           Description
@@ -70,11 +73,14 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
               type="text"
               value={description}
               onChange={event => setDescription(event.target.value)}
+              placeholder='Description'
             />
         </label>
+          <br />
 
         <button type="submit" > Update </button>
       </form>
+      </div>
       </div>
     </>
   )

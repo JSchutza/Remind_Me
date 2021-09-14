@@ -120,10 +120,8 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
 
       {freshEditor ?
-        <div>
-          <div>
-            <Error error={error} />
-          </div>
+        <div className={styles.edit_errors} >
+          <Error error={error} />
         </div>
         :
           <></>

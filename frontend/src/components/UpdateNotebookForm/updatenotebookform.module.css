@@ -5,31 +5,58 @@
 
 
 
-
-
-
-
-
-
-.updatenotebook_wrap {
+.updatenotebook_container {
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
   justify-content: center;
   align-items: center;
-  margin-top: 10vh;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
 }
 
 
 
 
 
-.updatenotebook_form {
+.updatenotebook_wrap {
+  padding: 40px;
+  box-sizing: border-box;
+  margin-top: 5vw;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+}
+
+
+
+.updatenotebook_wrap input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+
+}
+
+
+
+.updatenotebook_wrap  form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
 }
