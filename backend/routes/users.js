@@ -1,5 +1,5 @@
 // imports here:
-const { express, asyncHandler, setTokenCookie, User, restoreUser, validateLogin, validateSignup } = require('../lib');
+const { express, asyncHandler, setTokenCookie, User, restoreUser, requireAuth } = require('../lib');
 
 
 // invoke router so we can use it
@@ -30,7 +30,7 @@ router.post('/login', asyncHandler(async (request, response) => {
 
 
 //DELETE localhost:5000/api/users/logout
-router.delete('/logout', (request, response) => {
+router.delete('/logout', requireAuth, (request, response) => {
     // need to grab the token cookie and only if they have a token can they logout
     response.clearCookie('token');
     response.json({ user: null });

@@ -1,4 +1,4 @@
-const { express, asyncHandler, Tag } = require('../lib');
+const { express, asyncHandler, Tag, requireAuth } = require('../lib');
 
 
 

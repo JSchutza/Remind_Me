@@ -301,6 +301,16 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                 <>
                     <EditorNav  content={content}  setContent={setContent}  freshEditor={true} />
 
+                    {homepage ?
+                        <></>
+                        :
+                        <>
+                            <div className={styles.create_note_button} >
+                                <Link to={'/'} onClick={event => notecreationClickHandler(event)}> Create </Link>
+                            </div>
+                        </>
+                    }
+
                 <div className={styles.edit_container} >
                     <div className={styles.edit_test} >
 
@@ -327,15 +337,6 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                     </div>
                 </div>
 
-                <div>
-                    {homepage ?
-                        <></>
-                    :
-                        <>
-                            <Link to={'/'} onClick={event => notecreationClickHandler(event)}> Create </Link>
-                        </>
-                    }
-                </div>
                 </>
                 :
                 <></>

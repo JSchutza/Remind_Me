@@ -1,4 +1,4 @@
-const { express, asyncHandler, Note } = require('../lib');
+const { express, asyncHandler, Note, requireAuth } = require('../lib');
 
 
 
@@ -13,7 +13,7 @@ const router = express.Router();
 
 // routes here:
 // GET localhost:5000/api/notes/:notebookId
-router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
+router.get('/:notebookId(\\d+)', requireAuth, asyncHandler(async (request, response) => {
   const Id = request.params.notebookId;
 
   const notes = await Note.findAll({
@@ -40,7 +40,7 @@ router.get('/:notebookId(\\d+)', asyncHandler(async (request, response) => {
 
 // used to create a note
 // POST localhost:5000/api/notes/new
-router.post('/new', asyncHandler(async (request, response) => {
+router.post('/new', requireAuth, asyncHandler(async (request, response) => {
   const { due_date, title, content, notebook_id } = request.body;
   const payload = { due_date, title, content, notebook_id };
   const note = await Note.validateBeforeCreation(payload);
@@ -59,7 +59,7 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 // DELETE  localhost:5000/api/notes/:noteId/delete
-router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) => {
+router.delete('/:noteId(\\d+)/delete', requireAuth, asyncHandler(async (request, response) => {
   const id = request.params.noteId;
   const the_note = await Note.findByPk(id);
   const note = the_note;
@@ -78,7 +78,7 @@ router.delete('/:noteId(\\d+)/delete', asyncHandler(async (request, response) =>
 
 
 // PUT localhost:5000/api/notes/:noteId/update
-router.put('/:noteId(\\d+)/update', asyncHandler(async (request, response) => {
+router.put('/:noteId(\\d+)/update', requireAuth, asyncHandler(async (request, response) => {
   const noteId = request.params.noteId;
   const { due_date, title, content, notebook_id } = request.body;
   const payload = { due_date, title, content, notebook_id };

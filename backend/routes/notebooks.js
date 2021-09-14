@@ -1,4 +1,4 @@
-const { express, asyncHandler, Notebook } = require('../lib');
+const { express, asyncHandler, Notebook, requireAuth } = require('../lib');
 
 
 
@@ -17,7 +17,7 @@ const router = express.Router();
 
 
 // GET localhost:5000/api/notebooks/:userId
-router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
+router.get('/:userId(\\d+)', requireAuth, asyncHandler(async (request, response) => {
   const Id = request.params.userId;
 
   const notebooks = await Notebook.findAll({
@@ -43,7 +43,7 @@ router.get('/:userId(\\d+)', asyncHandler(async (request, response) => {
 
 
 // GET localhost:5000/api/notebooks/limit/:amount/:notebookOwner
-router.get('/limit/:amount(\\d+)/:notebookOwner(\\d+)', asyncHandler(async (request, response)=> {
+router.get('/limit/:amount(\\d+)/:notebookOwner(\\d+)', requireAuth, asyncHandler(async (request, response)=> {
   const amount = request.params.amount;
   const notebookOwner = request.params.notebookOwner;
 
@@ -65,7 +65,7 @@ router.get('/limit/:amount(\\d+)/:notebookOwner(\\d+)', asyncHandler(async (requ
 
 
 // GET localhost:5000/api/notebooks/specific/:notebookId
-router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response) => {
+router.get('/specific/:notebookId(\\d+)', requireAuth, asyncHandler(async (request, response) => {
   const Id = request.params.notebookId;
 
   const notebook = await Notebook.findByPk(Id);
@@ -76,7 +76,7 @@ router.get('/specific/:notebookId(\\d+)', asyncHandler(async (request, response)
 
 
 // POST localhost:5000/api/notebooks/new
-router.post('/new', asyncHandler(async (request, response) => {
+router.post('/new', requireAuth, asyncHandler(async (request, response) => {
   const { name, description, notebook_owner } = request.body;
 
   const just_created = await Notebook.validateBeforeCreation({ name, description, notebook_owner });
@@ -93,7 +93,7 @@ router.post('/new', asyncHandler(async (request, response) => {
 
 
 // PUT localhost:5000/api/notebooks/:notebookId/update
-router.put('/:notebookId(\\d+)/update', asyncHandler(async (request, response) => {
+router.put('/:notebookId(\\d+)/update', requireAuth, asyncHandler(async (request, response) => {
   const notebookId = request.params.notebookId;
   const { name, description } = request.body;
   const payload = { name, description };
@@ -112,7 +112,7 @@ router.put('/:notebookId(\\d+)/update', asyncHandler(async (request, response) =
 
 
 // DELETE localhost:5000/api/notebooks/:notebookId/remove
-router.delete('/:notebookId(\\d+)/remove', asyncHandler(async (request, response) => {
+router.delete('/:notebookId(\\d+)/remove', requireAuth, asyncHandler(async (request, response) => {
   const id = request.params.notebookId;
 
   const the_notebook = await Notebook.findByPk(id);
