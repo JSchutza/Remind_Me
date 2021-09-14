@@ -8,7 +8,7 @@ import { clearError } from "../../actions/error.js";
 import { thunk_notebookForPage } from '../../thunks/notebooks.js';
 import { thunk_getSpecificNote } from "../../thunks/notes.js";
 
-
+import { nanoid } from 'nanoid';
 import DropDownArrow from "../DropDownArrow";
 import ReactModal from 'react-modal';
 import Editor from "../Editor";
@@ -92,9 +92,11 @@ const NotebookViewer = () => {
         {allNotes !== null ?
           <>
             {Object.values(allNotes).map(eachNote => (
-              <>
-                <DropDownArrow eachNote={eachNote} notebookId={notebookId} />
-              </>
+              <DropDownArrow
+                eachNote={eachNote}
+                notebookId={notebookId}
+                key={nanoid()}
+              />
             ))}
           </>
         :

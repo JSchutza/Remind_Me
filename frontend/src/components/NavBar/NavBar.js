@@ -58,7 +58,6 @@ const NavBar = () => {
 
     return (
       <>
-
         <div className={styles.nav_containter}>
           <nav>
             {paths.map(eachLink => (
@@ -76,7 +75,6 @@ const NavBar = () => {
             ))}
           </nav>
         </div>
-
       </>
     )
 
