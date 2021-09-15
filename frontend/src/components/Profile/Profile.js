@@ -74,7 +74,7 @@ const Profile = () => {
         onRequestClose={closeModal}
         appElement={document.getElementById('root')}
       >
-        <UpdateUserForm />
+        <UpdateUserForm closeModal={closeModal} />
       </ReactModal>
 
       <div className={styles.recentnotebooks_wrap}>

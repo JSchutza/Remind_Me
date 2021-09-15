@@ -5,7 +5,7 @@ import styles from "./updateuserform.module.css";
 
 
 
-const UpdateUserForm = () => {
+const UpdateUserForm = ({ closeModal }) => {
   const [ username, setUsername ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ avatar, setAvatar ] = useState('');
@@ -13,12 +13,14 @@ const UpdateUserForm = () => {
 
   const onSubmit = event => {
     event.preventDefault();
+    closeModal();
   }
 
 
   return (
     <>
     <div className={styles.updateuser_wrap}>
+      <p> This feature is in development. ⚒ </p>
     <form className={styles.updateuser_form} onSubmit={onSubmit}>
 
       <label>
