@@ -9,7 +9,7 @@ import no_user from "./no_user.svg";
 
 import ReactModal from 'react-modal';
 
-
+import { nanoid } from 'nanoid';
 import UpdateUserForm from '../UpdateUserForm';
 
 
@@ -69,8 +69,12 @@ const Profile = () => {
       </div>
 
 
-      <ReactModal isOpen={open_close} onRequestClose={closeModal} >
-        <UpdateUserForm />
+      <ReactModal
+        isOpen={open_close}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
+        <UpdateUserForm closeModal={closeModal} />
       </ReactModal>
 
       <div className={styles.recentnotebooks_wrap}>
@@ -79,9 +83,9 @@ const Profile = () => {
           {notebooks ?
             <>
             {Object.values(notebooks).map(eachBook => (
-              <>
+              <div key= { nanoid() } >
                 <Link to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
-              </>
+              </div>
             ))}
             </>
           :

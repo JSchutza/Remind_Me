@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 
-
+import { nanoid } from 'nanoid';
 import Error from "../Error";
 import { styles } from "../Editor";
 
@@ -93,27 +93,27 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
       <div className={styles.nav_containter}>
         <nav>
           <div className={styles.each_li_div} >
-            <li> <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link> </li>
+            <li key={nanoid()} > <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link> </li>
           </div>
 
           <div className={styles.each_li_div} >
-            <li> <Link to={'/'} onClick={event => insertHTwo(event)}> {'<h2>'} </Link> </li>
+            <li key={nanoid()} > <Link to={'/'} onClick={event => insertHTwo(event)}> {'<h2>'} </Link> </li>
           </div>
 
           <div className={styles.each_li_div} >
-            <li> <Link to={'/'} onClick={event => insertHThree(event)}> {'<h3>'} </Link> </li>
+            <li key={nanoid()}> <Link to={'/'} onClick={event => insertHThree(event)}> {'<h3>'} </Link> </li>
           </div>
 
           <div className={styles.each_li_div} >
-            <li> <Link to={'/'} onClick={event => insertCodeBlock(event)}> <VscJson /> </Link> </li>
+            <li key={nanoid()}> <Link to={'/'} onClick={event => insertCodeBlock(event)}> <VscJson /> </Link> </li>
           </div>
 
           <div className={styles.each_li_div} >
-            <li> <Link to={'/'} onClick={event => insertLine(event)}> <VscChromeMinimize /> </Link> </li>
+            <li key={nanoid()}> <Link to={'/'} onClick={event => insertLine(event)}> <VscChromeMinimize /> </Link> </li>
           </div>
 
           <div className={styles.each_li_div} >
-            <li> <Link to={'/'} onClick={event => insertBulletpoint(event)}> <VscListOrdered /> </Link> </li>
+            <li key={nanoid()}> <Link to={'/'} onClick={event => insertBulletpoint(event)}> <VscListOrdered /> </Link> </li>
           </div>
         </nav>
       </div>

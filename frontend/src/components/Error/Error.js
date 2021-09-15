@@ -1,5 +1,5 @@
 
-
+import { nanoid } from 'nanoid';
 
 import styles from "./error.module.css";
 
@@ -12,7 +12,7 @@ const Error = ({ error }) => {
     <>
       <div className={styles.errors_wrap}>
         {error.map(eachError => (
-          <li> {eachError}</li>
+          <li key={nanoid()} > {eachError}</li>
         ))}
       </div>
     </>

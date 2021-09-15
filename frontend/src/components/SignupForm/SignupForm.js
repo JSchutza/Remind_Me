@@ -73,6 +73,7 @@ function SignupForm (){
                     placeholder="Your Username Here"
                     id="username"
                     name="username"
+                    aria-label='Username'
                 />
             </div>
 
@@ -86,6 +87,7 @@ function SignupForm (){
                     placeholder="Your Email Here"
                     name='email'
                     id='email'
+                    aria-label='Email'
                 />
             </div>
 
@@ -99,6 +101,7 @@ function SignupForm (){
                         placeholder="Your Password Here"
                         name='password'
                         id='password'
+                        aria-label='Password'
                     />
             </div>
 
@@ -112,6 +115,7 @@ function SignupForm (){
                         placeholder="Confirmation Here"
                         name='confirmation'
                         id='confirmation'
+                        aria-label='Password Confirmation'
                     />
             </div>
 

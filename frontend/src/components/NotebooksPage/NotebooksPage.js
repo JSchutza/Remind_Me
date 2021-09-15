@@ -8,6 +8,7 @@ import { clearError } from '../../actions/error.js';
 
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { useUser } from "../../context/UserContext.js";
+import { nanoid } from 'nanoid';
 
 import CreateNotebookForm from "../CreateNotebookForm";
 import DeleteNotebook from "../DeleteNotebook";
@@ -59,7 +60,11 @@ const NotebooksPage = () => {
       <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
 
 
-      <ReactModal isOpen={showModal} onRequestClose={closeModal} >
+      <ReactModal
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
         <CreateNotebookForm closeModal={closeModal} />
       </ReactModal>
 
@@ -68,8 +73,7 @@ const NotebooksPage = () => {
           {notebooks !== null ?
             <>
               {Object.values(notebooks).map(eachNotebook => (
-                <>
-                <div className={styles.eachnotebook_wrap}>
+                <div key={nanoid()} className={styles.eachnotebook_wrap}>
                   <div>
                     <Link to={`/notebook/${eachNotebook.id}`} >
                       <h3>{eachNotebook.name}</h3>
@@ -87,7 +91,6 @@ const NotebooksPage = () => {
                   </div>
 
                 </div>
-                </>
               ))}
             </>
           :
