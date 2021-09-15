@@ -27,6 +27,7 @@ const UpdateUserForm = () => {
           type='text'
           value={username}
           onChange={event => setUsername(event.target.value)}
+          aria-label='Username'
         />
       </label>
 
@@ -36,6 +37,7 @@ const UpdateUserForm = () => {
           type='text'
           value={email}
           onChange={event => setEmail(event.target.value)}
+          aria-label='Email'
         />
       </label>
 
@@ -45,6 +47,7 @@ const UpdateUserForm = () => {
           type='text'
           value={avatar}
           onChange={event => setAvatar(event.target.value)}
+          aria-label='Avatar'
         />
       </label>
 

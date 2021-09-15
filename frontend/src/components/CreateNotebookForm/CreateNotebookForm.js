@@ -62,6 +62,7 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
             value={name}
             onChange={event => setName(event.target.value)}
             placeholder='Name'
+            aria-label='Name'
             />
         </label>
 
@@ -72,6 +73,7 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
             value={description}
             onChange={event => setDescription(event.target.value)}
             placeholder='Description'
+            aria-label='Description'
             />
         </label>
 

@@ -235,6 +235,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                                         <input
                                             onChange={(event) => setTitle(event.target.value)}
                                             value={title}
+                                            aria-label='Title'
                                         />
                                     </label>
                                 </div>
@@ -243,6 +244,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                                     <textarea
                                         onChange={(event) => setContent(event.target.value)}
                                         value={content}
+                                        aria-label='Main Content'
                                     />
                                 </div>
                             </div>
@@ -322,6 +324,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                                 <input
                                     onChange={(event) => setTitle(event.target.value)}
                                     value={title}
+                                    aria-label='Title'
                                 />
                                 </label>
                             </div>
@@ -330,6 +333,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                                 <textarea
                                     onChange={(event) => setContent(event.target.value)}
                                     value={content}
+                                    aria-label='Main Content'
                                 />
                             </div>
 

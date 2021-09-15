@@ -65,6 +65,7 @@ function LoginForm() {
                             id="username"
                             name="username"
                             autoComplete={'username'}
+                            aria-label='Username'
                         />
                     </div>
                     <div className={styles.text_box} >
@@ -78,6 +79,7 @@ function LoginForm() {
                             id="password"
                             name="password"
                             autoComplete={'new-password'}
+                            aria-label='Password'
                         />
                     </div>
                     <div className={styles.text_box} >
@@ -91,6 +93,7 @@ function LoginForm() {
                             id="confirmation"
                             name="confirmation"
                             autoComplete={'new-password'}
+                            aria-label='Confirm Password'
                         />
                     </div>
 
