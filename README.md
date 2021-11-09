@@ -27,26 +27,69 @@ Welcome to the **Remind_Me** README!
 -----------
 # React Components
 - ## AboutMe
+- Displays information about who I am. 
+
 - ## CloseModalButton
+- Reusable component that allows users to click on a close button that will close the ReactModal component. 
+
 - ## CreateNotebookForm
+- Form component used to create a logged in users notebooks.
+
+
 - ## DeleteNotebook
+- Button component used to delete a notebook by its id.
+
 - ## DropDownArrow
+- Reusable component that allows users to view specific note information while on a notebook.
+
 - ## Editor
+- Reusable component that gives the user the ability to create and edit notes, as well as markdown parsing support.
+
 - ## EditorNav
+- Reusable component that will add markdown tags into the users note when they are editing or creating a note.
+
 - ## Error
+- Reusable component that will display backend validation errors when they occur.
+
 - ## Footer
+- Component to display personal information drop down.
+
 - ## Home
+- Component to display the splash page for the application. Includes the Editor component so that unauthenticated users can play with the editor.
+
 - ## LoginForm
+- Form component that allows previous users to login to their account.
+
 - ## MainRouter
+- Component that sets up all of the authenticated routes and unauthenticated routes based on if a user is currently logged in or not. 
+
 - ## NavBar
+- Component that dynamically changes based on if a user is authenticated or not. 
+
 - ## NotebooksPage
+- Component that shows all of a logged in users notebooks, and links to each notebook. 
+
 - ## NotebookViewer
+- Component that allows a user to view a specific notbook and its associated data.
+
 - ## Profile
+- Component that displays an authenticated user their personal account information.
+
 - ## ReadMe
+- Component that takes a markdown file in as a readable stream and parses its markdown into viewable html.
+
 - ## SignupForm
+- Component that allows an unauthenticated user to create a new account.
+
 - ## UpdateNotebook
+- Reusable component that allows a authenticated user to update a previous notebook.
+
 - ## UpdateNotebookForm
+- Specific component for updating a notebook. Used within the UpdateNotebook component.
+
 - ## UpdateUserForm
+- Component that allows an authenticated user to update their user account.
+
 -----------
 # Redux Store
 - ## userReducer
