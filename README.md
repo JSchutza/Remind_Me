@@ -35,7 +35,6 @@ Welcome to the **Remind_Me** README!
 - ## CreateNotebookForm
 - Form component used to create a logged in users notebooks.
 
-
 - ## DeleteNotebook
 - Button component used to delete a notebook by its id.
 
@@ -93,17 +92,41 @@ Welcome to the **Remind_Me** README!
 -----------
 # Redux Store
 - ## userReducer
+- Will hold an authenticated users personal information.
+
 - ## notebooksReducer 
-- ## notebookPageReducer
+- Allows a authenticated user full crud on their notebooks.
+
+- ## notebookPageReducer (rewritten - remove)
+- Displays all of the users notebooks. 
+
 - ## notesReducer
-- ## recentNoteReducer
+- Allows a authenticated user full crud on their notes.
+
+- ## recentNoteReducer (rewritten - remove)
+- Displays a users recently created notes.
+
 - ## newNotebookReducer
-- ## tagsReducer
+- Displays a users last created notebook. 
+
+- ## tagsReducer (in development)
+- Allows a authenticated user full crud on their notes.
+
 - ## recentlyCreatedNoteReducer
+- Displays a users last created note.
+
 - ## deleteNotebookReducer
+- Displays a users last deleted notebook.
+
 - ## recentlyDeletedNoteReducer
+- Displays a users last deleted note.
+
 - ## errorReducer
+- Displays generic backend errors to be displayed in the Error component.
+
 - ## noteErrorReducer
+- Displays generic backend errors to be displayed when creating a note.
+
 -----------
 # Technical Details
 
