@@ -49,7 +49,18 @@ Welcome to the **Remind_Me** README!
 - ## UpdateUserForm
 -----------
 # Redux Store
-
+- ## userReducer
+- ## notebooksReducer 
+- ## notebookPageReducer
+- ## notesReducer
+- ## recentNoteReducer
+- ## newNotebookReducer
+- ## tagsReducer
+- ## recentlyCreatedNoteReducer
+- ## deleteNotebookReducer
+- ## recentlyDeletedNoteReducer
+- ## errorReducer
+- ## noteErrorReducer
 -----------
 # Technical Details
 
