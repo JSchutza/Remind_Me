@@ -249,7 +249,9 @@ export default ReadMe;
 ```
 - The `ReadMe` component looks complicated but is simple. This component will read from a static file located in the same directory and set the markdown string as state for the component. The state called `markdown` holds a string of markdown which is passed to the `ReactMarkdown` component which parses the markdown text into viewable HTML. 
 - I am particularly proud of this code because it was an idea that would allow me to keep my sites readme page upto date with the repository's readme file. I am also proud that the code is dynamic which allows me to avoid hard coding a readme HTML file. 
-- 
+- This code was particularly challenging because I had no idea how I was going to read from a file and how this asynchronous action was going to work within a react application. I was able to solve this issue through research and testing portions of the code to see how things were working. 
+- I would like to update this code to use the more modern `async` and `await` syntax that JavaScript offers and I plan to do so in the future. 
+- I would also like to make this fetch request into its own reusable function so I can reuse it within other pages of my application.
 
 
 -----------
