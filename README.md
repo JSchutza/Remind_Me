@@ -247,8 +247,9 @@ const ReadMe = () => {
 
 export default ReadMe;
 ```
-- Here is a react component whoes job is to read from a markdown file located in the same directory and parse the contents of that static markdown file to render my sites readme web page. 
-
+- The `ReadMe` component looks complicated but is simple. This component will read from a static file located in the same directory and set the markdown string as state for the component. The state called `markdown` holds a string of markdown which is passed to the `ReactMarkdown` component which parses the markdown text into viewable HTML. 
+- I am particularly proud of this code because it was an idea that would allow me to keep my sites readme page upto date with the repository's readme file. I am also proud that the code is dynamic which allows me to avoid hard coding a readme HTML file. 
+- 
 
 
 -----------
