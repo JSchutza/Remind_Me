@@ -15,6 +15,57 @@ Welcome to the **Remind_Me** README!
   * React
   * Redux
 
+-----------
+# Splash Page
+- When a logged out user first lands on our app this is the first page they will see.  
+- Here they can either login or signup to gain access to the sites features and test out our awsome editor!
+<img src="https://i.ibb.co/X2500XJ/splash-page.jpg" alt="splash-page" border="0">
+
+-----------
+# Signup Page
+- Where unauthenticated users can create an account.
+<img src="https://i.ibb.co/hF6PdCM/signup-page.jpg" alt="signup-page" border="0">
+
+-----------
+# Login Page
+- Where unauthenticated users can access a previously created account.
+<img src="https://i.ibb.co/HHmFy9R/login-page.jpg" alt="login-page" border="0">
+
+-----------
+# Profile Page
+- A authenticated users profile page where they can view their personal information.
+<img src="https://i.ibb.co/yWjXtcR/profile-page.jpg" alt="profile-page" border="0">
+-----------
+
+-----------
+# Notebooks Page
+- Where a authenticated user can view all of their created notebooks. 
+<img src="https://i.ibb.co/5B10D4V/notebooks-page.jpg" alt="notebooks-page" border="0">
+-----------
+
+-----------
+# About the Developer Page
+- Where unauthenticated users can view information about me. 
+<img src="https://i.ibb.co/ZJWpJ9C/about-me-page.jpg" alt="about-me-page" border="0">
+-----------
+
+-----------
+# Create New Note Modal
+- A modal that allows authenticated users to create new notes for a notebook.
+<img src="https://i.ibb.co/xCD5KgZ/create-note-modal.jpg" alt="create-note-modal" border="0">
+-----------
+
+-----------
+# Each Notebook Page
+- Where authenticated users can view individually created notebooks and these notebooks notes. 
+<img src="https://i.ibb.co/jVXTrxg/each-notebook-page.jpg" alt="each-notebook-page" border="0">
+-----------
+
+-----------
+# Markdown Preview
+- Example of how users can view markdown support for the editor. 
+<img src="https://i.ibb.co/8cCTCdb/markdown-preview.jpg" alt="markdown-preview" border="0">
+-----------
 
 -----------
 # [Feature List](https://github.com/JSchutza/Remind_Me/wiki/MVP-Feature-List)
