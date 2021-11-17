@@ -128,9 +128,6 @@ Welcome to the **Remind_Me** README!
 - Displays generic backend errors to be displayed when creating a note.
 
 -----------
-# Technical Details
-
------------
 # Challenges
 - One of the more challenging aspects of this application was being able to find a way to render markdown syntax on the webpage. I only had a week to complete this project and did not have time to write an entire markdown parser so I utilized my research skills and found an awesome package that helped me speed up my development. The package I decided to use for parsing markdown into HTML is called `react-markdown`. Along with markdown support I also wanted to allow the user to get a taste of syntax highlighting and I used a package that integrated with `react-markdown` called `react-syntax-highlighter` that added the syntax highlighting support that I needed. Below is a snippet of something that I am proud of and found particularly challenging at the time. 
 ```js
