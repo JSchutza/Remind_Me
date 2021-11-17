@@ -132,7 +132,124 @@ Welcome to the **Remind_Me** README!
 
 -----------
 # Challenges
-- Snippets to see code for these
+- One of the more challenging aspects of this application was being able to find a way to render markdown syntax on the webpage. I only had a week to complete this project and did not have time to write an entire markdown parser so I utilized my research skills and found an awesome package that helped me speed up my development. The package I decided to use for parsing markdown into HTML is called `react-markdown`. Along with markdown support I also wanted to allow the user to get a taste of syntax highlighting and I used a package that integrated with `react-markdown` called `react-syntax-highlighter` that added the syntax highlighting support that I needed. Below is a snippet of something that I am proud of and found particularly challenging at the time. 
+```js
+const ReadMe = () => {
+  //state
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [markdown, setMarkdown] = useState('');
+
+
+
+  let renderers;
+  renderers = {
+    code: ({ language, value }) => {
+      return (
+        <SyntaxHighlighter
+          customStyle={ { border: `none`, outline: `none`, background: `black`, resize: `none`, lineBreak: `anywhere` } }
+          style={materialDark}
+          showLineNumbers={true}
+          language={language}
+          children={value}
+        />
+      );
+    }
+    }
+
+
+
+
+
+
+
+  useEffect(() => {
+
+    fetch(`${readme_text}`)
+      .then(response => response.body)
+      .then(rb => {
+        const reader = rb.getReader();
+
+        return new ReadableStream({
+          start(controller) {
+            // The following function handles each data chunk
+            function push() {
+              // "done" is a Boolean and value a "Uint8Array"
+              reader.read().then(({ done, value }) => {
+                // If there is no more data to read
+                if (done) {
+                  controller.close();
+                  return;
+                }
+                // Get the data and send it to the browser via the controller
+                controller.enqueue(value);
+                // Check chunks by logging to the console
+                // console.log(done, value);
+                push();
+              })
+            }
+
+            push();
+          }
+        });
+      })
+      .then(stream => {
+        // Respond with our stream
+        return new Response(stream, { headers: { "Content-Type": "text/html" } }).text();
+      })
+      .then(result => {
+          setIsLoaded(true);
+          setMarkdown(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        });
+
+  }, []);
+
+
+
+
+
+  if (error) {
+    return(
+      <>
+        <div>Error: {error.message}</div>
+      </>
+    );
+
+  } else if (!isLoaded) {
+    return (
+      <>
+        <div>Loading...</div>
+      </>
+    );
+
+  } else {
+    return (
+      <>
+        <div className={styles.readme_logo}>
+          <img src={`${logo}`} />
+        </div>
+
+        <div className={styles.markdown_container}>
+          <ReactMarkdown renderers={renderers} plugins={[gfm]} children={markdown} />
+        </div>
+      </>
+    );
+  }
+
+
+};
+
+
+
+export default ReadMe;
+```
+- Here is a react component whoes job is to read from a markdown file located in the same directory and parse the contents of that static markdown file to render my sites readme web page. 
+
+
 
 -----------
 # Future Features
