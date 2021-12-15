@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import { UserProvider } from './context/UserContext.js';
+import { EditorProvider } from './context/EditorContext.js';
 
 
 import { Provider } from 'react-redux';
@@ -32,7 +33,9 @@ function Root() {
     <Provider store={store}>
       <BrowserRouter>
         <UserProvider>
-          <App />
+          <EditorProvider>
+            <App />
+          </EditorProvider>
         </UserProvider>
       </ BrowserRouter>
     </Provider>

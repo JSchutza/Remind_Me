@@ -2,17 +2,19 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
-
 import { nanoid } from 'nanoid';
-import Error from "../Error";
-import { styles } from "../Editor";
 
+// import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
+
+import { useEditor } from '../../context/EditorContext.js';
+import Error from "../Error";
+
+import { styles } from "../Editor";
 
 
 const EditorNav = ({ content, setContent, freshEditor=false }) => {
   const [ error, setError ] = useState([]);
+  const { setLanguage, setLangType, theme, setTheme } = useEditor();
   const errors = useSelector(store => store.errorReducer.errors);
 
 
@@ -25,7 +27,32 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
 
 
+   const setJSSyntax = event => {
+    event.preventDefault();
+    setLanguage('javascript');
+    setLangType("// JavaScript Code Here")
+  }
 
+
+  const setPYSyntax = event => {
+    event.preventDefault();
+    setLanguage('python');
+    setLangType('# Python Code Here');
+   }
+
+
+   const setMDSyntax = event => {
+     event.preventDefault();
+     setLanguage('markdown');
+     setLangType('<!-- Markdown Code Here -->');
+   }
+
+
+   const changeTheme = event => {
+     event.preventDefault();
+     if (theme === 'vs-light') setTheme('vs-dark');
+     if (theme === 'vs-dark') setTheme('vs-light');
+   }
 
 
   return (
@@ -34,7 +61,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
         <nav>
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to={'/'} onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={setJSSyntax}>
                 JS
               </Link>
             </li>
@@ -42,7 +69,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to={'/'} onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={setPYSyntax}>
                 PY
               </Link>
             </li>
@@ -50,7 +77,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to={'/'} onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={setMDSyntax}>
                 MD
               </Link>
             </li>
@@ -58,7 +85,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to={'/'} onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={(event) => event.preventDefault()}>
                 TS
               </Link>
             </li>
@@ -66,7 +93,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to={'/'} onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={(event) => event.preventDefault()}>
                 C++
               </Link>
             </li>
@@ -74,23 +101,27 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to={'/'} onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={(event) => event.preventDefault()}>
                 HTML
+              </Link>
+            </li>
+          </div>
+
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={changeTheme}>
+                {theme}
               </Link>
             </li>
           </div>
         </nav>
       </div>
 
-
-
       {freshEditor ? (
         <div className={styles.edit_errors}>
           <Error error={error} />
         </div>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 

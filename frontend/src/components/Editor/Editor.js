@@ -2,19 +2,17 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 
-
-import Editor from '@monaco-editor/react';
-
-
-
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
 import { clearError, clearUpdateNoteError } from '../../actions/error.js';
 
 
+import { useEditor } from '../../context/EditorContext.js';
+
 
 // css
 import { styles } from '../Editor';
+
 
 import Error from "../Error";
 import EditorNav from "./EditorNav.js";
@@ -29,14 +27,13 @@ import EditorNav from "./EditorNav.js";
 const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
     const defaultTitle = the_content?.title  ?  the_content?.title : '';
     const defaultContent = the_content?.content  ?  the_content?.content : '';
+
     // state here
     const [ title, setTitle ] = useState(defaultTitle);
     const [ content, setContent ] = useState(defaultContent);
-    const [ language, setLanguage ] = useState('javascript');
-    const [ langType, setLangType ] = useState('// javascript code here');
-
     const [ error, setError ] = useState([]);
 
+    const { EachEditor } = useEditor();
     const errors = useSelector(store => store.noteErrorReducer.errors);
     const dispatch = useDispatch();
     let delayClearErrors;
@@ -53,6 +50,7 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
             setError([]);
         }
     },[errors]);
+
 
 
 
@@ -174,14 +172,7 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
           </label>
         </div>
 
-        <Editor
-          height='90vh'
-          defaultLanguage={language}
-          defaultValue={langType}
-          value={content}
-          onChange={handleEditorChange}
-          theme='vs-dark'
-        />
+        <EachEditor content={content} handleEditorChange={handleEditorChange} />
       </>
     );
     }
@@ -215,14 +206,7 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
           </label>
         </div>
 
-        <Editor
-          height='90vh'
-          defaultLanguage={language}
-          defaultValue={langType}
-          value={content}
-          onChange={handleEditorChange}
-          theme='vs-dark'
-        />
+        <EachEditor content={content} handleEditorChange={handleEditorChange} />
       </>
     );
     }
