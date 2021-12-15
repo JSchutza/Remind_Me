@@ -14,7 +14,7 @@ import { styles } from "../Editor";
 
 const EditorNav = ({ content, setContent, freshEditor=false }) => {
   const [ error, setError ] = useState([]);
-  const { setLanguage, setLangType, theme, setTheme } = useEditor();
+  const { setLanguage, theme, setTheme } = useEditor();
   const errors = useSelector(store => store.errorReducer.errors);
 
 
@@ -30,14 +30,12 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
    const setJSSyntax = event => {
     event.preventDefault();
     setLanguage('javascript');
-    setLangType("// JavaScript Code Here")
   }
 
 
   const setPYSyntax = event => {
     event.preventDefault();
     setLanguage('python');
-    setLangType('# Python Code Here');
    }
 
 
@@ -45,7 +43,6 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
    const setMDSyntax = event => {
      event.preventDefault();
      setLanguage('markdown');
-     setLangType('<!-- Markdown Code Here -->');
    }
 
 
@@ -53,7 +50,6 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
    const setTSSyntax = event => {
      event.preventDefault();
      setLanguage('typescript');
-     setLangType('// TypeScript Code Here ');
    }
 
 
@@ -61,7 +57,6 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
    const setCSyntax = event => {
      event.preventDefault();
      setLanguage('c');
-     setLangType('// C++ Code Here ');
    }
 
 
@@ -69,7 +64,6 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
    const setHTMLSyntax = event => {
      event.preventDefault();
      setLanguage('html');
-     setLangType('<!-- HTML Code Here -->');
    }
 
 
