@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 
-// import ReactMarkdown from 'react-markdown'
-// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-// import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
-// import gfm from 'remark-gfm'
+
 import Editor from '@monaco-editor/react';
 
 
@@ -44,28 +41,6 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
     let delayClearErrors;
 
 
-    // let renderers;
-    // renderers = {
-    //     code: ({ language, value }) => {
-    //         return (
-    //         <SyntaxHighlighter
-    //             customStyle={ {
-    //                     border: `none`,
-    //                     outline: `none`,
-    //                     background: `black`,
-    //                     resize: `none`,
-    //                     lineBreak: `anywhere`
-    //                 } }
-    //             style={materialDark}
-    //             showLineNumbers={true}
-    //             language={language}
-    //             children={value}
-    //         />);
-    //     }
-    // }
-
-
-
 
     // error useEffect here
     useEffect(() => {
@@ -81,7 +56,9 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
 
 
-
+    const handleEditorChange = (value, event) => {
+      setContent(value);
+    }
 
 
 
@@ -125,31 +102,6 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
 
 
-    // const MarkdownViewer = () => {
-    //   return (
-    //     <div className={styles.preview_test}>
-    //       <div className={styles.preview_container}>
-    //         <div className={styles.preview_wrapper}>
-    //           <div className={styles.preview_title}>
-    //             <ReactMarkdown plugins={[gfm]} children={title} />
-    //           </div>
-
-    //           <div className={styles.preview_content}>
-    //             <ReactMarkdown
-    //               renderers={renderers}
-    //               plugins={[gfm]}
-    //               children={content}
-    //             />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // };
-
-
-
-
 
     const CreateNoteButton = () => {
         return (
@@ -164,22 +116,6 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
     };
 
 
-
-
-    const TitleInput = () => {
-      return (
-        <div className={styles.edit_title}>
-          <label>
-            Title:
-            <input
-              onChange={(event) => setTitle(event.target.value)}
-              value={title}
-              aria-label='Title'
-            />
-          </label>
-        </div>
-      );
-    }
 
 
 
@@ -226,14 +162,23 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
         <EditorNav content={content} setContent={setContent} />
 
-        <TitleInput />
+        <div className={styles.edit_title}>
+          <label>
+            Title:
+            <input
+              onChange={(event) => setTitle(event.target.value)}
+              value={title}
+              aria-label='Title'
+            />
+          </label>
+        </div>
 
         <Editor
           height='90vh'
           defaultLanguage='javascript'
-          defaultValue='// some comment'
+          defaultValue='// code here'
           value={content}
-          onChange={(event) => setContent(event.target.value)}
+          onChange={handleEditorChange}
         />
       </>
     );
@@ -257,14 +202,23 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
           freshEditor={true}
         />
 
-        <TitleInput />
+        <div className={styles.edit_title}>
+          <label>
+            Title:
+            <input
+              onChange={(event) => setTitle(event.target.value)}
+              value={title}
+              aria-label='Title'
+            />
+          </label>
+        </div>
 
         <Editor
           height='90vh'
           defaultLanguage='javascript'
-          defaultValue='// some comment'
+          defaultValue='// code here'
           value={content}
-          onChange={(event) => setContent(event.target.value)}
+          onChange={handleEditorChange}
         />
       </>
     );
