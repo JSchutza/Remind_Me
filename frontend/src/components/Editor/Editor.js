@@ -34,13 +34,10 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     // state here
     const [ title, setTitle ] = useState(defaultTitle);
     const [ content, setContent ] = useState(defaultContent);
-    const [ showPreview, setShowPreview ] = useState(false);
-    const [ editpane, setEditpane ] = useState(true);
-    const [ first, setFirst ] = useState(0);
-    const [ second, setSecond ] = useState(false);
-    const [ buttontext, setButtontext ] = useState('Preview');
-    const [ initStyle, setInitStyle ] = useState('');
+
+
     const [ error, setError ] = useState([]);
+
     const errors = useSelector(store => store.noteErrorReducer.errors);
     const dispatch = useDispatch();
     let delayClearErrors;
@@ -69,24 +66,6 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
-
-
-
-    useEffect(() => {
-        if ((content === undefined || content === '') && (title === undefined || title === '')){
-            setInitStyle('hidden');
-        } else {
-            setInitStyle('');
-        }
-
-    }, [title, content, showPreview, editpane, buttontext]);
-
-
-
-
-
-
-
     // error useEffect here
     useEffect(() => {
         if (errors !== null) {
@@ -99,30 +78,6 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     },[errors]);
 
 
-
-
-
-
-
-    const previewClickHandler = (event) => {
-        event.preventDefault();
-        if (first === 0) {
-            setButtontext('Edit');
-            setShowPreview(true);
-            setEditpane(false);
-            setFirst(1);
-            setSecond(true);
-        }
-
-        if (second === true) {
-            setButtontext('Preview');
-            setShowPreview(false);
-            setEditpane(true);
-            setSecond(false);
-            setFirst(0);
-        }
-
-    };
 
 
 
@@ -172,7 +127,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     const MarkdownViewer = () => {
       return (
         <div className={styles.preview_test}>
-          <div className={(styles.preview_container, `${initStyle}`)}>
+          <div className={styles.preview_container}>
             <div className={styles.preview_wrapper}>
               <div className={styles.preview_title}>
                 <ReactMarkdown plugins={[gfm]} children={title} />
@@ -216,90 +171,59 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     if(the_content !== 'none') {
 
     return (
-        <>
-            <div className={styles.preview_button} >
-                <Link to={'/'} onClick={(event) => previewClickHandler(event)} >
-                    <h4>{buttontext}</h4>
-                </ Link>
-            </div>
+      <>
+        <div className={styles.update_button}>
+          <Link
+            to={'/'}
+            onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
+          >
+            <h4>Update</h4>
+          </Link>
+        </div>
 
-            <div className={styles.update_button}>
-                <Link to={'/'} onClick={(event) => noteUpdateClickHandler(event, the_content.id)} >
-                    <h4>Update</h4>
-                </Link>
-            </div>
+        <div className={styles.delete_button}>
+          <Link
+            to={'/'}
+            onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
+          >
+            <h4>Delete</h4>
+          </Link>
+        </div>
 
-            <div className={styles.delete_button}>
-                <Link to={'/'} onClick={(event) => noteDeleteClickHandler(event, the_content.id)} >
-                    <h4>Delete</h4>
-                </Link>
-            </div>
+        <div className={styles.edit_errors}>
+          <Error error={error} />
+        </div>
 
+        <MarkdownViewer />
 
-            <div className={styles.edit_errors} >
-                <Error error={error} />
-            </div>
+            <EditorNav content={content} setContent={setContent} />
 
+            <div className={styles.edit_container}>
+              <div className={styles.edit_test}>
+                <div className={styles.edit_wrapper}>
+                  <div className={styles.edit_title}>
+                    <label>
+                      Title:
+                      <input
+                        onChange={(event) => setTitle(event.target.value)}
+                        value={title}
+                        aria-label='Title'
+                      />
+                    </label>
+                  </div>
 
-            {showPreview === true ?
-
-                <div className={styles.preview_test}>
-                    <div className={styles.preview_container}>
-                        <div className={styles.preview_wrapper} >
-                            <div className={styles.preview_title} >
-                                <ReactMarkdown plugins={[gfm]} children={title} />
-                            </div>
-
-                            <div className={styles.preview_content} >
-                                <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
-                            </div>
-                        </div>
-                    </div>
+                  <div className={styles.edit_content}>
+                    <textarea
+                      onChange={(event) => setContent(event.target.value)}
+                      value={content}
+                      aria-label='Main Content'
+                    />
+                  </div>
                 </div>
-                :
-                <></>
-            }
-
-
-
-
-            { editpane === true ?
-                <>
-                    <EditorNav content={content} setContent={setContent} />
-
-                    <div className={styles.edit_container} >
-                        <div className={styles.edit_test} >
-
-                            <div className={styles.edit_wrapper} >
-
-                                <div className={styles.edit_title}>
-                                    <label>
-                                        Title:
-                                        <input
-                                            onChange={(event) => setTitle(event.target.value)}
-                                            value={title}
-                                            aria-label='Title'
-                                        />
-                                    </label>
-                                </div>
-
-                                <div className={styles.edit_content}>
-                                    <textarea
-                                        onChange={(event) => setContent(event.target.value)}
-                                        value={content}
-                                        aria-label='Main Content'
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </>
-                :
-                <></>
-            }
-
-        </>
-        );
+              </div>
+            </div>
+          </>
+    );
     }
 
 
@@ -309,35 +233,13 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     // if it is a fresh editor WITHOUT content
     if (the_content === 'none') {
 
-        const PreviewButton = () => {
-            return (
-              <div className={styles.preview_button}>
-                <Link to={'/'} onClick={(event) => previewClickHandler(event)}>
-                  {!title?.length || !content?.length ? (
-                    <></>
-                  ) : (
-                    <h4>{buttontext}</h4>
-                  )}
-                </Link>
-              </div>
-            );
-        }
-
-
 
     return (
       <>
-        {/* <PreviewButton /> */}
 
         <MarkdownViewer />
 
-        {editpane === true ? (
-          <>
-            <EditorNav
-              content={content}
-              setContent={setContent}
-              freshEditor={true}
-            />
+            <EditorNav content={content} setContent={setContent} freshEditor={true} />
 
             <CreateNoteButton />
 
@@ -365,10 +267,6 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
                 </div>
               </div>
             </div>
-          </>
-        ) : (
-          <></>
-        )}
       </>
     );
     }
