@@ -10,3 +10,14 @@
 .each_li_div {
   padding: 1%;
 }
+
+
+
+
+.each_li_div li {
+  background-color: white;
+  border: solid 1px whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 8px 6px rgb(0 0 0 / 60%);
+}
