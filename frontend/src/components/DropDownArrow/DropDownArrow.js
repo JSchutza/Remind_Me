@@ -5,7 +5,7 @@ import { VscChevronRight } from "react-icons/vsc";
 import ReactModal from 'react-modal';
 
 
-import Editor from "../Editor";
+import CodeEditor from '../Editor';
 
 
 import styles from './dropdownarrow.module.css';
@@ -24,22 +24,17 @@ const DropDownArrow = ({ eachNote, notebookId }) => {
 
   return (
     <>
-      <div
-        className={styles.notetitle_wrap}
-        onClick={() => setOpenModal(true)}
-      >
+      <div className={styles.notetitle_wrap} onClick={() => setOpenModal(true)}>
         <VscChevronRight />
         <p>{eachNote.title}</p>
       </div>
-
 
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
         appElement={document.getElementById('root')}
       >
-        <Editor the_content={eachNote} notebook_id={notebookId} />
-
+        <CodeEditor the_content={eachNote} notebook_id={notebookId} />
       </ReactModal>
     </>
   );

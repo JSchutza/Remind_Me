@@ -5,13 +5,6 @@ import Footer from './components/Footer';
 // import the reset css file here
 import './reset.css';
 
-// import Editor from '@monaco-editor/react';
-
-// <Editor
-//   height='90vh'
-//   defaultLanguage='javascript'
-//   defaultValue='// some comment'
-// />;
 
 
 

@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 
-import ReactMarkdown from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import gfm from 'remark-gfm'
-
+// import ReactMarkdown from 'react-markdown'
+// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+// import { materialDark, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
+// import gfm from 'remark-gfm'
+import Editor from '@monaco-editor/react';
 
 
 
@@ -29,7 +29,7 @@ import EditorNav from "./EditorNav.js";
 
 
 
-const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
+const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
     const defaultTitle = the_content?.title  ?  the_content?.title : '';
     const defaultContent = the_content?.content  ?  the_content?.content : '';
     // state here
@@ -183,39 +183,59 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+    const UpdateDeleteButtons = () => {
+      return (
+        <>
+          <div className={styles.update_button}>
+            <Link
+              to={'/'}
+              onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
+              >
+              <h4>Update</h4>
+            </Link>
+          </div>
+
+          <div className={styles.delete_button}>
+            <Link
+              to={'/'}
+              onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
+              >
+              <h4>Delete</h4>
+            </Link>
+          </div>
+        </>
+      )
+    };
+
+
+
+
+
+
+
     // if it is an update / there should be content in the editor
     if(the_content !== 'none') {
 
     return (
       <>
-        <div className={styles.update_button}>
-          <Link
-            to={'/'}
-            onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
-          >
-            <h4>Update</h4>
-          </Link>
-        </div>
-
-        <div className={styles.delete_button}>
-          <Link
-            to={'/'}
-            onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
-          >
-            <h4>Delete</h4>
-          </Link>
-        </div>
+        <UpdateDeleteButtons />
 
         <div className={styles.edit_errors}>
           <Error error={error} />
         </div>
 
+        <EditorNav content={content} setContent={setContent} />
 
-            <EditorNav content={content} setContent={setContent} />
+        <TitleInput />
 
-            <TitleInput />
-
-          </>
+        <Editor
+          height='90vh'
+          defaultLanguage='javascript'
+          defaultValue='// some comment'
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+        />
+      </>
     );
     }
 
@@ -229,7 +249,7 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
     return (
       <>
-      <CreateNoteButton />
+        <CreateNoteButton />
 
         <EditorNav
           content={content}
@@ -239,7 +259,13 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
         <TitleInput />
 
-
+        <Editor
+          height='90vh'
+          defaultLanguage='javascript'
+          defaultValue='// some comment'
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+        />
       </>
     );
     }
@@ -249,4 +275,4 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
-export default Editor;
+export default CodeEditor;
