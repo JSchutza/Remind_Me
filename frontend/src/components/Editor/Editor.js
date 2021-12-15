@@ -32,7 +32,8 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
     // state here
     const [ title, setTitle ] = useState(defaultTitle);
     const [ content, setContent ] = useState(defaultContent);
-
+    const [ language, setLanguage ] = useState('javascript');
+    const [ langType, setLangType ] = useState('// javascript code here');
 
     const [ error, setError ] = useState([]);
 
@@ -175,10 +176,11 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
         <Editor
           height='90vh'
-          defaultLanguage='javascript'
-          defaultValue='// code here'
+          defaultLanguage={language}
+          defaultValue={langType}
           value={content}
           onChange={handleEditorChange}
+          theme='vs-dark'
         />
       </>
     );
@@ -215,10 +217,11 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
         <Editor
           height='90vh'
-          defaultLanguage='javascript'
-          defaultValue='// code here'
+          defaultLanguage={language}
+          defaultValue={langType}
           value={content}
           onChange={handleEditorChange}
+          theme='vs-dark'
         />
       </>
     );
