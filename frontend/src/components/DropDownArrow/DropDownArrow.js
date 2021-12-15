@@ -39,7 +39,7 @@ const DropDownArrow = ({ eachNote, notebookId }) => {
         appElement={document.getElementById('root')}
       >
         <Editor the_content={eachNote} notebook_id={notebookId} />
-        {/* <Editor notebook_id={notebookId} closeModal={closeModal} /> */}
+
       </ReactModal>
     </>
   );
