@@ -62,21 +62,17 @@ const NotebookViewer = () => {
   return (
     <>
       <div className={styles.notebookviewer_wrap} >
-      <h1>Notebook</h1>
-      {/* if the user refresh page */}
+        <h1>Notebook</h1>
+        {/* if the user refresh page */}
 
-        {onrefresh && re_notebook !== null ?
-          <>
-            <h3 className={styles.notebook_name} >{re_notebook.name}</h3>
-          </>
-        :
-        <>
-          <h3 className={styles.notebook_name} >{notebook?.[notebookId].name}</h3>
-        </>
-        }
+          {onrefresh && re_notebook !== null ?
+              <h3 className={styles.notebook_name} >{re_notebook.name}</h3>
+          :
+            <h3 className={styles.notebook_name} >{notebook?.[notebookId].name}</h3>
+          }
 
-        <h1>Notes</h1>
-        <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
+          <h1>Notes</h1>
+          <Link to={'/'} onClick={event => handleCreate(event)}> Create </Link>
       </div>
 
 
@@ -89,18 +85,17 @@ const NotebookViewer = () => {
           </ReactModal>
 
 
+
         {allNotes !== null ?
-          <>
-            {Object.values(allNotes).map(eachNote => (
+            Object.values(allNotes).map(eachNote => (
               <DropDownArrow
                 eachNote={eachNote}
                 notebookId={notebookId}
                 key={nanoid()}
               />
-            ))}
-          </>
+            ))
         :
-        <h3 className={styles.no_note_message} >There are no notes for this Notebook</h3>
+          <h3 className={styles.no_note_message} >There are no notes for this Notebook</h3>
         }
 
     </>
