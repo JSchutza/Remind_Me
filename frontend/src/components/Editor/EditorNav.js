@@ -41,11 +41,37 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
    }
 
 
+
    const setMDSyntax = event => {
      event.preventDefault();
      setLanguage('markdown');
      setLangType('<!-- Markdown Code Here -->');
    }
+
+
+
+   const setTSSyntax = event => {
+     event.preventDefault();
+     setLanguage('typescript');
+     setLangType('// TypeScript Code Here ');
+   }
+
+
+
+   const setCSyntax = event => {
+     event.preventDefault();
+     setLanguage('c');
+     setLangType('// C++ Code Here ');
+   }
+
+
+
+   const setHTMLSyntax = event => {
+     event.preventDefault();
+     setLanguage('html');
+     setLangType('<!-- HTML Code Here -->');
+   }
+
 
 
    const changeTheme = event => {
@@ -85,7 +111,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to='/' onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={setTSSyntax}>
                 TS
               </Link>
             </li>
@@ -93,7 +119,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to='/' onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={setCSyntax}>
                 C++
               </Link>
             </li>
@@ -101,7 +127,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div}>
             <li key={nanoid()}>
-              <Link to='/' onClick={(event) => event.preventDefault()}>
+              <Link to='/' onClick={setHTMLSyntax}>
                 HTML
               </Link>
             </li>
