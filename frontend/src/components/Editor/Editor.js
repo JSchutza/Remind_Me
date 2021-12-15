@@ -9,6 +9,7 @@ import gfm from 'remark-gfm'
 
 
 
+
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
 import { clearError, clearUpdateNoteError } from '../../actions/error.js';
@@ -43,25 +44,25 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
     let delayClearErrors;
 
 
-    let renderers;
-    renderers = {
-        code: ({ language, value }) => {
-            return (
-            <SyntaxHighlighter
-                customStyle={ {
-                        border: `none`,
-                        outline: `none`,
-                        background: `black`,
-                        resize: `none`,
-                        lineBreak: `anywhere`
-                    } }
-                style={materialDark}
-                showLineNumbers={true}
-                language={language}
-                children={value}
-            />);
-        }
-    }
+    // let renderers;
+    // renderers = {
+    //     code: ({ language, value }) => {
+    //         return (
+    //         <SyntaxHighlighter
+    //             customStyle={ {
+    //                     border: `none`,
+    //                     outline: `none`,
+    //                     background: `black`,
+    //                     resize: `none`,
+    //                     lineBreak: `anywhere`
+    //                 } }
+    //             style={materialDark}
+    //             showLineNumbers={true}
+    //             language={language}
+    //             children={value}
+    //         />);
+    //     }
+    // }
 
 
 
@@ -124,27 +125,27 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
-    const MarkdownViewer = () => {
-      return (
-        <div className={styles.preview_test}>
-          <div className={styles.preview_container}>
-            <div className={styles.preview_wrapper}>
-              <div className={styles.preview_title}>
-                <ReactMarkdown plugins={[gfm]} children={title} />
-              </div>
+    // const MarkdownViewer = () => {
+    //   return (
+    //     <div className={styles.preview_test}>
+    //       <div className={styles.preview_container}>
+    //         <div className={styles.preview_wrapper}>
+    //           <div className={styles.preview_title}>
+    //             <ReactMarkdown plugins={[gfm]} children={title} />
+    //           </div>
 
-              <div className={styles.preview_content}>
-                <ReactMarkdown
-                  renderers={renderers}
-                  plugins={[gfm]}
-                  children={content}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    };
+    //           <div className={styles.preview_content}>
+    //             <ReactMarkdown
+    //               renderers={renderers}
+    //               plugins={[gfm]}
+    //               children={content}
+    //             />
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // };
 
 
 
@@ -164,6 +165,21 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+
+    const TitleInput = () => {
+      return (
+        <div className={styles.edit_title}>
+          <label>
+            Title:
+            <input
+              onChange={(event) => setTitle(event.target.value)}
+              value={title}
+              aria-label='Title'
+            />
+          </label>
+        </div>
+      );
+    }
 
 
 
@@ -194,34 +210,11 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
           <Error error={error} />
         </div>
 
-        <MarkdownViewer />
 
             <EditorNav content={content} setContent={setContent} />
 
-            <div className={styles.edit_container}>
-              <div className={styles.edit_test}>
-                <div className={styles.edit_wrapper}>
-                  <div className={styles.edit_title}>
-                    <label>
-                      Title:
-                      <input
-                        onChange={(event) => setTitle(event.target.value)}
-                        value={title}
-                        aria-label='Title'
-                      />
-                    </label>
-                  </div>
+            <TitleInput />
 
-                  <div className={styles.edit_content}>
-                    <textarea
-                      onChange={(event) => setContent(event.target.value)}
-                      value={content}
-                      aria-label='Main Content'
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
           </>
     );
     }
@@ -236,37 +229,17 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
     return (
       <>
+      <CreateNoteButton />
 
-        <MarkdownViewer />
+        <EditorNav
+          content={content}
+          setContent={setContent}
+          freshEditor={true}
+        />
 
-            <EditorNav content={content} setContent={setContent} freshEditor={true} />
+        <TitleInput />
 
-            <CreateNoteButton />
 
-            <div className={styles.edit_container}>
-              <div className={styles.edit_test}>
-                <div className={styles.edit_wrapper}>
-                  <div className={styles.edit_title}>
-                    <label>
-                      Title:
-                      <input
-                        onChange={(event) => setTitle(event.target.value)}
-                        value={title}
-                        aria-label='Title'
-                      />
-                    </label>
-                  </div>
-
-                  <div className={styles.edit_content}>
-                    <textarea
-                      onChange={(event) => setContent(event.target.value)}
-                      value={content}
-                      aria-label='Main Content'
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
       </>
     );
     }
