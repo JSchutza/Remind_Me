@@ -2,17 +2,19 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
-
 import { nanoid } from 'nanoid';
-import Error from "../Error";
-import { styles } from "../Editor";
 
+// import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
+
+import { useEditor } from '../../context/EditorContext.js';
+import Error from "../Error";
+
+import { styles } from "../Editor";
 
 
 const EditorNav = ({ content, setContent, freshEditor=false }) => {
   const [ error, setError ] = useState([]);
+  const { setLanguage, theme, setTheme } = useEditor();
   const errors = useSelector(store => store.errorReducer.errors);
 
 
@@ -25,111 +27,123 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
 
 
-
-
-  const insertHOne = event => {
+   const setJSSyntax = event => {
     event.preventDefault();
-    if (content === undefined) {
-      setContent('' + '# ');
-    } else {
-      setContent(content + '\n# ');
-    }
-  };
-
-
-  const insertHTwo = event => {
-    event.preventDefault();
-    if (content === undefined) {
-      setContent('' + '## ');
-    } else {
-      setContent(content + '\n## ');
-    }
+    setLanguage('javascript');
   }
 
 
-  const insertHThree = event => {
+  const setPYSyntax = event => {
     event.preventDefault();
-    if (content === undefined) {
-      setContent('' + '### ');
-    } else {
-      setContent(content + '\n### ');
-    }
-  }
+    setLanguage('python');
+   }
 
 
-  const insertCodeBlock = event => {
-    event.preventDefault();
-    if (content === undefined){
-      setContent('' + '~~~\nEnter code here\n~~~');
-    } else {
-      setContent(content + '\n~~~\nEnter code here\n~~~');
-    }
-  }
+
+   const setMDSyntax = event => {
+     event.preventDefault();
+     setLanguage('markdown');
+   }
 
 
-  const insertLine = event => {
-    event.preventDefault();
-    if (content === undefined){
-      setContent('' + '-----\n');
-    } else {
-      setContent(content + '\n-----\n');
-    }
-  }
+
+   const setTSSyntax = event => {
+     event.preventDefault();
+     setLanguage('typescript');
+   }
 
 
-  const insertBulletpoint = event => {
-    event.preventDefault();
-    if(content === undefined) {
-      setContent('' + '* \n- ');
-    } else {
-      setContent(content + '\n* \n- ');
-    }
-  }
 
+   const setCSyntax = event => {
+     event.preventDefault();
+     setLanguage('c');
+   }
+
+
+
+   const setHTMLSyntax = event => {
+     event.preventDefault();
+     setLanguage('html');
+   }
+
+
+
+   const changeTheme = event => {
+     event.preventDefault();
+     if (theme === 'vs-light') setTheme('vs-dark');
+     if (theme === 'vs-dark') setTheme('vs-light');
+   }
 
 
   return (
     <>
       <div className={styles.nav_containter}>
         <nav>
-          <div className={styles.each_li_div} >
-            <li key={nanoid()} > <Link to={'/'} onClick={event => insertHOne(event)}> {'<h1>'} </Link> </li>
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={setJSSyntax}>
+                JS
+              </Link>
+            </li>
           </div>
 
-          <div className={styles.each_li_div} >
-            <li key={nanoid()} > <Link to={'/'} onClick={event => insertHTwo(event)}> {'<h2>'} </Link> </li>
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={setPYSyntax}>
+                PY
+              </Link>
+            </li>
           </div>
 
-          <div className={styles.each_li_div} >
-            <li key={nanoid()}> <Link to={'/'} onClick={event => insertHThree(event)}> {'<h3>'} </Link> </li>
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={setMDSyntax}>
+                MD
+              </Link>
+            </li>
           </div>
 
-          <div className={styles.each_li_div} >
-            <li key={nanoid()}> <Link to={'/'} onClick={event => insertCodeBlock(event)}> <VscJson /> </Link> </li>
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={setTSSyntax}>
+                TS
+              </Link>
+            </li>
           </div>
 
-          <div className={styles.each_li_div} >
-            <li key={nanoid()}> <Link to={'/'} onClick={event => insertLine(event)}> <VscChromeMinimize /> </Link> </li>
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={setCSyntax}>
+                C++
+              </Link>
+            </li>
           </div>
 
-          <div className={styles.each_li_div} >
-            <li key={nanoid()}> <Link to={'/'} onClick={event => insertBulletpoint(event)}> <VscListOrdered /> </Link> </li>
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={setHTMLSyntax}>
+                HTML
+              </Link>
+            </li>
+          </div>
+
+          <div className={styles.each_li_div}>
+            <li key={nanoid()}>
+              <Link to='/' onClick={changeTheme}>
+                {theme}
+              </Link>
+            </li>
           </div>
         </nav>
       </div>
 
-
-      {freshEditor ?
-        <div className={styles.edit_errors} >
+      {freshEditor ? (
+        <div className={styles.edit_errors}>
           <Error error={error} />
         </div>
-        :
-          <></>
-        }
-
-
+      ) : null}
     </>
-  )
+  );
 
 };
 
