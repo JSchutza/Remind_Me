@@ -169,6 +169,49 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
 
 
 
+    const MarkdownViewer = () => {
+      return (
+        <div className={styles.preview_test}>
+          <div className={(styles.preview_container, `${initStyle}`)}>
+            <div className={styles.preview_wrapper}>
+              <div className={styles.preview_title}>
+                <ReactMarkdown plugins={[gfm]} children={title} />
+              </div>
+
+              <div className={styles.preview_content}>
+                <ReactMarkdown
+                  renderers={renderers}
+                  plugins={[gfm]}
+                  children={content}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+
+
+
+
+    const CreateNoteButton = () => {
+        return (
+            <>
+            {homepage ? null :
+                <div className={styles.create_note_button}>
+                  <Link to='/' onClick={(event) => notecreationClickHandler(event)} > Create </Link>
+                </div>
+            }
+            </>
+        )
+    };
+
+
+
+
+
+
     // if it is an update / there should be content in the editor
     if(the_content !== 'none') {
 
@@ -259,95 +302,75 @@ const Editor = ({ the_content = 'none', notebook_id, closeModal, homepage=false 
         );
     }
 
+
+
+
+
     // if it is a fresh editor WITHOUT content
     if (the_content === 'none') {
 
-    return (
-        <>
-            <div className={styles.preview_button} >
-                <Link to={'/'} onClick={(event) => previewClickHandler(event)} >
-                    {!title?.length || !content?.length ?
-                        <></>
-                        :
-                        <h4>{buttontext}</h4>
-                    }
+        const PreviewButton = () => {
+            return (
+              <div className={styles.preview_button}>
+                <Link to={'/'} onClick={(event) => previewClickHandler(event)}>
+                  {!title?.length || !content?.length ? (
+                    <></>
+                  ) : (
+                    <h4>{buttontext}</h4>
+                  )}
                 </Link>
+              </div>
+            );
+        }
+
+
+
+    return (
+      <>
+        {/* <PreviewButton /> */}
+
+        <MarkdownViewer />
+
+        {editpane === true ? (
+          <>
+            <EditorNav
+              content={content}
+              setContent={setContent}
+              freshEditor={true}
+            />
+
+            <CreateNoteButton />
+
+            <div className={styles.edit_container}>
+              <div className={styles.edit_test}>
+                <div className={styles.edit_wrapper}>
+                  <div className={styles.edit_title}>
+                    <label>
+                      Title:
+                      <input
+                        onChange={(event) => setTitle(event.target.value)}
+                        value={title}
+                        aria-label='Title'
+                      />
+                    </label>
+                  </div>
+
+                  <div className={styles.edit_content}>
+                    <textarea
+                      onChange={(event) => setContent(event.target.value)}
+                      value={content}
+                      aria-label='Main Content'
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-
-
-            {showPreview === true ?
-
-                <div className={styles.preview_test}>
-                    <div className={styles.preview_container, `${initStyle}`}>
-                        <div className={styles.preview_wrapper} >
-                            <div className={styles.preview_title} >
-                                <ReactMarkdown plugins={[gfm]} children={title} />
-                            </div>
-
-                            <div className={styles.preview_content} >
-                                <ReactMarkdown renderers={renderers} plugins={[gfm]} children={content} />
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                :
-                <></>
-            }
-
-
-
-
-            { editpane === true ?
-                <>
-                    <EditorNav  content={content}  setContent={setContent}  freshEditor={true} />
-
-                    {homepage ?
-                        <></>
-                        :
-                        <>
-                            <div className={styles.create_note_button} >
-                                <Link to={'/'} onClick={event => notecreationClickHandler(event)}> Create </Link>
-                            </div>
-                        </>
-                    }
-
-                <div className={styles.edit_container} >
-                    <div className={styles.edit_test} >
-
-                        <div className={styles.edit_wrapper} >
-
-                            <div className={styles.edit_title}>
-                                <label>
-                                    Title:
-                                <input
-                                    onChange={(event) => setTitle(event.target.value)}
-                                    value={title}
-                                    aria-label='Title'
-                                />
-                                </label>
-                            </div>
-
-                            <div className={styles.edit_content}>
-                                <textarea
-                                    onChange={(event) => setContent(event.target.value)}
-                                    value={content}
-                                    aria-label='Main Content'
-                                />
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                </>
-                :
-                <></>
-            }
-
-            </>
-        );
+          </>
+        ) : (
+          <></>
+        )}
+      </>
+    );
     }
 
 
