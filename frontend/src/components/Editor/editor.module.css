@@ -1,6 +1,6 @@
 
 .create_note_button {
-  margin-top: 5vw;
+  padding: 20px;
 }
 
 
@@ -142,7 +142,7 @@
 
 
 .edit_title label {
-
+  margin-top: 7vw;
 }
 
 
