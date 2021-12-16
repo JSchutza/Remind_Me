@@ -66,7 +66,7 @@ const NavBar = () => {
                   :
                       <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
                   }
-                </div>
+              </div>
             ))}
           </nav>
         </div>

@@ -24,6 +24,12 @@
 
 
 
+.each_li_div:hover {
+  cursor: pointer;
+}
+
+
+
 .each_li_div li:hover {
   background-color: blue;
 }

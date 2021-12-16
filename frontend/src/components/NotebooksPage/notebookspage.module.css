@@ -1,15 +1,38 @@
 
-
-
-
-
-
-
-
 .notebooks_wrap {
   margin-left: 11.5vw;
   padding: 25px;
 }
+
+
+
+.notebooks_create_button {
+  background-color: rgba(0,0,0,0.3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  padding: 10px;
+  border-radius: 6px;
+  border: solid black 1px;
+}
+
+
+.notebooks_create_button:hover {
+  cursor: pointer;
+  background-color: blue;
+}
+
+
+
+.notebooks_create_button a:hover {
+  color: white;
+}
+
 
 
 .eachnotebook_container {
