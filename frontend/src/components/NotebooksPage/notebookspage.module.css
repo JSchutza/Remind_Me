@@ -29,7 +29,7 @@
 
 
 
-.notebooks_create_button a:hover {
+.notebooks_create_button:hover .create_notebook_link {
   color: white;
 }
 

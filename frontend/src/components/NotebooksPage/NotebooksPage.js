@@ -62,11 +62,14 @@ const NotebooksPage = () => {
           className={styles.notebooks_create_button}
           onClick={(event) => handleCreate(event)}
         >
-          <Link to={'/'} onClick={(event) => handleCreate(event)}>
+          <Link
+            className={styles.create_notebook_link}
+            to={'/'}
+            onClick={(event) => handleCreate(event)}
+          >
             Create
           </Link>
         </div>
-
 
         <ReactModal
           isOpen={showModal}
