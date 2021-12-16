@@ -117,35 +117,32 @@
 
 
 
+.edit_title {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+
 
 .edit_title input{
   width: 100%;
   padding: 10px 0;
-  font-size: 16px;
   margin-bottom: 30px;
-  border: none;
+  border: solid black 1px;
   outline: none;
   background: transparent;
-  color: #8338ec;
   font-family: 'JetBrains Mono', monospace;
 }
 
 
 
 
-.edit_content textarea{
-  width: 77%;
-  padding: 10px 0;
-  font-size: 1rem;
-  margin-bottom: 30px;
-  outline: none;
-  background: transparent;
-  height: 32rem;
-  resize: none;
-  line-break: anywhere;
-  position: absolute;
-  color: #8338ec;
-  font-family: 'JetBrains Mono', monospace;
+.edit_title label {
+
 }
 
 
@@ -161,4 +158,14 @@
 
 .each_li_div {
   padding: 1%;
+}
+
+
+
+.each_li_div li {
+  background-color: white;
+  border: solid 1px whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 8px 6px rgb(0 0 0 / 60%);
 }
