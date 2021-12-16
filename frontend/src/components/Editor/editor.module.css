@@ -172,18 +172,20 @@
 
 
 
-.each_li_div:hover {
-  cursor: pointer;
-}
-
-
-
-.each_li_div li:hover {
+.each_li_div:hover li {
   background-color: blue;
 }
 
 
 
-.each_li_div li a:hover {
-  color: whitesmoke;
+.each_li_div:hover {
+  background-color: rgba(0,0,0,0.4);
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+
+.each_li_div:hover .change_lang {
+  color: white;
 }
