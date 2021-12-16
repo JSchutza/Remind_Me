@@ -169,3 +169,15 @@
   border-radius: 5px;
   box-shadow: 0 8px 6px rgb(0 0 0 / 60%);
 }
+
+
+
+.each_li_div li:hover {
+  background-color: blue;
+}
+
+
+
+.each_li_div li a:hover {
+  color: whitesmoke;
+}
