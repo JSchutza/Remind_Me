@@ -79,7 +79,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
     <>
       <div className={styles.nav_containter}>
         <nav>
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setJSSyntax}>
             <li key={nanoid()}>
               <Link to='/' onClick={setJSSyntax}>
                 JS
@@ -87,7 +87,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setPYSyntax}>
             <li key={nanoid()}>
               <Link to='/' onClick={setPYSyntax}>
                 PY
@@ -95,7 +95,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setMDSyntax}>
             <li key={nanoid()}>
               <Link to='/' onClick={setMDSyntax}>
                 MD
@@ -103,7 +103,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setTSSyntax}>
             <li key={nanoid()}>
               <Link to='/' onClick={setTSSyntax}>
                 TS
@@ -111,7 +111,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setCSyntax}>
             <li key={nanoid()}>
               <Link to='/' onClick={setCSyntax}>
                 C++
@@ -119,7 +119,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setHTMLSyntax}>
             <li key={nanoid()}>
               <Link to='/' onClick={setHTMLSyntax}>
                 HTML
@@ -127,7 +127,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={changeTheme}>
             <li key={nanoid()}>
               <Link to='/' onClick={changeTheme}>
                 {theme}
