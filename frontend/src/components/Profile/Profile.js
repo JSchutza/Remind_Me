@@ -79,12 +79,13 @@ const Profile = () => {
 
       <div className={styles.recentnotebooks_wrap}>
         <h3>Recent Notebooks</h3>
-        <div>
+
+        <div className={styles.each_recent_notebook} >
           {notebooks ?
             <>
             {Object.values(notebooks).map(eachBook => (
-              <div key= { nanoid() } >
-                <Link to={`/notebook/${eachBook.id}`} > <h4>{eachBook.name}</h4> </Link>
+              <div key={nanoid()} className={styles.each_notebook_link} >
+                <Link to={`/notebook/${eachBook.id}`} className={styles.link} > <h4>{eachBook.name}</h4> </Link>
               </div>
             ))}
             </>
