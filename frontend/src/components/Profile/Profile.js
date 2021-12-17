@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useUser } from '../../context/UserContext.js';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { thunk_getLimitedNotebooks } from '../../thunks/notebooks.js';
 
@@ -21,6 +21,7 @@ import styles from "./profile.module.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { isUser } = useUser();
   const [ open_close, setOpen_Close ] = useState(false);
 
@@ -43,6 +44,8 @@ const Profile = () => {
   }
 
 
+
+
   return (
     <>
       <div className={styles.userinfo_wrap}>
@@ -60,8 +63,7 @@ const Profile = () => {
         </div>
 
         <div>
-          {isUser.id === 1 && isUser.email === 'demo@gmail.com' ?
-            <></>
+          {isUser.id === 1 && isUser.email === 'demo@gmail.com' ? null
             :
               <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
            }
@@ -82,20 +84,19 @@ const Profile = () => {
 
         <div className={styles.each_recent_notebook} >
           {notebooks ?
-            <>
-            {Object.values(notebooks).map(eachBook => (
-              <div key={nanoid()} className={styles.each_notebook_link} >
+            Object.values(notebooks).map(eachBook => (
+              <div
+                key={nanoid()}
+                className={styles.each_notebook_link}
+                onClick={() => history.push(`/notebook/${eachBook.id}`)}
+              >
                 <Link to={`/notebook/${eachBook.id}`} className={styles.link} > <h4>{eachBook.name}</h4> </Link>
               </div>
-            ))}
-            </>
-          :
-            <></>
+            ))
+          : null
           }
         </div>
       </div>
-
-
     </>
   )
 };
