@@ -10,11 +10,19 @@ const router = express.Router();
 // routes here:
 // GET localhost:5000/api/code
 router.get('/', requireAuth, asyncHandler(async(request, response)=> {
-  const { language, script } = request.body;
+  const errors = ['Error when trying to run your code.'];
   const baseURL = 'https://api.jdoodle.com/v1/execute';
 
+  const { language, script } = request.body;
+
+  // if the code is invalid or there is a general error with the api
+  if (!language || !script) {
+    response.json({ errors });
+    return;   // => need to return so that the axios request is not made
+  }
+
   const data = {
-    script: '<?php echo "works"; ?>',
+    script,
     language,
     versionIndex: '0',
     clientId: process.env.COMPILE_CLIENT_ID,
@@ -28,7 +36,6 @@ router.get('/', requireAuth, asyncHandler(async(request, response)=> {
     response.json(result);
   }
   // if the code is invalid or there is a general error with the api
-  const errors = ['Error when trying to run your code.'];
   response.json({ errors });
 
 
