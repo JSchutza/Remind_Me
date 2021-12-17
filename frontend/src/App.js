@@ -2,6 +2,7 @@
 import MainRouter from './components/MainRouter';
 
 import Footer from './components/Footer';
+import RunCodeButton from './components/RunCodeButton';
 // import the reset css file here
 import './reset.css';
 
@@ -14,6 +15,7 @@ function App() {
       <>
         <MainRouter />
         <Footer />
+        <RunCodeButton />
       </>
     );
 }
