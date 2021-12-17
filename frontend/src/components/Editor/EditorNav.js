@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid';
 
 import { useEditor } from '../../context/EditorContext.js';
 import Error from "../Error";
+import RunCodeButton from "../RunCodeButton";
 
 import { styles } from "../Editor";
 
@@ -121,7 +122,11 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
           <div className={styles.each_li_div} onClick={setHTMLSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setHTMLSyntax} className={styles.change_lang} >
+              <Link
+                to='/'
+                onClick={setHTMLSyntax}
+                className={styles.change_lang}
+              >
                 HTML
               </Link>
             </li>
@@ -136,6 +141,8 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
           </div>
         </nav>
       </div>
+
+      <RunCodeButton script={content} />
 
       {freshEditor ? (
         <div className={styles.edit_errors}>

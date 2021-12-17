@@ -17,12 +17,6 @@ const EditorProvider = ({ children }) => {
 
 
   const EachEditor = ({ content, handleEditorChange }) => {
-
-    useEffect(() => {
-      setScript(content);
-    },[]);
-
-
     return (
       <Editor
         height='90vh'
