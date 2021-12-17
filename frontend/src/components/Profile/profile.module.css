@@ -49,3 +49,39 @@
   margin-left: 11.5vw;
   padding: 40px;
 }
+
+
+
+
+.each_recent_notebook {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+}
+
+
+.each_notebook_link {
+  background-color: white;
+  margin: 10px;
+  border: solid black 1px;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+
+
+.each_notebook_link:hover {
+  cursor: pointer;
+  background-color: blue;
+}
+
+
+
+.each_notebook_link:hover .link {
+  color: white;
+}

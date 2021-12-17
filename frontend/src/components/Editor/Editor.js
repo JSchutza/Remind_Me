@@ -162,14 +162,14 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
         <EditorNav content={content} setContent={setContent} />
 
         <div className={styles.edit_title}>
-          <label>
-            Title:
+          <label>Title:</label>
+          <br />
+
             <input
               onChange={(event) => setTitle(event.target.value)}
               value={title}
               aria-label='Title'
             />
-          </label>
         </div>
 
         <EachEditor content={content} handleEditorChange={handleEditorChange} />
@@ -196,14 +196,13 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
         />
 
         <div className={styles.edit_title}>
-          <label>
-            Title:
-            <input
-              onChange={(event) => setTitle(event.target.value)}
-              value={title}
-              aria-label='Title'
-            />
-          </label>
+          <label>Title:</label>
+          <br />
+          <input
+            onChange={(event) => setTitle(event.target.value)}
+            value={title}
+            aria-label='Title'
+          />
         </div>
 
         <EachEditor content={content} handleEditorChange={handleEditorChange} />

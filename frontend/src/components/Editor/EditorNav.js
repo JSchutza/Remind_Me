@@ -79,57 +79,57 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
     <>
       <div className={styles.nav_containter}>
         <nav>
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setJSSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setJSSyntax}>
+              <Link to='/' onClick={setJSSyntax} className={styles.change_lang}>
                 JS
               </Link>
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setPYSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setPYSyntax}>
+              <Link to='/' onClick={setPYSyntax} className={styles.change_lang}>
                 PY
               </Link>
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setMDSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setMDSyntax}>
+              <Link to='/' onClick={setMDSyntax} className={styles.change_lang}>
                 MD
               </Link>
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setTSSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setTSSyntax}>
+              <Link to='/' onClick={setTSSyntax} className={styles.change_lang}>
                 TS
               </Link>
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setCSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setCSyntax}>
+              <Link to='/' onClick={setCSyntax} className={styles.change_lang}>
                 C++
               </Link>
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={setHTMLSyntax}>
             <li key={nanoid()}>
-              <Link to='/' onClick={setHTMLSyntax}>
+              <Link to='/' onClick={setHTMLSyntax} className={styles.change_lang} >
                 HTML
               </Link>
             </li>
           </div>
 
-          <div className={styles.each_li_div}>
+          <div className={styles.each_li_div} onClick={changeTheme}>
             <li key={nanoid()}>
-              <Link to='/' onClick={changeTheme}>
+              <Link to='/' onClick={changeTheme} className={styles.change_lang}>
                 {theme}
               </Link>
             </li>
