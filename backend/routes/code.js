@@ -28,7 +28,8 @@ router.get('/', requireAuth, asyncHandler(async(request, response)=> {
     response.json(result);
   }
   // if the code is invalid or there is a general error with the api
-  response.json({});
+  const errors = ['Error when trying to run your code.'];
+  response.json({ errors });
 
 
 }));

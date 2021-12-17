@@ -7,22 +7,22 @@ import { notebooksReducer, notebookPageReducer, newNotebookReducer, deleteNotebo
 import { notesReducer, recentNoteReducer, recentlyCreatedNoteReducer, recentlyDeletedNoteReducer } from '../reducers/notes.js';
 import { tagsReducer } from '../reducers/tags.js';
 import { errorReducer, noteErrorReducer } from "../reducers/error.js";
-
+import { codeEvalReducer } from "../reducers/code.js";
 
 const rootReducer = combineReducers({
-    userReducer,
-    notebooksReducer,
-    notebookPageReducer,
-    notesReducer,
-    recentNoteReducer,
-    newNotebookReducer,
-    tagsReducer,
-    recentlyCreatedNoteReducer,
-    deleteNotebookReducer,
-    recentlyDeletedNoteReducer,
-    errorReducer,
-    noteErrorReducer,
-
+  userReducer,
+  notebooksReducer,
+  notebookPageReducer,
+  notesReducer,
+  recentNoteReducer,
+  newNotebookReducer,
+  tagsReducer,
+  recentlyCreatedNoteReducer,
+  deleteNotebookReducer,
+  recentlyDeletedNoteReducer,
+  errorReducer,
+  noteErrorReducer,
+  codeEvalReducer,
 
 });
 
