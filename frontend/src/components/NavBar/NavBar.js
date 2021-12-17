@@ -62,9 +62,16 @@ const NavBar = () => {
             {paths.map(eachLink => (
               <div key={nanoid()} className={styles.each_li_div}>
                   {eachLink.onclick ?
-                      <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
+                      <li> <NavLink
+                              className={styles.each_link}
+                              to={`${eachLink.path}`}
+                              onClick={eachLink.func}
+                            > {eachLink.name} </NavLink> </li>
                   :
-                      <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
+                      <li> <NavLink
+                              className={styles.each_link}
+                              to={`${eachLink.path}`}
+                            > {eachLink.name} </NavLink> </li>
                   }
               </div>
             ))}
@@ -90,9 +97,16 @@ const NavBar = () => {
           {paths.map(eachLink => (
             <div key={nanoid()} className={styles.each_li_div}>
                 {eachLink.onclick ?
-                    <li> <NavLink to={`${eachLink.path}`} onClick={eachLink.func} > {eachLink.name} </NavLink> </li>
+                    <li> <NavLink
+                            className={styles.each_link}
+                            to={`${eachLink.path}`}
+                            onClick={eachLink.func}
+                          > {eachLink.name} </NavLink> </li>
                   :
-                    <li> <NavLink to={`${eachLink.path}`}> {eachLink.name} </NavLink> </li>
+                    <li> <NavLink
+                            className={styles.each_link}
+                            to={`${eachLink.path}`}
+                          > {eachLink.name} </NavLink> </li>
                 }
               </div>
           ))}
