@@ -30,8 +30,7 @@ const RunCodeButton = ({ script }) => {
   return (
     <div>
       <Link to='/' onClick={handleClick}>
-        {' '}
-        Run Code{' '}
+        Run Code
       </Link>
     </div>
   );

@@ -1,4 +1,4 @@
-const { express, asyncHandler, requireAuth } = require('../lib');
+const { express, asyncHandler, requireAuth, convertLanguage } = require('../lib');
 
 const axios = require('axios');
 
@@ -12,36 +12,31 @@ const router = express.Router();
 router.post('/', requireAuth, asyncHandler(async(request, response)=> {
   const errors = ['Error when trying to run your code.'];
   const baseURL = 'https://api.jdoodle.com/v1/execute';
-  let versionIndex = '0';
 
   let { language, script } = request.body;
+
 
   // if the code is invalid or there is a general error with the api
   if (!language || !script) {
     response.json({ errors });
-    return;   // => need to return so that the axios request is not made
+    return; // => need to return so that the axios request is not made
   }
 
-
-  switch(language) {
-    case 'javascript':
-      language = 'nodejs';
-      versionIndex = '4';
-      break;
-    default:
-      response.json({ errors });
+  let langInstance = convertLanguage(language);
+  if (!langInstance) {
+    response.json({ errors });
+    return; // => need to return so that the axios request is not made
   }
 
 
 
   const data = {
     script,
-    language,
-    versionIndex,
+    language: langInstance.changeLang,
+    versionIndex: langInstance.version,
     clientId: process.env.COMPILE_CLIENT_ID,
     clientSecret: process.env.COMPILE_CLIENT_SECRET,
   };
-
 
   const result = await axios.post(baseURL, data).then(response => response.data);
 
@@ -50,8 +45,6 @@ router.post('/', requireAuth, asyncHandler(async(request, response)=> {
   }
   // if the code is invalid or there is a general error with the api
   response.json({ errors });
-
-
 }));
 
 
