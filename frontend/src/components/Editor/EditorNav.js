@@ -11,6 +11,7 @@ import { useEditor } from '../../context/EditorContext.js';
 import { resetCode } from '../../actions/code.js';
 import Error from "../Error";
 import RunCodeButton from "../RunCodeButton";
+import CodeResults from "../CodeResults";
 
 import { styles } from "../Editor";
 
@@ -167,7 +168,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
         onRequestClose={closeCompModal}
         appElement={document.getElementById('root')}
       >
-
+        <CodeResults />
       </ReactModal>
 
 
