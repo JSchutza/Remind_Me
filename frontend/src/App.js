@@ -2,6 +2,7 @@
 import MainRouter from './components/MainRouter';
 
 import Footer from './components/Footer';
+
 // import the reset css file here
 import './reset.css';
 

@@ -11,8 +11,8 @@ const useEditor = () => useContext(EditorContext);
 
 const EditorProvider = ({ children }) => {
   const [ language, setLanguage ] = useState('javascript');
-
   const [ theme, setTheme ] = useState('vs-dark');
+  const [ script, setScript ] = useState('');
 
 
 
@@ -37,6 +37,8 @@ const EditorProvider = ({ children }) => {
         setLanguage,
         theme,
         setTheme,
+        script,
+        setScript,
         EachEditor,
       }}
     >

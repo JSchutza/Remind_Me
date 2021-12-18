@@ -7,6 +7,7 @@ const users_router = require('./routes/users.js');
 const notebooks_router = require('./routes/notebooks.js');
 const notes_router = require('./routes/notes.js');
 const tags_router = require('./routes/tags.js');
+const code_runner_router = require('./routes/code.js');
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use('/api/users', users_router);
 app.use('/api/notebooks', notebooks_router);
 app.use('/api/notes', notes_router);
 app.use('/api/tags', tags_router);
-
+app.use('/api/code', code_runner_router);
 
 
 
