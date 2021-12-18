@@ -1,12 +1,14 @@
 
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
+import ReactModal from 'react-modal';
 
 // import { VscJson, VscChromeMinimize, VscListOrdered } from "react-icons/vsc";
 
 import { useEditor } from '../../context/EditorContext.js';
+import { resetCode } from '../../actions/code.js';
 import Error from "../Error";
 import RunCodeButton from "../RunCodeButton";
 
@@ -15,9 +17,10 @@ import { styles } from "../Editor";
 
 const EditorNav = ({ content, setContent, freshEditor=false }) => {
   const [ error, setError ] = useState([]);
+  const [ compModal, setCompModal ] = useState(false);
   const { setLanguage, theme, setTheme } = useEditor();
   const errors = useSelector(store => store.errorReducer.errors);
-
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -74,6 +77,15 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
      if (theme === 'vs-light') setTheme('vs-dark');
      if (theme === 'vs-dark') setTheme('vs-light');
    }
+
+
+
+   const closeCompModal = () => {
+     setCompModal(false);
+     // clear compilation results in redux
+      dispatch(resetCode());
+   }
+
 
 
   return (
@@ -142,7 +154,25 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
         </nav>
       </div>
 
-      <RunCodeButton script={content} />
+
+      <RunCodeButton
+        script={content}
+        setCompModal={setCompModal}
+      />
+
+
+
+      <ReactModal
+        isOpen={compModal}
+        onRequestClose={closeCompModal}
+        appElement={document.getElementById('root')}
+      >
+
+      </ReactModal>
+
+
+
+
 
       {freshEditor ? (
         <div className={styles.edit_errors}>

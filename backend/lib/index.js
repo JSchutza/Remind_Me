@@ -114,13 +114,23 @@ const handleValidationErrors = (request, response, next) => {
 
 // used to sanitize language type because the api needs a specific string
 const convertLanguage = language => {
-
+// https://docs.jdoodle.com/compiler-api/compiler-api
+// docs for the api compiler mappings
   const map = {
-    'javascript': ['nodejs', '4'],
-    'python': ['python3', '4'],
-    'c': ['cpp17', '1'],
-    'php': ['php', '4'],
-    'c#': ['csharp', '4'],
+    'javascript': [ 'nodejs', '4' ],
+    'python': [ 'python3', '4' ],
+    'c': [ 'cpp17', '1' ],
+    'php': [ 'php', '4' ],
+    'c#': [ 'csharp', '4' ],
+    'java': [ 'java', '4' ],
+    'vb':[ 'vbn', '4' ],
+    'coffeescript':[ 'coffeescript', '4' ],
+    'batch':[ 'bash', '4' ],
+    'f#':[ 'fsharp', '1' ],
+    'lua':[ 'lua', '3' ],
+    'ruby':[ 'ruby', '4' ],
+    'r':[ 'r', '4' ],
+    'rust':[ 'rust', '4' ],
   };
 
   if (map[language] !== undefined) {

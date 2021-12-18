@@ -11,7 +11,7 @@ import styles from './runcodebutton.module.css';
 
 
 
-const RunCodeButton = ({ script }) => {
+const RunCodeButton = ({ script, setCompModal }) => {
   const dispatch = useDispatch();
   const { language } = useEditor();
 
@@ -21,6 +21,7 @@ const RunCodeButton = ({ script }) => {
     const success = await dispatch(thunk_getCode({ language, script }));
     if (success) {
       // showModal call here?
+      setCompModal(true)
       return;
     }
 
