@@ -14,9 +14,28 @@
 }
 
 
+
+.runcode_wrap:hover {
+  cursor: pointer;
+}
+
+
+
 .run_div {
   background-color: deepskyblue;
   padding: 10px;
   border-radius: 4px;
   border: solid blue 1px;
+}
+
+
+
+.run_div:hover {
+  background-color: blue;
+}
+
+
+
+.run_div:hover a {
+  color: white;
 }

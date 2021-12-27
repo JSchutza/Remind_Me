@@ -33,9 +33,9 @@ const RunCodeButton = ({ script, setCompModal }) => {
 
 
   return (
-    <div className={styles.runcode_wrap} >
+    <div className={styles.runcode_wrap} onClick={handleClick} >
       <div className={styles.run_div} >
-        <Link to='/' onClick={handleClick}> Run </Link>
+        <Link to='/' onClick={handleClick} > Run </Link>
       </div>
     </div>
   );
