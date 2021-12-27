@@ -15,6 +15,7 @@ const RunCodeButton = ({ script, setCompModal }) => {
   const dispatch = useDispatch();
   const { language } = useEditor();
 
+
   const handleClick = async (event) => {
     event.preventDefault();
     // if success is true show the result in a modal
@@ -28,11 +29,14 @@ const RunCodeButton = ({ script, setCompModal }) => {
     // show error in Modal here?
   };
 
+
+
+
   return (
-    <div>
-      <Link to='/' onClick={handleClick}>
-        Run Code
-      </Link>
+    <div className={styles.runcode_wrap} >
+      <div className={styles.run_div} >
+        <Link to='/' onClick={handleClick}> Run </Link>
+      </div>
     </div>
   );
 };
