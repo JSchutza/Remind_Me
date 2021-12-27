@@ -1,4 +1,4 @@
-const { express, asyncHandler, requireAuth, convertLanguage } = require('../lib');
+const { express, asyncHandler, convertLanguage } = require('../lib');
 
 const axios = require('axios');
 
@@ -9,7 +9,7 @@ const router = express.Router();
 
 // routes here:
 // GET localhost:5000/api/code
-router.post('/', requireAuth, asyncHandler(async(request, response)=> {
+router.post('/', asyncHandler(async(request, response)=> {
   const errors = ['Error when trying to run your code.'];
   const baseURL = 'https://api.jdoodle.com/v1/execute';
 

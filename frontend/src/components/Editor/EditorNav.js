@@ -1,6 +1,6 @@
 
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import ReactModal from 'react-modal';
@@ -17,18 +17,10 @@ import { styles } from "../Editor";
 
 
 const EditorNav = ({ content, setContent, freshEditor=false }) => {
-  const [ error, setError ] = useState([]);
   const [ compModal, setCompModal ] = useState(false);
   const { setLanguage, theme, setTheme } = useEditor();
-  const errors = useSelector(store => store.errorReducer.errors);
   const dispatch = useDispatch();
 
-
-  useEffect(() => {
-    if (errors !== null) {
-      setError(errors);
-    }
-   }, [errors]);
 
 
 
@@ -177,7 +169,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
       {freshEditor ? (
         <div className={styles.edit_errors}>
-          <Error error={error} />
+          <Error />
         </div>
       ) : null}
     </>
