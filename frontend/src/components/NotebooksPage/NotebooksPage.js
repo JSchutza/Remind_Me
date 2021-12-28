@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { clearError } from '../../actions/error.js';
 
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
+import { thunk_deleteNotebook } from '../../thunks/notebooks.js';
 import { useUser } from "../../context/UserContext.js";
 import { nanoid } from 'nanoid';
 
@@ -53,6 +54,19 @@ const NotebooksPage = () => {
 
 
 
+  const handleDelete = (event, id) => {
+    event.preventDefault();
+    dispatch(thunk_deleteNotebook(id));
+  }
+
+
+
+  const handleUpdate = event => {
+
+  }
+
+
+
   return (
     <>
       <div className={styles.notebooks_wrap}>
@@ -91,13 +105,18 @@ const NotebooksPage = () => {
                   </div>
 
                   <div className={styles.eachnotebook_buttons_wrap}>
-                    <div className={styles.eachnotebook_delete_button}>
+
+                    <div
+                      className={styles.eachnotebook_delete_button}
+                      onClick={event => handleDelete(event, eachNotebook.id)}
+                    >
                       <DeleteNotebook notebookId={eachNotebook.id} />
                     </div>
 
                     <div className={styles.eachnotebook_update_button}>
                       <UpdateNotebook notebookId={eachNotebook.id} />
                     </div>
+
                   </div>
                 </div>
               ))}
