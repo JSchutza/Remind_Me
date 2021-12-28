@@ -158,7 +158,9 @@ const EditorProvider = ({ children }) => {
     };
 
     const fileExtension = map[language]?.filename;
+    const selectList = Object.values(map);
     const [ lang, setLang ] = useState(language);
+    const [ options, setOptions ] = useState(false);
     const [ tabtitle, setTabTitle ] = useState(title);
     const [ fileType, setFileType ] = useState(map[language] ? map[language].type : 'Text');
     const [ support, setSupport ] = useState(map[language] ? map[language].support : false);
@@ -183,27 +185,38 @@ const EditorProvider = ({ children }) => {
       if (map[lang]) {
         setLanguage(lang);
         return;
+      } else {
+        // set state to show error message?
       }
     };
 
 
+
     return (
       <>
-        <h3> {fileType} </h3>
-        <p> {tabtitle} </p>
-        <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
-
         <div>
           <form onSubmit={handleSubmit} >
           <input
             type='text'
             value={lang}
             onChange={event => setLang(event.target.value.toLowerCase())}
+            onBlur={() => setOptions(true)}
             />
             <button> Select Language </button>
           </form>
         </div>
 
+        {options ?
+          <>
+            {selectList.map(eachOption => (
+              <li> {eachOption.type} </li>
+            ))}
+          </>
+        : null }
+
+        <h3> {fileType} </h3>
+        <p> {tabtitle} </p>
+        <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
 
         <Editor
           height='90vh'
