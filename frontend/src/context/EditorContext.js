@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 
+import styles from './editor.module.css';
 
 const EditorContext = createContext();
 
@@ -233,7 +234,7 @@ const EditorProvider = ({ children }) => {
 
     return (
       <>
-        <div>
+        <div className={styles.editor_input_wrap} >
           <form onSubmit={handleSubmit} >
           <input
             type='text'
@@ -246,9 +247,9 @@ const EditorProvider = ({ children }) => {
 
 
         {options ?
-          <div>
+          <div className={styles.editor_options_wrap} >
             {selectList.map(eachOption => (
-              <div>
+              <div className={styles.editor_each_option} onClick={event => selectOption(event, eachOption)} >
                 <Link to='/' onClick={event => selectOption(event, eachOption)} >
                   <li> {eachOption.type} </li>
                 </Link>
@@ -260,7 +261,7 @@ const EditorProvider = ({ children }) => {
 
         <h5> {fileType} </h5>
         <p> {tabtitle} </p>
-        <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
+
 
         <Editor
           height='90vh'
@@ -269,6 +270,8 @@ const EditorProvider = ({ children }) => {
           onChange={handleEditorChange}
           theme={theme}
         />
+
+        <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
       </>
     );
   };

@@ -1,0 +1,50 @@
+
+
+
+.editor_input_wrap {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.editor_input_wrap button {
+  margin-left: 10px;
+}
+
+
+
+.editor_options_wrap {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  right: 1vw;
+}
+
+
+
+.editor_each_option {
+  list-style: none;
+  padding: 10px;
+  border: solid black 0.1px;
+  box-sizing: border-box;
+}
+
+
+
+
+.editor_each_option:hover {
+  background-color: darkcyan;
+  cursor: pointer;
+}
+
+
+
+.editor_each_option:hover a{
+  color: yellow;
+}
