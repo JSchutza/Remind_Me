@@ -24,6 +24,7 @@ const NotebooksPage = () => {
   const [ showCreateModal, setShowCreateModal ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
   const [ notebookId, setNotebookId ] = useState(null);
+  const [ prevnotebook, setPrevnotebook ] = useState(null);
   const { isUser } = useUser();
   const dispatch = useDispatch();
   const notebooks = useSelector(store => store.notebooksReducer.notebooks);
@@ -65,6 +66,7 @@ const NotebooksPage = () => {
   const handleUpdate = (event, id) => {
     event.preventDefault();
     setNotebookId(id);
+    setPrevnotebook(notebooks[id]);
     setShowModal(true);
   };
 
@@ -108,7 +110,11 @@ const NotebooksPage = () => {
           onRequestClose={closeModal}
           appElement={document.getElementById('root')}
         >
-          <UpdateNotebookForm notebookId={notebookId} closeModal={closeModal} />
+          <UpdateNotebookForm
+            notebookId={notebookId}
+            notebook={prevnotebook}
+            closeModal={closeModal}
+          />
         </ReactModal>
 
 

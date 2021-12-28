@@ -12,9 +12,9 @@ import styles from './updatenotebookform.module.css';
 
 
 
-const UpdateNotebookForm = ({ notebookId, closeModal }) => {
-  const [ name, setName ] = useState('');
-  const [ description, setDescription ] = useState('');
+const UpdateNotebookForm = ({ notebookId, closeModal, notebook }) => {
+  const [ name, setName ] = useState(notebook.name);
+  const [ description, setDescription ] = useState(notebook.description);
   const [ error, setError ] = useState([]);
   const errors = useSelector(store => store.errorReducer.errors);
   const dispatch = useDispatch();
