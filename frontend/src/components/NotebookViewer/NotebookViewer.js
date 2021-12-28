@@ -75,7 +75,7 @@ const NotebookViewer = () => {
 
         <h1>Notes</h1>
 
-        <div className={styles.create_note_wrap} >
+        <div className={styles.create_note_wrap} onClick={(event) => handleCreate(event)} >
           <Link to={'/'} onClick={(event) => handleCreate(event)}>
             Create
           </Link>
