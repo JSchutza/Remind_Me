@@ -16,6 +16,19 @@
 
 
 
+.create_note_button:hover {
+  background-color: blue;
+  cursor: pointer;
+}
+
+
+
+.create_note_button:hover a{
+  color: white;
+}
+
+
+
 .update_delete_wrap {
   display: flex;
   flex-direction: row;
