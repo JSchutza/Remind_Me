@@ -74,10 +74,12 @@ const NotebookViewer = () => {
         )}
 
         <h1>Notes</h1>
-        <Link to={'/'} onClick={(event) => handleCreate(event)}>
-          {' '}
-          Create{' '}
-        </Link>
+
+        <div className={styles.create_note_wrap} >
+          <Link to={'/'} onClick={(event) => handleCreate(event)}>
+            Create
+          </Link>
+        </div>
       </div>
 
       <ReactModal
