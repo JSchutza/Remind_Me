@@ -121,7 +121,9 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
     const UpdateDeleteButtons = () => {
       return (
         <div className={styles.update_delete_wrap}>
-          <div className={styles.update_button}>
+          <div className={styles.update_button}
+            onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
+          >
             <Link
               to={'/'}
               onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
@@ -130,7 +132,9 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
             </Link>
           </div>
 
-          <div className={styles.delete_button}>
+          <div className={styles.delete_button}
+            onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
+          >
             <Link
               to={'/'}
               onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
