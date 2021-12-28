@@ -178,12 +178,13 @@ const EditorProvider = ({ children }) => {
 
 
 
-    useEffect(() => {
-      if(map[lang]) {
+    const handleSubmit = event => {
+      event.preventDefault();
+      if (map[lang]) {
         setLanguage(lang);
+        return;
       }
-    },[lang]);
-
+    };
 
 
     return (
@@ -193,14 +194,14 @@ const EditorProvider = ({ children }) => {
         <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
 
         <div>
-          <label>Select Language: </label>
-
+          <form onSubmit={handleSubmit} >
           <input
             type='text'
             value={lang}
             onChange={event => setLang(event.target.value.toLowerCase())}
-          />
-
+            />
+            <button> Select Language </button>
+          </form>
         </div>
 
 
