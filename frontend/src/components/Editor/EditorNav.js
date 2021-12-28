@@ -53,7 +53,7 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
 
    const setCSyntax = event => {
      event.preventDefault();
-     setLanguage('c');
+     setLanguage('c++');
    }
 
 

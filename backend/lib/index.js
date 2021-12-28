@@ -119,7 +119,7 @@ const convertLanguage = language => {
   const map = {
     'javascript': [ 'nodejs', '4' ],
     'python': [ 'python3', '4' ],
-    'c': [ 'cpp17', '1' ],
+    'c++': [ 'cpp17', '1' ],
     'php': [ 'php', '4' ],
     'c#': [ 'csharp', '4' ],
     'java': [ 'java', '4' ],

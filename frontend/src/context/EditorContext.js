@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 
 
@@ -213,13 +214,19 @@ const EditorProvider = ({ children }) => {
           </form>
         </div>
 
+
         {options ?
-          <>
+          <div>
             {selectList.map(eachOption => (
-              <li> {eachOption.type} </li>
+              <div>
+                <Link to='/'  onClick={event => event.preventDefault()} >
+                  <li> {eachOption.type} </li>
+                </Link>
+              </div>
             ))}
-          </>
+          </div>
         : null }
+
 
         <h3> {fileType} </h3>
         <p> {tabtitle} </p>
