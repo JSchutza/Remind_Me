@@ -17,14 +17,15 @@ import UpdateNotebook from "../UpdateNotebook";
 
 
 import ReactModal from 'react-modal';
-
+import { useModal } from '../../context/ModalContext.js';
 
 import styles from "./notebookspage.module.css";
 
 
 const NotebooksPage = () => {
-  const [ showModal, setShowModal ] = useState(false);
+  const [ showCreateModal, setShowCreateModal ] = useState(false);
   const { isUser } = useUser();
+  const { showModal, setShowModal } = useModal();
   const dispatch = useDispatch();
   const notebooks = useSelector(store => store.notebooksReducer.notebooks);
 
@@ -44,12 +45,12 @@ const NotebooksPage = () => {
   const handleCreate = event => {
     event.preventDefault();
     dispatch(clearError());
-    setShowModal(true);
+    setShowCreateModal(true);
   }
 
 
   const closeModal = () => {
-    setShowModal(false);
+    setShowCreateModal(false);
   }
 
 
@@ -62,7 +63,7 @@ const NotebooksPage = () => {
 
 
   const handleUpdate = event => {
-
+    
   }
 
 
@@ -86,7 +87,7 @@ const NotebooksPage = () => {
         </div>
 
         <ReactModal
-          isOpen={showModal}
+          isOpen={showCreateModal}
           onRequestClose={closeModal}
           appElement={document.getElementById('root')}
         >
@@ -105,10 +106,9 @@ const NotebooksPage = () => {
                   </div>
 
                   <div className={styles.eachnotebook_buttons_wrap}>
-
                     <div
                       className={styles.eachnotebook_delete_button}
-                      onClick={event => handleDelete(event, eachNotebook.id)}
+                      onClick={(event) => handleDelete(event, eachNotebook.id)}
                     >
                       <DeleteNotebook notebookId={eachNotebook.id} />
                     </div>
@@ -116,7 +116,6 @@ const NotebooksPage = () => {
                     <div className={styles.eachnotebook_update_button}>
                       <UpdateNotebook notebookId={eachNotebook.id} />
                     </div>
-
                   </div>
                 </div>
               ))}

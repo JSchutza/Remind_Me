@@ -8,12 +8,13 @@ import ReactModal from 'react-modal';
 
 import UpdateNotebookForm from "../UpdateNotebookForm";
 import { clearError } from "../../actions/error.js";
+import { useModal } from '../../context/ModalContext.js';
 
 
 
 
 const UpdateNotebook = ({ notebookId }) => {
-  const [ showModal, setShowModal ] = useState(false);
+  const { showModal, setShowModal } = useModal();
   const dispatch = useDispatch();
 
   const handleUpdate = event => {
@@ -31,7 +32,7 @@ const UpdateNotebook = ({ notebookId }) => {
 
   return (
     <>
-      <Link to={'/'} onClick={event => handleUpdate(event)} > Update </Link>
+      <Link to='/' onClick={event => handleUpdate(event)} > Update </Link>
 
 
       <ReactModal

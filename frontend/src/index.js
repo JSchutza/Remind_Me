@@ -5,6 +5,7 @@ import App from './App';
 
 import { UserProvider } from './context/UserContext.js';
 import { EditorProvider } from './context/EditorContext.js';
+import { ModalProvider } from './context/ModalContext.js';
 
 
 import { Provider } from 'react-redux';
@@ -32,11 +33,13 @@ function Root() {
     <>
     <Provider store={store}>
       <BrowserRouter>
-        <UserProvider>
-          <EditorProvider>
-            <App />
-          </EditorProvider>
-        </UserProvider>
+        <ModalProvider>
+          <UserProvider>
+            <EditorProvider>
+              <App />
+            </EditorProvider>
+          </UserProvider>
+        </ModalProvider>
       </ BrowserRouter>
     </Provider>
     </>
