@@ -1,0 +1,41 @@
+
+
+
+
+.runcode_wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+
+
+.runcode_wrap:hover {
+  cursor: pointer;
+}
+
+
+
+.run_div {
+  background-color: deepskyblue;
+  padding: 10px;
+  border-radius: 4px;
+  border: solid blue 1px;
+}
+
+
+
+.run_div:hover {
+  background-color: blue;
+}
+
+
+
+.run_div:hover a {
+  color: white;
+}

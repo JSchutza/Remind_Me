@@ -165,14 +165,18 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
           <label>Title:</label>
           <br />
 
-            <input
-              onChange={(event) => setTitle(event.target.value)}
-              value={title}
-              aria-label='Title'
-            />
+          <input
+            onChange={(event) => setTitle(event.target.value)}
+            value={title}
+            aria-label='Title'
+          />
         </div>
 
-        <EachEditor content={content} handleEditorChange={handleEditorChange} />
+        <EachEditor
+          title={title}
+          content={content}
+          handleEditorChange={handleEditorChange}
+        />
       </>
     );
     }
@@ -205,7 +209,11 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
           />
         </div>
 
-        <EachEditor content={content} handleEditorChange={handleEditorChange} />
+        <EachEditor
+          title={title}
+          content={content}
+          handleEditorChange={handleEditorChange}
+        />
       </>
     );
     }
