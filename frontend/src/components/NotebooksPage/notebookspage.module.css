@@ -48,6 +48,21 @@
 
 
 
+.eachnotebook_wrap:hover {
+  background-color: blue;
+  border: solid white 5px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+
+
+.eachnotebook_wrap:hover a{
+  color: white;
+}
+
+
+
 .eachnotebook_buttons_wrap {
   display: flex;
   flex-direction: row;
