@@ -51,16 +51,16 @@ const EditorProvider = ({ children }) => {
       },
     };
 
+    const fileExtension = map[language]?.filename;
+    const [ lang, setLang ] = useState(language);
     const [ tabtitle, setTabTitle ] = useState(title);
     const [ fileType, setFileType ] = useState(map[language] ? map[language].type : 'Text');
     const [ support, setSupport ] = useState(map[language] ? map[language].support : false);
 
 
 
-
     useEffect(() => {
       const toArr = title.split(' ');
-      const fileExtension = map[language]?.filename;
 
       if (!title.length || !tabtitle.length) {
         setTabTitle('scratch' + fileExtension);
@@ -72,11 +72,30 @@ const EditorProvider = ({ children }) => {
 
 
 
+    useEffect(() => {
+      if(map[lang]) {
+        setLanguage(lang);
+      }
+    },[lang]);
+
+
+
     return (
       <>
         <h3> {fileType} </h3>
         <p> {tabtitle} </p>
         <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
+
+        <div>
+          <label>Select Language: </label>
+
+          <input
+            type='text'
+            value={lang}
+            onChange={event => setLang(event.target.value.toLowerCase())}
+          />
+
+        </div>
 
 
         <Editor
