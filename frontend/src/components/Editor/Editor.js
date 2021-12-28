@@ -106,7 +106,9 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
         return (
             <>
             {homepage ? null :
-                <div className={styles.create_note_button}>
+                <div className={styles.create_note_button}
+                  onClick={(event) => notecreationClickHandler(event)}
+                >
                   <Link to='/' onClick={(event) => notecreationClickHandler(event)} > Create </Link>
                 </div>
             }
