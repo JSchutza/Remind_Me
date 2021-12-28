@@ -19,11 +19,9 @@ const DeleteNotebook = ({ notebookId }) => {
 
 
   return (
-    <>
-      <div>
-        <Link to={'/'} onClick={event => handleDelete(event)}> Delete </Link>
-      </div>
-    </>
+    <div>
+      <Link to={'/'} onClick={event => handleDelete(event)}> Delete </Link>
+    </div>
   )
 };
 

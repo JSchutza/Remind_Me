@@ -24,3 +24,35 @@
   margin-left: 11.5vw;
   padding: 25px;
 }
+
+
+
+
+.create_note_wrap {
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  padding: 10px;
+  border-radius: 6px;
+  border: solid black 1px;
+}
+
+
+
+.create_note_wrap:hover {
+  cursor: pointer;
+  background-color: blue;
+}
+
+
+
+.create_note_wrap:hover a{
+  color: white;
+}

@@ -19,7 +19,6 @@ const store = configureStore();
 // for development
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
-
 }
 
 
@@ -34,7 +33,7 @@ function Root() {
       <BrowserRouter>
         <UserProvider>
           <EditorProvider>
-            <App />
+              <App />
           </EditorProvider>
         </UserProvider>
       </ BrowserRouter>

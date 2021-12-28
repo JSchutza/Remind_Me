@@ -140,3 +140,25 @@ img {
 	color: #000;
 
 }
+
+
+
+.on {
+	color: gold;
+	margin-top: -1px;
+	font-family: 'JetBrains Mono', monospace;
+	background-color: black;
+	padding: 7px;
+	box-sizing: border-box;
+}
+
+
+
+.off {
+	color: red;
+	margin-top: -1px;
+	font-family: 'JetBrains Mono', monospace;
+	background-color: black;
+	padding: 7px;
+	box-sizing: border-box;
+}

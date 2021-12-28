@@ -48,6 +48,21 @@
 
 
 
+.eachnotebook_wrap:hover {
+  background-color: blue;
+  border: solid white 5px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+
+
+.eachnotebook_wrap:hover a{
+  color: white;
+}
+
+
+
 .eachnotebook_buttons_wrap {
   display: flex;
   flex-direction: row;
@@ -55,4 +70,42 @@
   align-content: center;
   justify-content: space-evenly;
   align-items: center;
+}
+
+
+
+
+.eachnotebook_delete_button {
+  background-color: red;
+  padding: 10px;
+  border: solid transparent 2px;
+  border-radius: 5px;
+}
+
+
+
+
+.eachnotebook_update_button {
+  background-color: blue;
+  padding: 10px;
+  border: solid transparent 2px;
+  border-radius: 5px;
+}
+
+
+
+.eachnotebook_update_button a {
+  color: white;
+}
+
+
+
+.eachnotebook_wrap:hover .eachnotebook_update_button {
+  background-color: white;
+}
+
+
+
+.eachnotebook_wrap:hover .eachnotebook_update_button a{
+  color: blue;
 }

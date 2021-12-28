@@ -14,7 +14,8 @@ import styles from './runcodebutton.module.css';
 const RunCodeButton = ({ script, setCompModal }) => {
   const dispatch = useDispatch();
   const { language } = useEditor();
-
+  const langs = [ 'javascript', 'python', 'c++', 'php', 'c#', 'java', 'vb', 'coffeescript', 'batch', 'f#', 'lua', 'ruby', 'r', 'rust', ];
+  const allowedLangs = new Set(langs);
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -30,6 +31,9 @@ const RunCodeButton = ({ script, setCompModal }) => {
   };
 
 
+  if(!allowedLangs.has(language)) {   // if it is not a language that can be used in the api
+    return null;
+  }
 
 
   return (

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 
+import styles from './editor.module.css';
 
 const EditorContext = createContext();
 
@@ -24,138 +25,164 @@ const EditorProvider = ({ children }) => {
         type: 'JavaScript',
         support: true,
         filename: '.js',
+        option: 'javascript',
       },
       python: {
         type: 'Python',
         support: false,
         filename: '.py',
+        option: 'python',
       },
       markdown: {
         type: 'Markdown',
         support: false,
         filename: '.md',
+        option: 'markdown',
       },
       typescript: {
         type: 'TypeScript',
         support: true,
         filename: '.ts',
+        option: 'typescript',
       },
       'c++': {
         type: 'C++',
         support: false,
         filename: '.cpp',
+        option: 'c++',
       },
       html: {
         type: 'HTML',
         support: true,
         filename: '.html',
+        option: 'html',
       },
       css: {
         type: 'CSS',
         support: true,
-        filename: '.css'
+        filename: '.css',
+        option: 'css',
       },
       less: {
-        type:'LESS',
+        type: 'LESS',
         support: true,
-        filename: '.less'
+        filename: '.less',
+        option: 'less',
       },
       scss: {
-        type:'SCSS',
+        type: 'SCSS',
         support: true,
-        filename: '.scss'
+        filename: '.scss',
+        option: 'scss',
       },
       json: {
-        type:'JSON',
+        type: 'JSON',
         support: true,
-        filename: '.json'
+        filename: '.json',
+        option: 'json',
       },
       xml: {
         type: 'XML',
-        support:false,
-        filename: '.xml'
+        support: false,
+        filename: '.xml',
+        option: 'xml',
       },
       php: {
-        type:'PHP',
+        type: 'PHP',
         support: false,
-        filename: '.php'
+        filename: '.php',
+        option: 'php',
       },
       'c#': {
-        type:'C#',
+        type: 'C#',
         support: false,
-        filename: '.cs'
+        filename: '.cs',
+        option: 'c#',
       },
       razor: {
         type: 'RAZOR',
         support: false,
-        filename: '.razor'
+        filename: '.razor',
+        option: 'razor',
       },
       diff: {
-        type: "DIFF",
+        type: 'DIFF',
         support: false,
-        filename: '.diff'
+        filename: '.diff',
+        option: 'diff',
       },
       java: {
         type: 'Java',
         support: false,
-        filename: '.java'
+        filename: '.java',
+        option: 'java',
       },
       vb: {
         type: 'VB',
         support: false,
-        filename: '.vb'
+        filename: '.vb',
+        option: 'vb',
       },
       coffeescript: {
         type: 'CoffeeScript',
         support: false,
-        filename: '.coffee'
+        filename: '.coffee',
+        option: 'coffeescript',
       },
       handlebars: {
         type: 'Handlebars',
         support: false,
-        filename: '.hbs'
+        filename: '.hbs',
+        option: 'handlebars',
       },
       batch: {
         type: 'Batch',
         support: false,
-        filename: '.sh'
+        filename: '.sh',
+        option: 'batch',
       },
       pug: {
-        type:'Pug',
+        type: 'Pug',
         support: false,
-        filename: '.pug'
+        filename: '.pug',
+        option: 'pug',
       },
       'f#': {
         type: 'F#',
         support: false,
-        filename: '.fs'
+        filename: '.fs',
+        option: 'f#',
       },
       lua: {
         type: 'Lua',
         support: false,
-        filename: '.lua'
+        filename: '.lua',
+        option: 'lua',
       },
       powershell: {
         type: 'PowerShell',
         support: false,
-        filename: '.ps1'
+        filename: '.ps1',
+        option: 'powershell',
       },
       ruby: {
         type: 'Ruby',
         support: false,
-        filename: '.rb'
+        filename: '.rb',
+        option: 'ruby',
       },
       sass: {
-        type:'SASS',
+        type: 'SASS',
         support: false,
-        filename: '.sass'
+        filename: '.sass',
+        option: 'sass',
       },
       r: {
         type: 'R',
         support: false,
-        filename: '.r'
+        filename: '.r',
+        option: 'r',
       },
-
     };
 
     const fileExtension = map[language]?.filename;
@@ -199,38 +226,46 @@ const EditorProvider = ({ children }) => {
     }
 
 
+    const selectOption = (event, opInstance) => {
+      event.preventDefault();
+      setLanguage(opInstance.option);
+    }
+
 
     return (
       <>
-        <div>
-          <form onSubmit={handleSubmit} >
-          <input
-            type='text'
-            value={lang}
-            onChange={handleChange}
-            onBlur={() => setOptions(false)}
-            />
+        <div className={styles.editor_input_wrap}>
+          <form onSubmit={handleSubmit}>
+            <input type='text' value={lang} onChange={handleChange} />
             <button> Select Language </button>
           </form>
         </div>
 
-
-        {options ?
-          <div>
-            {selectList.map(eachOption => (
-              <div>
-                <Link to='/'  onClick={event => event.preventDefault()} >
+        {options ? (
+          <div className={styles.editor_options_wrap}>
+            {selectList.map((eachOption) => (
+              <div
+                className={styles.editor_each_option}
+                onClick={(event) => selectOption(event, eachOption)}
+              >
+                <Link
+                  to='/'
+                  onClick={(event) => selectOption(event, eachOption)}
+                >
                   <li> {eachOption.type} </li>
                 </Link>
               </div>
             ))}
           </div>
-        : null }
+        ) : null}
 
+        <div>
+          <h5> {fileType} </h5>
+        </div>
 
-        <h3> {fileType} </h3>
-        <p> {tabtitle} </p>
-        <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
+        <div className={styles.editor_tab} >
+          <p> {tabtitle} </p>
+        </div>
 
         <Editor
           height='90vh'
@@ -239,6 +274,10 @@ const EditorProvider = ({ children }) => {
           onChange={handleEditorChange}
           theme={theme}
         />
+
+        <div className={support ? 'on' : 'off'}>
+          {support ? 'IntelliSense support: on' : 'IntelliSense support: off'}
+        </div>
       </>
     );
   };

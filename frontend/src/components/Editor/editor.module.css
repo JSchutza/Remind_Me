@@ -1,33 +1,102 @@
 
 .create_note_button {
-  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  padding: 10px;
+  border-radius: 6px;
+  border: solid black 1px;
 }
 
+
+
+.create_note_button:hover {
+  background-color: blue;
+  cursor: pointer;
+}
+
+
+
+.create_note_button:hover a{
+  color: white;
+}
+
+
+
+.update_delete_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 
 
 .update_button {
-  margin-left: 13vw;
+  box-sizing: border-box;
+  padding-left: 10px;
+  background-color: black;
+  padding-right: 10px;
+  border-radius: 8px;
 }
 
 
-.update_button h4 {
-  color: #8338ec;
+.update_button h5 {
+  color: wheat;
 }
 
+
+
+.update_button:hover h5 {
+  color: white;
+}
+
+
+
+.update_button:hover {
+  background-color: blue;
+  cursor: pointer;
+}
 
 
 
 .delete_button {
-  margin-left: 13vw;
+  box-sizing: border-box;
+  padding-left: 10px;
+  background-color: black;
+  padding-right: 10px;
+  border-radius: 8px;
 }
 
 
 
 
-.delete_button h4 {
+.delete_button h5 {
   color: red;
 }
+
+
+
+.delete_button:hover h5 {
+  color: white;
+}
+
+
+
+
+.delete_button:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
 
 
 

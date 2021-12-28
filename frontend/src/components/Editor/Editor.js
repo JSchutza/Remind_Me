@@ -106,7 +106,9 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
         return (
             <>
             {homepage ? null :
-                <div className={styles.create_note_button}>
+                <div className={styles.create_note_button}
+                  onClick={(event) => notecreationClickHandler(event)}
+                >
                   <Link to='/' onClick={(event) => notecreationClickHandler(event)} > Create </Link>
                 </div>
             }
@@ -120,26 +122,30 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
     const UpdateDeleteButtons = () => {
       return (
-        <>
-          <div className={styles.update_button}>
+        <div className={styles.update_delete_wrap}>
+          <div className={styles.update_button}
+            onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
+          >
             <Link
               to={'/'}
               onClick={(event) => noteUpdateClickHandler(event, the_content.id)}
-              >
-              <h4>Update</h4>
+            >
+              <h5>Update</h5>
             </Link>
           </div>
 
-          <div className={styles.delete_button}>
+          <div className={styles.delete_button}
+            onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
+          >
             <Link
               to={'/'}
               onClick={(event) => noteDeleteClickHandler(event, the_content.id)}
-              >
-              <h4>Delete</h4>
+            >
+              <h5>Delete</h5>
             </Link>
           </div>
-        </>
-      )
+        </div>
+      );
     };
 
 
