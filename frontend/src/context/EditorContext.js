@@ -192,6 +192,13 @@ const EditorProvider = ({ children }) => {
 
 
 
+    const handleChange = event => {
+      setOptions(true);
+      setLang(event.target.value.toLowerCase());
+    }
+
+
+
     return (
       <>
         <div>
@@ -199,8 +206,8 @@ const EditorProvider = ({ children }) => {
           <input
             type='text'
             value={lang}
-            onChange={event => setLang(event.target.value.toLowerCase())}
-            onBlur={() => setOptions(true)}
+            onChange={handleChange}
+            onBlur={() => setOptions(false)}
             />
             <button> Select Language </button>
           </form>
