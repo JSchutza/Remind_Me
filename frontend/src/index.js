@@ -5,7 +5,6 @@ import App from './App';
 
 import { UserProvider } from './context/UserContext.js';
 import { EditorProvider } from './context/EditorContext.js';
-import { ModalProvider } from './context/ModalContext.js';
 
 
 import { Provider } from 'react-redux';
@@ -20,7 +19,6 @@ const store = configureStore();
 // for development
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
-
 }
 
 
@@ -33,13 +31,11 @@ function Root() {
     <>
     <Provider store={store}>
       <BrowserRouter>
-        <ModalProvider>
-          <UserProvider>
-            <EditorProvider>
+        <UserProvider>
+          <EditorProvider>
               <App />
-            </EditorProvider>
-          </UserProvider>
-        </ModalProvider>
+          </EditorProvider>
+        </UserProvider>
       </ BrowserRouter>
     </Provider>
     </>

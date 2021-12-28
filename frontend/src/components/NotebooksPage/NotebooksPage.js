@@ -13,19 +13,18 @@ import { nanoid } from 'nanoid';
 
 import CreateNotebookForm from "../CreateNotebookForm";
 import DeleteNotebook from "../DeleteNotebook";
-import UpdateNotebook from "../UpdateNotebook";
-
+import UpdateNotebookForm from "../UpdateNotebookForm";
 
 import ReactModal from 'react-modal';
-import { useModal } from '../../context/ModalContext.js';
 
 import styles from "./notebookspage.module.css";
 
 
 const NotebooksPage = () => {
   const [ showCreateModal, setShowCreateModal ] = useState(false);
+  const [ showModal, setShowModal ] = useState(false);
+  const [ notebookId, setNotebookId ] = useState(null);
   const { isUser } = useUser();
-  const { showModal, setShowModal } = useModal();
   const dispatch = useDispatch();
   const notebooks = useSelector(store => store.notebooksReducer.notebooks);
 
@@ -46,25 +45,34 @@ const NotebooksPage = () => {
     event.preventDefault();
     dispatch(clearError());
     setShowCreateModal(true);
-  }
+  };
 
 
-  const closeModal = () => {
+  const closeCreateModal = () => {
     setShowCreateModal(false);
-  }
+  };
 
 
 
   const handleDelete = (event, id) => {
     event.preventDefault();
+    // await dispatch?
     dispatch(thunk_deleteNotebook(id));
-  }
+  };
 
 
 
-  const handleUpdate = event => {
-    
-  }
+  const handleUpdate = (event, id) => {
+    event.preventDefault();
+    setNotebookId(id);
+    setShowModal(true);
+  };
+
+
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
 
 
@@ -88,11 +96,22 @@ const NotebooksPage = () => {
 
         <ReactModal
           isOpen={showCreateModal}
+          onRequestClose={closeCreateModal}
+          appElement={document.getElementById('root')}
+        >
+          <CreateNotebookForm closeModal={closeCreateModal} />
+        </ReactModal>
+
+
+        <ReactModal
+          isOpen={showModal}
           onRequestClose={closeModal}
           appElement={document.getElementById('root')}
         >
-          <CreateNotebookForm closeModal={closeModal} />
+          <UpdateNotebookForm notebookId={notebookId} closeModal={closeModal} />
         </ReactModal>
+
+
 
         <div className={styles.eachnotebook_container}>
           {notebooks !== null ? (
@@ -113,8 +132,11 @@ const NotebooksPage = () => {
                       <DeleteNotebook notebookId={eachNotebook.id} />
                     </div>
 
-                    <div className={styles.eachnotebook_update_button}>
-                      <UpdateNotebook notebookId={eachNotebook.id} />
+                    <div
+                      className={styles.eachnotebook_update_button}
+                      onClick={(event) => handleUpdate(event, eachNotebook.id)}
+                    >
+                      <Link to='/' onClick={(event) => handleUpdate(event, eachNotebook.id)} > Update </Link>
                     </div>
                   </div>
                 </div>

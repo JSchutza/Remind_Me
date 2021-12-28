@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { thunk_updateNotebook } from "../../thunks/notebooks.js";
 
-
 import Error from "../Error";
 import styles from './updatenotebookform.module.css';
 
@@ -41,6 +40,7 @@ const UpdateNotebookForm = ({ notebookId, closeModal }) => {
       closeModal();
     }
   }
+
 
 
 
