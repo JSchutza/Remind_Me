@@ -91,11 +91,11 @@ const NotebooksPage = () => {
                   </div>
 
                   <div className={styles.eachnotebook_buttons_wrap}>
-                    <div>
+                    <div className={styles.eachnotebook_delete_button}>
                       <DeleteNotebook notebookId={eachNotebook.id} />
                     </div>
 
-                    <div>
+                    <div className={styles.eachnotebook_update_button}>
                       <UpdateNotebook notebookId={eachNotebook.id} />
                     </div>
                   </div>

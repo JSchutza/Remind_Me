@@ -71,3 +71,20 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
+
+
+
+.eachnotebook_delete_button {
+  background-color: red;
+  padding: 10px;
+  border: solid transparent 2px;
+  border-radius: 5px;
+}
+
+
+
+
+.eachnotebook_update_button {
+
+}
