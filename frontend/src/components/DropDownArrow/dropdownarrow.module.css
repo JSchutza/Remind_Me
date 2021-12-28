@@ -11,3 +11,21 @@
   margin-left: 11.5vw;
   padding: 25px;
 }
+
+
+
+
+
+.notetitle_wrap:hover {
+  background-color: blue;
+  border: solid white 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+
+
+.notetitle_wrap:hover p {
+  color: white;
+}
