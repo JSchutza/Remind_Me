@@ -234,34 +234,33 @@ const EditorProvider = ({ children }) => {
 
     return (
       <>
-        <div className={styles.editor_input_wrap} >
-          <form onSubmit={handleSubmit} >
-          <input
-            type='text'
-            value={lang}
-            onChange={handleChange}
-            />
+        <div className={styles.editor_input_wrap}>
+          <form onSubmit={handleSubmit}>
+            <input type='text' value={lang} onChange={handleChange} />
             <button> Select Language </button>
           </form>
         </div>
 
-
-        {options ?
-          <div className={styles.editor_options_wrap} >
-            {selectList.map(eachOption => (
-              <div className={styles.editor_each_option} onClick={event => selectOption(event, eachOption)} >
-                <Link to='/' onClick={event => selectOption(event, eachOption)} >
+        {options ? (
+          <div className={styles.editor_options_wrap}>
+            {selectList.map((eachOption) => (
+              <div
+                className={styles.editor_each_option}
+                onClick={(event) => selectOption(event, eachOption)}
+              >
+                <Link
+                  to='/'
+                  onClick={(event) => selectOption(event, eachOption)}
+                >
                   <li> {eachOption.type} </li>
                 </Link>
               </div>
             ))}
           </div>
-        : null }
-
+        ) : null}
 
         <h5> {fileType} </h5>
         <p> {tabtitle} </p>
-
 
         <Editor
           height='90vh'
@@ -271,7 +270,9 @@ const EditorProvider = ({ children }) => {
           theme={theme}
         />
 
-        <p> {support ? 'IntelliSense support: on'  : 'IntelliSense support: off'} </p>
+        <div className={support ? 'on' : 'off'}>
+          {support ? 'IntelliSense support: on' : 'IntelliSense support: off'}
+        </div>
       </>
     );
   };
