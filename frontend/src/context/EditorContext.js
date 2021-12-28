@@ -259,8 +259,13 @@ const EditorProvider = ({ children }) => {
           </div>
         ) : null}
 
-        <h5> {fileType} </h5>
-        <p> {tabtitle} </p>
+        <div>
+          <h5> {fileType} </h5>
+        </div>
+
+        <div className={styles.editor_tab} >
+          <p> {tabtitle} </p>
+        </div>
 
         <Editor
           height='90vh'
