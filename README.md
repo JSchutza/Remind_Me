@@ -366,7 +366,7 @@ npm install
 
 ## Links
 
-- [Live Site](https://remind----me.herokuapp.com/)
+- [Live Site](https://remind-me-25014.web.app/)
 - [Repository](https://github.com/JSchutza/Remind_Me)
 
 ---
