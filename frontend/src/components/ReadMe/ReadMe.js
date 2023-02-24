@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import readme_text from './README.md';
-
+import React from 'react';
 
 // needed for parsing the markdown state item
 import ReactMarkdown from 'react-markdown'

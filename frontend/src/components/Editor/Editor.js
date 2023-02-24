@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
@@ -22,9 +22,7 @@ import EditorNav from "./EditorNav.js";
 
 
 
-
-
-const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
+export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=false }) => {
     const defaultTitle = the_content?.title  ?  the_content?.title : '';
     const defaultContent = the_content?.content  ?  the_content?.content : '';
 
@@ -227,6 +225,3 @@ const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, homepage=fa
 
 };
 
-
-
-export default CodeEditor;

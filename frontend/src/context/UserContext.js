@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_checkIfThereIsAUser } from '../thunks/session.js';
-
+import React from 'react';
 
 const UserContext = createContext();
 

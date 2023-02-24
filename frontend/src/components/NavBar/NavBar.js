@@ -1,6 +1,5 @@
+import React from 'react';
 
-
-import { useUser } from '../../context/UserContext.js';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
@@ -18,7 +17,6 @@ import styles from "./navbar.module.css";
 
 
 const NavBar = () => {
-  const { isUser } = useUser();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -56,44 +54,44 @@ const NavBar = () => {
 
 
   // if the user IS logged in
-  if(isUser) {
+  // if(isUser) {
     // create an array of paths for nav bar
-    const paths = [
-      { path: '/', name: 'Home', onclick: true, func: () => dispatch(clearError()) },
-      { path: '/profile', name: 'Profile', onclick: false, func: null },
-      { path: '/notebooks', name: 'Notebooks', onclick: false, func: null },
-      { path: '/', name: 'Logout', onclick: true, func: event => logoutUser(event)  },
-    ];
+    // const paths = [
+    //   { path: '/', name: 'Home', onclick: true, func: () => dispatch(clearError()) },
+    //   { path: '/profile', name: 'Profile', onclick: false, func: null },
+    //   { path: '/notebooks', name: 'Notebooks', onclick: false, func: null },
+    //   { path: '/', name: 'Logout', onclick: true, func: event => logoutUser(event)  },
+    // ];
+    //
+    //
+    // return (
+    //     <div className={styles.nav_containter}>
+    //       <nav>
+    //         {paths.map(eachLink => (
+    //           <div
+    //             key={nanoid()}
+    //             className={styles.each_li_div}
+    //             onClick={event => handleClick(eachLink, event)}
+    //           >
+    //               {eachLink.onclick ?
+    //                   <li> <NavLink
+    //                           className={styles.each_link}
+    //                           to={`${eachLink.path}`}
+    //                           onClick={eachLink.func}
+    //                         > {eachLink.name} </NavLink> </li>
+    //               :
+    //                   <li> <NavLink
+    //                           className={styles.each_link}
+    //                           to={`${eachLink.path}`}
+    //                         > {eachLink.name} </NavLink> </li>
+    //               }
+    //           </div>
+    //         ))}
+    //       </nav>
+    //     </div>
+    // )
 
-
-    return (
-        <div className={styles.nav_containter}>
-          <nav>
-            {paths.map(eachLink => (
-              <div
-                key={nanoid()}
-                className={styles.each_li_div}
-                onClick={event => handleClick(eachLink, event)}
-              >
-                  {eachLink.onclick ?
-                      <li> <NavLink
-                              className={styles.each_link}
-                              to={`${eachLink.path}`}
-                              onClick={eachLink.func}
-                            > {eachLink.name} </NavLink> </li>
-                  :
-                      <li> <NavLink
-                              className={styles.each_link}
-                              to={`${eachLink.path}`}
-                            > {eachLink.name} </NavLink> </li>
-                  }
-              </div>
-            ))}
-          </nav>
-        </div>
-    )
-
-  }
+  // }
 
 
 

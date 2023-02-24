@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_login } from '../../thunks/session.js';
-
+import React from 'react';
 import Error from "../Error";
 
 

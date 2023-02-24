@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { clearError } from '../../actions/error.js';
-
+import React from 'react';
 import styles from "./error.module.css";
 
 

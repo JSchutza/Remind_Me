@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_signupUser } from '../../thunks/session.js';
 import { useHistory } from 'react-router-dom';
-
+import React from 'react';
 import Error from "../Error";
 
 import { styles }  from '../SignupForm';

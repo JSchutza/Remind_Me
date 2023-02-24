@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,7 +8,6 @@ import { clearError } from '../../actions/error.js';
 
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { thunk_deleteNotebook } from '../../thunks/notebooks.js';
-import { useUser } from "../../context/UserContext.js";
 import { nanoid } from 'nanoid';
 
 import CreateNotebookForm from "../CreateNotebookForm";
@@ -25,14 +24,13 @@ const NotebooksPage = () => {
   const [ showModal, setShowModal ] = useState(false);
   const [ notebookId, setNotebookId ] = useState(null);
   const [ prevnotebook, setPrevnotebook ] = useState(null);
-  const { isUser } = useUser();
   const dispatch = useDispatch();
   const notebooks = useSelector(store => store.notebooksReducer.notebooks);
 
 
 
   useEffect(() => {
-    dispatch(thunk_getNoteBooks(isUser.id));
+    // dispatch(thunk_getNoteBooks(isUser.id));
   },[]);
 
 

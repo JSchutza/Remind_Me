@@ -5,7 +5,7 @@ import { VscChevronRight } from "react-icons/vsc";
 import ReactModal from 'react-modal';
 
 
-import CodeEditor from '../Editor';
+import { CodeEditor } from '../Editor';
 
 
 import styles from './dropdownarrow.module.css';

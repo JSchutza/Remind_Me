@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ import { thunk_getSpecificNote } from "../../thunks/notes.js";
 import { nanoid } from 'nanoid';
 import DropDownArrow from "../DropDownArrow";
 import ReactModal from 'react-modal';
-import CodeEditor from '../Editor';
+import { CodeEditor } from '../Editor';
 
 
 

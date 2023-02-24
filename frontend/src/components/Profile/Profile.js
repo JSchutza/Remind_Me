@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useUser } from '../../context/UserContext.js';
 import { Link, useHistory } from 'react-router-dom';
-
+import React from 'react';
 import { thunk_getLimitedNotebooks } from '../../thunks/notebooks.js';
 
 import no_user from "./no_user.svg";
@@ -22,7 +21,6 @@ import styles from "./profile.module.css";
 const Profile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isUser } = useUser();
   const [ open_close, setOpen_Close ] = useState(false);
 
   const notebooks = useSelector(store => store.notebooksReducer.notebooks);
@@ -30,7 +28,7 @@ const Profile = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getLimitedNotebooks(3, isUser.id))
+    // dispatch(thunk_getLimitedNotebooks(3, isUser.id))
   },[dispatch]);
 
 
@@ -50,20 +48,20 @@ const Profile = () => {
     <>
       <div className={styles.userinfo_wrap}>
         <div className={styles.user_img} >
-          {isUser.avatar === null ?
-            <img src={no_user} />
-          :
-            <img src={isUser.avatar} />
-          }
+          {/*{isUser.avatar === null ?*/}
+          {/*  <img src={no_user} />*/}
+          {/*:*/}
+          {/*  <img src={isUser.avatar} />*/}
+          {/*}*/}
         </div>
 
         <div>
-          <h1>{isUser.username}</h1>
-          <h2>{isUser.email}</h2>
+          {/*<h1>{isUser.username}</h1>*/}
+          {/*<h2>{isUser.email}</h2>*/}
         </div>
 
         <div>
-          {isUser.id === 1 && isUser.email === 'demo@gmail.com' ? null
+          {/*{isUser.id === 1 && isUser.email === 'demo@gmail.com' ? null*/}
             :
               <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
            }
