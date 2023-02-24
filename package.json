@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/JSchutza/Remind_Me/issues"
   },
-  "homepage": "https://github.com/JSchutza/Remind_Me#readme"
+  "homepage": "https://github.com/JSchutza/Remind_Me#readme",
+  "dependencies": {
+    "firebase": "^9.17.1"
+  }
 }
