@@ -9,11 +9,15 @@ import Error from "../Error";
 
 // css here
 import { styles } from '../LoginForm';
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {useIonAlert} from "@ionic/react";
 
 
 
 // component definitions here:
 function LoginForm() {
+    const auth = getAuth();
+    const [alert] = useIonAlert();
     // state for the form here:
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -21,7 +25,6 @@ function LoginForm() {
     const [ error, setError ] = useState([]);
     const dispatch = useDispatch();
     const errors = useSelector(store => store.errorReducer.errors);
-
     const history = useHistory();
 
 
@@ -34,14 +37,21 @@ function LoginForm() {
 
 
 
-
-
     const onSubmit = async e => {
         e.preventDefault();
-        const success = await dispatch(thunk_login({ credential: username, password }));
-        if(success) {
-            history.push('/profile');
-        }
+        await signInWithEmailAndPassword(auth, username, password).then(() => {
+            // history.push('/profile');
+            return true;
+        }).catch(async error => {
+            await alert({
+                header: "Error Signing In",
+                message: error.message,
+                buttons: ["OK"],
+            });
+            return false;
+        });
+
+        // const success = await dispatch(thunk_login({ credential: username, password }));
     };
 
 
@@ -55,19 +65,20 @@ function LoginForm() {
                 <h1> Login </h1>
                 <form onSubmit={onSubmit} >
                     <div className={styles.text_box} >
-                        <label className={styles.each_label} htmlFor="email"  /> Username
+                        <label className={styles.each_label} htmlFor="email"  /> Email
                             <br />
                         <input
                             type="text"
                             onChange={(event) => setUsername(event.target.value) }
                             value={username}
-                            placeholder="Your Username Here"
+                            placeholder="Your Email Here"
                             id="username"
                             name="username"
-                            autoComplete={'username'}
-                            aria-label='Username'
+                            autoComplete={'email'}
+                            aria-label='Email'
                         />
                     </div>
+
                     <div className={styles.text_box} >
                         <label className={styles.each_label} htmlFor="password" /> Password
                             <br />
@@ -82,6 +93,7 @@ function LoginForm() {
                             aria-label='Password'
                         />
                     </div>
+
                     <div className={styles.text_box} >
                         <label className={styles.each_label} htmlFor="confirmation" /> Confirmation
                             <br />
@@ -97,8 +109,7 @@ function LoginForm() {
                         />
                     </div>
 
-
-                        <button>Login</button>
+                    <button>Login</button>
 
                 </form>
                 </div>

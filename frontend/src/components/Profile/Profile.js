@@ -62,9 +62,9 @@ const Profile = () => {
 
         <div>
           {/*{isUser.id === 1 && isUser.email === 'demo@gmail.com' ? null*/}
-            :
+          {/*  :*/}
               <Link to={'/'} onClick={event => showUpdateForm(event)} >Update</Link>
-           }
+           {/*}*/}
         </div>
       </div>
 

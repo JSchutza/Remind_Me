@@ -1,4 +1,4 @@
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import React from 'react';
 import Home from "../Home";
 import NavBar from '../NavBar';
@@ -58,12 +58,6 @@ const UnAuthenticated = () => {
                     <NavBar/>
                     <AboutMe/>
                 </Route>
-
-                <Route>
-                    <NavBar/>
-                    <h2>Page Not Found</h2>
-                </Route>
-
             </Switch>
     )
 }
@@ -72,9 +66,11 @@ const UnAuthenticated = () => {
 const MainRouter = () => {
     // if the user IS logged in
     return (
-        <AuthWrapper fallback={<UnAuthenticated/>}>
-            <IonReactRouter>
-                <IonRouterOutlet>
+        <IonReactRouter>
+            <IonRouterOutlet>
+                <AuthWrapper fallback={<UnAuthenticated/>}>
+                    <Route path="/login" exact={true} > <Redirect to="/" /> </Route>
+
                     <Route path='/' exact={true}>
                         <NavBar/>
                         <Home/>
@@ -108,13 +104,9 @@ const MainRouter = () => {
                         <AboutMe/>
                     </Route>
 
-                    <Route>
-                        <NavBar/>
-                        <h2>Page Not Found</h2>
-                    </Route>
-                </IonRouterOutlet>
-            </IonReactRouter>
-        </AuthWrapper>
+                </AuthWrapper>
+            </IonRouterOutlet>
+        </IonReactRouter>
     )
 
 };
