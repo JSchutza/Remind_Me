@@ -7,7 +7,7 @@ import { clearError } from "../../actions/error.js";
 
 import styles from "./navbar.module.css";
 import {useFirebaseApp, useSigninCheck} from "reactfire";
-import {getAuth, signOut} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth";
 
 
 
@@ -23,20 +23,28 @@ const NavBar = () => {
 
   const loginDemoUser = async event => {
     event.preventDefault();
+    await signInWithEmailAndPassword(auth, "demo@gmail.com", "password").then(() => {
+      history.push('/profile');
+      return true;
+    }).catch(async error => {
+      await alert({
+        header: "Error Signing In",
+        message: error.message,
+        buttons: ["OK"],
+      });
+      return false;
+    });
+
     // await dispatch(thunk_loginDemoUser());
-    // dispatch(clearError());
-    // history.push('/profile');
+    dispatch(clearError());
   }
 
 
   const logoutUser = async event => {
     event.preventDefault();
-    const success = await signOut(auth);
+    await signOut(auth);
     // await dispatch(thunk_logoutUser());
     await dispatch(clearError());
-    // if (success) {
-    //   history.push('/');
-    // }
   }
 
 

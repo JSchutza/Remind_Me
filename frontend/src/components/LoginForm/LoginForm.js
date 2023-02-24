@@ -40,7 +40,7 @@ function LoginForm() {
     const onSubmit = async e => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, username, password).then(() => {
-            // history.push('/profile');
+            history.push('/profile');
             return true;
         }).catch(async error => {
             await alert({
