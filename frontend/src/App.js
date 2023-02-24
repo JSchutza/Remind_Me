@@ -7,8 +7,11 @@ import Footer from './components/Footer';
 import './reset.css';
 import {connectAuthEmulator, getAuth} from "firebase/auth"; // Firebase v9+
 import {connectFirestoreEmulator, getFirestore} from "firebase/firestore"; // Firebase v9+
-
 import {AuthProvider, useFirebaseApp, FirestoreProvider, } from "reactfire";
+import {IonApp, setupIonicReact} from "@ionic/react";
+
+
+setupIonicReact();
 
 
 
@@ -26,15 +29,14 @@ function App() {
 
 
     return (
-        <>
+        <IonApp>
             <AuthProvider sdk={auth}>
                 <FirestoreProvider sdk={firestoreDatabase}>
-
                     <MainRouter/>
                     <Footer/>
                 </FirestoreProvider>
             </AuthProvider>
-        </>
+        </IonApp>
     );
 }
 

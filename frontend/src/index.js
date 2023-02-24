@@ -36,21 +36,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 // used to simplify ReactDOM.render below
 function Root() {
-
     return (
-        <>
-            <Provider store={store}>
-                <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+        <Provider store={store}>
+            <FirebaseAppProvider firebaseConfig={firebaseConfig}>
                 <BrowserRouter>
                     <EditorProvider>
                         <App/>
                     </EditorProvider>
                 </BrowserRouter>
-                </FirebaseAppProvider>
-            </Provider>
-        </>
+            </FirebaseAppProvider>
+        </Provider>
     );
-
 }
 
 

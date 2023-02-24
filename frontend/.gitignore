@@ -108,3 +108,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+build
+frontend/build
+**/secrets.json
+**/firebase-debug.log
+**/node_modules
+.idea
+.firebaserc
+firebase-debug.log
+# production
+/build
+/frontend/build

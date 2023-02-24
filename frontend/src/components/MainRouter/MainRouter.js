@@ -11,21 +11,19 @@ import NotebooksPage from "../NotebooksPage";
 import AboutMe from "../AboutMe";
 import {useSigninCheck} from "reactfire";
 import {CodeEditor} from "../Editor";
+import {IonReactRouter} from "@ionic/react-router";
+import {IonRouterOutlet} from "@ionic/react";
+
+
 
 const AuthWrapper = ({children, fallback,}) => {
-
     const {status, data: signInCheckResult} = useSigninCheck();
 
-    if (!children) {
-        throw new Error("Children must be provided");
-    }
+    if (!children) { throw new Error("Children must be provided"); }
 
     if (status === "loading") {
         return <h1> Loading.... </h1>;
-    } else if (signInCheckResult.signedIn) {
-
-        return children;
-    }
+    } else if (signInCheckResult.signedIn) { return children; }
 
     return fallback;
 };
@@ -72,43 +70,40 @@ const UnAuthenticated = () => {
 
 
 const MainRouter = () => {
-
     // if the user IS logged in
     return (
-        <>
-            <AuthWrapper fallback={<UnAuthenticated/>}>
-
-                <Switch>
-
-                    <Route path='/' exact>
+        <AuthWrapper fallback={<UnAuthenticated/>}>
+            <IonReactRouter>
+                <IonRouterOutlet>
+                    <Route path='/' exact={true}>
                         <NavBar/>
                         <Home/>
                         <CodeEditor homepage={true}/>
                     </Route>
 
-                    <Route path='/readme' exact>
+                    <Route path='/readme' exact={true}>
                         <NavBar/>
                         <ReadMe/>
                     </Route>
 
-                    <Route path='/profile' exact>
+                    <Route path='/profile' exact={true}>
                         <NavBar/>
                         <Profile/>
                     </Route>
 
-                    <Route path='/notebooks' exact>
+                    <Route path='/notebooks' exact={true}>
                         {/* notebooks here  */}
                         <NavBar/>
                         <NotebooksPage/>
                     </Route>
 
 
-                    <Route path='/notebook/:notebookId' exact>
+                    <Route path='/notebook/:notebookId' exact={true}>
                         <NavBar/>
                         <NotebookViewer/>
                     </Route>
 
-                    <Route path='/about' exact>
+                    <Route path='/about' exact={true}>
                         <NavBar/>
                         <AboutMe/>
                     </Route>
@@ -117,10 +112,9 @@ const MainRouter = () => {
                         <NavBar/>
                         <h2>Page Not Found</h2>
                     </Route>
-
-                </Switch>
-            </AuthWrapper>
-        </>
+                </IonRouterOutlet>
+            </IonReactRouter>
+        </AuthWrapper>
     )
 
 };
