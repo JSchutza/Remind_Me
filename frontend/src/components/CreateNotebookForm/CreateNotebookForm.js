@@ -1,16 +1,13 @@
 import React from 'react';
-
 import { useState, useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-import { thunk_createNewNotebook } from "../../thunks/notebooks.js";
-
-
-
 import styles from './createnotebookform.module.css';
-
 import Error from "../Error";
+import {doc, updateDoc} from "firebase/firestore";
+import {useFirebaseApp, useFirestore, useFirestoreDocData} from "reactfire";
+import {getAuth} from "firebase/auth";
+
+
 
 
 const CreateNotebookForm = ({ notebookId, closeModal }) => {
@@ -18,8 +15,12 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
   const [ description, setDescription ] = useState('');
   const [error, setError] = useState([]);
   const errors = useSelector(store => store.errorReducer.errors);
-  const dispatch = useDispatch();
-
+  // get the firestore document reference
+  const notebooksRef = doc(useFirestore(), "Notebooks", "mOLtamIAoHyjhdrvBjhv")
+  // subscribe to the document for realtime updates.
+  const { status: notebooksStatus, data: notebooksData } = useFirestoreDocData(notebooksRef)
+  const app = useFirebaseApp()
+  const auth = getAuth(app)
 
 
 
@@ -31,25 +32,24 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
 
 
 
-
   const onSubmit = async event => {
     event.preventDefault();
-    // const payload = { name, description, notebook_owner: isUser.id };
-    // const success = await dispatch(thunk_createNewNotebook(payload));
-    // if (success) {
-    //   closeModal();
-    // }
+    const userId = auth.currentUser?.uid
+    const newNotebookId = notebooksData?.Notebooks?.[userId]?.length + 1
+    const prevNotebooks = notebooksData?.Notebooks?.[userId]
+    const newNoteBook = {name, description, "id": newNotebookId}
+    prevNotebooks.push(newNoteBook)
+    delete notebooksData?.Notebooks?.[userId]
+    const payload = { Notebooks: { [userId]: prevNotebooks, ...notebooksData?.Notebooks } };
+    updateDoc(notebooksRef, payload)
+    closeModal();
   };
-
-
-
 
 
   return (
     <>
       <div className={styles.createnotebook_container} >
       <Error error={error} />
-
 
       <div className={styles.createnotebook_wrap}>
         <form className={styles.createnotebook_form} onSubmit={onSubmit} >

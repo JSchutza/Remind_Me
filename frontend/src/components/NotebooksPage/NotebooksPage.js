@@ -8,7 +8,6 @@ import CreateNotebookForm from "../CreateNotebookForm";
 import DeleteNotebook from "../DeleteNotebook";
 import UpdateNotebookForm from "../UpdateNotebookForm";
 import ReactModal from 'react-modal';
-
 import styles from "./notebookspage.module.css";
 import {doc} from "firebase/firestore";
 import {useFirebaseApp, useFirestore, useFirestoreDocData} from "reactfire";
