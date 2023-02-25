@@ -94,7 +94,7 @@ const MainRouter = () => {
                     </Route>
 
 
-                    <Route path='/notebook/:notebookId' exact={true}>
+                    <Route path='/notebook/:notebookId/:name' exact={true}>
                         <NavBar/>
                         <NotebookViewer/>
                     </Route>

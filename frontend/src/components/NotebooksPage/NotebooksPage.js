@@ -1,10 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearError } from '../../actions/error.js';
-import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
-import { thunk_deleteNotebook } from '../../thunks/notebooks.js';
 import { nanoid } from 'nanoid';
 import CreateNotebookForm from "../CreateNotebookForm";
 import DeleteNotebook from "../DeleteNotebook";
@@ -117,7 +115,7 @@ const NotebooksPage = () => {
               {notebooksData?.Notebooks?.[auth.currentUser?.uid]?.map((eachNotebook) => (
                 <div key={nanoid()} className={styles.eachnotebook_wrap}>
                   <div>
-                    <Link to={`/notebook/${eachNotebook?.id}`}>
+                    <Link to={`/notebook/${eachNotebook?.id}/${eachNotebook?.name}`}>
                       <h3>{eachNotebook?.name}</h3>
                     </Link>
                   </div>
