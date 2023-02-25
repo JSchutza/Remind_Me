@@ -1,42 +1,37 @@
 import React from 'react';
-
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { clearError } from '../../actions/error.js';
-
 import { thunk_getNoteBooks } from "../../thunks/notebooks.js";
 import { thunk_deleteNotebook } from '../../thunks/notebooks.js';
 import { nanoid } from 'nanoid';
-
 import CreateNotebookForm from "../CreateNotebookForm";
 import DeleteNotebook from "../DeleteNotebook";
 import UpdateNotebookForm from "../UpdateNotebookForm";
-
 import ReactModal from 'react-modal';
 
 import styles from "./notebookspage.module.css";
+import {doc} from "firebase/firestore";
+import {useFirebaseApp, useFirestore, useFirestoreDocData} from "reactfire";
+import {getAuth} from "firebase/auth";
+
+
 
 
 const NotebooksPage = () => {
+  // get the firestore document reference
+  const notebooksRef = doc(useFirestore(), "Notebooks", "mOLtamIAoHyjhdrvBjhv")
+  // subscribe to the document for realtime updates.
+  const { status: notebooksStatus, data: notebooksData } = useFirestoreDocData(notebooksRef)
+
   const [ showCreateModal, setShowCreateModal ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
   const [ notebookId, setNotebookId ] = useState(null);
   const [ prevnotebook, setPrevnotebook ] = useState(null);
   const dispatch = useDispatch();
-  const notebooks = useSelector(store => store.notebooksReducer.notebooks);
-
-
-
-  useEffect(() => {
-    // dispatch(thunk_getNoteBooks(isUser.id));
-  },[]);
-
-
-// need to check the length of notebooks ... but it is an empty object if there are no notebooks
-// also cant convert null to an array AKA notebooks at some time so need to think of a way to fix this
-  // check notebooks in the backend and send the length?
+  const app = useFirebaseApp()
+  const auth = getAuth(app)
 
 
 
@@ -55,8 +50,7 @@ const NotebooksPage = () => {
 
   const handleDelete = (event, id) => {
     event.preventDefault();
-    // await dispatch?
-    dispatch(thunk_deleteNotebook(id));
+    // dispatch(thunk_deleteNotebook(id));
   };
 
 
@@ -64,7 +58,7 @@ const NotebooksPage = () => {
   const handleUpdate = (event, id) => {
     event.preventDefault();
     setNotebookId(id);
-    setPrevnotebook(notebooks[id]);
+    setPrevnotebook(notebooksData?.Notebooks?.[auth.currentUser?.uid]?.[id]);
     setShowModal(true);
   };
 
@@ -118,29 +112,29 @@ const NotebooksPage = () => {
 
 
         <div className={styles.eachnotebook_container}>
-          {notebooks !== null ? (
+          {notebooksData?.Notebooks?.[auth.currentUser?.uid]?.length > 0 ? (
             <>
-              {Object.values(notebooks).map((eachNotebook) => (
+              {notebooksData?.Notebooks?.[auth.currentUser?.uid]?.map((eachNotebook) => (
                 <div key={nanoid()} className={styles.eachnotebook_wrap}>
                   <div>
-                    <Link to={`/notebook/${eachNotebook.id}`}>
-                      <h3>{eachNotebook.name}</h3>
+                    <Link to={`/notebook/${eachNotebook?.id}`}>
+                      <h3>{eachNotebook?.name}</h3>
                     </Link>
                   </div>
 
                   <div className={styles.eachnotebook_buttons_wrap}>
                     <div
                       className={styles.eachnotebook_delete_button}
-                      onClick={(event) => handleDelete(event, eachNotebook.id)}
+                      onClick={(event) => handleDelete(event, eachNotebook?.id)}
                     >
-                      <DeleteNotebook notebookId={eachNotebook.id} />
+                      <DeleteNotebook notebookId={eachNotebook?.id} />
                     </div>
 
                     <div
                       className={styles.eachnotebook_update_button}
-                      onClick={(event) => handleUpdate(event, eachNotebook.id)}
+                      onClick={(event) => handleUpdate(event, eachNotebook?.id)}
                     >
-                      <Link to='/' onClick={(event) => handleUpdate(event, eachNotebook.id)} > Update </Link>
+                      <Link to='/' onClick={(event) => handleUpdate(event, eachNotebook?.id)} > Update </Link>
                     </div>
                   </div>
                 </div>

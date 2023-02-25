@@ -21,19 +21,11 @@ const Profile = () => {
     // subscribe to the document for realtime updates.
     const { status: usersStatus, data: usersData } = useFirestoreDocData(usersRef)
 
-    const dispatch = useDispatch();
     const history = useHistory();
     const [ open_close, setOpen_Close ] = useState(false);
-    const notebooks = useSelector(store => store.notebooksReducer.notebooks);
 // create an input and state so that users can enter a number of notebooks they want to list
     const app = useFirebaseApp()
     const auth = getAuth(app)
-
-
-    useEffect(() => {
-        // dispatch(thunk_getLimitedNotebooks(3, isUser.id))
-        console.log()
-    },[dispatch]);
 
 
     const showUpdateForm = event => {
@@ -86,18 +78,18 @@ const Profile = () => {
                 <h3>Recent Notebooks</h3>
 
                 <div className={styles.each_recent_notebook} >
-                    {notebooks ?
-                        Object.values(notebooks).map(eachBook => (
-                            <div
-                                key={nanoid()}
-                                className={styles.each_notebook_link}
-                                onClick={() => history.push(`/notebook/${eachBook.id}`)}
-                            >
-                                <Link to={`/notebook/${eachBook.id}`} className={styles.link} > <h4>{eachBook.name}</h4> </Link>
-                            </div>
-                        ))
-                        : null
-                    }
+                    {/*{notebooks ?*/}
+                    {/*    Object.values(notebooks).map(eachBook => (*/}
+                    {/*        <div*/}
+                    {/*            key={nanoid()}*/}
+                    {/*            className={styles.each_notebook_link}*/}
+                    {/*            onClick={() => history.push(`/notebook/${eachBook.id}`)}*/}
+                    {/*        >*/}
+                    {/*            <Link to={`/notebook/${eachBook.id}`} className={styles.link} > <h4>{eachBook.name}</h4> </Link>*/}
+                    {/*        </div>*/}
+                    {/*    ))*/}
+                    {/*    : null*/}
+                    {/*}*/}
                 </div>
             </div>
         </>
