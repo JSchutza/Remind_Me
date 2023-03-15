@@ -14,7 +14,7 @@ const DeleteNotebook = ({ notebookId }) => {
 
   const handleDelete = event => {
     event.preventDefault();
-    dispatch(thunk_deleteNotebook(notebookId));
+    // dispatch(thunk_deleteNotebook(notebookId));
   }
 
 

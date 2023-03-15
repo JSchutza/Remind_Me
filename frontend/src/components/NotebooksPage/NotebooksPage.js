@@ -9,7 +9,7 @@ import DeleteNotebook from "../DeleteNotebook";
 import UpdateNotebookForm from "../UpdateNotebookForm";
 import ReactModal from 'react-modal';
 import styles from "./notebookspage.module.css";
-import {doc} from "firebase/firestore";
+import {doc, updateDoc} from "firebase/firestore";
 import {useFirebaseApp, useFirestore, useFirestoreDocData} from "reactfire";
 import {getAuth} from "firebase/auth";
 
@@ -47,6 +47,11 @@ const NotebooksPage = () => {
 
   const handleDelete = (event, id) => {
     event.preventDefault();
+    const uid = auth.currentUser?.uid
+    const allNotebooks = notebooksData?.Notebooks?.[uid]
+    const result = allNotebooks.filter((each) => each?.id !== id)
+    const payload = { Notebooks: { [uid]: result  } };
+    updateDoc(notebooksRef, payload)
     // dispatch(thunk_deleteNotebook(id));
   };
 

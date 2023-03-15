@@ -44,7 +44,8 @@ const Profile = () => {
         <>
             <div className={styles.userinfo_wrap}>
                 <div className={styles.user_img} >
-                    {usersData?.Users?.[auth.currentUser?.uid]?.avatar === undefined ?
+                    {usersData?.Users?.[auth.currentUser?.uid]?.avatar === undefined ||
+                        usersData?.Users?.[auth.currentUser?.uid]?.avatar === null ?
                           <img src={no_user} />
                         :
                           <img src={usersData?.Users?.[auth.currentUser?.uid]?.avatar} />
