@@ -9,7 +9,7 @@ import { thunk_deleteNotebook } from "../../thunks/notebooks.js";
 
 
 const DeleteNotebook = ({ notebookId }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
 
   const handleDelete = event => {
