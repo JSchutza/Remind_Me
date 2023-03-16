@@ -50,7 +50,8 @@ const NotebooksPage = () => {
     const uid = auth.currentUser?.uid
     const allNotebooks = notebooksData?.Notebooks?.[uid]
     const result = allNotebooks.filter((each) => each?.id !== id)
-    const payload = { Notebooks: { [uid]: result  } };
+    delete notebooksData?.Notebooks?.[uid]
+    const payload = { Notebooks: { [uid]: result,  ...notebooksData?.Notebooks } };
     updateDoc(notebooksRef, payload)
     // dispatch(thunk_deleteNotebook(id));
   };
