@@ -21,6 +21,11 @@ const NotebooksPage = () => {
   const notebooksRef = doc(useFirestore(), "Notebooks", "mOLtamIAoHyjhdrvBjhv")
   // subscribe to the document for realtime updates.
   const { status: notebooksStatus, data: notebooksData } = useFirestoreDocData(notebooksRef)
+  // get the firestore document reference
+  const notesRef = doc(useFirestore(), "Notes", "WeJNP1GkfLig2GQdQ4ED")
+  // subscribe to the document for realtime updates.
+  const { status: notesStatus, data: notesData } = useFirestoreDocData(notesRef)
+
 
   const [ showCreateModal, setShowCreateModal ] = useState(false);
   const [ showModal, setShowModal ] = useState(false);
@@ -39,20 +44,28 @@ const NotebooksPage = () => {
   };
 
 
-  const closeCreateModal = () => {
-    setShowCreateModal(false);
-  };
+  const closeCreateModal = () => { setShowCreateModal(false); };
 
 
 
   const handleDelete = (event, id) => {
     event.preventDefault();
-    const uid = auth.currentUser?.uid
-    const allNotebooks = notebooksData?.Notebooks?.[uid]
+    const userId = auth.currentUser?.uid
+    const allNotebooks = notebooksData?.Notebooks?.[userId]
     const result = allNotebooks.filter((each) => each?.id !== id)
-    delete notebooksData?.Notebooks?.[uid]
-    const payload = { Notebooks: { [uid]: result,  ...notebooksData?.Notebooks } };
+    delete notebooksData?.Notebooks?.[userId]
+    const payload = { Notebooks: { [userId]: result,  ...notebooksData?.Notebooks } };
     updateDoc(notebooksRef, payload)
+
+    const allNotes = notesData?.Notes
+    delete notesData?.Notes?.[userId]?.[id]
+    const notesPayload = {
+      Notes: {
+        [userId]: { ...notesData?.Notes?.[userId] },
+        ...allNotes
+      }
+    };
+    updateDoc(notesRef, notesPayload)
     // dispatch(thunk_deleteNotebook(id));
   };
 
@@ -70,9 +83,7 @@ const NotebooksPage = () => {
 
 
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  const closeModal = () => { setShowModal(false); };
 
 
 

@@ -45,7 +45,7 @@ const UpdateNotebookForm = ({ notebookId, closeModal, notebook }) => {
 
     const oldNotebooks = notebooksData?.Notebooks?.[userId]
     oldNotebooks.forEach((eachNotebook) => {
-      if (Number(eachNotebook.id) === Number(notebookId)) {
+      if (eachNotebook.id === notebookId) {
         eachNotebook.name = name
         eachNotebook.description = description
         eachNotebook.id = notebookId
