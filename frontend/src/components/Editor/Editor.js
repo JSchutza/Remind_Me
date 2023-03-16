@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import React from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
 import { clearError, clearUpdateNoteError } from '../../actions/error.js';
-
-
 import { useEditor } from '../../context/EditorContext.js';
-
-
 // css
 import { styles } from '../Editor';
-
-
 import Error from "../Error";
 import EditorNav from "./EditorNav.js";
+import {doc, updateDoc} from "firebase/firestore";
+import {useFirebaseApp, useFirestore, useFirestoreDocData} from "reactfire";
+import {getAuth} from "firebase/auth";
 
 
 
@@ -35,6 +31,12 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
     const errors = useSelector(store => store.noteErrorReducer.errors);
     const dispatch = useDispatch();
     let delayClearErrors;
+    // get the firestore document reference
+    const notesRef = doc(useFirestore(), "Notes", "WeJNP1GkfLig2GQdQ4ED")
+    // subscribe to the document for realtime updates.
+    const { status: notesStatus, data: notesData } = useFirestoreDocData(notesRef)
+    const app = useFirebaseApp()
+    const auth = getAuth(app)
 
 
 
@@ -53,20 +55,25 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
 
 
 
-    const handleEditorChange = (value, event) => {
-      setContent(value);
-    }
+    const handleEditorChange = (value, event) => { setContent(value); }
 
 
 
 
     const notecreationClickHandler = async event => {
         event.preventDefault();
-        const payload = { due_date: new Date(), title, content, notebook_id };
-        const success = await dispatch(thunk_createNewNote(payload));
-        if(success) {
-            closeModal();
-        }
+        const userId = auth.currentUser?.uid
+        const newNoteId = notesData?.Notes?.[userId]?.[notebook_id]?.length + 1
+        const prevNotes = notesData?.Notes?.[userId]?.[notebook_id]
+        const newNote = { title, content, "id": newNoteId };
+        prevNotes.push(newNote)
+        const restOfNotes = notesData?.Notes?.[userId]
+        delete notesData?.Notes?.[userId]?.[notebook_id]
+        delete notesData?.Notes?.[userId]
+        const payload = { Notes: { [userId]: { [notebook_id]: prevNotes, ...restOfNotes }, ...notesData?.Notes } };
+        updateDoc(notesRef, payload)
+        closeModal();
+        // const success = await dispatch(thunk_createNewNote(payload));
     };
 
 
