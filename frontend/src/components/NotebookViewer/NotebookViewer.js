@@ -37,9 +37,7 @@ const NotebookViewer = () => {
   };
 
 
-  const closeModal = () => {
-    setShowModal(false);
-  }
+  const closeModal = () => { setShowModal(false); }
 
 
 
@@ -68,8 +66,8 @@ const NotebookViewer = () => {
       </ReactModal>
 
 
-      {notesData?.Notes?.[auth.currentUser?.uid]?.length > 0 ? (
-        notesData?.Notes?.[auth.currentUser?.uid]?.map((eachNote) => (
+      {notesData?.Notes?.[auth.currentUser?.uid]?.[notebookId]?.length > 0 ? (
+        notesData?.Notes?.[auth.currentUser?.uid]?.[notebookId]?.map((eachNote) => (
           <DropDownArrow
             eachNote={eachNote}
             notebookId={notebookId}
