@@ -60,8 +60,11 @@ const NotebooksPage = () => {
 
   const handleUpdate = (event, id) => {
     event.preventDefault();
+    const uid = auth.currentUser?.uid
+    const allNotebooks = notebooksData?.Notebooks?.[uid]
+    const prevNotebook = allNotebooks.filter((eachNotebook) => eachNotebook.id === id)
     setNotebookId(id);
-    setPrevnotebook(notebooksData?.Notebooks?.[auth.currentUser?.uid]?.[id]);
+    setPrevnotebook(prevNotebook[0]);
     setShowModal(true);
   };
 
