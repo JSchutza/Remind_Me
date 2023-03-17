@@ -105,6 +105,17 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
 
     const noteDeleteClickHandler = (event, noteId) => {
         event.preventDefault();
+        const userId = auth.currentUser?.uid
+        const prevNotes = notesData?.Notes?.[userId]?.[notebook_id]
+        const filteredNote = prevNotes.filter((eachNote) => eachNote.id !== noteId)
+        const otherNotes = notesData?.Notes?.[userId]
+        delete otherNotes[notebook_id]
+        delete notesData?.Notes?.[userId]
+        const payload = { Notes: {
+                [userId]: { [notebook_id]: filteredNote, ...otherNotes  }, ...notesData?.Notes
+            }
+        };
+        updateDoc(notesRef, payload)
         // dispatch(thunk_deleteNote(noteId, notebook_id));
     };
 
