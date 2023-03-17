@@ -24,6 +24,12 @@ const Profile = () => {
     const history = useHistory();
     const [ open_close, setOpen_Close ] = useState(false);
 // create an input and state so that users can enter a number of notebooks they want to list
+
+    // get the firestore document reference
+    const recentNotebooksRef = doc(useFirestore(), "RecentNotebooks", "YGVQzCptmxyuSArcCQjZ")
+    // subscribe to the document for realtime updates.
+    const { status: recentNotebooksStatus, data: recentNotebooksData } = useFirestoreDocData(recentNotebooksRef)
+
     const app = useFirebaseApp()
     const auth = getAuth(app)
 
@@ -33,9 +39,7 @@ const Profile = () => {
         setOpen_Close(true);
     }
 
-    const closeModal = () => {
-        setOpen_Close(false);
-    }
+    const closeModal = () => { setOpen_Close(false); }
 
 
 
@@ -79,18 +83,20 @@ const Profile = () => {
                 <h3>Recent Notebooks</h3>
 
                 <div className={styles.each_recent_notebook} >
-                    {/*{notebooks ?*/}
-                    {/*    Object.values(notebooks).map(eachBook => (*/}
-                    {/*        <div*/}
-                    {/*            key={nanoid()}*/}
-                    {/*            className={styles.each_notebook_link}*/}
-                    {/*            onClick={() => history.push(`/notebook/${eachBook.id}`)}*/}
-                    {/*        >*/}
-                    {/*            <Link to={`/notebook/${eachBook.id}`} className={styles.link} > <h4>{eachBook.name}</h4> </Link>*/}
-                    {/*        </div>*/}
-                    {/*    ))*/}
-                    {/*    : null*/}
-                    {/*}*/}
+                    {recentNotebooksData?.RecentNotebooks?.[auth.currentUser?.uid]?.length > 0 ?
+                        recentNotebooksData?.RecentNotebooks?.[auth.currentUser?.uid]?.map(eachBook => (
+                            <div
+                                key={nanoid()}
+                                className={styles.each_notebook_link}
+                                onClick={() => history.push(`/notebook/${eachBook.id}/${eachBook.name}`)}
+                            >
+                                <Link to={`/notebook/${eachBook.id}/${eachBook.name}`} className={styles.link} >
+                                    <h4>{eachBook.name}</h4>
+                                </Link>
+                            </div>
+                        ))
+                        : <h1>No recent notebooks</h1>
+                    }
                 </div>
             </div>
         </>
