@@ -85,9 +85,11 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
         const prevNotes = notesData?.Notes?.[userId]?.[notebook_id]
         const filteredNote = prevNotes.filter((eachNote) => eachNote.id !== noteId)
         filteredNote.push(updatedNote)
+        const otherNotes = notesData?.Notes?.[userId]
+        delete otherNotes[notebook_id]
         delete notesData?.Notes?.[userId]
         const payload = { Notes: {
-                [userId]: { [notebook_id]: filteredNote }, ...notesData?.Notes
+                [userId]: { [notebook_id]: filteredNote, ...otherNotes  }, ...notesData?.Notes
             }
         };
         updateDoc(notesRef, payload)
