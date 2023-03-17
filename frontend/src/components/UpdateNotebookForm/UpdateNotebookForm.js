@@ -40,7 +40,6 @@ const UpdateNotebookForm = ({ notebookId, closeModal, notebook }) => {
 
   const onSubmit = async event => {
     event.preventDefault();
-    const updatedNotebook = { name, description, "id": notebookId };
     const userId = auth.currentUser?.uid
 
     const oldNotebooks = notebooksData?.Notebooks?.[userId]

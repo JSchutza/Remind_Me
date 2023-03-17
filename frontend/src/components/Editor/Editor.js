@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from "nanoid";
 import { thunk_createNewNote, thunk_updateNote, thunk_deleteNote } from '../../thunks/notes.js';
 import { clearError, clearUpdateNoteError } from '../../actions/error.js';
 import { useEditor } from '../../context/EditorContext.js';
@@ -63,7 +64,7 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
     const notecreationClickHandler = async event => {
         event.preventDefault();
         const userId = auth.currentUser?.uid
-        const newNoteId = notesData?.Notes?.[userId]?.[notebook_id]?.length + 1
+        const newNoteId = nanoid()
         const prevNotes = notesData?.Notes?.[userId]?.[notebook_id]
         const newNote = { title, content, "id": newNoteId };
         prevNotes.push(newNote)
@@ -77,29 +78,32 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
     };
 
 
-
-
-
-
     const noteUpdateClickHandler = async (event, noteId) => {
         event.preventDefault();
-        const payload = { due_date: new Date(), title, content, notebook_id, noteId };
-        const success = await dispatch(thunk_updateNote(payload));
+        const userId = auth.currentUser?.uid
+        const updatedNote = { title, content, "id": noteId };
+        const prevNotes = notesData?.Notes?.[userId]?.[notebook_id]
+        const filteredNote = prevNotes.filter((eachNote) => eachNote.id !== noteId)
+        filteredNote.push(updatedNote)
+        delete notesData?.Notes?.[userId]
+        const payload = { Notes: {
+                [userId]: { [notebook_id]: filteredNote }, ...notesData?.Notes
+            }
+        };
+        updateDoc(notesRef, payload)
+        // const success = await dispatch(thunk_updateNote(payload));
         // if there was an error with the update
-        if(success === undefined) {
-            delayClearErrors = setTimeout(() => {
-                dispatch(clearUpdateNoteError());
-            }, 2000);
-        }
+        // if(success === undefined) {
+        //     delayClearErrors = setTimeout(() => {
+        //         dispatch(clearUpdateNoteError());
+        //     }, 2000);
+        // }
     };
-
-
-
 
 
     const noteDeleteClickHandler = (event, noteId) => {
         event.preventDefault();
-        dispatch(thunk_deleteNote(noteId, notebook_id));
+        // dispatch(thunk_deleteNote(noteId, notebook_id));
     };
 
 
