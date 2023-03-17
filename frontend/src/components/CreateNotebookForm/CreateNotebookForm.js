@@ -23,6 +23,10 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
   const notesRef = doc(useFirestore(), "Notes", "WeJNP1GkfLig2GQdQ4ED")
   // subscribe to the document for realtime updates.
   const { status: notesStatus, data: notesData } = useFirestoreDocData(notesRef)
+  // get the firestore document reference
+  const recentNotebooksRef = doc(useFirestore(), "RecentNotebooks", "YGVQzCptmxyuSArcCQjZ")
+  // subscribe to the document for realtime updates.
+  const { status: recentNotebooksStatus, data: recentNotebooksData } = useFirestoreDocData(recentNotebooksRef)
 
   const app = useFirebaseApp()
   const auth = getAuth(app)
@@ -51,15 +55,18 @@ const CreateNotebookForm = ({ notebookId, closeModal }) => {
     const prevNotes = notesData?.Notes?.[userId]
     const allNotes = notesData?.Notes
     delete notesData?.Notes?.[userId]
-    const notesPayload = {
-      Notes: {
-        [userId]: {
-          [newNotebookId]: [],  ...prevNotes
-        },
-        ...allNotes
-      }
-    };
+    const notesPayload = { Notes: { [userId]: { [newNotebookId]: [],  ...prevNotes
+        }, ...allNotes } };
     updateDoc(notesRef, notesPayload)
+
+    const recentNotebook = {name, description, "id": newNotebookId}
+    const theirRecentNotebooks = recentNotebooksData?.RecentNotebooks?.[userId]
+    theirRecentNotebooks.push(recentNotebook)
+    delete recentNotebooksData?.RecentNotebooks?.[userId]
+    const recentNotebooksPayload = {
+      RecentNotebooks: { [userId]: theirRecentNotebooks, ...recentNotebooksData?.RecentNotebooks  }
+    }
+    updateDoc(recentNotebooksRef, recentNotebooksPayload)
     closeModal();
   };
 
