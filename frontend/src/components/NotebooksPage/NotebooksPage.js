@@ -25,6 +25,11 @@ const NotebooksPage = () => {
   const notesRef = doc(useFirestore(), "Notes", "WeJNP1GkfLig2GQdQ4ED")
   // subscribe to the document for realtime updates.
   const { status: notesStatus, data: notesData } = useFirestoreDocData(notesRef)
+  // get the firestore document reference
+  const recentNotebooksRef = doc(useFirestore(), "RecentNotebooks", "YGVQzCptmxyuSArcCQjZ")
+  // subscribe to the document for realtime updates.
+  const { status: recentNotebooksStatus, data: recentNotebooksData } = useFirestoreDocData(recentNotebooksRef)
+
 
 
   const [ showCreateModal, setShowCreateModal ] = useState(false);
@@ -66,6 +71,17 @@ const NotebooksPage = () => {
       }
     };
     updateDoc(notesRef, notesPayload)
+
+    const allRecentNotebooks = recentNotebooksData?.RecentNotebooks?.[userId]
+    const filteredRecentNotebooks = allRecentNotebooks.filter((eachReNotebook) => eachReNotebook?.id !== id)
+    delete recentNotebooksData?.RecentNotebooks?.[userId]
+    const recentNotebooksPayload = {
+      RecentNotebooks: {
+        [userId]: filteredRecentNotebooks, ...recentNotebooksData?.RecentNotebooks
+      }
+    };
+
+    updateDoc(recentNotebooksRef, recentNotebooksPayload)
     // dispatch(thunk_deleteNotebook(id));
   };
 
