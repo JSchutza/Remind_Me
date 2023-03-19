@@ -21,6 +21,12 @@ const UpdateNotebookForm = ({ notebookId, closeModal, notebook }) => {
   const notebooksRef = doc(useFirestore(), "Notebooks", "mOLtamIAoHyjhdrvBjhv")
   // subscribe to the document for realtime updates.
   const { status: notebooksStatus, data: notebooksData } = useFirestoreDocData(notebooksRef)
+
+  // get the firestore document reference
+  const recentNotebooksRef = doc(useFirestore(), "RecentNotebooks", "YGVQzCptmxyuSArcCQjZ")
+  // subscribe to the document for realtime updates.
+  const { status: recentNotebooksStatus, data: recentNotebooksData } = useFirestoreDocData(recentNotebooksRef)
+
   const app = useFirebaseApp()
   const auth = getAuth(app)
 
@@ -53,6 +59,24 @@ const UpdateNotebookForm = ({ notebookId, closeModal, notebook }) => {
     delete notebooksData?.Notebooks?.[userId]
     const payload = { Notebooks: { [userId]: oldNotebooks, ...notebooksData?.Notebooks } };
     updateDoc(notebooksRef, payload)
+
+
+    const prevRecentNotebooks = recentNotebooksData?.RecentNotebooks?.[userId]
+    prevRecentNotebooks.forEach((eachNotebook) => {
+      if (eachNotebook.id === notebookId) {
+        eachNotebook.name = name
+        eachNotebook.description = description
+        eachNotebook.id = notebookId
+      }
+    })
+    delete recentNotebooksData?.RecentNotebooks?.[userId]
+    const recentNotebooksPayload = {
+      RecentNotebooks: {
+        [userId]: prevRecentNotebooks, ...recentNotebooksData?.RecentNotebooks
+      }
+    };
+    updateDoc(recentNotebooksRef, recentNotebooksPayload)
+
     closeModal();
     // const success = await dispatch(thunk_updateNotebook(payload));
   }
