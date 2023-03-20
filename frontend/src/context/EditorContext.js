@@ -5,6 +5,16 @@ import Editor from '@monaco-editor/react';
 import React from 'react';
 import styles from './editor.module.css';
 import {map} from "./editorConfig";
+import {
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonItem,
+    IonList,
+    IonSelect,
+    IonSelectOption
+} from "@ionic/react";
 
 const EditorContext = createContext();
 
@@ -46,56 +56,29 @@ const EditorProvider = ({ children }) => {
 
 
 
-    const handleSubmit = event => {
-      event.preventDefault();
-      if (map[lang]) {
-        setLanguage(lang);
-        return;
-      } else {
-        // set state to show error message?
-      }
-    };
-
-
-
-    const handleChange = event => {
-      setOptions(true);
-      setLang(event.target.value.toLowerCase());
-    }
-
-
-    const selectOption = (event, opInstance) => {
-      event.preventDefault();
-      setLanguage(opInstance.option);
-    }
-
 
     return (
       <>
         <div className={styles.editor_input_wrap}>
-          <form onSubmit={handleSubmit}>
-            <input type='text' value={lang} onChange={handleChange} />
-            <button> Select Language </button>
-          </form>
+            <IonCard>
+                <IonCardHeader> <IonCardTitle>Select Language</IonCardTitle> </IonCardHeader>
+
+                <IonCardContent>
+                    <IonList>
+                        <IonSelect
+                            onIonChange={(e) => setLanguage(e.detail.value)}
+                            interface="popover"
+                            placeholder="Set your language">
+                            {selectList.map((eachOption) => (
+                                <IonSelectOption value={eachOption.option}>{eachOption.type}</IonSelectOption>
+                            ))}
+                        </IonSelect>
+                    </IonList>
+                </IonCardContent>
+
+            </IonCard>
         </div>
 
-        {options ? (
-          <div className={styles.editor_options_wrap}>
-            {selectList.map((eachOption) => (
-              <div
-                className={styles.editor_each_option}
-                onClick={(event) => selectOption(event, eachOption)}
-              >
-                <Link
-                  to='/'
-                  onClick={(event) => selectOption(event, eachOption)}
-                >
-                  <li> {eachOption.type} </li>
-                </Link>
-              </div>
-            ))}
-          </div>
-        ) : null}
 
         <div>
           <h5> {fileType} </h5>

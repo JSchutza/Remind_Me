@@ -13,6 +13,7 @@ import EditorNav from "./EditorNav.js";
 import {doc, updateDoc} from "firebase/firestore";
 import {useFirebaseApp, useFirestore, useFirestoreDocData} from "reactfire";
 import {getAuth} from "firebase/auth";
+import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
 
 
 
@@ -124,6 +125,7 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
 
 
 
+    // todo if the user is authenticated allow them to select which notebook this note will be added to.
     const CreateNoteButton = () => {
         return (
             <>
@@ -228,20 +230,26 @@ export const CodeEditor = ({ the_content = 'none', notebook_id, closeModal, home
         />
 
         <div className={styles.edit_title}>
-          <label>Title:</label>
-          <br />
-          <input
-            onChange={(event) => setTitle(event.target.value)}
-            value={title}
-            aria-label='Title'
-          />
+            <IonCard>
+                <IonCardHeader>
+                    <IonCardTitle><label>Title:</label></IonCardTitle>
+                </IonCardHeader>
+
+                <IonCardContent>
+                    <input
+                        onChange={(event) => setTitle(event.target.value)}
+                        value={title}
+                        aria-label='Title'
+                    />
+                </IonCardContent>
+            </IonCard>
         </div>
 
-        <EachEditor
-          title={title}
-          content={content}
-          handleEditorChange={handleEditorChange}
-        />
+          <EachEditor
+              title={title}
+              content={content}
+              handleEditorChange={handleEditorChange}
+          />
       </>
     );
     }

@@ -12,7 +12,7 @@ import AboutMe from "../AboutMe";
 import {useSigninCheck} from "reactfire";
 import {CodeEditor} from "../Editor";
 import {IonReactRouter} from "@ionic/react-router";
-import {IonRouterOutlet} from "@ionic/react";
+import {IonContent, IonRouterOutlet} from "@ionic/react";
 
 
 
@@ -36,7 +36,9 @@ const UnAuthenticated = () => {
                 <Route path='/' exact={true}>
                     <NavBar/>
                     <Home/>
-                    <CodeEditor homepage={true}/>
+                    <IonContent>
+                        <CodeEditor homepage={true}/>
+                    </IonContent>
                 </Route>
 
                 <Route path='/readme' exact={true}>
@@ -74,7 +76,9 @@ const MainRouter = () => {
                     <Route path='/' exact={true}>
                         <NavBar/>
                         <Home/>
-                        <CodeEditor homepage={true}/>
+                        <IonContent>
+                            <CodeEditor homepage={true}/>
+                        </IonContent>
                     </Route>
 
                     <Route path='/readme' exact={true}>

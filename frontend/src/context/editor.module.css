@@ -2,11 +2,10 @@
 
 
 .editor_input_wrap {
-  padding: 5px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-end;
   justify-content: center;
   align-items: center;
 }

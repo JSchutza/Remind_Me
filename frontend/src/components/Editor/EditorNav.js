@@ -147,11 +147,11 @@ const EditorNav = ({ content, setContent, freshEditor=false }) => {
         </nav>
       </div>
 
-
-      <RunCodeButton
-        script={content}
-        setCompModal={setCompModal}
-      />
+      {/* todo reimplement backend api with cloud functions for code running */}
+      {/*<RunCodeButton*/}
+      {/*  script={content}*/}
+      {/*  setCompModal={setCompModal}*/}
+      {/*/>*/}
 
 
 
