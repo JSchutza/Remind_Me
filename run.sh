@@ -11,7 +11,7 @@ if [[ "$build_deploy_choice" == "yes" ]]; then
   cd frontend
   npm run build
   cd ../
-#    firebase deploy --only hosting,firestore
+  firebase deploy --only hosting,firestore
 else
   /bin/bash ./scripts/test_local.sh
 fi
