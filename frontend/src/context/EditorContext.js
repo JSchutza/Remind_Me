@@ -6,14 +6,15 @@ import React from 'react';
 import styles from './editor.module.css';
 import {map} from "./editorConfig";
 import {
+    IonButtons,
     IonCard,
     IonCardContent,
     IonCardHeader,
-    IonCardTitle,
+    IonCardTitle, IonChip,
     IonItem,
     IonList,
     IonSelect,
-    IonSelectOption
+    IonSelectOption, IonTitle, IonToolbar
 } from "@ionic/react";
 
 const EditorContext = createContext();
@@ -59,38 +60,34 @@ const EditorProvider = ({ children }) => {
 
     return (
       <>
-        <div className={styles.editor_input_wrap}>
-            <IonCard>
-                <IonCardHeader> <IonCardTitle>Select Language</IonCardTitle> </IonCardHeader>
-
-                <IonCardContent>
-                    <IonList>
-                        <IonSelect
-                            onIonChange={(e) => setLanguage(e.detail.value)}
-                            interface="popover"
-                            placeholder="Set your language">
-                            {selectList.map((eachOption) => (
-                                <IonSelectOption value={eachOption.option}>{eachOption.type}</IonSelectOption>
-                            ))}
-                        </IonSelect>
-                    </IonList>
-                </IonCardContent>
-
-            </IonCard>
-        </div>
-
-
-        <div>
-          <h5> {fileType} </h5>
-        </div>
-
         <div className={styles.editor_tab} >
-          <p> {tabtitle} </p>
+            <IonToolbar>
+                <IonTitle slot="start"> <p> {tabtitle} </p> </IonTitle>
+                <IonButtons slot="end">
+                    <IonCard>
+                        <IonCardHeader>
+                            <IonCardTitle> <IonChip outline={true}> {fileType} </IonChip> </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            <IonList>
+                                <IonSelect
+                                    onIonChange={(e) => setLanguage(e.detail.value)}
+                                    interface="popover"
+                                    placeholder="Set your language">
+                                    {selectList.map((eachOption) => (
+                                        <IonSelectOption value={eachOption.option}>{eachOption.type}</IonSelectOption>
+                                    ))}
+                                </IonSelect>
+                            </IonList>
+                        </IonCardContent>
+                    </IonCard>
+                </IonButtons>
+            </IonToolbar>
         </div>
 
-        <Editor
-          height='90vh'
-          defaultLanguage={language}
+          <Editor
+              height='90vh'
+              defaultLanguage={language}
           value={content}
           onChange={handleEditorChange}
           theme={theme}

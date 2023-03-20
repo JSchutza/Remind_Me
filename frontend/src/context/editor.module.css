@@ -30,14 +30,12 @@
 .editor_tab {
   background-color: black;
   box-sizing: border-box;
-  padding: 1px;
 }
 
 
 
 .editor_tab p {
-  color: wheat;
-  margin-left: 30px;
+  color: blueviolet;
 }
 
 
